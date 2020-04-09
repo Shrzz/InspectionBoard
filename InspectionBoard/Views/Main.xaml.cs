@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace InspectionBoard.Views
 {
     /// <summary>
-    /// Логика взаимодействия для LoginView.xaml
+    /// Логика взаимодействия для Main.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class Main : Window
     {
-        public LoginView()
+        public Main()
         {
             InitializeComponent();
-        }
-
-        private void PwbPassword_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (this.DataContext != null)
-            {
-                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password;
-            }
         }
     }
 }

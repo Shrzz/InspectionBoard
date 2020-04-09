@@ -5,59 +5,35 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using InspectionBoard.Dialogs.AddSpecialityDialog;
+using Prism.Mvvm;
+using Prism.Commands;
 
 namespace InspectionBoard.ViewModels
 {
-    public class MainViewModel : ViewModel
+    public class MainViewModel : BindableBase
     {
-        public event EventHandler<ExitEventArgs> OnClosing;
-
-        public ICommand CloseAppCommand { get; }
-        public ICommand AddSpecialityCommand { get; }
-
-        public MainViewModel()
-        {
-            AddSpecialityCommand = new RelayCommand(AddSpeciality);
-            CloseAppCommand = new RelayCommand(CloseApp);
-        }
-
-        private ObservableCollection<Applicant> applicants = new ObservableCollection<Applicant>()
-        {
-            new Applicant(0,"name1","location1","birthDate1","mark1","specoality1")
-        };
-
-        public ObservableCollection<Applicant> Applicants
-        {
-            get => applicants;
-            set => Set(ref applicants, value);
-        }
-
         private string message;
         public string Message
         {
-            get => message;
-            set => Set(ref message, value);
+            get { return message; }
+            set { SetProperty(ref message, value); }
         }
 
-
-
-
-
-
-
-        private void AddSpeciality()
+        private ObservableCollection<Applicant> applicants;
+        public ObservableCollection<Applicant> Applicants
         {
-            AddSpecialityDialogViewModel tempVM = new AddSpecialityDialogViewModel();
-            AddSpecialityView tempView = new AddSpecialityView() { DataContext = tempVM };
-            tempView.ShowDialog();
+            get { return applicants; }
+            set { SetProperty(ref applicants, value); }
         }
- 
-    
 
+        public DelegateCommand QuitCommand { get; set; }
 
+        public MainViewModel()
+        {
+            QuitCommand = new DelegateCommand(Quit);
+        }
 
-
-        private void CloseApp()
+        private void Quit()
         {
             Application.Current.Shutdown();
         }

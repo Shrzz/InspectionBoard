@@ -1,5 +1,4 @@
-﻿using InspectionBoard.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoard
+namespace InspectionBoard.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Authorization.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class Authorization : Window
     {
-        public MainView()
+        public Authorization()
         {
             InitializeComponent();
         }
