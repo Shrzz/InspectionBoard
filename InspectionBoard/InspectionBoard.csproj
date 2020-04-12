@@ -96,25 +96,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialogs\AddSpecialityDialog\AddSpecialityDialogViewModel.cs" />
-    <Compile Include="Dialogs\AddSpecialityDialog\AddSpecialityView.xaml.cs">
-      <DependentUpon>AddSpecialityView.xaml</DependentUpon>
+    <Compile Include="Dialogs\NotificationDialog.xaml.cs">
+      <DependentUpon>NotificationDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AddSpecialityDialog\DialogResult.cs" />
-    <Compile Include="Domain\LoginEventArgs.cs" />
-    <Compile Include="Domain\RelayCommand.cs" />
-    <Compile Include="Domain\ViewModel.cs" />
-    <Compile Include="Models\Applicant.cs" />
-    <Compile Include="ViewModels\AuthorizationViewModel.cs" />
+    <Compile Include="Dialogs\NotificationDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\Authorization.xaml.cs">
-      <DependentUpon>Authorization.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Dialogs\AddSpecialityDialog\AddSpecialityView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Authorization.xaml">
+    <Page Include="Dialogs\NotificationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,7 +144,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Authorization\Authorization.csproj">
+      <Project>{f97c7026-69f4-41fb-9b89-e93e90ebce79}</Project>
+      <Name>Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workspace\Workspace.csproj">
+      <Project>{fecf048a-5186-44aa-9b75-dc21cf0f3ba7}</Project>
+      <Name>Workspace</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

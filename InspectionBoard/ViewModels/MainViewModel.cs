@@ -1,17 +1,24 @@
-﻿using InspectionBoard.Domain;
-using InspectionBoard.Models;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using InspectionBoard.Dialogs.AddSpecialityDialog;
 using Prism.Mvvm;
 using Prism.Commands;
+using Prism.Services.Dialogs;
+using Prism.Ioc;
+using InspectionBoard.Dialogs;
+using InspectionBoard.Views;
+using Prism.Regions;
+using Unity;
+using System.ComponentModel;
 
 namespace InspectionBoard.ViewModels
 {
     public class MainViewModel : BindableBase
     {
+        private readonly IRegionManager regionManager;
+        public IDialogService _dialogService { get; set; }
+
         private string message;
         public string Message
         {
@@ -19,23 +26,24 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref message, value); }
         }
 
-        private ObservableCollection<Applicant> applicants;
-        public ObservableCollection<Applicant> Applicants
+        public DelegateCommand<string> NavigateCommand { get; private set; }
+
+        public MainViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
-            get { return applicants; }
-            set { SetProperty(ref applicants, value); }
+            this.regionManager = regionManager;
+            this._dialogService = dialogService;
+            NavigateCommand = new DelegateCommand<string>(Navigate);
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(Authorization.Views.ViewA));
+            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.ViewA));
         }
 
-        public DelegateCommand QuitCommand { get; set; }
-
-        public MainViewModel()
+        private void Navigate(string navigatePath)
         {
-            QuitCommand = new DelegateCommand(Quit);
+            if (navigatePath != null)
+            {
+                regionManager.RequestNavigate("ContentRegion", navigatePath);
+            }
         }
-
-        private void Quit()
-        {
-            Application.Current.Shutdown();
-        }
+        
     }
 }

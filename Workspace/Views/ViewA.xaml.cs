@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoard.Views
+namespace Workspace.Views
 {
     /// <summary>
-    /// Логика взаимодействия для Main.xaml
+    /// Interaction logic for ViewA.xaml
     /// </summary>
-    public partial class Main : Window
+    public partial class ViewA : UserControl
     {
-        public Main()
+        public ViewA()
         {
             InitializeComponent();
-            
-
         }
     }
 }

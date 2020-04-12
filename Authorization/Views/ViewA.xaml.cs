@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Regions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoard.Views
+namespace Authorization.Views
 {
     /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
+    /// Interaction logic for ViewA.xaml
     /// </summary>
-    public partial class Authorization : Window
+    public partial class ViewA : UserControl
     {
-        public Authorization()
+        public ViewA()
         {
             InitializeComponent();
+ 
         }
     }
 }

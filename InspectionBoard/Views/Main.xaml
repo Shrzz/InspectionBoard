@@ -10,22 +10,9 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="Main" Height="450" Width="800">
     <Grid>
-        <Menu IsMainMenu="True">
-            <MenuItem Header="Специальность">
-                <MenuItem Header="Добавить"/>
-                <MenuItem Header="Выбрать"/>
-                <MenuItem Header="Удалить"/>
-            </MenuItem>
-            <MenuItem Header="Анализ"/>
-            <MenuItem Header="Документы"/>
-            <TextBox materialDesign:HintAssist.Hint="Поиск"
-            materialDesign:TextFieldAssist.DecorationVisibility="Visible" BorderThickness="0" MinWidth="150" VerticalAlignment="Center" Width="172"/>
-            <MenuItem Header="Выход" Command="{Binding QuitCommand}"/>
-        </Menu>
-        <materialDesign:Card Padding="20" Margin="0 50 0 20" Background="#FFFFF5F5">
-            <DataGrid Margin="0 0 0 0" Background="#FFFEDBD0" ItemsSource="{Binding Path=Applicants}"  ColumnWidth="*"
-                      CanUserSortColumns="True" CanUserAddRows="False" CanUserReorderColumns="True" CanUserDeleteRows="False" IsReadOnly="True">
-            </DataGrid>
-        </materialDesign:Card>
+        <Button Content="click" Command="{Binding NavigateCommand}" CommandParameter="Auth"/>
+        <TextBlock VerticalAlignment="Bottom" Text="{Binding Message}" HorizontalAlignment="Center" FontSize="50"/>
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" Margin="5"  />
     </Grid>
+    
 </Window>

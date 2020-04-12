@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoard.Dialogs.AddSpecialityDialog
+namespace InspectionBoard.Dialogs
 {
     /// <summary>
-    /// Логика взаимодействия для AddSpecialityView.xaml
+    /// Логика взаимодействия для NotificationDialog.xaml
     /// </summary>
-    public partial class AddSpecialityView : Window
+    public partial class NotificationDialog : UserControl
     {
-        public AddSpecialityView()
+        public NotificationDialog()
         {
             InitializeComponent();
         }
