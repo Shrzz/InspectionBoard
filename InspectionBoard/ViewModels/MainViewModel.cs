@@ -17,7 +17,7 @@ namespace InspectionBoard.ViewModels
     public class MainViewModel : BindableBase
     {
         private readonly IRegionManager regionManager;
-        public IDialogService _dialogService { get; set; }
+        public IDialogService DialogService { get; set; }
 
         private string message;
         public string Message
@@ -31,10 +31,10 @@ namespace InspectionBoard.ViewModels
         public MainViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
             this.regionManager = regionManager;
-            this._dialogService = dialogService;
+            this.DialogService = dialogService;
             NavigateCommand = new DelegateCommand<string>(Navigate);
+            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.ViewA));//
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(Authorization.Views.ViewA));
-            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.ViewA));
         }
 
         private void Navigate(string navigatePath)

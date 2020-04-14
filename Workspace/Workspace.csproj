@@ -49,7 +49,24 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBHandler\DataBase.cs" />
     <Compile Include="Models\Applicant.cs" />
+    <Compile Include="ViewModels\ViewBViewModel.cs" />
+    <Compile Include="ViewModels\ViewCViewModel.cs" />
+    <Compile Include="ViewModels\ViewDViewModel.cs" />
+    <Compile Include="ViewModels\ViewEViewModel.cs" />
+    <Compile Include="Views\ViewB.xaml.cs">
+      <DependentUpon>ViewB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewC.xaml.cs">
+      <DependentUpon>ViewC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewD.xaml.cs">
+      <DependentUpon>ViewD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewE.xaml.cs">
+      <DependentUpon>ViewE.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkspaceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -81,6 +98,22 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Views\ViewA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewE.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

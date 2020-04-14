@@ -20,9 +20,8 @@ namespace InspectionBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {    
+            
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
-          //  containerRegistry.RegisterForNavigation<Workspace.Views.ViewA, Workspace.ViewModels.ViewAViewModel>();
-          //  containerRegistry.RegisterForNavigation<Authorization.Views.ViewA, Authorization.ViewModels.AuthorizationViewModel>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

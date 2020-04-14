@@ -12,22 +12,22 @@
     <Grid>
         <Menu IsMainMenu="True">
             <MenuItem Header="Специальность">
-                <MenuItem Header="Добавить"/>
-                <MenuItem Header="Выбрать"/>
-                <MenuItem Header="Удалить"/>
+                <MenuItem Header="Добавить" Command="{Binding NavigateCommand}" CommandParameter="AddSpeciality"/>
+                <MenuItem Header="Выбрать" Command="{Binding NavigateCommand}" CommandParameter="Specialities"/>
+                <MenuItem Header="Удалить" Command="{Binding NavigateCommand}" CommandParameter="RemoveSpeciality"/>
             </MenuItem>
-            <MenuItem Header="Анализ" Command="{Binding NavigateCommand}" CommandParameter="ViewA"/>
-            <MenuItem Header="Документы" Command="{Binding ChangeCommand}"/>
+            <MenuItem Header="Анализ" Command="{Binding NavigateCommand}" CommandParameter="Analysis"/>
+            <MenuItem Header="Документы" Command="{Binding NavigateCommand}" CommandParameter="Documents"/>
             <TextBox materialDesign:HintAssist.Hint="Поиск"
             materialDesign:TextFieldAssist.DecorationVisibility="Visible" BorderThickness="0" MinWidth="150" VerticalAlignment="Center" Width="172"/>
             <MenuItem Header="Выход" Command="{Binding QuitCommand}"/>
         </Menu>
         <materialDesign:Card Padding="20" Margin="0 50 0 20" Background="#FFFFF5F5">
-            <DataGrid Margin="0 0 0 0" Background="#FFFEDBD0" ItemsSource="{Binding Path=Applicants}"  ColumnWidth="*"
+            <DataGrid Margin="0 0 0 0" Background="#FFFEDBD0" ItemsSource="{Binding Applicants}"  ColumnWidth="*"
                       CanUserSortColumns="True" CanUserAddRows="False" CanUserReorderColumns="True" CanUserDeleteRows="False" IsReadOnly="True">
             </DataGrid>
         </materialDesign:Card>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=Message}"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Message}"/>
         <ContentControl prism:RegionManager.RegionName="WorkspaceRegion"/>
     </Grid>
 </UserControl>

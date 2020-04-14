@@ -12,26 +12,26 @@ namespace Authorization.ViewModels
 {
     public class ViewAViewModel : BindableBase
     {
-        private IRegionManager _regionManager;
-        private string _message;
+        private IRegionManager regionManager;
+        private string message;
         public string Message
         {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
+            get { return message; }
+            set { SetProperty(ref message, value); }
         }
 
-        private string _username;
+        private string username;
         public string Username
         {
-            get { return _username; }
-            set { SetProperty(ref _username, value); }
+            get { return username; }
+            set { SetProperty(ref username, value); }
         }
 
-        private string _password;
+        private string password;
         public string Password
         {
-            get { return _password; }
-            set { SetProperty(ref _password, value); }
+            get { return password; }
+            set { SetProperty(ref password, value); }
         }
 
         public DelegateCommand<string> NavigateCommand { get; private set; }
@@ -40,17 +40,16 @@ namespace Authorization.ViewModels
 
         public ViewAViewModel(IRegionManager regionManager)
         {
-            _regionManager = regionManager;
+            this.regionManager = regionManager;
             LoginCommand = new DelegateCommand(Login);
 
         }
-
         private void Login()
         {
             if (Username?.ToString() == "admin" && Password?.ToString() == "admin")
             {
                 Message = "авторизован";
-                _regionManager.RequestNavigate("ContentRegion","Workspace");
+                regionManager.RequestNavigate("ContentRegion", "Workspace");
             }
             else
             {

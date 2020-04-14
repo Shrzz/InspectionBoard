@@ -8,11 +8,11 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="Main" Height="450" Width="800">
+        Background="PeachPuff"
+        Title="Main" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="click" Command="{Binding NavigateCommand}" CommandParameter="Auth"/>
-        <TextBlock VerticalAlignment="Bottom" Text="{Binding Message}" HorizontalAlignment="Center" FontSize="50"/>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" Margin="5"  />
+        <ContentControl prism:RegionManager.RegionName="ContentRegion"/>
     </Grid>
     
 </Window>
