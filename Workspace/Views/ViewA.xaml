@@ -10,7 +10,7 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <Menu IsMainMenu="True">
+        <Menu IsMainMenu="True" Background="PeachPuff" Margin="0 0 0 0">
             <MenuItem Header="Специальность">
                 <MenuItem Header="Добавить" Command="{Binding NavigateCommand}" CommandParameter="AddSpeciality"/>
                 <MenuItem Header="Выбрать" Command="{Binding NavigateCommand}" CommandParameter="Specialities"/>
@@ -20,14 +20,22 @@
             <MenuItem Header="Документы" Command="{Binding NavigateCommand}" CommandParameter="Documents"/>
             <TextBox materialDesign:HintAssist.Hint="Поиск"
             materialDesign:TextFieldAssist.DecorationVisibility="Visible" BorderThickness="0" MinWidth="150" VerticalAlignment="Center" Width="172"/>
+            <MenuItem Header="Абитуриенты">
+                <MenuItem Header="Добавить" Command="{Binding ShowDialogCommand}" CommandParameter="AddApplicantDialog"/>
+                <MenuItem Header="Удалить" Command="{Binding ShowDialogCommand}" CommandParameter="RemoveApplicantDialog"/>
+                <MenuItem Header="Изменить" Command="{Binding ShowDialogCommand}" CommandParameter="NotificationDialog"/>
+            </MenuItem>
             <MenuItem Header="Выход" Command="{Binding QuitCommand}"/>
         </Menu>
-        <materialDesign:Card Padding="20" Margin="0 50 0 20" Background="#FFFFF5F5">
-            <DataGrid Margin="0 0 0 0" Background="#FFFEDBD0" ItemsSource="{Binding Applicants}"  ColumnWidth="*"
-                      CanUserSortColumns="True" CanUserAddRows="False" CanUserReorderColumns="True" CanUserDeleteRows="False" IsReadOnly="True">
-            </DataGrid>
-        </materialDesign:Card>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Message}"/>
+        <StackPanel>
+            <materialDesign:Card Padding="20" Margin="0 50 0 20"  Background="#FFFFF5F5" >
+                <StackPanel>
+                    <DataGrid x:Name="dgMain" Margin="0 0 0 0" Background="#FFFEDBD0" ItemsSource="{Binding Applicants}"  ColumnWidth="*"
+                      CanUserSortColumns="True" CanUserAddRows="False" CanUserReorderColumns="True" CanUserDeleteRows="False" IsSynchronizedWithCurrentItem="True" IsReadOnly="True"/>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Speciality}"/>
         <ContentControl prism:RegionManager.RegionName="WorkspaceRegion"/>
     </Grid>
 </UserControl>

@@ -2,11 +2,12 @@
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.Generic;
+using System.Windows;
 using Workspace.DBHandler;
 
 namespace Workspace.ViewModels
 {
-    public class ViewBViewModel : BindableBase
+    public class ViewBViewModel : BindableBase, INavigationAware
     {
         private IRegionManager regionManager;
 
@@ -32,20 +33,61 @@ namespace Workspace.ViewModels
         }
 
         public DelegateCommand<string> NavigateCommand { get; private set; }
+        public DelegateCommand ReturnCommand { get; private set; }
 
         public ViewBViewModel(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
-            NavigateCommand = new DelegateCommand<string>(Navigate);
-            Specialities = DataBase.GetSpecialitiesList();
-            SelectedItem = Specialities[0];
+            NavigateCommand = new DelegateCommand<string>(ReturnSpeciality);
+            ReturnCommand = new DelegateCommand(Return);
         }
 
-        private void Navigate(string item)
+        private void ReturnSpeciality(string item)
         {
-            var parameters = new NavigationParameters();
-            parameters.Add("SelectedItem", SelectedItem);
-            regionManager.RequestNavigate("ContentRegion", "Workspace", parameters);
+            if (item == null)
+            {
+                MessageBox.Show("Необходимо выбрать специальность");
+            }
+            else
+            {
+                var parameters = new NavigationParameters
+            {
+                { "SelectedItem", SelectedItem }
+            };
+                regionManager.RequestNavigate("ContentRegion", "Workspace", parameters);
+            }
+
+        }
+
+        private void Return()
+        {
+            regionManager.RequestNavigate("ContentRegion", "Workspace");
+            return;
+        }
+
+        private string GetSelectedSpeciality()
+        {
+            if (Specialities.Count > 0)
+            {
+                return Specialities[0];
+            }
+            return "Специальностей нет";
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            Specialities = DataBase.GetSpecialitiesList();
+            SelectedItem = GetSelectedSpeciality();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+
         }
     }
 }

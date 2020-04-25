@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Workspace.Views
+namespace InspectionBoard.Dialogs
 {
     /// <summary>
-    /// Логика взаимодействия для ViewD.xaml
+    /// Логика взаимодействия для RemoveApplicantDialog.xaml
     /// </summary>
-    public partial class ViewD : UserControl
+    public partial class RemoveApplicantDialog : UserControl
     {
-        public ViewD()
+        public RemoveApplicantDialog()
         {
             InitializeComponent();
         }

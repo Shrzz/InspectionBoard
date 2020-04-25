@@ -9,18 +9,22 @@
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True">
+             prism:ViewModelLocator.AutoWireViewModel="True" Background="PeachPuff">
     <Grid>
         <ContentControl prism:RegionManager.RegionName="AuthorizationRegion"/>
         <materialDesign:Card Padding="19" Margin="200 70 200 100" Background="#FFFEDBD0">
             <StackPanel>
-                <StackPanel Margin="0 0 0 0">
+                <StackPanel VerticalAlignment="Center" Margin="0 0 0 0">
                     <TextBox Text="{Binding Username}" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                     <PasswordBox  utility:PasswordBoxAssistant.BindPassword="True"
-                                  utility:PasswordBoxAssistant.BoundPassword="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" materialDesign:TextFieldAssist.HasClearButton="True"  materialDesign:HintAssist.Hint="Пароль" Margin="0 15 0 0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                                  utility:PasswordBoxAssistant.BoundPassword="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                  materialDesign:TextFieldAssist.HasClearButton="True"  materialDesign:HintAssist.Hint="Пароль" 
+                                  Margin="0 15 0 0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                     <Grid Margin="0 15 0 0">
-                        <Button Content="Войти" HorizontalAlignment="Center"  VerticalAlignment="Center"  Margin="0,0,0,0" Command="{Binding LoginCommand}"
-                                FontFamily="Clarendon Blk BT" materialDesign:ButtonAssist.CornerRadius="10" materialDesign:RippleAssist.Feedback="#DD000000" 
+                        <Button Content="Войти" HorizontalAlignment="Center"  VerticalAlignment="Center"  
+                                Margin="0,0,0,0" Command="{Binding LoginCommand}"
+                                FontFamily="Clarendon Blk BT" materialDesign:ButtonAssist.CornerRadius="10" 
+                                materialDesign:RippleAssist.Feedback="#DD000000" 
                                 RenderTransformOrigin="0.597,0.744"  Background="#FFFFCDBD" />
                     </Grid>
                     <TextBlock Text="{Binding Message}" 

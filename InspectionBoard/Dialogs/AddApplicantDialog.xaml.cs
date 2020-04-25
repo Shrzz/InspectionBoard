@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Workspace.Views
+namespace InspectionBoard.Dialogs
 {
     /// <summary>
-    /// Логика взаимодействия для ViewC.xaml
+    /// Логика взаимодействия для AddApplicantDialog.xaml
     /// </summary>
-    public partial class ViewC : UserControl
+    public partial class AddApplicantDialog : UserControl
     {
-        public ViewC()
+        public AddApplicantDialog()
         {
             InitializeComponent();
         }

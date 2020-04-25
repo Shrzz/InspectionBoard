@@ -9,6 +9,7 @@ using Prism.Unity;
 using System.Windows;
 using Workspace;
 
+
 namespace InspectionBoard
 {
     public partial class App : PrismApplication
@@ -19,8 +20,9 @@ namespace InspectionBoard
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {    
-            
+        {        
+            containerRegistry.RegisterDialog<AddApplicantDialog, AddApplicantDialogViewModel>();
+            containerRegistry.RegisterDialog<RemoveApplicantDialog, RemoveApplicantDialogViewModel>();
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
         }
 

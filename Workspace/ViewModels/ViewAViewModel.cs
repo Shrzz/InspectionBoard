@@ -3,11 +3,8 @@ using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Specialized;
 using System.Windows;
 using Workspace.DBHandler;
 using Workspace.Models;
@@ -16,15 +13,17 @@ namespace Workspace.ViewModels
 {
     public class ViewAViewModel : BindableBase, INavigationAware
     {
+        #region properties
+        private readonly IRegionManager regionManager;
+        private readonly IDialogService dialogService;
+
         private string speciality;
         public string Speciality
         {
             get { return speciality; }
             set { SetProperty(ref speciality, value); }
         }
-        private readonly IRegionManager regionManager;
 
-        #region properties
         private string message;
         public string Message
         {
@@ -46,41 +45,34 @@ namespace Workspace.ViewModels
             set { SetProperty(ref selectedSpeciality, value); }
         }
 
-        public IDialogService DialogService { get; set; }
+        private Applicant a;
+        public Applicant A
+        {
+            get { return a; }
+            set { SetProperty(ref a, value); }
+        }
+
         public DelegateCommand QuitCommand { get; set; }
         public DelegateCommand<string> NavigateCommand { get; private set; }
         public DelegateCommand ChangeCommand { get; private set; }
-        public DelegateCommand ShowDialogCommand { get; private set; }
+        public DelegateCommand<string> ShowDialogCommand { get; private set; }
 
         #endregion
 
         public ViewAViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
-            Applicant a = new Applicant
-            {
-                BirthDate = DateTime.Now.ToString(),
-                ID = 0,
-                Location = "location0",
-                Mark = "mark0",
-                Name = "name0",
-                Speciality = "spec0"
-            };
-            applicants = new ObservableCollection<Applicant>()
-            {
-                a
-            };
             this.regionManager = regionManager;
-            this.DialogService = dialogService;       
+            this.dialogService = dialogService;
             QuitCommand = new DelegateCommand(Quit);
             ChangeCommand = new DelegateCommand(ChangeMessage);
             NavigateCommand = new DelegateCommand<string>(Navigate);
-            ShowDialogCommand = new DelegateCommand(ShowDialog);
-            
-
-        }       //потом удалить челиков
+            ShowDialogCommand = new DelegateCommand<string>(ShowAddDialog);
+            Applicants = new ObservableCollection<Applicant>();
+            Applicants.CollectionChanged += CollectionChanged;
+        }
 
         #region methods
-        private void Navigate(string navigatePath)      //можно юзануть при логауте
+        private void Navigate(string navigatePath)   
         {
             if (navigatePath != null)
             {
@@ -88,12 +80,40 @@ namespace Workspace.ViewModels
             }
         }
 
+        public void CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    try
+                    {
+                        DataBase.AddApplicant(SelectedSpeciality, e.NewItems[0] as Applicant);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось добавить абитуриента в базу данных");
+
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    try
+                    {
+                        DataBase.DeleteApplicant(SelectedSpeciality, e.OldItems[0] as Applicant);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось удалить абитуриента из базы данных");
+                    }
+                    break;
+            }
+        }   //возможно снести нахер
+
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             Speciality = navigationContext.Parameters["SelectedItem"] as string;
             if (!String.IsNullOrEmpty(Speciality))
             {
-                //Applicants = DataBase.GetApplicants(Speciality);
+                Applicants = DataBase.GetApplicants(Speciality);
             }
             return true;
         }
@@ -112,17 +132,16 @@ namespace Workspace.ViewModels
 
         }
 
-        private void ChangeMessage()
+        private void ChangeMessage()//удалить потом
         {
             Message = "новое соообщение";
         }
-        private void ShowDialog()
+
+        public void ShowAddDialog(string dialogName)
         {
-            var message = "This is a message that should be shown in the dialog.";
-            DialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), r =>
+            dialogService.ShowDialog(dialogName, new DialogParameters($"message={SelectedSpeciality}"), r =>
             {
                 if (r.Result == ButtonResult.None)
-
                     SelectedSpeciality = "Result is None";
                 else if (r.Result == ButtonResult.OK)
                     SelectedSpeciality = "Result is OK";
@@ -131,7 +150,8 @@ namespace Workspace.ViewModels
                 else
                     Message = "I Don't know what you did!?";
             });
-        }
+        } //диалоги
+
         private void Quit()
         {
             Application.Current.Shutdown();

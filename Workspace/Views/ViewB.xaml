@@ -8,12 +8,18 @@
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True"
-             Background="#FFFEDBD0" Margin="100 100 100 100">
-    <Grid Margin="100">
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="{Binding Message}"/>
-        <ComboBox ItemsSource="{Binding Specialities}" SelectedItem="{Binding SelectedItem}" />
-        <Button Content="Выбрать"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding NavigateCommand}" Margin="170,0,342,19.6"/>
-        <Button Content="Назад"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding NavigateCommand}" Margin="365,0,164,19.6"/>
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <materialDesign:Card Padding="19" Margin="200 70 200 100" Background="#FFFEDBD0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="{Binding Message}"/>
+                <ComboBox ItemsSource="{Binding Specialities}" SelectedItem="{Binding SelectedItem}" Margin="0 10 0 0"/>
+                <Button Content="Выбрать" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding NavigateCommand}" CommandParameter="{Binding SelectedItem}" 
+                        Margin="0 60 0 0"/>
+                <Button Content="Назад"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding ReturnCommand}" 
+                        Margin="0 15 0 0"/>
+            </StackPanel>
+        </materialDesign:Card>
+
     </Grid>
 </UserControl>

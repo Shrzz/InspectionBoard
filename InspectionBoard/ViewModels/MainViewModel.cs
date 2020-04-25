@@ -17,23 +17,22 @@ namespace InspectionBoard.ViewModels
     public class MainViewModel : BindableBase
     {
         private readonly IRegionManager regionManager;
-        public IDialogService DialogService { get; set; }
+        private IDialogService dialogService;
 
-        private string message;
-        public string Message
+        private string title;
+        public string Title
         {
-            get { return message; }
-            set { SetProperty(ref message, value); }
+            get { return title; }
+            set { SetProperty(ref title, value); }
         }
 
         public DelegateCommand<string> NavigateCommand { get; private set; }
 
         public MainViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
+            this.dialogService = dialogService;
             this.regionManager = regionManager;
-            this.DialogService = dialogService;
             NavigateCommand = new DelegateCommand<string>(Navigate);
-            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.ViewA));//
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(Authorization.Views.ViewA));
         }
 
