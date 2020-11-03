@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Input;
-using Prism.Mvvm;
+﻿using MaterialDesignThemes.Wpf;
 using Prism.Commands;
-using Prism.Services.Dialogs;
-using Prism.Ioc;
-using InspectionBoard.Dialogs;
-using InspectionBoard.Views;
+using Prism.Mvvm;
 using Prism.Regions;
-using Unity;
-using System.ComponentModel;
+using System.Windows.Media;
 
 namespace InspectionBoard.ViewModels
 {
     public class MainViewModel : BindableBase
     {
         private readonly IRegionManager regionManager;
-        private IDialogService dialogService;
 
         private string title;
         public string Title
@@ -26,14 +17,20 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        private string applicants;
+        public string Applicants
+        {
+            get { return applicants; }
+            set { SetProperty(ref applicants, value); }
+        }
+
         public DelegateCommand<string> NavigateCommand { get; private set; }
 
-        public MainViewModel(IRegionManager regionManager, IDialogService dialogService)
+        public MainViewModel(IRegionManager regionManager)
         {
-            this.dialogService = dialogService;
             this.regionManager = regionManager;
             NavigateCommand = new DelegateCommand<string>(Navigate);
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(Authorization.Views.ViewA));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(Authorization.Views.Login));
         }
 
         private void Navigate(string navigatePath)
@@ -43,6 +40,6 @@ namespace InspectionBoard.ViewModels
                 regionManager.RequestNavigate("ContentRegion", navigatePath);
             }
         }
-        
+
     }
 }

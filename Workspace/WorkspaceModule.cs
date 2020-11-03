@@ -15,9 +15,10 @@ namespace Workspace
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>("Workspace");
-            containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>("Specialities");      
-            containerRegistry.RegisterForNavigation<ViewE, ViewEViewModel>("Analysis");
+            containerRegistry.RegisterForNavigation<Main, MainViewModel>("Workspace");
+            containerRegistry.RegisterForNavigation<Specialities, SpecialitiesViewModel>("Specialities");      
+            containerRegistry.RegisterForNavigation<Analysis, AnalysisViewModel>("Analyze");
+            containerRegistry.RegisterForNavigation<DocsEnrollment, DocsEnrollmentViewModel>("DocsEnrollment");
         }
     }
 }

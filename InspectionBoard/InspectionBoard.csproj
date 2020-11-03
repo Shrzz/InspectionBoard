@@ -108,6 +108,14 @@
       <DependentUpon>AddApplicantDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\AddApplicantDialogViewModel.cs" />
+    <Compile Include="Dialogs\DocsSettingsDialog.xaml.cs">
+      <DependentUpon>DocsSettingsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DocsSettingsDialogViewModel.cs" />
+    <Compile Include="Dialogs\EditApplicantDialog.xaml.cs">
+      <DependentUpon>EditApplicantDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditApplicantDialogViewModel.cs" />
     <Compile Include="Dialogs\NotificationDialog.xaml.cs">
       <DependentUpon>NotificationDialog.xaml</DependentUpon>
     </Compile>
@@ -118,6 +126,14 @@
     <Compile Include="Dialogs\RemoveApplicantDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Dialogs\AddApplicantDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\DocsSettingsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditApplicantDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,6 +194,7 @@
       <Name>Workspace</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

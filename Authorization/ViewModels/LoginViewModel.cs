@@ -7,10 +7,11 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using Workspace.DBHandler;
 
 namespace Authorization.ViewModels
 {
-    public class ViewAViewModel : BindableBase
+    public class LoginViewModel : BindableBase
     {
         private IRegionManager regionManager;
         private string message;
@@ -38,7 +39,7 @@ namespace Authorization.ViewModels
 
         public DelegateCommand LoginCommand { get; private set; }
 
-        public ViewAViewModel(IRegionManager regionManager)
+        public LoginViewModel(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
             LoginCommand = new DelegateCommand(Login);
@@ -46,15 +47,17 @@ namespace Authorization.ViewModels
         }
         private void Login()
         {
-            if (Username?.ToString() == "admin" && Password?.ToString() == "admin")
+            var list = DataBase.GetUsers();
+            foreach (var item in list)
             {
-                Message = "авторизован";
-                regionManager.RequestNavigate("ContentRegion", "Workspace");
+                if (Username?.ToString() == item.Username && Password?.ToString() == item.Password)
+                {
+                    Message = "Авторизация прошла успешно";
+                    regionManager.RequestNavigate("ContentRegion", "Workspace");
+                    break;
+                }
             }
-            else
-            {
-                Message = "неверно введены данные";
-            }
+            Message = "Неверно введены данные";          
         }
     }
 }

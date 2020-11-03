@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Workspace.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ViewB.xaml
+    /// Логика взаимодействия для DocsEnrollment.xaml
     /// </summary>
-    public partial class ViewB : UserControl
+    public partial class DocsEnrollment : UserControl
     {
-        public ViewB()
+        public DocsEnrollment()
         {
             InitializeComponent();
         }

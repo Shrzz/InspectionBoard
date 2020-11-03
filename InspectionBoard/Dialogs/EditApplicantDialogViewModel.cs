@@ -11,7 +11,7 @@ using Workspace.Models;
 
 namespace InspectionBoard.Dialogs
 {
-    public class AddApplicantDialogViewModel : BindableBase, IDialogAware
+    public class EditApplicantDialogViewModel : BindableBase, IDialogAware
     {
         private DelegateCommand<string> _closeDialogCommand;
         public DelegateCommand<string> CloseDialogCommand =>
@@ -31,11 +31,31 @@ namespace InspectionBoard.Dialogs
             set { SetProperty(ref parameters, value); }
         }
 
+        private int id;
+        public int ID
+        {
+            get { return id; }
+            set { SetProperty(ref id, value); }
+        }
+
+        private List<Applicant> applicants;
+        public List<Applicant> Applicants
+        {
+            get { return applicants; }
+            set
+            {
+                SetProperty(ref applicants, value);
+
+
+            }
+        }
+
         public event Action<IDialogResult> RequestClose;
 
-        public AddApplicantDialogViewModel()
+        public EditApplicantDialogViewModel()
         {
-            Parameters = new string[5];
+            Parameters = new string[6];
+            Applicants = new List<Applicant>(DataBase.GetApplicants());
         }
 
         protected virtual void CloseDialog(string parameter)
@@ -44,18 +64,15 @@ namespace InspectionBoard.Dialogs
 
             if (parameter?.ToLower() == "true")
             {
-                Applicant applicant = new Applicant(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]);
-                AddApplicant(applicant);
-
+                Applicant applicant = new Applicant(ID, parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]);
+                EditApplicant(applicant);
                 result = ButtonResult.OK;
-
             }
             else
             {
                 if (parameter?.ToLower() == "false")
                     result = ButtonResult.Cancel;
             }
-
             RaiseRequestClose(new DialogResult(result));
         }
 
@@ -78,9 +95,9 @@ namespace InspectionBoard.Dialogs
         {
         }
 
-        private void AddApplicant(Applicant a)
+        private void EditApplicant(Applicant a)
         {
-            DataBase.AddApplicant(a);
+            DataBase.EditApplicant(a);
         }
     }
 }

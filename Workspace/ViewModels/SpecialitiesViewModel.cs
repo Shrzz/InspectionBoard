@@ -4,10 +4,13 @@ using Prism.Regions;
 using System.Collections.Generic;
 using System.Windows;
 using Workspace.DBHandler;
+using Workspace.Models;
+using System.Linq;
+using System.Windows.Navigation;
 
 namespace Workspace.ViewModels
 {
-    public class ViewBViewModel : BindableBase, INavigationAware
+    public class SpecialitiesViewModel : BindableBase, INavigationAware
     {
         private IRegionManager regionManager;
 
@@ -35,34 +38,34 @@ namespace Workspace.ViewModels
         public DelegateCommand<string> NavigateCommand { get; private set; }
         public DelegateCommand ReturnCommand { get; private set; }
 
-        public ViewBViewModel(IRegionManager regionManager)
+        public SpecialitiesViewModel(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
-            NavigateCommand = new DelegateCommand<string>(ReturnSpeciality);
+            NavigateCommand = new DelegateCommand<string>(ReturnSpecialities);
             ReturnCommand = new DelegateCommand(Return);
+            Specialities = DataBase.GetSpecialities();
+            
         }
 
-        private void ReturnSpeciality(string item)
+        private void ReturnSpecialities(string item)
         {
-            if (item == null)
+            if (SelectedItem == null)
             {
                 MessageBox.Show("Необходимо выбрать специальность");
             }
             else
             {
-                var parameters = new NavigationParameters
-            {
-                { "SelectedItem", SelectedItem }
-            };
-                regionManager.RequestNavigate("ContentRegion", "Workspace", parameters);
+                var p = new NavigationParameters
+                {
+                    { "SelectedItem", SelectedItem }
+                };
+                regionManager.RequestNavigate("ContentRegion", "Workspace", p);
             }
-
         }
 
         private void Return()
         {
             regionManager.RequestNavigate("ContentRegion", "Workspace");
-            return;
         }
 
         private string GetSelectedSpeciality()
@@ -76,7 +79,7 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Specialities = DataBase.GetSpecialitiesList();
+            Specialities = DataBase.GetSpecialities();
             SelectedItem = GetSelectedSpeciality();
         }
 

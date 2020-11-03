@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Workspace.Views
+namespace InspectionBoard.Dialogs
 {
     /// <summary>
-    /// Interaction logic for ViewA.xaml
+    /// Логика взаимодействия для DocsSettingsDialog.xaml
     /// </summary>
-    public partial class ViewA : UserControl
+    public partial class DocsSettingsDialog : UserControl
     {
-        public ViewA()
+        public DocsSettingsDialog()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Workspace.Views.ViewE"
+﻿<UserControl x:Class="Workspace.Views.Analysis"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,8 +14,10 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBox Text="{Binding Amount}" materialDesign:HintAssist.Hint="Количество мест" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Margin="0 10 0 0"/>
-                <Button Content="Анализ" Command="{Binding NavigateCommand}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 60 0 0" Width="105"/>
-                <Button Content="Назад" Command="{Binding NavigateCommand}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15 0 0" Width="105"/>
+                <Button Content="Анализ" Command="{Binding AnalyzeCommand}" CommandParameter="{Binding Applicants}" HorizontalAlignment="Center" 
+                        VerticalAlignment="Bottom" Margin="0 60 0 0" Width="105" Background="#FFFFCDBD"/>
+                <Button Content="Назад" Command="{Binding ReturnCommand}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15 0 0" Width="105"
+                        Background="#FFFFCDBD"/>
             </StackPanel>
         </materialDesign:Card>
 

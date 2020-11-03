@@ -14,7 +14,7 @@ namespace Workspace.DBHandler
 
         public ApplicantContext() : base("DefaultConnection")
         {
-
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicantContext>());
         }
         
     }

@@ -23,7 +23,9 @@ namespace InspectionBoard
         {        
             containerRegistry.RegisterDialog<AddApplicantDialog, AddApplicantDialogViewModel>();
             containerRegistry.RegisterDialog<RemoveApplicantDialog, RemoveApplicantDialogViewModel>();
+            containerRegistry.RegisterDialog<EditApplicantDialog, EditApplicantDialogViewModel>();
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
+            containerRegistry.RegisterDialog<DocsSettingsDialog, DocsSettingsDialogViewModel>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

@@ -1,5 +1,4 @@
-﻿using Prism.Regions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Authorization.Views
+namespace Workspace.Views
 {
     /// <summary>
-    /// Interaction logic for ViewA.xaml
+    /// Логика взаимодействия для ViewB.xaml
     /// </summary>
-    public partial class ViewA : UserControl
+    public partial class Specialities : UserControl
     {
-        public ViewA()
+        public Specialities()
         {
             InitializeComponent();
- 
         }
     }
 }

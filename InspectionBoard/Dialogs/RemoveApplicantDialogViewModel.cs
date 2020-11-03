@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Workspace.DBHandler;
 
 namespace InspectionBoard.Dialogs
 {
@@ -15,11 +16,11 @@ namespace InspectionBoard.Dialogs
         public DelegateCommand<string> CloseDialogCommand =>
             _closeDialogCommand ?? (_closeDialogCommand = new DelegateCommand<string>(CloseDialog));
 
-        private string _message;
-        public string Message
+        private string id;
+        public string ID
         {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
+            get { return id; }
+            set { SetProperty(ref id, value); }
         }
 
         private string _title = "Удалить абитуриента";
@@ -34,9 +35,11 @@ namespace InspectionBoard.Dialogs
         protected virtual void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
-
             if (parameter?.ToLower() == "true")
+            {
+                DataBase.DeleteApplicant(int.Parse(ID));
                 result = ButtonResult.OK;
+            }
             else if (parameter?.ToLower() == "false")
                 result = ButtonResult.Cancel;
 
@@ -58,9 +61,9 @@ namespace InspectionBoard.Dialogs
 
         }
 
-        public virtual void OnDialogOpened(IDialogParameters parameters)
+        public virtual void OnDialogOpened(IDialogParameters parameters)    //удалить потом
         {
-            Message = parameters.GetValue<string>("message");
+            var Message = parameters.GetValue<string>("message");
         }
 
     }

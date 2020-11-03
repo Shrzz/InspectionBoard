@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Workspace.Views
+namespace InspectionBoard.Dialogs
 {
     /// <summary>
-    /// Логика взаимодействия для ViewE.xaml
+    /// Логика взаимодействия для EditApplicantDialog.xaml
     /// </summary>
-    public partial class ViewE : UserControl
+    public partial class EditApplicantDialog : UserControl
     {
-        public ViewE()
+        public EditApplicantDialog()
         {
             InitializeComponent();
         }

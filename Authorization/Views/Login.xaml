@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Authorization.Views.ViewA"
+﻿<UserControl x:Class="Authorization.Views.Login"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Authorization.Views"
@@ -12,14 +12,14 @@
              prism:ViewModelLocator.AutoWireViewModel="True" Background="PeachPuff">
     <Grid>
         <ContentControl prism:RegionManager.RegionName="AuthorizationRegion"/>
-        <materialDesign:Card Padding="19" Margin="200 70 200 100" Background="#FFFEDBD0">
+        <materialDesign:Card Padding="19" Margin="250 70 250 100" Background="#FFFEDBD0">
             <StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="0 0 0 0">
-                    <TextBox Text="{Binding Username}" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox Text="{Binding Username}" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="20 0 20 0"/>
                     <PasswordBox  utility:PasswordBoxAssistant.BindPassword="True"
                                   utility:PasswordBoxAssistant.BoundPassword="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                   materialDesign:TextFieldAssist.HasClearButton="True"  materialDesign:HintAssist.Hint="Пароль" 
-                                  Margin="0 15 0 0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                                  Margin="20 15 20 0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                     <Grid Margin="0 15 0 0">
                         <Button Content="Войти" HorizontalAlignment="Center"  VerticalAlignment="Center"  
                                 Margin="0,0,0,0" Command="{Binding LoginCommand}"
