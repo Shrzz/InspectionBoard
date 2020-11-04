@@ -1,11 +1,11 @@
-﻿using Prism.Commands;
+﻿using InspectionBoardLibrary.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using Workspace.Models;
 
 namespace Workspace.ViewModels
 {

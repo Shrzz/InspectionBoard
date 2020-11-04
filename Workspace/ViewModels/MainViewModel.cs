@@ -1,4 +1,6 @@
-﻿using MaterialDesignColors;
+﻿using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.Models;
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -10,9 +12,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
-
-using Workspace.DBHandler;
-using Workspace.Models;
 
 namespace Workspace.ViewModels
 {

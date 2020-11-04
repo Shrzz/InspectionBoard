@@ -52,13 +52,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseHandler\ApplicantContext.cs" />
-    <Compile Include="DatabaseHandler\DataBase.cs" />
-    <Compile Include="DatabaseHandler\UserContext.cs" />
-    <Compile Include="FileHandlers\DocumentsHandler.cs" />
-    <Compile Include="FileHandlers\DocumentsSettings.cs" />
-    <Compile Include="Models\Applicant.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\DocsEnrollmentViewModel.cs" />
     <Compile Include="ViewModels\SpecialitiesViewModel.cs" />
     <Compile Include="ViewModels\AnalysisViewModel.cs" />
@@ -99,7 +92,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\DocsEnrollment.xaml">
       <SubType>Designer</SubType>
@@ -127,5 +122,12 @@
     </PackageReference>
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1367" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InspectionBoardLibrary\InspectionBoardLibrary.csproj">
+      <Project>{a9f67d85-1f10-42d9-a636-f59dac16b710}</Project>
+      <Name>InspectionBoardLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

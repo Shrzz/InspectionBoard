@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Workspace.Models
+namespace InspectionBoardLibrary.Models
 {
     public class User
     {

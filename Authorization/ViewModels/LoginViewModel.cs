@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using InspectionBoardLibrary.DatabaseHandler;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
-using Workspace.DBHandler;
 
 namespace Authorization.ViewModels
 {

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using Prism.Mvvm;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Data.Entity.Infrastructure.DependencyResolution;
 
-namespace Workspace.FileHandlers
+namespace InspectionBoardLibrary.FileHandlers
 {
     public static class DocumentsSettings 
     {

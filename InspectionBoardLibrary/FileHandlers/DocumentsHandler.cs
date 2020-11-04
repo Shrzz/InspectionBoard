@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using Word = Microsoft.Office.Interop.Word;
-using System.Windows;
-using Workspace.Models;
-using Microsoft.Office.Interop.Word;
-using System.Windows.Media;
-using Workspace.FileHandlers;
-using System.Windows.Media.TextFormatting;
-using System.Runtime.Remoting.Contexts;
+using System.Windows.Forms;
+using InspectionBoardLibrary.Models;
 
-namespace Workspace.DocsHandler
+namespace InspectionBoardLibrary.FileHandlers
 {
     public class DocumentsHandler
     {

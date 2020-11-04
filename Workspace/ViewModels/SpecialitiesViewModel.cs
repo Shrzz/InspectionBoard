@@ -3,10 +3,9 @@ using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.Generic;
 using System.Windows;
-using Workspace.DBHandler;
-using Workspace.Models;
 using System.Linq;
 using System.Windows.Navigation;
+using InspectionBoardLibrary.DatabaseHandler;
 
 namespace Workspace.ViewModels
 {

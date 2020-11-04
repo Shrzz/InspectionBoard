@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using InspectionBoardLibrary.FileHandlers;
+using InspectionBoardLibrary.Models;
+using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -9,9 +11,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Workspace.DocsHandler;
-using Workspace.FileHandlers;
-using Workspace.Models;
 
 namespace Workspace.ViewModels
 {

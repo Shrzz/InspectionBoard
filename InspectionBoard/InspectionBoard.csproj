@@ -65,6 +65,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -188,6 +189,10 @@
     <ProjectReference Include="..\Authorization\Authorization.csproj">
       <Project>{f97c7026-69f4-41fb-9b89-e93e90ebce79}</Project>
       <Name>Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InspectionBoardLibrary\InspectionBoardLibrary.csproj">
+      <Project>{a9f67d85-1f10-42d9-a636-f59dac16b710}</Project>
+      <Name>InspectionBoardLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\Workspace\Workspace.csproj">
       <Project>{fecf048a-5186-44aa-9b75-dc21cf0f3ba7}</Project>
