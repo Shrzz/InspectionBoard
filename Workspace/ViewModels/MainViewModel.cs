@@ -80,7 +80,7 @@ namespace Workspace.ViewModels
             AnalyzeCommand = new DelegateCommand(Analyze);
             DocsNavigateCommand = new DelegateCommand<string>(DocsNavigate);
             Applicants = DataBase.GetApplicants();
-            Speciality = "Нажмите для выбора специальности";
+            Speciality = "(не выбрано)";
         }
 
         #region methods

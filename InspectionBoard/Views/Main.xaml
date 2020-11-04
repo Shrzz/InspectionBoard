@@ -9,10 +9,10 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Background="PeachPuff"
-
         Title="АРМ секретаря приёмной комиссии" Height="500" Width="1050" 
         WindowStartupLocation="CenterScreen">
     <Grid>
+        
         <ContentControl prism:RegionManager.RegionName="ContentRegion"/>
     </Grid>
 </Window>
