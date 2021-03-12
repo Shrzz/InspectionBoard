@@ -54,7 +54,7 @@ namespace InspectionBoard.Dialogs
         public EditApplicantDialogViewModel()
         {
             Parameters = new string[6];
-            Applicants = new List<Applicant>(DataBase.GetApplicants());
+            Applicants = new List<Applicant>(Dbc.GetApplicants());
         }
 
         protected virtual void CloseDialog(string parameter)
@@ -96,7 +96,7 @@ namespace InspectionBoard.Dialogs
 
         private void EditApplicant(Applicant a)
         {
-            DataBase.EditApplicant(a);
+            Dbc.EditApplicant(a);
         }
     }
 }

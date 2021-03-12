@@ -42,7 +42,7 @@ namespace Workspace.ViewModels
             this.regionManager = regionManager;
             NavigateCommand = new DelegateCommand<string>(ReturnSpecialities);
             ReturnCommand = new DelegateCommand(Return);
-            Specialities = DataBase.GetSpecialities();
+            Specialities = Dbc.GetFacultiesList();
             
         }
 
@@ -78,7 +78,7 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Specialities = DataBase.GetSpecialities();
+            Specialities = Dbc.GetFacultiesList();
             SelectedItem = GetSelectedSpeciality();
         }
 

@@ -37,7 +37,7 @@ namespace InspectionBoard.Dialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                DataBase.DeleteApplicant(int.Parse(ID));
+                Dbc.DeleteApplicant(int.Parse(ID));
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")

@@ -2,18 +2,12 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Authorization.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
-        private IRegionManager regionManager;
+        private readonly IRegionManager regionManager;
         private string message;
         public string Message
         {
@@ -36,18 +30,17 @@ namespace Authorization.ViewModels
         }
 
         public DelegateCommand<string> NavigateCommand { get; private set; }
-
         public DelegateCommand LoginCommand { get; private set; }
 
         public LoginViewModel(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
             LoginCommand = new DelegateCommand(Login);
-
         }
+
         private void Login()
         {
-            var list = DataBase.GetUsers();
+            var list = Dbc.GetUserList();
             foreach (var item in list)
             {
                 if (Username?.ToString() == item.Username && Password?.ToString() == item.Password)
@@ -57,7 +50,8 @@ namespace Authorization.ViewModels
                     break;
                 }
             }
-            Message = "Неверно введены данные";          
+
+            Message = "Неверно введены данные";
         }
     }
 }

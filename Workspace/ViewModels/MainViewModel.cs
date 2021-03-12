@@ -79,7 +79,7 @@ namespace Workspace.ViewModels
             GetApplicantsCommand = new DelegateCommand(GetApplicants); 
             AnalyzeCommand = new DelegateCommand(Analyze);
             DocsNavigateCommand = new DelegateCommand<string>(DocsNavigate);
-            Applicants = DataBase.GetApplicants();
+            Applicants = Dbc.GetApplicants();
             Speciality = "(не выбрано)";
         }
 
@@ -122,7 +122,7 @@ namespace Workspace.ViewModels
             if (navigationContext.Parameters["SelectedItem"] is string)
             {
                 Speciality = navigationContext.Parameters["SelectedItem"].ToString();
-                var temp = new List<Applicant>(DataBase.GetApplicants());
+                var temp = new List<Applicant>(Dbc.GetApplicants());
                 Applicants = new ObservableCollection<Applicant>(
                     (from a in temp
                     where a.Speciality == Speciality
@@ -153,7 +153,7 @@ namespace Workspace.ViewModels
 
                 else if (r.Result == ButtonResult.OK)
                 {
-                    Applicants = DataBase.GetApplicants();
+                    Applicants = Dbc.GetApplicants();
 
                 }
 
@@ -170,7 +170,7 @@ namespace Workspace.ViewModels
 
         private void GetApplicants()
         {
-            Applicants = DataBase.GetApplicants();
+            Applicants = Dbc.GetApplicants();
             Speciality = "Нажмите для выбора специальности";
         }
 

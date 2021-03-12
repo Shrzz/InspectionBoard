@@ -80,7 +80,7 @@ namespace InspectionBoard.Dialogs
 
         private void AddApplicant(Applicant a)
         {
-            DataBase.AddApplicant(a);
+            Dbc.AddApplicant(a);
         }
     }
 }
