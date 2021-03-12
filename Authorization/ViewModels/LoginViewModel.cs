@@ -1,7 +1,9 @@
 ﻿using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Collections.Generic;
 
 namespace Authorization.ViewModels
 {
@@ -38,20 +40,18 @@ namespace Authorization.ViewModels
             LoginCommand = new DelegateCommand(Login);
         }
 
-        private void Login()
+        private async void Login()
         {
-            var list = Dbc.GetUserList();
-            foreach (var item in list)
+            bool success = Dbc.TryLogin(Username, Password);
+            if (success)
             {
-                if (Username?.ToString() == item.Username && Password?.ToString() == item.Password)
-                {
-                    Message = "Авторизация прошла успешно";
-                    regionManager.RequestNavigate("ContentRegion", "Workspace");
-                    break;
-                }
+                Message = "Авторизация прошла успешно";
+                regionManager.RequestNavigate("ContentRegion", "Workspace");
             }
-
-            Message = "Неверно введены данные";
+            else
+            {
+                Message = "Неверно введены данные";
+            }
         }
     }
 }

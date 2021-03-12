@@ -3,10 +3,6 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs
 {
@@ -23,25 +19,42 @@ namespace InspectionBoard.Dialogs
             set { SetProperty(ref id, value); }
         }
 
-        private string _title = "Удалить абитуриента";
+        private string _title = "Удалить студента";
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
 
+        private string message;
+        public string Message
+        {
+            get { return message; }
+            set { SetProperty(ref message, value); }
+        }
+
         public event Action<IDialogResult> RequestClose;
 
-        protected virtual void CloseDialog(string parameter)
+        protected virtual async void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
+            int parseResult;
+            bool success = int.TryParse(ID, out parseResult);
+            if (!success)
+            {
+                Message = "Введено неверное значение ID.";
+                return;
+            }
+
             if (parameter?.ToLower() == "true")
             {
-                Dbc.DeleteApplicant(int.Parse(ID));
+                await Dbc.RemoveStudent(parseResult);
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
+            {
                 result = ButtonResult.Cancel;
+            }
 
             RaiseRequestClose(new DialogResult(result));
         }
@@ -63,7 +76,7 @@ namespace InspectionBoard.Dialogs
 
         public virtual void OnDialogOpened(IDialogParameters parameters)    //удалить потом
         {
-            var Message = parameters.GetValue<string>("message");
+            Message = parameters.GetValue<string>("message");
         }
 
     }

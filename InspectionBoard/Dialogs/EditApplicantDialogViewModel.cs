@@ -16,7 +16,7 @@ namespace InspectionBoard.Dialogs
         public DelegateCommand<string> CloseDialogCommand =>
             _closeDialogCommand ?? (_closeDialogCommand = new DelegateCommand<string>(CloseDialog));
 
-        private string title = "Добавить абитуриента";
+        private string title = "Добавить студента";
         public string Title
         {
             get { return title; }
@@ -37,16 +37,11 @@ namespace InspectionBoard.Dialogs
             set { SetProperty(ref id, value); }
         }
 
-        private List<Applicant> applicants;
-        public List<Applicant> Applicants
+        private List<Student> students;
+        public List<Student> Students
         {
-            get { return applicants; }
-            set
-            {
-                SetProperty(ref applicants, value);
-
-
-            }
+            get { return students; }
+            set { SetProperty(ref students, value); }
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -54,17 +49,19 @@ namespace InspectionBoard.Dialogs
         public EditApplicantDialogViewModel()
         {
             Parameters = new string[6];
-            Applicants = new List<Applicant>(Dbc.GetApplicants());
+            // изменить число параметров
+            Students = Dbc.GetStudentList();
         }
 
-        protected virtual void CloseDialog(string parameter)
+        protected virtual async void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
 
             if (parameter?.ToLower() == "true")
             {
-                Applicant applicant = new Applicant(ID, parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]);
-                EditApplicant(applicant);
+                Student student = new Student();
+                // проинициализировать поля
+                await Dbc.EditStudent(student);
                 result = ButtonResult.OK;
             }
             else
@@ -92,11 +89,6 @@ namespace InspectionBoard.Dialogs
 
         public virtual void OnDialogOpened(IDialogParameters parameters)        //удалить потом
         {
-        }
-
-        private void EditApplicant(Applicant a)
-        {
-            Dbc.EditApplicant(a);
         }
     }
 }

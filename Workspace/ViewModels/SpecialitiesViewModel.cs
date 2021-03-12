@@ -6,6 +6,7 @@ using System.Windows;
 using System.Linq;
 using System.Windows.Navigation;
 using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.Models;
 
 namespace Workspace.ViewModels
 {
@@ -20,8 +21,8 @@ namespace Workspace.ViewModels
             set { SetProperty(ref message, value); }
         }
 
-        private List<string> specialities;
-        public List<string> Specialities
+        private List<Faculty> specialities;
+        public List<Faculty> Specialities
         {
             get { return specialities; }
             set { SetProperty(ref specialities, value); }
@@ -71,7 +72,7 @@ namespace Workspace.ViewModels
         {
             if (Specialities.Count > 0)
             {
-                return Specialities[0];
+                return Specialities[0].Name;
             }
             return "Специальностей нет";
         }

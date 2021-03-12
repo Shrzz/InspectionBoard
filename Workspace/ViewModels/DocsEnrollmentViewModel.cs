@@ -18,11 +18,11 @@ namespace Workspace.ViewModels
     {
         private readonly IRegionManager regionManager;
 
-        private List<Applicant> applicants;
-        public List<Applicant> Applicants
+        private List<Student> students;
+        public List<Student> Students
         {
-            get { return applicants; }
-            set { SetProperty(ref applicants, value); }
+            get { return students; }
+            set { SetProperty(ref students, value); }
         }
 
         private List<string> names;
@@ -82,15 +82,15 @@ namespace Workspace.ViewModels
                 if (SelectedApplicant != null)
                 {
                     DocumentsHandler dh = new DocumentsHandler();
-                    dh.CreateSingleEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({SelectedApplicant}, {GroupName}).docx", GroupName, applicants.FirstOrDefault(c => c.Name == SelectedApplicant));
+                    dh.CreateSingleEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({SelectedApplicant}, {GroupName}).docx", GroupName, students.FirstOrDefault(c => c.Name == SelectedApplicant));
                 }
             }
             else
             {
-                if (applicants != null && applicants.Count > 0)
+                if (students != null && students.Count > 0)
                 {
                     DocumentsHandler dh = new DocumentsHandler();
-                    dh.CreateEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({applicants[0].Speciality}, {GroupName}).docx", applicants[0].Speciality, GroupName, applicants);
+                    dh.CreateEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({students[0].Faculty.Name}, {GroupName}).docx", students[0].Faculty.Name, GroupName, students);
                     Return();
                 }
                 else
@@ -113,11 +113,11 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Applicants = navigationContext.Parameters["Applicants"] as List<Applicant>;
-            if (Applicants != null && Applicants.Count > 0)
+            Students = navigationContext.Parameters["Applicants"] as List<Student>;
+            if (Students != null && Students.Count > 0)
             {
                 Names = new List<string>();
-                foreach (var item in Applicants)
+                foreach (var item in Students)
                 {
                     Names.Add(item.Name);
                 }

@@ -12,7 +12,7 @@ namespace InspectionBoardLibrary.FileHandlers
         private Word.Application wordApp;
         private Word.Document doc;
 
-        public void CreateEnrollmentReport(object reportPath, string spec, string group, List<Applicant> applicants)
+        public void CreateEnrollmentReport(object reportPath, string spec, string group, List<Student> students)
         {
             wordApp = new Word.Application();
             wordApp.ShowAnimation = false;
@@ -26,9 +26,9 @@ namespace InspectionBoardLibrary.FileHandlers
                 var bookmarks = doc.Bookmarks;
                 int bookmarksCount = bookmarks.Count;
                 var content = bookmarks[1].Range;
-                for (int i = 0; i < applicants.Count; i++)
+                for (int i = 0; i < students.Count; i++)
                 {
-                    content.Text += i+ " " + applicants[i].Name + "\n";
+                    content.Text += i+ " " + students[i].Name + "\n";
                 }
                 content = bookmarks[2].Range;
                 content.Text = DateTime.Now.ToLongDateString();
@@ -57,7 +57,7 @@ namespace InspectionBoardLibrary.FileHandlers
             
         }
 
-        public void CreateSingleEnrollmentReport(object reportPath, string group, Applicant applicant)
+        public void CreateSingleEnrollmentReport(object reportPath, string group, Student student)
         {
             wordApp = new Word.Application();
             wordApp.ShowAnimation = false;
@@ -69,20 +69,23 @@ namespace InspectionBoardLibrary.FileHandlers
 
                 var bookmarks = doc.Bookmarks;
                 int bookmarksCount = bookmarks.Count;
-                var content = bookmarks[1].Range;
-                content.Text = applicant.BirthDate;
-                content = bookmarks[2].Range;
-                content.Text = DateTime.Now.ToLongDateString();
-                content = bookmarks[3].Range;
-                content.Text = group;
-                content = bookmarks[4].Range;
-                content.Text = applicant.Location;
-                content = bookmarks[5].Range;
-                content.Text = applicant.Mark;
-                content = bookmarks[6].Range;
-                content.Text += applicant.Name;
-                content = bookmarks[7].Range;
-                content.Text = applicant.Speciality;
+
+                // добавить значения для вывода
+
+                //var content = bookmarks[1].Range;
+                //content.Text = student.BirthDate;
+                //content = bookmarks[2].Range;
+                //content.Text = DateTime.Now.ToLongDateString();
+                //content = bookmarks[3].Range;
+                //content.Text = group;
+                //content = bookmarks[4].Range;
+                //content.Text = student.Location;
+                //content = bookmarks[5].Range;
+                //content.Text = student.Mark;
+                //content = bookmarks[6].Range;
+                //content.Text += student.Name;
+                //content = bookmarks[7].Range;
+                //content.Text = student.Faculty.Name;
             }
             catch (Exception ex)
             {

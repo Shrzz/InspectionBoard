@@ -1,16 +1,13 @@
 ﻿using InspectionBoardLibrary.DatabaseHandler;
 using InspectionBoardLibrary.Models;
-using MaterialDesignColors;
-using MaterialDesignThemes.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Workspace.ViewModels
@@ -29,11 +26,11 @@ namespace Workspace.ViewModels
             set { SetProperty(ref speciality, value); }
         }
 
-        private ObservableCollection<Applicant> applicants;
-        public ObservableCollection<Applicant> Applicants
+        private ObservableCollection<Student> students;
+        public ObservableCollection<Student> Students
         {
-            get { return applicants; }
-            set { SetProperty(ref applicants, value); }
+            get { return students; }
+            set { SetProperty(ref students, value); }
         }
 
         private string selectedSpeciality;
@@ -47,18 +44,22 @@ namespace Workspace.ViewModels
         public string SearchString
         {
             get { return searchString; }
-            set 
-            { 
+            set
+            {
                 SetProperty(ref searchString, value);
-                SelItem = Applicants.FirstOrDefault(c => c.Name.ToLower().Contains(SearchString.ToLower()) || c.Location.ToLower().Contains(SearchString.ToLower()) || c.ID.ToString().ToLower().Contains(SearchString.ToLower())) ?? applicants[0];
+                SelectedItem = Students.FirstOrDefault(c => c.Name.ToLower().Contains(SearchString.ToLower()) ||
+                                                            c.Id.ToString().ToLower().Contains(SearchString.ToLower()) ||
+                                                            c.Patronymic.ToLower().Contains(SearchString.ToLower()) ||
+                                                            c.Surname.ToLower().Contains(SearchString.ToLower())
+                                                        ) ?? students[0];
             }
         }
 
-        private Applicant selItem;
-        public Applicant SelItem
+        private Student selectedItem;
+        public Student SelectedItem
         {
-            get { return selItem; }
-            set { SetProperty(ref selItem, value); }
+            get { return selectedItem; }
+            set { SetProperty(ref selectedItem, value); }
         }
 
         public DelegateCommand QuitCommand { get; set; }
@@ -76,14 +77,17 @@ namespace Workspace.ViewModels
             QuitCommand = new DelegateCommand(Quit);
             NavigateCommand = new DelegateCommand<string>(Navigate);
             ShowDialogCommand = new DelegateCommand<string>(ShowAddDialog);
-            GetApplicantsCommand = new DelegateCommand(GetApplicants); 
+            GetApplicantsCommand = new DelegateCommand(GetApplicants);
             AnalyzeCommand = new DelegateCommand(Analyze);
             DocsNavigateCommand = new DelegateCommand<string>(DocsNavigate);
-            Applicants = Dbc.GetApplicants();
+            Students = new ObservableCollection<Student>(Dbc.GetStudentList());
             Speciality = "(не выбрано)";
         }
 
+        
+
         #region methods
+
         private void Navigate(string navigatePath)
         {
             if (navigatePath != null)
@@ -94,12 +98,12 @@ namespace Workspace.ViewModels
 
         private void Analyze()
         {
-
             var p = new NavigationParameters
             {
-                { "Applicants", Applicants }
+                { "Students", Students }
             };
-            regionManager.RequestNavigate("ContentRegion", "Analyze", p);      
+
+            regionManager.RequestNavigate("ContentRegion", "Analyze", p);
         }
 
         private void DocsNavigate(string navigatePath)
@@ -107,7 +111,7 @@ namespace Workspace.ViewModels
             if (navigatePath != null)
             {
                 NavigationParameters p = new NavigationParameters();
-                p.Add("Applicants", new List<Applicant>(Applicants));
+                p.Add("Students", new List<Student>(Students));
                 regionManager.RequestNavigate("ContentRegion", navigatePath, p);
             };
         }
@@ -122,24 +126,24 @@ namespace Workspace.ViewModels
             if (navigationContext.Parameters["SelectedItem"] is string)
             {
                 Speciality = navigationContext.Parameters["SelectedItem"].ToString();
-                var temp = new List<Applicant>(Dbc.GetApplicants());
-                Applicants = new ObservableCollection<Applicant>(
+                var temp = Dbc.GetStudentList();
+                Students = new ObservableCollection<Student>(
                     (from a in temp
-                    where a.Speciality == Speciality
-                    select a)
-                    .ToList<Applicant>());
+                     where a.Faculty.Name == Speciality
+                     select a)
+                    .ToList());
                 return;
             }
 
-            if (navigationContext.Parameters["ApplicantsAnalyzed"] is ObservableCollection<Applicant>)
+            if (navigationContext.Parameters["ApplicantsAnalyzed"] is ObservableCollection<Student>)
             {
-                Applicants = navigationContext.Parameters["ApplicantsAnalyzed"] as ObservableCollection<Applicant>;
+                Students = navigationContext.Parameters["ApplicantsAnalyzed"] as ObservableCollection<Student>;
             }
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+
         }
 
         public void ShowAddDialog(string dialogName)
@@ -150,13 +154,11 @@ namespace Workspace.ViewModels
                 {
 
                 }
-
                 else if (r.Result == ButtonResult.OK)
                 {
-                    Applicants = Dbc.GetApplicants();
+                    Students = new ObservableCollection<Student>(Dbc.GetStudentList());
 
                 }
-
                 else if (r.Result == ButtonResult.Cancel)
                 {
 
@@ -166,11 +168,11 @@ namespace Workspace.ViewModels
 
                 }
             });
-        } 
+        }
 
         private void GetApplicants()
         {
-            Applicants = Dbc.GetApplicants();
+            Students = new ObservableCollection<Student>(Dbc.GetStudentList());
             Speciality = "Нажмите для выбора специальности";
         }
 

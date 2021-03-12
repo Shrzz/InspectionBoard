@@ -1,13 +1,14 @@
 ﻿using InspectionBoardLibrary.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.DatabaseHandler
 {
     public static class Dbc
     {
-        public async static Task AddApplicant(Student student)
+        public async static Task AddStudent(Student student)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -50,28 +51,32 @@ namespace InspectionBoardLibrary.DatabaseHandler
             }
         }
 
-        public async static Task<List<Student>> GetStudentList()
+        public static List<Student> GetStudentList()
         {
             using (ExamContext context = new ExamContext())
             {
-                return await context.Students.AsNoTracking().ToListAsync();
+                return context.Students.AsNoTracking().ToListAsync().Result;
             }
         }
 
-        public async static Task<List<Faculty>> GetFacultiesList()
+        public static List<Faculty> GetFacultiesList()
         {
             using (ExamContext context = new ExamContext())
             {
-                return await context.Faculties.AsNoTracking().ToListAsync();
+                return context.Faculties.AsNoTracking().ToListAsync().Result;
             }
         }
 
-        public async static Task<List<User>> GetUserList()
+
+        public static bool TryLogin(string login, string password)
         {
+            User a;
             using (UserContext context = new UserContext())
             {
-                return await context.Users.AsNoTracking().ToListAsync();
+                a = context.Users.FirstOrDefaultAsync(u => u.Username == login && u.Password == password).Result;
             }
+
+            return a != null;
         }
     }
 }

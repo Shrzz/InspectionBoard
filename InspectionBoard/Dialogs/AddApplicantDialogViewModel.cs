@@ -35,20 +35,20 @@ namespace InspectionBoard.Dialogs
 
         public AddApplicantDialogViewModel()
         {
+            // изменить число полей массива
             Parameters = new string[5];
         }
 
-        protected virtual void CloseDialog(string parameter)
+        protected virtual async void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
 
             if (parameter?.ToLower() == "true")
             {
-                Applicant applicant = new Applicant(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]);
-                AddApplicant(applicant);
-
+                Student student = new Student();        
+                // проинициализировать поля
+                await Dbc.AddStudent(student);
                 result = ButtonResult.OK;
-
             }
             else
             {
@@ -76,11 +76,7 @@ namespace InspectionBoard.Dialogs
 
         public virtual void OnDialogOpened(IDialogParameters parameters)        //удалить потом
         {
-        }
 
-        private void AddApplicant(Applicant a)
-        {
-            Dbc.AddApplicant(a);
         }
     }
 }

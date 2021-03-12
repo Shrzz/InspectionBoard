@@ -20,11 +20,11 @@ namespace Workspace.ViewModels
             set { SetProperty(ref amount, value); }
         }
 
-        private ObservableCollection<Applicant> applicants;
-        public ObservableCollection<Applicant> Applicants
+        private ObservableCollection<Student> students;
+        public ObservableCollection<Student> Students
         {
-            get { return applicants; }
-            set { SetProperty(ref applicants, value); }
+            get { return students; }
+            set { SetProperty(ref students, value); }
         }
 
         public DelegateCommand ReturnCommand { get; private set; }
@@ -38,7 +38,7 @@ namespace Workspace.ViewModels
 
         private void Analyze()
         {
-            if (Applicants == null)
+            if (Students == null)
             {
                 MessageBox.Show("Список абитуриентов пуст", "Ошибка");
             }
@@ -51,7 +51,7 @@ namespace Workspace.ViewModels
                 try
                 {
                     int.Parse(Amount);
-                    var list = new ObservableCollection<Applicant>(Applicants.OrderByDescending(s => s).ToList<Applicant>());
+                    var list = new ObservableCollection<Student>(Students.OrderByDescending(s => s).ToList());
                     while (list.Count > int.Parse(Amount))
                     {
                         list.RemoveAt(list.Count - 1);
@@ -67,10 +67,7 @@ namespace Workspace.ViewModels
                 {
                     MessageBox.Show("Произошла ошибка при анализе", "Ошибка");
                 }
-
             }
- 
-
         }
 
         private void Return()
@@ -80,7 +77,7 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Applicants = navigationContext.Parameters["Applicants"] as ObservableCollection<Applicant>;
+            Students = navigationContext.Parameters["Applicants"] as ObservableCollection<Student>;
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
