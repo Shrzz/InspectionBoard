@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.Models;
 using MaterialDesignThemes.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -33,6 +34,14 @@ namespace InspectionBoard.ViewModels
             this.regionManager = regionManager;
             NavigateCommand = new DelegateCommand<string>(Navigate);
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(Authorization.Views.Login));
+            using (ExamContext context = new ExamContext())
+            {
+                User u = new User();
+                u.Username = "admin";
+                u.Password = "admin";
+                context.Users.Add(u);
+                context.SaveChangesAsync();
+            }
         }
 
         private void Navigate(string navigatePath)

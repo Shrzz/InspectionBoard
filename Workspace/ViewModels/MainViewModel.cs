@@ -119,17 +119,19 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            if (navigationContext.Parameters["SelectedItem"] as string != null)
+            if (navigationContext.Parameters["SelectedItem"] is string)
             {
                 Speciality = navigationContext.Parameters["SelectedItem"].ToString();
                 var temp = new List<Applicant>(DataBase.GetApplicants());
-                Applicants = new ObservableCollection<Applicant>((from a in temp
-                           where a.Speciality == Speciality
-                           select a).ToList<Applicant>());
+                Applicants = new ObservableCollection<Applicant>(
+                    (from a in temp
+                    where a.Speciality == Speciality
+                    select a)
+                    .ToList<Applicant>());
                 return;
             }
 
-            if (navigationContext.Parameters["ApplicantsAnalyzed"] as ObservableCollection<Applicant> != null)
+            if (navigationContext.Parameters["ApplicantsAnalyzed"] is ObservableCollection<Applicant>)
             {
                 Applicants = navigationContext.Parameters["ApplicantsAnalyzed"] as ObservableCollection<Applicant>;
             }
@@ -148,11 +150,13 @@ namespace Workspace.ViewModels
                 {
 
                 }
+
                 else if (r.Result == ButtonResult.OK)
                 {
                     Applicants = DataBase.GetApplicants();
 
                 }
+
                 else if (r.Result == ButtonResult.Cancel)
                 {
 

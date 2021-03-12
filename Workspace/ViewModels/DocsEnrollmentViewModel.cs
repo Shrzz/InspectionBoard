@@ -16,7 +16,7 @@ namespace Workspace.ViewModels
 {
     public class DocsEnrollmentViewModel : BindableBase, INavigationAware
     {
-        private IRegionManager regionManager;
+        private readonly IRegionManager regionManager;
 
         private List<Applicant> applicants;
         public List<Applicant> Applicants
@@ -121,6 +121,7 @@ namespace Workspace.ViewModels
                 {
                     Names.Add(item.Name);
                 }
+
                 SelectedApplicant = Names[0];
             }
 

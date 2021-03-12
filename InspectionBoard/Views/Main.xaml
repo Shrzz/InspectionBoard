@@ -10,6 +10,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Background="PeachPuff"
         Title="АРМ секретаря приёмной комиссии" Height="500" Width="1050" 
+        MinHeight="200" MinWidth="950"
         WindowStartupLocation="CenterScreen">
     <Grid>
         

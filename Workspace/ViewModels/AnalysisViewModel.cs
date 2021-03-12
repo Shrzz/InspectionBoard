@@ -11,7 +11,7 @@ namespace Workspace.ViewModels
 {
     public class AnalysisViewModel : BindableBase, INavigationAware
     {
-        private IRegionManager regionManager;
+        private readonly IRegionManager regionManager;
 
         private string amount;
         public string Amount
@@ -56,8 +56,7 @@ namespace Workspace.ViewModels
                     {
                         list.RemoveAt(list.Count - 1);
                     }
-                    
-
+                   
                     var parameters1 = new NavigationParameters
                     {
                         { "ApplicantsAnalyzed", list }

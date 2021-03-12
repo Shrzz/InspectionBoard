@@ -58,10 +58,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHandler\DataBase.cs" />
+    <Compile Include="DatabaseHandler\ExamContext.cs" />
     <Compile Include="DatabaseHandler\ExaminationContext.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
     <Compile Include="FileHandlers\DocumentsSettings.cs" />
     <Compile Include="Models\Applicant.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\EducationForm.cs" />
+    <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\ExamForm.cs" />
+    <Compile Include="Models\ExamType.cs" />
+    <Compile Include="Models\Faculty.cs" />
+    <Compile Include="Models\Retake.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

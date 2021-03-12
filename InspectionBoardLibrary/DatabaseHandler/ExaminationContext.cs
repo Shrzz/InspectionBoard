@@ -15,7 +15,7 @@ namespace InspectionBoardLibrary.DatabaseHandler
 
         public ExaminationContext() : base("DefaultConnection")
         {
-            //Database.SetInitializer<ExaminationContext>(new DropCreateDatabaseAlways<ExaminationContext>());
+            // Database.SetInitializer<ExaminationContext>(new DropCreateDatabaseAlways<ExaminationContext>());
         }
         
     }
