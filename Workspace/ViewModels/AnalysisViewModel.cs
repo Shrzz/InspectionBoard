@@ -27,6 +27,13 @@ namespace Workspace.ViewModels
             set { SetProperty(ref students, value); }
         }
 
+        private string message;
+        public string Message
+        {
+            get { return message; }
+            set { SetProperty(ref message, value); }
+        }
+
         public DelegateCommand ReturnCommand { get; private set; }
         public DelegateCommand AnalyzeCommand { get; private set; }
         public AnalysisViewModel(IRegionManager regionManager)
@@ -40,31 +47,42 @@ namespace Workspace.ViewModels
         {
             if (Students == null)
             {
+                Message = "Список абитуриентов пуст";
                 MessageBox.Show("Список абитуриентов пуст", "Ошибка");
             }
             else if (Amount == null)
             {
+                Message = "Число свободных мест не введено";
                 MessageBox.Show("Введите число свободных мест", "Ошибка");
             }
             else
             {
                 try
                 {
-                    int.Parse(Amount);
-                    var list = new ObservableCollection<Student>(Students.OrderByDescending(s => s).ToList());
-                    while (list.Count > int.Parse(Amount))
+                    int parsedValue;
+                    bool success = int.TryParse(Amount, out parsedValue);
+                    if (parsedValue <= 0 || !success)
                     {
-                        list.RemoveAt(list.Count - 1);
+                        Message = "Необходимо ввести корректные данные";
                     }
-                   
-                    var parameters1 = new NavigationParameters
+                    else
                     {
-                        { "ApplicantsAnalyzed", list }
-                    };
-                    regionManager.RequestNavigate("ContentRegion", "Workspace", parameters1);
+                        var list = new ObservableCollection<Student>(Students.OrderByDescending(s => s).ToList());
+                        while (list.Count > int.Parse(Amount))
+                        {
+                            list.RemoveAt(list.Count - 1);
+                        }
+
+                        var parameters1 = new NavigationParameters
+                        {
+                            { "ApplicantsAnalyzed", list }
+                        };
+                        regionManager.RequestNavigate("ContentRegion", "Workspace", parameters1);
+                    }
                 }
                 catch
                 {
+                    Message = "Произошла ошибка при анализе";
                     MessageBox.Show("Произошла ошибка при анализе", "Ошибка");
                 }
             }
