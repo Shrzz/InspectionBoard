@@ -57,9 +57,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseHandler\Dbc.cs" />
-    <Compile Include="DatabaseHandler\ExamContext.cs" />
-    <Compile Include="DatabaseHandler\UserContext.cs" />
+    <Compile Include="Database\Dbc.cs" />
+    <Compile Include="Database\ExamContext.cs" />
+    <Compile Include="Database\UserContext.cs" />
+    <Compile Include="DataSeeder\DataSeeder.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
     <Compile Include="FileHandlers\DocumentsSettings.cs" />
     <Compile Include="Models\Category.cs" />

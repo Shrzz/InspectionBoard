@@ -1,10 +1,12 @@
 ﻿using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.DataSeeder;
 using InspectionBoardLibrary.Models;
 using MaterialDesignThemes.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows.Media;
 
 namespace InspectionBoard.ViewModels

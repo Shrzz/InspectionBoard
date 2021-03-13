@@ -17,19 +17,6 @@ namespace InspectionBoardLibrary.DatabaseHandler
             }
         }
 
-        public async static Task RemoveStudent(int id)
-        {
-            using (ExamContext context = new ExamContext())
-            {
-                var student = await context.Students.FirstOrDefaultAsync(s => s.Id == id);
-
-                if (student != null)
-                {
-                    context.Students.Remove(student);
-                }
-            }
-        }
-
         public async static Task EditStudent(Student newStudent)
         {
             using (ExamContext context = new ExamContext())
@@ -51,6 +38,19 @@ namespace InspectionBoardLibrary.DatabaseHandler
             }
         }
 
+        public async static Task RemoveStudent(int id)
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                var student = await context.Students.FirstOrDefaultAsync(s => s.Id == id);
+
+                if (student != null)
+                {
+                    context.Students.Remove(student);
+                }
+            }
+        }
+
         public static List<Student> GetStudentList()
         {
             using (ExamContext context = new ExamContext())
@@ -67,6 +67,14 @@ namespace InspectionBoardLibrary.DatabaseHandler
             }
         }
 
+        public async static Task AddUser(User u )
+        {
+            using (UserContext context = new UserContext())
+            {
+                context.Users.Add(u);
+                await context.SaveChangesAsync();
+            }
+        }
 
         public static bool TryLogin(string login, string password)
         {

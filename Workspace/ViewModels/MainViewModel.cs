@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.DataSeeder;
 using InspectionBoardLibrary.Models;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -82,6 +83,15 @@ namespace Workspace.ViewModels
             DocsNavigateCommand = new DelegateCommand<string>(DocsNavigate);
             Students = new ObservableCollection<Student>(Dbc.GetStudentList());
             Speciality = "(не выбрано)";
+
+            using (ExamContext context = new ExamContext())
+            {
+                if (!context.Students.Any())
+                {
+                    DataSeeder seeder = new DataSeeder();
+                    seeder.AddStudent();
+                }
+            }
         }
 
         

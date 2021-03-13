@@ -1,9 +1,11 @@
 ﻿using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.DataSeeder;
 using InspectionBoardLibrary.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Authorization.ViewModels
 {
@@ -38,6 +40,15 @@ namespace Authorization.ViewModels
         {
             this.regionManager = regionManager;
             LoginCommand = new DelegateCommand(Login);
+
+            using (UserContext context = new UserContext())
+            {
+                if (!context.Users.Any())
+                {
+                    DataSeeder seeder = new DataSeeder();
+                    seeder.AddAdminUser();
+                }
+            }
         }
 
         private async void Login()
