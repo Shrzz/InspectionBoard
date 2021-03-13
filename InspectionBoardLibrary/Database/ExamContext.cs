@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.DatabaseHandler
+namespace InspectionBoardLibrary.Database
 {
     public class ExamContext : DbContext
     {
@@ -25,5 +25,7 @@ namespace InspectionBoardLibrary.DatabaseHandler
         {
 
         }
+
+        
     }
 }

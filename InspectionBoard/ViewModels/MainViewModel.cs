@@ -1,4 +1,4 @@
-﻿using InspectionBoardLibrary.DatabaseHandler;
+﻿using InspectionBoardLibrary.Database;
 using InspectionBoardLibrary.DataSeeder;
 using InspectionBoardLibrary.Models;
 using MaterialDesignThemes.Wpf;

@@ -13,5 +13,6 @@ namespace InspectionBoardLibrary.Models
         public Subject Subject { get; set; }
         public Teacher Teacher { get; set; }
         public DateTime DateTime { get; set; }
+
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
 using System.Windows.Navigation;
-using InspectionBoardLibrary.DatabaseHandler;
+using InspectionBoardLibrary.Database;
 using InspectionBoardLibrary.Models;
 
 namespace Workspace.ViewModels

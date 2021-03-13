@@ -1,4 +1,4 @@
-﻿using InspectionBoardLibrary.DatabaseHandler;
+﻿using InspectionBoardLibrary.Database;
 using InspectionBoardLibrary.DataSeeder;
 using Prism.Commands;
 using Prism.Mvvm;

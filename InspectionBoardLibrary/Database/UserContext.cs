@@ -1,7 +1,7 @@
 ﻿using InspectionBoardLibrary.Models;
 using System.Data.Entity;
 
-namespace InspectionBoardLibrary.DatabaseHandler
+namespace InspectionBoardLibrary.Database
 {
     public class UserContext : DbContext
     {

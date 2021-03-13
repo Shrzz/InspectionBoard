@@ -61,6 +61,11 @@
     <Compile Include="Database\ExamContext.cs" />
     <Compile Include="Database\UserContext.cs" />
     <Compile Include="DataSeeder\DataSeeder.cs" />
+    <Compile Include="ExamContextMigrations\202103131548081_Initial.cs" />
+    <Compile Include="ExamContextMigrations\202103131548081_Initial.designer.cs">
+      <DependentUpon>202103131548081_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExamContextMigrations\ExamContextConfig.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
     <Compile Include="FileHandlers\DocumentsSettings.cs" />
     <Compile Include="Models\Category.cs" />
@@ -75,6 +80,11 @@
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserContextMigrations\202103131548265_Initial.cs" />
+    <Compile Include="UserContextMigrations\202103131548265_Initial.designer.cs">
+      <DependentUpon>202103131548265_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserContextMigrations\UserContextConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -108,6 +118,14 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExamContextMigrations\202103131548081_Initial.resx">
+      <DependentUpon>202103131548081_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserContextMigrations\202103131548265_Initial.resx">
+      <DependentUpon>202103131548265_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
