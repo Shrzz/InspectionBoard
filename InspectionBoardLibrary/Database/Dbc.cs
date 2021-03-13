@@ -76,12 +76,12 @@ namespace InspectionBoardLibrary.DatabaseHandler
             }
         }
 
-        public static bool TryLogin(string login, string password)
+        public async static Task<bool> TryLogin(string login, string password)
         {
             User a;
             using (UserContext context = new UserContext())
             {
-                a = context.Users.FirstOrDefaultAsync(u => u.Username == login && u.Password == password).Result;
+                a = await context.Users.FirstOrDefaultAsync(u => u.Username == login && u.Password == password);
             }
 
             return a != null;

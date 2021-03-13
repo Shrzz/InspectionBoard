@@ -1,10 +1,8 @@
 ﻿using InspectionBoardLibrary.DatabaseHandler;
 using InspectionBoardLibrary.DataSeeder;
-using InspectionBoardLibrary.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Authorization.ViewModels
@@ -51,9 +49,11 @@ namespace Authorization.ViewModels
             }
         }
 
+#pragma warning disable S3168 // "async" methods should not return "void"
         private async void Login()
+#pragma warning restore S3168 // "async" methods should not return "void"
         {
-            bool success = Dbc.TryLogin(Username, Password);
+            bool success = await Dbc.TryLogin(Username, Password);
             if (success)
             {
                 Message = "Авторизация прошла успешно";
