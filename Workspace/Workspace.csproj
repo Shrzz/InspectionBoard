@@ -52,9 +52,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\MenuItem.cs" />
+    <Compile Include="Domain\SnackbarMessageQueue.cs" />
     <Compile Include="ViewModels\DocsEnrollmentViewModel.cs" />
     <Compile Include="ViewModels\SpecialitiesViewModel.cs" />
     <Compile Include="ViewModels\AnalysisViewModel.cs" />
+    <Compile Include="ViewModels\StudentsViewModel.cs" />
     <Compile Include="Views\DocsEnrollment.xaml.cs">
       <DependentUpon>DocsEnrollment.xaml</DependentUpon>
     </Compile>
@@ -63,6 +66,9 @@
     </Compile>
     <Compile Include="Views\Analysis.xaml.cs">
       <DependentUpon>Analysis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Students.xaml.cs">
+      <DependentUpon>Students.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkspaceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -106,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Analysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Students.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

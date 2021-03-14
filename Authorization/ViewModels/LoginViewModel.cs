@@ -53,16 +53,17 @@ namespace Authorization.ViewModels
         private async void Login()
 #pragma warning restore S3168 // "async" methods should not return "void"
         {
-            bool success = await Dbc.TryLogin(Username, Password);
-            if (success)
-            {
-                Message = "Авторизация прошла успешно";
-                regionManager.RequestNavigate("ContentRegion", "Workspace");
-            }
-            else
-            {
-                Message = "Неверно введены данные";
-            }
+            //bool success = await Dbc.TryLogin(Username, Password);
+            //if (success)
+            //{
+            //    Message = "Авторизация прошла успешно";
+            //    regionManager.RequestNavigate("ContentRegion", "Workspace");
+            //}
+            //else
+            //{
+            //    Message = "Неверно введены данные";
+            //}
+                regionManager.RequestNavigate("MainRegion", "Workspace");
         }
     }
 }
