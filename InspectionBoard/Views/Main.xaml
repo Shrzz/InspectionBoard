@@ -54,13 +54,16 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         Margin="0 16 0 16"
                         ItemsSource="{Binding MenuItems}"
                         SelectedItem="{Binding SelectedItem}"
-                        SelectedIndex="{Binding SelectedIndex}">
-                            <ListBox.Resources>
+                        SelectedIndex="{Binding SelectedIndex}"
+                            >
+                            <ListBox.Resources >
                                 <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
                             </ListBox.Resources>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseLeftButtonUp">
                                     <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding Path=SelectedItem.Region}"/>
+                                    <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}" 
+                                                           CommandParameter="{x:Static Dock.Left}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <ListBox.ItemTemplate>

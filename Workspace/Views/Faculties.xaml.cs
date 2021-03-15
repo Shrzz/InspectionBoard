@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace Workspace.Views
 {
     /// <summary>
-    /// Логика взаимодействия для Students.xaml
+    /// Логика взаимодействия для Faculties.xaml
     /// </summary>
-    public partial class Students : UserControl
+    public partial class Faculties : UserControl
     {
-        public Students()
+        public Faculties()
         {
             InitializeComponent();
         }
-
-
     }
 }

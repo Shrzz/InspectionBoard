@@ -32,6 +32,7 @@ namespace InspectionBoard.Views
         {
             var dataGrid = sender as DataGrid;
             dataGrid.ScrollIntoView(dataGrid.SelectedItem);
+            dataGrid.Focus();
         }
 
         private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e) => MenuItemsSearchBox.Focus();

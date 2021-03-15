@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.GridModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace InspectionBoardLibrary.Database
         {
             using (ExamContext context = new ExamContext())
             {
-                var student = await context.Students.FirstOrDefaultAsync(s => s.Id == newStudent.Id);
+                var student = await context.Students.Include(s => s.Faculty).FirstOrDefaultAsync(s => s.Id == newStudent.Id);
 
                 if (student != null)
                 {
@@ -51,11 +52,20 @@ namespace InspectionBoardLibrary.Database
             }
         }
 
+        public async static void AddFaculty(Faculty faculty)
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                context.Faculties.Add(faculty);
+                await context.SaveChangesAsync();
+            }
+        }
+
         public static List<Student> GetStudentList()
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Students.AsNoTracking().ToListAsync().Result;
+                return context.Students.Include(s => s.Faculty).AsNoTracking().ToListAsync().Result;
             }
         }
 
@@ -64,6 +74,22 @@ namespace InspectionBoardLibrary.Database
             using (ExamContext context = new ExamContext())
             {
                 return context.Faculties.AsNoTracking().ToListAsync().Result;
+            }
+        }
+
+        public static List<Teacher> GetTeachersList()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return context.Teachers.Include(t => t.Category).AsNoTracking().ToListAsync().Result;
+            }
+        }
+
+        public static List<Subject> GetSubjectsList()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return context.Subjects.AsNoTracking().ToListAsync().Result;
             }
         }
 

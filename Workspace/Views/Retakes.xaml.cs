@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Workspace.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ViewB.xaml
+    /// Логика взаимодействия для Retakes.xaml
     /// </summary>
-    public partial class Specialities : UserControl
+    public partial class Retakes : UserControl
     {
-        public Specialities()
+        public Retakes()
         {
             InitializeComponent();
         }

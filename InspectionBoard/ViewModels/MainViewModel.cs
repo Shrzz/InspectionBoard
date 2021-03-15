@@ -63,6 +63,13 @@ namespace InspectionBoard.ViewModels
             }
         }
 
+        private string currentView;
+        public string CurrentView
+        {
+            get { return currentView; }
+            set { SetProperty(ref currentView, value); }
+        }
+
         public DelegateCommand<string> NavigateCommand { get; private set; }
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
         public DelegateCommand GetApplicantsCommand { get; private set; }
@@ -74,7 +81,6 @@ namespace InspectionBoard.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
             regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
-
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())
@@ -88,6 +94,7 @@ namespace InspectionBoard.ViewModels
             NavigateCommand = new DelegateCommand<string>(Navigate);
             ShowDialogCommand = new DelegateCommand<string>(ShowAddDialog);
 
+            CurrentView = "ContentRegion";
         }
 
         private static IEnumerable<MenuItem> GenerateMenuItems()
@@ -105,7 +112,9 @@ namespace InspectionBoard.ViewModels
         {
             if (navigatePath != null)
             {
+                regionManager.RequestNavigate(CurrentView, "ContentRegion");
                 regionManager.RequestNavigate("ContentRegion", navigatePath);
+                CurrentView = navigatePath;
             }
         }
 

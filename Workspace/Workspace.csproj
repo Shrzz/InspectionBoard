@@ -38,6 +38,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,20 +57,36 @@
     <Compile Include="Domain\MenuItem.cs" />
     <Compile Include="Domain\SnackbarMessageQueue.cs" />
     <Compile Include="ViewModels\DocsEnrollmentViewModel.cs" />
-    <Compile Include="ViewModels\SpecialitiesViewModel.cs" />
+    <Compile Include="ViewModels\ExamsViewModel.cs" />
+    <Compile Include="ViewModels\FacultiesViewModel.cs" />
+    <Compile Include="ViewModels\RetakesViewModel.cs" />
     <Compile Include="ViewModels\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\StudentsViewModel.cs" />
+    <Compile Include="ViewModels\SubjectsViewModel.cs" />
     <Compile Include="Views\DocsEnrollment.xaml.cs">
       <DependentUpon>DocsEnrollment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Specialities.xaml.cs">
-      <DependentUpon>Specialities.xaml</DependentUpon>
+    <Compile Include="Views\Exams.xaml.cs">
+      <DependentUpon>Exams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Faculties.xaml.cs">
+      <DependentUpon>Faculties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Retakes.xaml.cs">
+      <DependentUpon>Retakes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Analysis.xaml.cs">
       <DependentUpon>Analysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Students.xaml.cs">
       <DependentUpon>Students.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TeachersViewModel.cs" />
+    <Compile Include="Views\Subjects.xaml.cs">
+      <DependentUpon>Subjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Teachers.xaml.cs">
+      <DependentUpon>Teachers.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkspaceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -103,11 +121,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Exams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Faculties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Specialities.xaml">
+    <Page Include="Views\Retakes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,6 +142,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Students.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Subjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Teachers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
