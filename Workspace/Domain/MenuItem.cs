@@ -9,8 +9,8 @@ namespace Workspace.Domain
 {
     public class MenuItem 
     {
-        public string Name { get; }
-        public string Region { get; }
+        public string Name { get; set; }
+        public string Region { get; set; }
 
         public MenuItem(string name, string region)
         {

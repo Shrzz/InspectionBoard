@@ -1,22 +1,46 @@
 ﻿using InspectionBoardLibrary.Database;
-using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.DatabaseModels;
+using Prism.Commands;
 using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
+using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Workspace.ViewModels
 {
     public class SubjectsViewModel : BindableBase
     {
-        public ObservableCollection<Subject> Subject { get; }
+        private readonly IDialogService dialogService;
+        public ObservableCollection<Subject> Subjects { get; }
 
-        public SubjectsViewModel()
+        public SubjectsViewModel(IDialogService dialogService)
         {
-            Subject = new ObservableCollection<Subject>(Dbc.GetSubjectsList());
+            this.dialogService = dialogService;
+            ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
+            Subjects = new ObservableCollection<Subject>(Dbc.GetSubjectsList());
+        }
+
+        public DelegateCommand<string> ShowDialogCommand { get; private set; }
+
+        private void ShowDialog(string dialogName)
+        {
+            dialogService.ShowDialog(dialogName, r =>
+            {
+                switch (r.Result)
+                {
+                    case ButtonResult.None:
+                        {
+                            break;
+                        }
+                    case ButtonResult.OK:
+                        {
+                            break;
+                        }
+                    case ButtonResult.Cancel:
+                        {
+                            break;
+                        }
+                }
+            });
         }
     }
 }

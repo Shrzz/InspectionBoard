@@ -1,5 +1,6 @@
 ﻿using InspectionBoardLibrary.FileHandlers;
 using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;

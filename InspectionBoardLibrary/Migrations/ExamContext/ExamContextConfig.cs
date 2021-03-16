@@ -1,4 +1,4 @@
-﻿namespace InspectionBoardLibrary.ExamContextMigrations
+﻿namespace InspectionBoardLibrary.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,8 +9,7 @@
     {
         public ExamContextConfig()
         {
-            AutomaticMigrationsEnabled = false;
-            MigrationsDirectory = @"ExamContextMigrations";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(InspectionBoardLibrary.Database.ExamContext context)

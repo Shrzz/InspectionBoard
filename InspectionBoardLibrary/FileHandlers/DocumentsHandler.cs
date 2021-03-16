@@ -4,6 +4,7 @@ using System.Linq;
 using Word = Microsoft.Office.Interop.Word;
 using System.Windows.Forms;
 using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.DatabaseModels;
 
 namespace InspectionBoardLibrary.FileHandlers
 {

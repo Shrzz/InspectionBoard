@@ -1,5 +1,5 @@
 ﻿using InspectionBoardLibrary.Models;
-using InspectionBoardLibrary.Models.GridModels;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -57,6 +57,15 @@ namespace InspectionBoardLibrary.Database
             using (ExamContext context = new ExamContext())
             {
                 context.Faculties.Add(faculty);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async static Task AddSubject(Subject subject)
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                context.Subjects.Add(subject);
                 await context.SaveChangesAsync();
             }
         }

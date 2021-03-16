@@ -1,5 +1,6 @@
 ﻿using Authorization;
 using InspectionBoard.Dialogs;
+using InspectionBoard.Dialogs.SubjectsDialogs;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
 using Prism.Ioc;
@@ -26,6 +27,8 @@ namespace InspectionBoard
             containerRegistry.RegisterDialog<EditApplicantDialog, EditApplicantDialogViewModel>();
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
             containerRegistry.RegisterDialog<DocsSettingsDialog, DocsSettingsDialogViewModel>();
+
+            containerRegistry.RegisterDialog<AddSubjectDialog, AddSubjectDialogViewModel>("AddSubjectDialog");
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

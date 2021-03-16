@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Models
+namespace InspectionBoardLibrary.Models.DatabaseModels
 {
     public class Subject
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Lectory_hours { get; set; }
-        public int Laboratory_hours { get; set; }
+        public int LectoryHours { get; set; }
+        public int LaboratoryHours { get; set; }
 
         public List<Exam> Exams { get; set; }
     }

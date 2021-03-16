@@ -1,5 +1,6 @@
 ﻿using InspectionBoardLibrary.Database;
 using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;

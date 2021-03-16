@@ -61,13 +61,18 @@
     <Compile Include="Database\ExamContext.cs" />
     <Compile Include="Database\UserContext.cs" />
     <Compile Include="DataSeeder\DataSeeder.cs" />
-    <Compile Include="ExamContextMigrations\202103131548081_Initial.cs" />
-    <Compile Include="ExamContextMigrations\202103131548081_Initial.designer.cs">
-      <DependentUpon>202103131548081_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExamContextMigrations\ExamContextConfig.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
     <Compile Include="FileHandlers\DocumentsSettings.cs" />
+    <Compile Include="Migrations\ExamContext\202103160603523_InitialExam.cs" />
+    <Compile Include="Migrations\ExamContext\202103160603523_InitialExam.designer.cs">
+      <DependentUpon>202103160603523_InitialExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\UserContext\202103160603210_InitialUser.cs" />
+    <Compile Include="Migrations\UserContext\202103160603210_InitialUser.designer.cs">
+      <DependentUpon>202103160603210_InitialUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\UserContext\UserContextConfig.cs" />
+    <Compile Include="Migrations\ExamContext\ExamContextConfig.cs" />
     <Compile Include="Models\DatabaseModels\Category.cs" />
     <Compile Include="Models\DatabaseModels\EducationForm.cs" />
     <Compile Include="Models\DatabaseModels\Exam.cs" />
@@ -79,13 +84,7 @@
     <Compile Include="Models\DatabaseModels\Subject.cs" />
     <Compile Include="Models\DatabaseModels\Teacher.cs" />
     <Compile Include="Models\DatabaseModels\User.cs" />
-    <Compile Include="Models\GridModels\GridStudent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserContextMigrations\202103131548265_Initial.cs" />
-    <Compile Include="UserContextMigrations\202103131548265_Initial.designer.cs">
-      <DependentUpon>202103131548265_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserContextMigrations\UserContextConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -121,11 +120,14 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ExamContextMigrations\202103131548081_Initial.resx">
-      <DependentUpon>202103131548081_Initial.cs</DependentUpon>
+    <Folder Include="ExamContextMigrations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\ExamContext\202103160603523_InitialExam.resx">
+      <DependentUpon>202103160603523_InitialExam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserContextMigrations\202103131548265_Initial.resx">
-      <DependentUpon>202103131548265_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\UserContext\202103160603210_InitialUser.resx">
+      <DependentUpon>202103160603210_InitialUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -36,18 +36,18 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref isMenuActive, value); }
         }
 
-        private MenuItem selectedItem;
-        public MenuItem SelectedItem
+        private MenuItem selectedMenuItem;
+        public MenuItem SelectedMenuItem
         {
-            get { return selectedItem; }
-            set { SetProperty(ref selectedItem, value); }
+            get { return selectedMenuItem; }
+            set { SetProperty(ref selectedMenuItem, value); }
         }
 
-        private int selectedIndex;
-        public int SelectedIndex
+        private int selectedMenuIndex;
+        public int SelectedMenuIndex
         {
-            get { return selectedIndex; }
-            set { SetProperty(ref selectedIndex, value); }
+            get { return selectedMenuIndex; }
+            set { SetProperty(ref selectedMenuIndex, value); }
         }
 
         private string searchKeyword;
@@ -63,14 +63,14 @@ namespace InspectionBoard.ViewModels
             }
         }
 
-        private string currentView;
-        public string CurrentView
+        private MenuItem currentMenuItem;
+        public MenuItem CurrentMenuItem
         {
-            get { return currentView; }
-            set { SetProperty(ref currentView, value); }
+            get { return currentMenuItem; }
+            set { SetProperty(ref currentMenuItem, value); }
         }
 
-        public DelegateCommand<string> NavigateCommand { get; private set; }
+        public DelegateCommand NavigateCommand { get; private set; }
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
         public DelegateCommand GetApplicantsCommand { get; private set; }
 
@@ -80,21 +80,21 @@ namespace InspectionBoard.ViewModels
         {
             this.regionManager = regionManager;
             this.dialogService = dialogService;
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+
+            //regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())
             {
                 MenuItems.Add(item);
             }
-            SelectedIndex = 0;
+
+            SelectedMenuIndex = 0;
             menuItemsView = CollectionViewSource.GetDefaultView(MenuItems);
             menuItemsView.Filter = MenuItemsFilter;
+            CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
 
-            NavigateCommand = new DelegateCommand<string>(Navigate);
-            ShowDialogCommand = new DelegateCommand<string>(ShowAddDialog);
-
-            CurrentView = "ContentRegion";
+            NavigateCommand = new DelegateCommand(Navigate);
         }
 
         private static IEnumerable<MenuItem> GenerateMenuItems()
@@ -108,13 +108,13 @@ namespace InspectionBoard.ViewModels
 
         #region methods
 
-        private void Navigate(string navigatePath)
+        private void Navigate()
         {
-            if (navigatePath != null)
+            if (SelectedMenuItem != null)
             {
-                regionManager.RequestNavigate(CurrentView, "ContentRegion");
-                regionManager.RequestNavigate("ContentRegion", navigatePath);
-                CurrentView = navigatePath;
+                regionManager.RequestNavigate(CurrentMenuItem.Region, "ContentRegion");
+                regionManager.RequestNavigate("ContentRegion", SelectedMenuItem.Region);
+                CurrentMenuItem = SelectedMenuItem;
             }
         }
 
@@ -131,30 +131,6 @@ namespace InspectionBoard.ViewModels
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
 
-        }
-
-        public void ShowAddDialog(string dialogName)
-        {
-            //в параметрах передаётся название специальности
-            dialogService.ShowDialog(dialogName, new DialogParameters($"message=poit"), r =>
-            {
-                if (r.Result == ButtonResult.None)
-                {
-
-                }
-                else if (r.Result == ButtonResult.OK)
-                {
-
-                }
-                else if (r.Result == ButtonResult.Cancel)
-                {
-
-                }
-                else
-                {
-
-                }
-            });
         }
 
         private bool MenuItemsFilter(object obj)

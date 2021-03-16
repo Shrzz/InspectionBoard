@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System.Data.Entity;
 
 namespace InspectionBoardLibrary.Database

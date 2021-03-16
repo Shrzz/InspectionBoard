@@ -125,6 +125,10 @@
       <DependentUpon>RemoveApplicantDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\RemoveApplicantDialogViewModel.cs" />
+    <Compile Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml.cs">
+      <DependentUpon>AddSubjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SubjectsDialogs\AddSubjectDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Dialogs\AddApplicantDialog.xaml">
       <SubType>Designer</SubType>
@@ -143,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\RemoveApplicantDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

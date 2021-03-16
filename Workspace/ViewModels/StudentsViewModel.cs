@@ -1,6 +1,6 @@
 ﻿using InspectionBoardLibrary.Database;
 using InspectionBoardLibrary.Models;
-using InspectionBoardLibrary.Models.GridModels;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -16,24 +16,11 @@ namespace Workspace.ViewModels
 {
     public class StudentsViewModel : BindableBase
     {
-        public ObservableCollection<GridStudent> Students { get; set; }
+        public ObservableCollection<Student> Students { get; set; }
 
         public StudentsViewModel()
         {
-            Students = new ObservableCollection<GridStudent>();
-            var l = Dbc.GetStudentList();
-            foreach (var item in l)
-            {
-                GridStudent s = new GridStudent();
-                s.Id = item.Id;
-                s.Surname = item.Surname;
-                s.Name = item.Name;
-                s.Patronymic = item.Patronymic;
-                s.Faculty = item.Faculty.Name;
-                Students.Add(s);
-            }
-
-            Students.CollectionChanged += Students_CollectionChanged;
+            Students = new ObservableCollection<Student>(Dbc.GetStudentList());
         }
 
         public async void Students_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

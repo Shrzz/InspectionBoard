@@ -1,9 +1,9 @@
-﻿namespace InspectionBoardLibrary.UserContextMigrations
+﻿namespace InspectionBoardLibrary.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialExam : DbMigration
     {
         public override void Up()
         {
@@ -119,8 +119,8 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Lectory_hours = c.Int(nullable: false),
-                        Laboratory_hours = c.Int(nullable: false),
+                        LectoryHours = c.Int(nullable: false),
+                        LaboratoryHours = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

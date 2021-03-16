@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Models
+namespace InspectionBoardLibrary.Models.DatabaseModels
 {
-    public class Teacher
+    public class Teacher 
     {
         public int Id { get; set; }
         public string Surname { get; set; }

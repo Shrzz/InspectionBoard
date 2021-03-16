@@ -1,5 +1,6 @@
 ﻿using InspectionBoardLibrary.Database;
 using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
