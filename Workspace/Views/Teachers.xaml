@@ -4,12 +4,100 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Workspace.Views"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>teachers</TextBlock>
-        <DataGrid ItemsSource="{Binding Teachers}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
+        <TextBox Grid.Column="0" Grid.ColumnSpan="2"
+                 x:Name="MenuItemsSearchBox"
+                 Focusable="True"
+                 Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
+                 DockPanel.Dock="Top"
+                 Margin="20 10 20 10"
+                 materialDesign:HintAssist.Hint="Поиск по таблице"
+                 materialDesign:HintAssist.IsFloating="True"
+                 materialDesign:TextFieldAssist.HasClearButton="True"
+                 materialDesign:TextFieldAssist.HasOutlinedTextField="True"
+                 materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                 materialDesign:TextFieldAssist.TextFieldCornerRadius="4"/>
+
+        <Button Grid.Row="0"
+                Grid.Column="7"
+                Margin="10"
+                Content="Добавить"
+                Command="{Binding ShowDialogCommand}" CommandParameter="AddTeacherDialog"/>
+
+        <Button Grid.Row="0" 
+                Grid.Column="8"
+                Margin="10"
+                Content="Изменить"/>
+
+        <Button Grid.Row="0" 
+                Grid.Column="9"
+                Margin="10"
+                Content="Удалить"/>
+
+
+        <DataGrid Grid.Row="1" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="10"
+                  ItemsSource="{Binding Teachers}" 
+                  TabIndex="1" 
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Идентификатор">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Teacher">
+                            <TextBlock Text="{Binding Id}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Фамилия">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Teacher">
+                            <TextBlock Text="{Binding Surname}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Имя">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Teacher">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Отчество">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Teacher">
+                            <TextBlock Text="{Binding Patronymic}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Категория">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Teacher">
+                            <TextBlock Text="{Binding Category.Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>
