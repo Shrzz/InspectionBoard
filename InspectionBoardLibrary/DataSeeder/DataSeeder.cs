@@ -17,7 +17,7 @@ namespace InspectionBoardLibrary.DataSeeder
             User u = new User();
             u.Username = "admin";
             u.Password = "admin";
-            await Dbc.AddUser(u);
+            await UserService.AddUser(u);
         }
 
         public async Task AddStudent()
