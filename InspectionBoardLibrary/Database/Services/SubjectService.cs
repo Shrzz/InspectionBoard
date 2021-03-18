@@ -40,6 +40,11 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
+        public static Task Add(Subject subject)
+        {
+            throw new NotImplementedException();
+        }
+
         public static async Task RemoveAsync(int id)
         {
             using (ExamContext context = new ExamContext())

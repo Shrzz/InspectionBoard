@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -16,7 +17,7 @@ namespace Workspace.ViewModels
         {
             this.dialogService = dialogService;
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
-            Subjects = new ObservableCollection<Subject>(Dbc.GetSubjectsList());
+            Subjects = new ObservableCollection<Subject>(SubjectService.Select());
         }
 
         public DelegateCommand<string> ShowDialogCommand { get; private set; }

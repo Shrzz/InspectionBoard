@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -35,7 +36,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await Dbc.AddSubject(Subject);
+                await SubjectService.AddAsync(Subject);
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")

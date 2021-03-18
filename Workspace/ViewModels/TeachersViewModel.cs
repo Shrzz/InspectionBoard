@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
@@ -22,7 +23,7 @@ namespace Workspace.ViewModels
         {
             this.dialogService = dialogService;
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
-            Teachers = new ObservableCollection<Teacher>(Dbc.GetTeachersList());
+            Teachers = new ObservableCollection<Teacher>(TeacherService.Select());
         }
 
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
