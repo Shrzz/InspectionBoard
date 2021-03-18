@@ -58,12 +58,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\Dbc.cs" />
     <Compile Include="Database\ExamContext.cs" />
+    <Compile Include="Database\Services\FacultyService.cs" />
     <Compile Include="Database\Services\LoginService.cs" />
     <Compile Include="Database\Services\SubjectService.cs" />
     <Compile Include="Database\Services\StudentService.cs" />
     <Compile Include="Database\Services\TeacherService.cs" />
+    <Compile Include="Database\Services\UserService.cs" />
     <Compile Include="Database\UserContext.cs" />
     <Compile Include="DataSeeder\DataSeeder.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
