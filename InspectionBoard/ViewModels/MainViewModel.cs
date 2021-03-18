@@ -1,20 +1,11 @@
-﻿using InspectionBoardLibrary.Database;
-using InspectionBoardLibrary.DataSeeder;
-using InspectionBoardLibrary.Models;
-using MaterialDesignThemes.Wpf;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity;
-using System.Linq;
-using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
 using Workspace.Domain;
 
 namespace InspectionBoard.ViewModels
@@ -36,6 +27,7 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref isMenuActive, value); }
         }
 
+        // свойство для перехода на новую страницу
         private MenuItem selectedMenuItem;
         public MenuItem SelectedMenuItem
         {
@@ -43,6 +35,7 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref selectedMenuItem, value); }
         }
 
+        // свойство для перехода на новую страницу
         private int selectedMenuIndex;
         public int SelectedMenuIndex
         {
@@ -50,6 +43,7 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref selectedMenuIndex, value); }
         }
 
+        // поиск по пунктам меню
         private string searchKeyword;
         public string SearchKeyword
         {
@@ -63,6 +57,7 @@ namespace InspectionBoard.ViewModels
             }
         }
 
+        // свойство для отображения названия на верхней панели
         private MenuItem currentMenuItem;
         public MenuItem CurrentMenuItem
         {

@@ -61,7 +61,9 @@
                   Grid.ColumnSpan="10"
                   ItemsSource="{Binding Subjects}" 
                   TabIndex="1" 
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Идентификатор">
                     <DataGridTemplateColumn.CellTemplate>

@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>InspectionBoardLibrary</RootNamespace>
     <AssemblyName>InspectionBoardLibrary</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,6 +60,10 @@
   <ItemGroup>
     <Compile Include="Database\Dbc.cs" />
     <Compile Include="Database\ExamContext.cs" />
+    <Compile Include="Database\Services\LoginService.cs" />
+    <Compile Include="Database\Services\SubjectService.cs" />
+    <Compile Include="Database\Services\StudentService.cs" />
+    <Compile Include="Database\Services\TeacherService.cs" />
     <Compile Include="Database\UserContext.cs" />
     <Compile Include="DataSeeder\DataSeeder.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />

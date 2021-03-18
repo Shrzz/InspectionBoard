@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using System;
@@ -11,7 +12,7 @@ namespace InspectionBoardLibrary.DataSeeder
 {
     public class DataSeeder
     {
-        public async void AddAdminUser()
+        public async Task AddAdminUser()
         {
             User u = new User();
             u.Username = "admin";
@@ -19,7 +20,7 @@ namespace InspectionBoardLibrary.DataSeeder
             await Dbc.AddUser(u);
         }
 
-        public async void AddStudent()
+        public async Task AddStudent()
         {
             Student s = new Student();
             s.Id = 0;
@@ -34,7 +35,7 @@ namespace InspectionBoardLibrary.DataSeeder
             EducationForm form = new EducationForm();
             form.Form = "Бюджетная";
             s.EducationForm = form;
-            await Dbc.AddStudent(s);
+            await StudentService.AddAsync(s);
         }
     }
 }

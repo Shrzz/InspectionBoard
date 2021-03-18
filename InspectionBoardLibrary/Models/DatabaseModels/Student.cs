@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models.DatabaseModels
 {
-    public class Student
+    public class Student 
     {
         public int Id { get; set; }
         public string Surname { get; set; }

@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -48,7 +49,7 @@ namespace InspectionBoard.Dialogs
 
             if (parameter?.ToLower() == "true")
             {
-                await Dbc.RemoveStudent(parseResult);
+                await StudentService.RemoveAsync(parseResult);
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")

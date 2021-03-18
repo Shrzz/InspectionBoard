@@ -26,7 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Column="0" Grid.ColumnSpan="2"
-                 x:Name="MenuItemsSearchBox"
+                 x:Name="GridItemsSearchBox"
                  Focusable="True"
                  Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
                  DockPanel.Dock="Top"
@@ -59,7 +59,9 @@
                   Grid.ColumnSpan="10"
                   ItemsSource="{Binding Students}" 
                   TabIndex="1" 
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Идентификатор">
                     <DataGridTemplateColumn.CellTemplate>
@@ -100,6 +102,30 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="models:Student">
                             <TextBlock Text="{Binding EducationForm.Form}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Экзамены">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Student">
+                            <Expander HorizontalAlignment="Stretch"
+                                      Header="Экзамены"
+                                      IsExpanded="False">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <DataGrid ItemsSource="{Binding Students.Exams}">
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="Экзамены">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate DataType="model:Exam">
+                                                        <TextBlock Text="{Binding Id}"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </ScrollViewer>
+                            </Expander>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

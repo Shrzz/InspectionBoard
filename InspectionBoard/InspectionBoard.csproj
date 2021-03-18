@@ -125,10 +125,18 @@
       <DependentUpon>RemoveApplicantDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\RemoveApplicantDialogViewModel.cs" />
+    <Compile Include="Dialogs\StudentsDialogs\AddStudentDialog.xaml.cs">
+      <DependentUpon>AddStudentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StudentsDialogs\AddStudentDialogViewModel.cs" />
     <Compile Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml.cs">
       <DependentUpon>AddSubjectDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SubjectsDialogs\AddSubjectDialogViewModel.cs" />
+    <Compile Include="Dialogs\TeachersDialog\AddTeacherDialog.xaml.cs">
+      <DependentUpon>AddTeacherDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TeachersDialog\AddTeacherDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Dialogs\AddApplicantDialog.xaml">
       <SubType>Designer</SubType>
@@ -150,7 +158,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\StudentsDialogs\AddStudentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TeachersDialog\AddTeacherDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

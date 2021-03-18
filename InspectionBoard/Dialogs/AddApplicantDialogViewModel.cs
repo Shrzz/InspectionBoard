@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
@@ -48,7 +49,7 @@ namespace InspectionBoard.Dialogs
             {
                 Student student = new Student();        
                 // проинициализировать поля
-                await Dbc.AddStudent(student);
+                await StudentService.AddAsync(student);
                 result = ButtonResult.OK;
             }
             else

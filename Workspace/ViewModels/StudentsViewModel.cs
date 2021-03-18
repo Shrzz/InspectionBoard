@@ -1,7 +1,10 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,38 +19,45 @@ namespace Workspace.ViewModels
 {
     public class StudentsViewModel : BindableBase
     {
-        public ObservableCollection<Student> Students { get; set; }
+        private readonly IDialogService dialogService;
+        public ObservableCollection<Student> Students { get; }
 
-        public StudentsViewModel()
+        private string searchKeyword;
+        public string SearchKeyword
         {
-            Students = new ObservableCollection<Student>(Dbc.GetStudentList());
+            get { return searchKeyword; }
+            set { SetProperty(ref searchKeyword, value); }
         }
 
-        public async void Students_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public StudentsViewModel(IDialogService dialogService)
         {
-            switch (e.Action)
+            this.dialogService = dialogService;
+            ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
+            Students = new ObservableCollection<Student>(StudentService.Select());
+        }
+
+        public DelegateCommand<string> ShowDialogCommand { get; private set; }
+
+        private void ShowDialog(string dialogName)
+        {
+            dialogService.ShowDialog(dialogName, r =>
             {
-                case NotifyCollectionChangedAction.Add:
-                    {
-                        Student s = e.NewItems as Student;
-                        if (s != null)
+                switch (r.Result)
+                {
+                    case ButtonResult.None:
                         {
-                            await Dbc.AddStudent(s);
+                            break;
                         }
-                        break;
-                    }
-                case NotifyCollectionChangedAction.Remove:
-                    {
-                        break;
-                    }
-                case NotifyCollectionChangedAction.Replace:
-                    {
-                        break;
-                    }
-            }
+                    case ButtonResult.OK:
+                        {
+                            break;
+                        }
+                    case ButtonResult.Cancel:
+                        {
+                            break;
+                        }
+                }
+            });
         }
-
-
-        
     }
 }

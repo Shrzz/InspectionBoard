@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
@@ -51,7 +52,7 @@ namespace InspectionBoard.Dialogs
         {
             Parameters = new string[6];
             // изменить число параметров
-            Students = Dbc.GetStudentList();
+            Students = StudentService.Select();
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -62,7 +63,7 @@ namespace InspectionBoard.Dialogs
             {
                 Student student = new Student();
                 // проинициализировать поля
-                await Dbc.EditStudent(student);
+                await StudentService.EditAsync(student);
                 result = ButtonResult.OK;
             }
             else
