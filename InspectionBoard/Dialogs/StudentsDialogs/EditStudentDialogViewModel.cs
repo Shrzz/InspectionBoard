@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.StudentsDialogs
 {
-    public class AddStudentDialogViewModel : BindableBase, IDialogAware
+    public class EditStudentDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
 
@@ -20,6 +20,19 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             get { return student; }
             set { SetProperty(ref student, value); }
         }
+
+        private int selectedStudentId;
+        public int SelectedStudentId
+        {
+            get { return selectedStudentId; }
+            set { SetProperty(ref selectedStudentId, value); }
+        }
+
+        public ObservableCollection<int> Ids
+        {
+            get => new ObservableCollection<int>(StudentService.SelectIds());
+        }
+
         public ObservableCollection<Faculty> Faculties
         {
             get => new ObservableCollection<Faculty>(FacultyService.Select());
@@ -30,10 +43,10 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             get => new ObservableCollection<EducationForm>(EducationFormService.Select());
         }
 
-        public string Title => "Добавить студента";
+        public string Title => "Изменить данные студента";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public AddStudentDialogViewModel()
+        public EditStudentDialogViewModel()
         {
             Student = new Student();
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
@@ -41,11 +54,19 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 
         public event Action<IDialogResult> RequestClose;
 
-        private async Task AddStudent()
+        private async Task EditStudent()
         {
-            Student.Exams = new List<Exam>();
-            Student.Retakes = new List<Retake>();
-            await StudentService.AddAsync(Student);
+            if (Student.Exams is null)
+            {
+                Student.Exams = new List<Exam>();
+            }
+
+            if (Student.Retakes is null)
+            {
+                Student.Retakes = new List<Retake>();
+            }
+
+            await StudentService.EditAsync(Student);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -53,7 +74,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await AddStudent();
+                await EditStudent();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")

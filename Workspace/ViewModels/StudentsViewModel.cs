@@ -20,7 +20,7 @@ namespace Workspace.ViewModels
     public class StudentsViewModel : BindableBase
     {
         private readonly IDialogService dialogService;
-        public ObservableCollection<Student> Students { get; }
+        public ObservableCollection<Student> Students { get; private set; }
 
         private string searchKeyword;
         public string SearchKeyword
@@ -40,7 +40,7 @@ namespace Workspace.ViewModels
 
         private void ShowDialog(string dialogName)
         {
-            dialogService.ShowDialog(dialogName, r =>
+            dialogService.ShowDialog(dialogName, new DialogParameters(), r =>
             {
                 switch (r.Result)
                 {
@@ -50,6 +50,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
+                            Students = new ObservableCollection<Student>(StudentService.Select());
                             break;
                         }
                     case ButtonResult.Cancel:

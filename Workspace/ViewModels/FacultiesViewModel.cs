@@ -9,5 +9,6 @@ namespace Workspace.ViewModels
 {
     public class FacultiesViewModel : BindableBase
     {
+            
     }
 }

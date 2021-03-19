@@ -56,14 +56,14 @@
   <ItemGroup>
     <Compile Include="Domain\MenuItem.cs" />
     <Compile Include="Domain\SnackbarMessageQueue.cs" />
-    <Compile Include="ViewModels\DocsEnrollmentViewModel.cs" />
+    <Compile Include="ViewModels\Legacy\DocsEnrollmentViewModel.cs" />
     <Compile Include="ViewModels\ExamsViewModel.cs" />
     <Compile Include="ViewModels\FacultiesViewModel.cs" />
     <Compile Include="ViewModels\RetakesViewModel.cs" />
-    <Compile Include="ViewModels\AnalysisViewModel.cs" />
+    <Compile Include="ViewModels\Legacy\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\StudentsViewModel.cs" />
     <Compile Include="ViewModels\SubjectsViewModel.cs" />
-    <Compile Include="Views\DocsEnrollment.xaml.cs">
+    <Compile Include="Views\Legacy\DocsEnrollment.xaml.cs">
       <DependentUpon>DocsEnrollment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Exams.xaml.cs">
@@ -75,7 +75,7 @@
     <Compile Include="Views\Retakes.xaml.cs">
       <DependentUpon>Retakes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Analysis.xaml.cs">
+    <Compile Include="Views\Legacy\Analysis.xaml.cs">
       <DependentUpon>Analysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Students.xaml.cs">
@@ -117,7 +117,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\DocsEnrollment.xaml">
+    <Page Include="Views\Legacy\DocsEnrollment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Analysis.xaml">
+    <Page Include="Views\Legacy\Analysis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

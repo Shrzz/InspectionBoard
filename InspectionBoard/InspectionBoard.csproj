@@ -105,30 +105,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialogs\AddApplicantDialog.xaml.cs">
+    <Compile Include="Dialogs\Legacy\AddApplicantDialog.xaml.cs">
       <DependentUpon>AddApplicantDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AddApplicantDialogViewModel.cs" />
-    <Compile Include="Dialogs\DocsSettingsDialog.xaml.cs">
+    <Compile Include="Dialogs\Legacy\AddApplicantDialogViewModel.cs" />
+    <Compile Include="Dialogs\Legacy\DocsSettingsDialog.xaml.cs">
       <DependentUpon>DocsSettingsDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\DocsSettingsDialogViewModel.cs" />
-    <Compile Include="Dialogs\EditApplicantDialog.xaml.cs">
+    <Compile Include="Dialogs\Legacy\DocsSettingsDialogViewModel.cs" />
+    <Compile Include="Dialogs\Legacy\EditApplicantDialog.xaml.cs">
       <DependentUpon>EditApplicantDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\EditApplicantDialogViewModel.cs" />
-    <Compile Include="Dialogs\NotificationDialog.xaml.cs">
+    <Compile Include="Dialogs\Legacy\EditApplicantDialogViewModel.cs" />
+    <Compile Include="Dialogs\Legacy\NotificationDialog.xaml.cs">
       <DependentUpon>NotificationDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\NotificationDialogViewModel.cs" />
-    <Compile Include="Dialogs\RemoveApplicantDialog.xaml.cs">
+    <Compile Include="Dialogs\Legacy\NotificationDialogViewModel.cs" />
+    <Compile Include="Dialogs\Legacy\RemoveApplicantDialog.xaml.cs">
       <DependentUpon>RemoveApplicantDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\RemoveApplicantDialogViewModel.cs" />
+    <Compile Include="Dialogs\Legacy\RemoveApplicantDialogViewModel.cs" />
     <Compile Include="Dialogs\StudentsDialogs\AddStudentDialog.xaml.cs">
       <DependentUpon>AddStudentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\StudentsDialogs\AddStudentDialogViewModel.cs" />
+    <Compile Include="Dialogs\StudentsDialogs\EditStudentDialog.xaml.cs">
+      <DependentUpon>EditStudentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StudentsDialogs\EditStudentDialogViewModel.cs" />
+    <Compile Include="Dialogs\StudentsDialogs\RemoveStudentDialog.xaml.cs">
+      <DependentUpon>RemoveStudentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StudentsDialogs\RemoveStudentDialogViewModel.cs" />
     <Compile Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml.cs">
       <DependentUpon>AddSubjectDialog.xaml</DependentUpon>
     </Compile>
@@ -138,27 +146,35 @@
     </Compile>
     <Compile Include="Dialogs\TeachersDialog\AddTeacherDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Page Include="Dialogs\AddApplicantDialog.xaml">
+    <Page Include="Dialogs\Legacy\AddApplicantDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\DocsSettingsDialog.xaml">
+    <Page Include="Dialogs\Legacy\DocsSettingsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\EditApplicantDialog.xaml">
+    <Page Include="Dialogs\Legacy\EditApplicantDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\NotificationDialog.xaml">
+    <Page Include="Dialogs\Legacy\NotificationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\RemoveApplicantDialog.xaml">
+    <Page Include="Dialogs\Legacy\RemoveApplicantDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\StudentsDialogs\AddStudentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\StudentsDialogs\EditStudentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\StudentsDialogs\RemoveStudentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

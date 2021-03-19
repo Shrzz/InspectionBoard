@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace InspectionBoard.Dialogs.StudentsDialogs
 {
     /// <summary>
-    /// Логика взаимодействия для AddStudentDialog.xaml
+    /// Логика взаимодействия для RemoveStudentDialog.xaml
     /// </summary>
-    public partial class AddStudentDialog : UserControl
+    public partial class RemoveStudentDialog : UserControl
     {
-        public AddStudentDialog()
+        public RemoveStudentDialog()
         {
             InitializeComponent();
-
         }
-
-
-
-
     }
 }

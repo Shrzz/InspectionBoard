@@ -31,6 +31,7 @@ namespace InspectionBoard
             containerRegistry.RegisterDialog<DocsSettingsDialog, DocsSettingsDialogViewModel>();
 
             RegisterAddDialogs(containerRegistry);
+            RegisterStudentDialogs(containerRegistry);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -42,8 +43,14 @@ namespace InspectionBoard
         private void RegisterAddDialogs(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<AddTeacherDialog, AddTeacherDialogViewModel>("AddTeacherDialog");
-            containerRegistry.RegisterDialog<AddStudentDialog, AddStudentDialogViewModel>("AddStudentDialog");
             containerRegistry.RegisterDialog<AddSubjectDialog, AddSubjectDialogViewModel>("AddSubjectDialog");
+        }
+
+        private void RegisterStudentDialogs(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterDialog<AddStudentDialog, AddStudentDialogViewModel>("AddStudentDialog");
+            containerRegistry.RegisterDialog<EditStudentDialog, EditStudentDialogViewModel>("EditStudentDialog");
+            containerRegistry.RegisterDialog<RemoveStudentDialog, RemoveStudentDialogViewModel>("RemoveStudentDialog");
         }
     }
 }

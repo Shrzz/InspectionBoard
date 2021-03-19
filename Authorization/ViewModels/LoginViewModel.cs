@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.DataSeeder;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -53,17 +54,17 @@ namespace Authorization.ViewModels
         private async void Login()
 #pragma warning restore S3168 // "async" methods should not return "void"
         {
-            //bool success = await Dbc.TryLogin(Username, Password);
-            //if (success)
-            //{
-            //    Message = "Авторизация прошла успешно";
-            //    regionManager.RequestNavigate("ContentRegion", "Workspace");
-            //}
-            //else
-            //{
-            //    Message = "Неверно введены данные";
-            //}
+            //bool success = await LoginService.TryLogin(Username, Password);
+            var success = true;
+            if (success)
+            {
+                Message = "Авторизация прошла успешно";
                 regionManager.RequestNavigate("MainRegion", "Workspace");
+            }
+            else
+            {
+                Message = "Неверно введены данные";
+            }
         }
     }
 }

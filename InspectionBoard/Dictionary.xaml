@@ -4,5 +4,12 @@
     <Button x:Key="DialogOpenButton">
         
     </Button>
+    <UserControl x:Key="AddDialog"
+                 MinHeight="450"
+                 MaxHeight="450"
+                 MinWidth="600"
+                 MaxWidth="600">
+        
+    </UserControl>
 </ResourceDictionary>
     

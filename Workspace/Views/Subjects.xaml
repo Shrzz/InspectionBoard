@@ -82,14 +82,14 @@
                 <DataGridTemplateColumn Header="Количество лекционных часов">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="models:Subject">
-                            <TextBlock Text="{Binding Lectory_hours}"/>
+                            <TextBlock Text="{Binding LectoryHours}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Количество лабораторных и практических часов">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="models:Subject">
-                            <TextBlock Text="{Binding Laboratory_hours}"/>
+                            <TextBlock Text="{Binding LaboratoryHours}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

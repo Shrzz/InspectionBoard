@@ -23,7 +23,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                var newStudent = await context.Students.Include(s => s.Faculty).FirstOrDefaultAsync(s => s.Id == o.Id);
+                var newStudent = await context.Students.Include(s => s.Faculty).Include(s => s.EducationForm).FirstOrDefaultAsync(s => s.Id == o.Id);
                 if (o != null)
                 {
                     newStudent.Name = o.Name;
@@ -56,7 +56,15 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Students.Include(a => a.Faculty).AsNoTracking().ToList();
+                return context.Students.Include(a => a.Faculty).Include(s => s.EducationForm).ToList();
+            }
+        }
+
+        public static List<int> SelectIds()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return context.Students.Select(s => s.Id).ToList();
             }
         }
     }
