@@ -56,10 +56,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         {
             RequestClose?.Invoke(dialogResult);
         }
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
+        public bool CanCloseDialog() => true;
 
         public void OnDialogClosed()
         {

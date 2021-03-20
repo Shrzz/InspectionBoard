@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Database
+namespace InspectionBoardLibrary.Database.Contexts
 {
     public class ExamContext : DbContext
     {

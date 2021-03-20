@@ -6,21 +6,20 @@
              xmlns:local="clr-namespace:InspectionBoard.Dialogs.StudentsDialogs"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-
              Height="450" Width="400">
     <Grid>
         <materialDesign:Card Padding="20">
             <StackPanel Margin="20">
-                <TextBlock
-                           Text="Идентификатор студента"/>
+                <TextBlock Text="Идентификатор студента"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Ids}" 
-                          IsSynchronizedWithCurrentItem="True"/>
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding SelectedStudentId}"/>
                 <TextBox materialDesign:HintAssist.Hint="Фамилия"
                          Margin="0 5" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Focusable="True" 
-                         Text="{Binding Student.Surname}" />
+                         Text="{Binding Student.Surname}"/>
                 <TextBox materialDesign:HintAssist.Hint="Имя"
                          Margin="0 5" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
@@ -28,23 +27,23 @@
                 <TextBox materialDesign:HintAssist.Hint="Отчество"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Text="{Binding Student.Patronymic}"/>
-                <TextBlock
-                           Text="Факультет"/>
+                <TextBlock Text="Факультет"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Faculties}" 
                           DisplayMemberPath="Name"
-                          IsSynchronizedWithCurrentItem="True"/>
-                <TextBlock
-                           Text="Форма обучения"/>
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding Student.Faculty}"/>
+                <TextBlock Text="Форма обучения"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding EducationForms}" 
                           DisplayMemberPath="Form"
-                          IsSynchronizedWithCurrentItem="True"/>
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding Student.EducationForm}"/>
                 <Button Margin="20 10 20 0"
-                        Content="Добавить"
+                        Content="Изменить"
                         Command="{Binding CloseDialogCommand}"
                         CommandParameter="true"/>
-                <Button Margin="20"
+                <Button Margin="20 10 20 0"
                         Content="Отмена"
                         Command="{Binding CloseDialogCommand}"
                         CommandParameter="false"/>

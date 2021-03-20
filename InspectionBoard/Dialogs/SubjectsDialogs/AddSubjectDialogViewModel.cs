@@ -1,6 +1,7 @@
 ﻿using InspectionBoardLibrary.Database;
 using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
@@ -23,10 +24,10 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         }
 
         public string Title => "Добавить предмет";
-    
+        public DelegateCommand<string> CloseDialogCommand { get; private set; }
         public AddSubjectDialogViewModel()
         {
-            Subject = new Subject();
+            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -65,6 +66,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            Subject = new Subject();
         }
     }
 }

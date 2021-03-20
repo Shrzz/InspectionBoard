@@ -141,6 +141,14 @@
       <DependentUpon>AddSubjectDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SubjectsDialogs\AddSubjectDialogViewModel.cs" />
+    <Compile Include="Dialogs\SubjectsDialogs\EditSubjectDialog.xaml.cs">
+      <DependentUpon>EditSubjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SubjectsDialogs\EditSubjectDialogViewModel.cs" />
+    <Compile Include="Dialogs\SubjectsDialogs\RemoveSubjectDialog.xaml.cs">
+      <DependentUpon>RemoveSubjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SubjectsDialogs\RemoveSubjectDialogViewModel.cs" />
     <Compile Include="Dialogs\TeachersDialog\AddTeacherDialog.xaml.cs">
       <DependentUpon>AddTeacherDialog.xaml</DependentUpon>
     </Compile>
@@ -179,6 +187,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SubjectsDialogs\EditSubjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SubjectsDialogs\RemoveSubjectDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

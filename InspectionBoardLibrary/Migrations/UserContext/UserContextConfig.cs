@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class UserContextConfig : DbMigrationsConfiguration<InspectionBoardLibrary.Database.UserContext>
+    internal sealed class UserContextConfig : DbMigrationsConfiguration<InspectionBoardLibrary.Database.Contexts.UserContext>
     {
         public UserContextConfig()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(InspectionBoardLibrary.Database.UserContext context)
+        protected override void Seed(InspectionBoardLibrary.Database.Contexts.UserContext context)
         {
             //  This method will be called after migrating to the latest version.
 

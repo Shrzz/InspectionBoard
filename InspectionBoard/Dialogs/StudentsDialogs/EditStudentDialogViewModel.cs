@@ -48,7 +48,6 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 
         public EditStudentDialogViewModel()
         {
-            Student = new Student();
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
         }
 
@@ -56,6 +55,8 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 
         private async Task EditStudent()
         {
+            Student.Id = SelectedStudentId;
+
             if (Student.Exams is null)
             {
                 Student.Exams = new List<Exam>();
@@ -103,6 +104,10 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            Student = new Student();
+            SelectedStudentId = Ids[0];
+            Student.EducationForm = EducationForms[0];
+            Student.Faculty = Faculties[0];
         }
     }
 }

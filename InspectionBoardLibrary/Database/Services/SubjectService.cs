@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using InspectionBoardLibrary.Database.Contexts;
 
 namespace InspectionBoardLibrary.Database.Services
 {
@@ -24,25 +25,15 @@ namespace InspectionBoardLibrary.Database.Services
             using (ExamContext context = new ExamContext())
             {
                 var newSubject = await context.Subjects.FirstOrDefaultAsync(s => s.Id == o.Id);
-                if (o != null)
+                if (o != null && newSubject != null)
                 {
-                    //newSubject.Name = o.Name;
-                    //newSubject.Patronymic = o.Patronymic;
-                    //newSubject.Retakes = o.Retakes;
-                    //newSubject.Surname = o.Surname;
-                    //newSubject.Exams = o.Exams;
-                    //newSubject.Faculty = o.Faculty;
-                    //newSubject.EducationForm = o.EducationForm;
-                    //context.Students.Add(o);
+                    newSubject.Name = o.Name;
+                    newSubject.LectoryHours = o.LectoryHours;
+                    newSubject.LaboratoryHours = o.LaboratoryHours;
                 }
 
                 await context.SaveChangesAsync();
             }
-        }
-
-        public static Task Add(Subject subject)
-        {
-            throw new NotImplementedException();
         }
 
         public static async Task RemoveAsync(int id)
@@ -53,6 +44,7 @@ namespace InspectionBoardLibrary.Database.Services
                 if (subjectToRemove != null)
                 {
                     context.Subjects.Remove(subjectToRemove);
+                    await context.SaveChangesAsync();
                 }
             }
         }
@@ -62,6 +54,14 @@ namespace InspectionBoardLibrary.Database.Services
             using (ExamContext context = new ExamContext())
             {
                 return context.Subjects.AsNoTracking().ToList();
+            }
+        }
+
+        public static List<int> SelectIds()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return context.Subjects.OrderBy(s => s.Id).Select(s => s.Id).ToList();
             }
         }
     }

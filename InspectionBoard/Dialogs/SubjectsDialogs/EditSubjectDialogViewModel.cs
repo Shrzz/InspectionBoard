@@ -6,43 +6,49 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoard.Dialogs.StudentsDialogs
+namespace InspectionBoard.Dialogs.SubjectsDialogs
 {
-    public class AddStudentDialogViewModel : BindableBase, IDialogAware
+    public class EditSubjectDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
 
-        private Student student;
-        public Student Student
+        private Subject subject;
+        public Subject Subject
         {
-            get { return student; }
-            set { SetProperty(ref student, value); }
+            get { return subject; }
+            set { SetProperty(ref subject, value); }
         }
-        public ObservableCollection<Faculty> Faculties
+
+        private int selectedSubjectId;
+        public int SelectedSubjectId
         {
-            get => new ObservableCollection<Faculty>(FacultyService.Select());
+            get { return selectedSubjectId; }
+            set { SetProperty(ref selectedSubjectId, value); }
         }
-        public ObservableCollection<EducationForm> EducationForms
+
+        public ObservableCollection<int> Ids
         {
-            get => new ObservableCollection<EducationForm>(EducationFormService.Select());
+            get => new ObservableCollection<int>(SubjectService.SelectIds());
         }
-        public string Title => "Добавить студента";
+
+        public string Title => "Изменить сведения о предмете";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public AddStudentDialogViewModel()
+        public EditSubjectDialogViewModel()
         {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog); 
+            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
         }
 
         public event Action<IDialogResult> RequestClose;
 
-        private async Task AddStudent()
+        private async Task EditSubject()
         {
-            Student.Exams = new List<Exam>();
-            Student.Retakes = new List<Retake>();
-            await StudentService.AddAsync(Student);
+            Subject.Id = SelectedSubjectId;
+            await SubjectService.EditAsync(Subject);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -50,7 +56,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await AddStudent();
+                await EditSubject();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
@@ -79,9 +85,8 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Student = new Student();
-            Student.Faculty = Faculties[0];
-            Student.EducationForm = EducationForms[0];
+            Subject = new Subject();
+            SelectedSubjectId = Ids[0];
         }
     }
 }

@@ -4,6 +4,7 @@ using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,15 @@ using System.Windows.Controls;
 
 namespace Workspace.ViewModels
 {
-    public class StudentsViewModel : BindableBase
+    public class StudentsViewModel : BindableBase, INavigationAware
     {
         private readonly IDialogService dialogService;
-        public ObservableCollection<Student> Students { get; private set; }
+        private ObservableCollection<Student> students;
+        public ObservableCollection<Student> Students
+        {
+            get { return students; }
+            set { SetProperty(ref students, value); }
+        }
 
         private string searchKeyword;
         public string SearchKeyword
@@ -33,7 +39,6 @@ namespace Workspace.ViewModels
         {
             this.dialogService = dialogService;
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
-            Students = new ObservableCollection<Student>(StudentService.Select());
         }
 
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
@@ -59,6 +64,21 @@ namespace Workspace.ViewModels
                         }
                 }
             });
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            Students = new ObservableCollection<Student>(StudentService.Select());
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            
         }
     }
 }

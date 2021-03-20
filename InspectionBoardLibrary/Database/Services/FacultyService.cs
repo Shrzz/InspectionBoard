@@ -1,4 +1,5 @@
-﻿using InspectionBoardLibrary.Models.DatabaseModels;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,7 +24,16 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Faculties.AsNoTracking().AsNoTracking().ToListAsync().Result;
+                return context.Faculties.OrderBy(s => s.Id).Distinct().ToListAsync().Result;
+            }
+        }
+
+        public static Faculty SelectById(int id)
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                var f = context.Faculties.FirstOrDefault(s => s.Id == id);
+                return f;
             }
         }
     }

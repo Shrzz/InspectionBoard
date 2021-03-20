@@ -1,4 +1,5 @@
-﻿using InspectionBoardLibrary.Models.DatabaseModels;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,15 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.EducationForms.AsNoTracking().ToList();
+                return context.EducationForms.OrderBy(s => s.Id).ToList();
+            }
+        }
+
+        public static EducationForm SelectById(int id)
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return context.EducationForms.FirstOrDefault(s => s.Id == id);
             }
         }
     }

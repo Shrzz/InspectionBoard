@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="InspectionBoard.Dialogs.StudentsDialogs.RemoveStudentDialog"
+﻿<UserControl x:Class="InspectionBoard.Dialogs.SubjectsDialogs.RemoveSubjectDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:InspectionBoard.Dialogs.StudentsDialogs"
+             xmlns:local="clr-namespace:InspectionBoard.Dialogs.SubjectsDialogs"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              Height="450" Width="400">
@@ -20,11 +20,11 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="1">
                     <TextBlock
-                           Text="Идентификатор студента"/>
+                           Text="Идентификатор предмета"/>
                     <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Ids}" 
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding SelectedStudentId}"/>
+                          SelectedItem="{Binding SelectedSubjectId}"/>
                 </StackPanel>
                 <Button Grid.Row="4"
                         Margin="20" 
@@ -36,7 +36,6 @@
                         Content="Удалить"
                         Command="{Binding CloseDialogCommand}"
                         CommandParameter="true"/>
-
             </Grid>
         </materialDesign:Card>
     </Grid>

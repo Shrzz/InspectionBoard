@@ -48,12 +48,14 @@
         <Button Grid.Row="0" 
                 Grid.Column="8"
                 Margin="10"
-                Content="Изменить"/>
+                Content="Изменить"
+                Command="{Binding ShowDialogCommand}" CommandParameter="EditSubjectDialog"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="9"
                 Margin="10"
-                Content="Удалить"/>
+                Content="Удалить"
+                Command="{Binding ShowDialogCommand}" CommandParameter="RemoveSubjectDialog"/>
 
 
         <DataGrid Grid.Row="1" 

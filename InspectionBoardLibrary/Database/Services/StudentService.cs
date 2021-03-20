@@ -1,4 +1,5 @@
-﻿using InspectionBoardLibrary.Models.DatabaseModels;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,24 +20,30 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static async Task EditAsync(Student o)
+        public static async Task EditAsync(Student newStudent)
         {
             using (ExamContext context = new ExamContext())
             {
-                var newStudent = await context.Students.Include(s => s.Faculty).Include(s => s.EducationForm).FirstOrDefaultAsync(s => s.Id == o.Id);
-                if (o != null)
+                var oldStudent = await context.Students.FirstOrDefaultAsync(s => s.Id == newStudent.Id);
+                if (oldStudent != null && newStudent != null)
                 {
-                    newStudent.Name = o.Name;
-                    newStudent.Patronymic = o.Patronymic;
-                    newStudent.Retakes = o.Retakes;
-                    newStudent.Surname = o.Surname;
-                    newStudent.Exams = o.Exams;
-                    newStudent.Faculty = o.Faculty;
-                    newStudent.EducationForm = o.EducationForm;
-                    context.Students.Add(o);
+                    oldStudent.Name = newStudent.Name;
+                    oldStudent.Patronymic = newStudent.Patronymic;
+                    oldStudent.Retakes = newStudent.Retakes;
+                    oldStudent.Surname = newStudent.Surname;
+                    oldStudent.Exams = newStudent.Exams;
+                    oldStudent.Faculty = newStudent.Faculty;// FacultyService.SelectById(newStudent.Faculty.Id);
+                    oldStudent.EducationForm = EducationFormService.SelectById(newStudent.Faculty.Id);
+                    if (oldStudent.Faculty.Students is null) 
+                    {
+                        oldStudent.Faculty.Students = new List<Student> { oldStudent };
+                    }
+                    else 
+                    {
+                        oldStudent.Faculty.Students.Add(oldStudent);
+                    }
                 }
-
-                await context.SaveChangesAsync();
+                context.SaveChanges();
             }
         }
 
@@ -48,6 +55,7 @@ namespace InspectionBoardLibrary.Database.Services
                 if (studentToRemove != null)
                 {
                     context.Students.Remove(studentToRemove);
+                    await context.SaveChangesAsync();
                 }
             }
         }
@@ -56,7 +64,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Students.Include(a => a.Faculty).Include(s => s.EducationForm).ToList();
+                return context.Students.Include(a => a.Faculty).Include(s => s.EducationForm).OrderBy(s => s.Id).ToList();
             }
         }
 
@@ -64,7 +72,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Students.Select(s => s.Id).ToList();
+                return context.Students.OrderBy(s => s.Id).Select(s => s.Id).ToList();
             }
         }
     }

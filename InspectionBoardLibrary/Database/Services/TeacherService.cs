@@ -1,4 +1,5 @@
-﻿using InspectionBoardLibrary.Models.DatabaseModels;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -46,6 +47,7 @@ namespace InspectionBoardLibrary.Database.Services
                 if (objectToRemove != null)
                 {
                     context.Teachers.Remove(objectToRemove);
+                    await context.SaveChangesAsync();
                 }
             }
         }

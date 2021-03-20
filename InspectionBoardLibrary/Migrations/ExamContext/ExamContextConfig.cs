@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class ExamContextConfig : DbMigrationsConfiguration<InspectionBoardLibrary.Database.ExamContext>
+    internal sealed class ExamContextConfig : DbMigrationsConfiguration<InspectionBoardLibrary.Database.Contexts.ExamContext>
     {
         public ExamContextConfig()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(InspectionBoardLibrary.Database.ExamContext context)
+        protected override void Seed(InspectionBoardLibrary.Database.Contexts.ExamContext context)
         {
             //  This method will be called after migrating to the latest version.
 

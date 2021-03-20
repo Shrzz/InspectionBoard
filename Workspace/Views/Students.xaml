@@ -82,17 +82,17 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Имя">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="models:Student">
-                                    <TextBlock Text="{Binding Name}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Фамилия">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Student">
                                     <TextBlock Text="{Binding Surname}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Имя">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="models:Student">
+                                    <TextBlock Text="{Binding Name}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -117,7 +117,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Экзамены">
+                        <!--<DataGridTemplateColumn Header="Экзамены">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Student">
                                     <Expander HorizontalAlignment="Stretch"
@@ -139,7 +139,7 @@
                                     </Expander>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        </DataGridTemplateColumn>-->
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
