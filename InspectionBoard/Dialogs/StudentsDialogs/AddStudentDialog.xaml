@@ -28,12 +28,14 @@
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Faculties}" 
                           DisplayMemberPath="Name"
-                          IsSynchronizedWithCurrentItem="True"/>
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding Student.Faculty}"/>
                 <TextBlock Text="Форма обучения"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding EducationForms}" 
                           DisplayMemberPath="Form"
-                          IsSynchronizedWithCurrentItem="True"/>
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding Student.EducationForm}"/>
                 <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"

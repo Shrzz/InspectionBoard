@@ -1,5 +1,6 @@
 ﻿using Authorization;
 using InspectionBoard.Dialogs;
+using InspectionBoard.Dialogs.ExamsDialogs;
 using InspectionBoard.Dialogs.StudentsDialogs;
 using InspectionBoard.Dialogs.SubjectsDialogs;
 using InspectionBoard.Dialogs.TeachersDialog;
@@ -27,6 +28,7 @@ namespace InspectionBoard
             RegisterStudentDialogs(containerRegistry);
             RegisterSubjectDialogs(containerRegistry);
             RegisterTeacherDialogs(containerRegistry);
+            RegisterExamDialogs(containerRegistry);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -60,6 +62,13 @@ namespace InspectionBoard
             containerRegistry.RegisterDialog<AddTeacherDialog, AddTeacherDialogViewModel>("AddTeacherDialog");
             containerRegistry.RegisterDialog<EditTeacherDialog, EditTeacherDialogViewModel>("EditTeacherDialog");
             containerRegistry.RegisterDialog<RemoveTeacherDialog, RemoveTeacherDialogViewModel>("RemoveTeacherDialog");
+        }
+
+        private void RegisterExamDialogs(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterDialog<AddExamDialog, AddExamDialogViewModel>("AddExamDialog");
+            containerRegistry.RegisterDialog<EditExamDialog, EditExamDialogViewModel>("EditExamDialog");
+            containerRegistry.RegisterDialog<RemoveExamDialog, RemoveExamDialogViewModel>("RemoveExamDialog");
         }
     }
 }

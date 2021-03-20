@@ -43,7 +43,7 @@ namespace InspectionBoardLibrary.Database.Services
                         oldStudent.Faculty.Students.Add(oldStudent);
                     }
                 }
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
