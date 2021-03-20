@@ -16,7 +16,7 @@ namespace InspectionBoardLibrary.Database.Extensions
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Students.Select(s => s.Faculty).ToList();
+                return context.Faculties.AsNoTracking().ToList();
             }
         }
 
@@ -24,7 +24,7 @@ namespace InspectionBoardLibrary.Database.Extensions
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Students.Select(s => s.EducationForm).ToList();
+                return context.EducationForms.AsNoTracking().ToList();
             }
         }
     }

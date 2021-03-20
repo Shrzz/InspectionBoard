@@ -1,5 +1,6 @@
 ﻿using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using InspectionBoardLibrary.Database.Extensions;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -24,16 +25,21 @@ namespace InspectionBoard.Dialogs.TeachersDialog
             set { SetProperty(ref teacher, value); }
         }
 
-        private int selectedSubjectId;
-        public int SelectedSubjectId
+        private int selectedTeacherId;
+        public int SelectedTeacherId
         {
-            get { return selectedSubjectId; }
-            set { SetProperty(ref selectedSubjectId, value); }
+            get { return selectedTeacherId; }
+            set { SetProperty(ref selectedTeacherId, value); }
         }
 
         public ObservableCollection<int> Ids
         {
             get => new ObservableCollection<int>(service.SelectIds());
+        }
+
+        public ObservableCollection<Category> Categories
+        {
+            get => new ObservableCollection<Category>((service as TeacherService).SelectEducationForms());
         }
 
         public string Title => "Изменить сведения о преподавателе";
@@ -42,13 +48,14 @@ namespace InspectionBoard.Dialogs.TeachersDialog
         public EditTeacherDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
+            service = new TeacherService();
         }
 
         public event Action<IDialogResult> RequestClose;
 
         private async Task EditSubject()
         {
-            Teacher.Id = SelectedSubjectId;
+            Teacher.Id = SelectedTeacherId;
             service = new TeacherService();
             await service.EditAsync(Teacher);
         }
@@ -88,7 +95,7 @@ namespace InspectionBoard.Dialogs.TeachersDialog
         {
             this.dialogParameters = parameters;
             Teacher = new Teacher();
-            SelectedSubjectId = Ids[0];
+            SelectedTeacherId = Ids[0];
         }
     }
 }

@@ -32,7 +32,6 @@ namespace InspectionBoardLibrary.Database.Services
                     newStudent.Patronymic = o.Patronymic;
                     newStudent.Category = o.Category;
                     newStudent.Exams = o.Exams;
-                    context.Teachers.Add(o);
                 }
 
                 await context.SaveChangesAsync();

@@ -19,7 +19,20 @@ namespace Workspace.ViewModels
     {
         private readonly IDialogService dialogService;
         private readonly IDatabaseService<Teacher> service;
-        public ObservableCollection<Teacher> Teachers { get; private set; }
+
+        private ObservableCollection<Teacher> teachers;
+        public ObservableCollection<Teacher> Teachers
+        {
+            get { return teachers; }
+            set { SetProperty(ref teachers, value); }
+        }
+
+        private string searchKeyword;
+        public string SearchKeyword
+        {
+            get { return searchKeyword; }
+            set { SetProperty(ref searchKeyword, value); }
+        }
 
         public TeachersViewModel(IDialogService dialogService)
         {
@@ -42,6 +55,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
+                            Teachers = new ObservableCollection<Teacher>(service.Select());
                             break;
                         }
                     case ButtonResult.Cancel:

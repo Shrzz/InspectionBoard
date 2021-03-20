@@ -24,12 +24,9 @@ namespace InspectionBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {        
-            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
-            containerRegistry.RegisterDialog<DocsSettingsDialog, DocsSettingsDialogViewModel>();
-
-            RegisterAddDialogs(containerRegistry);
             RegisterStudentDialogs(containerRegistry);
             RegisterSubjectDialogs(containerRegistry);
+            RegisterTeacherDialogs(containerRegistry);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -38,9 +35,10 @@ namespace InspectionBoard
             moduleCatalog.AddModule<WorkspaceModule>();
         }
 
-        private void RegisterAddDialogs(IContainerRegistry containerRegistry)
+        private void RegisterLegacyDialogs(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterDialog<AddTeacherDialog, AddTeacherDialogViewModel>("AddTeacherDialog");
+            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
+            containerRegistry.RegisterDialog<DocsSettingsDialog, DocsSettingsDialogViewModel>();
         }
 
         private void RegisterSubjectDialogs(IContainerRegistry containerRegistry)
@@ -55,6 +53,13 @@ namespace InspectionBoard
             containerRegistry.RegisterDialog<AddStudentDialog, AddStudentDialogViewModel>("AddStudentDialog");
             containerRegistry.RegisterDialog<EditStudentDialog, EditStudentDialogViewModel>("EditStudentDialog");
             containerRegistry.RegisterDialog<RemoveStudentDialog, RemoveStudentDialogViewModel>("RemoveStudentDialog");
+        }
+
+        private void RegisterTeacherDialogs(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterDialog<AddTeacherDialog, AddTeacherDialogViewModel>("AddTeacherDialog");
+            containerRegistry.RegisterDialog<EditTeacherDialog, EditTeacherDialogViewModel>("EditTeacherDialog");
+            containerRegistry.RegisterDialog<RemoveTeacherDialog, RemoveTeacherDialogViewModel>("RemoveTeacherDialog");
         }
     }
 }

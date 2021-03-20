@@ -1,6 +1,4 @@
-﻿using InspectionBoardLibrary.Database;
-using InspectionBoardLibrary.Database.Extensions;
-using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -14,41 +12,42 @@ using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.TeachersDialog
 {
-    public class AddTeacherDialogViewModel : BindableBase, IDialogAware
+    public class RemoveTeacherDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
         private readonly IDatabaseService<Teacher> service;
 
-        private Teacher teacher;
-        public Teacher Teacher
+        private int selectedSubjectId;
+        public int SelectedTeacherId
         {
-            get { return teacher; }
-            set { SetProperty(ref teacher, value); }
+            get { return selectedSubjectId; }
+            set { SetProperty(ref selectedSubjectId, value); }
         }
-
-        public ObservableCollection<Category> Categories
+        public ObservableCollection<int> Ids
         {
-            get => new ObservableCollection<Category>((service as TeacherService).SelectEducationForms());
+            get => new ObservableCollection<int>(service.SelectIds());
         }
-
-        public string Title => "Добавить преподавателя";
+        public string Title => "Удалить сведения о предмете";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public AddTeacherDialogViewModel()
+        public RemoveTeacherDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
             service = new TeacherService();
-            Teacher = new Teacher();
         }
 
         public event Action<IDialogResult> RequestClose;
+        private async Task RemoveSubject()
+        {
+            await service.RemoveAsync(SelectedTeacherId);
+        }
 
         protected virtual async void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await service.AddAsync(Teacher);
+                await RemoveSubject();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
@@ -64,10 +63,7 @@ namespace InspectionBoard.Dialogs.TeachersDialog
             RequestClose?.Invoke(dialogResult);
         }
 
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
+        public bool CanCloseDialog() => true;
 
         public void OnDialogClosed()
         {

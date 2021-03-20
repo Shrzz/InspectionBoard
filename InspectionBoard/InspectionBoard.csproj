@@ -145,6 +145,10 @@
       <DependentUpon>EditTeacherDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TeachersDialog\EditTeacherDialogViewModel.cs" />
+    <Compile Include="Dialogs\TeachersDialog\RemoveTeacherDialog.xaml.cs">
+      <DependentUpon>RemoveTeacherDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TeachersDialog\RemoveTeacherDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Dialogs\Legacy\DocsSettingsDialog.xaml">
       <SubType>Designer</SubType>
@@ -183,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\TeachersDialog\EditTeacherDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TeachersDialog\RemoveTeacherDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

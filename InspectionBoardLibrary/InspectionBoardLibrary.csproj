@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Database\Contexts\ExamContext.cs" />
     <Compile Include="Database\Extensions\StudentServiceExtensions.cs" />
+    <Compile Include="Database\Extensions\TeacherServiceExtensions.cs" />
     <Compile Include="Database\Services\EducationFormService.cs" />
     <Compile Include="Database\Services\FacultyService.cs" />
     <Compile Include="Database\Services\IDatabaseService.cs" />

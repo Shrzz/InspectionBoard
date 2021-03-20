@@ -6,8 +6,35 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:InspectionBoard.Dialogs.TeachersDialog"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Height="450" Width="400">
     <Grid>
-            
+        <materialDesign:Card Padding="20">
+            <StackPanel Margin="20">
+                <TextBox materialDesign:HintAssist.Hint="Фамилия"
+                         Margin="0 5" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Focusable="True" 
+                         Text="{Binding Teacher.Surname}" />
+                <TextBox materialDesign:HintAssist.Hint="Имя"
+                         Margin="0 5" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Text="{Binding Teacher.Name}"/>
+                <TextBox materialDesign:HintAssist.Hint="Отчество"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Text="{Binding Teacher.Patronymic}"/>
+                <ComboBox Margin="0 5" 
+                          ItemsSource="{Binding Categories}" 
+                          DisplayMemberPath="Name"
+                          IsSynchronizedWithCurrentItem="True"/>
+                <Button Margin="20 10 20 0"
+                        Content="Добавить"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="true"/>
+                <Button Margin="20"
+                        Content="Отмена"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="false"/>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

@@ -33,6 +33,5 @@
                         CommandParameter="false"/>
             </StackPanel>
         </materialDesign:Card>
-      
     </Grid>
 </UserControl>
