@@ -12,6 +12,7 @@ namespace Workspace.ViewModels
     public class SubjectsViewModel : BindableBase, INavigationAware
     {
         private readonly IDialogService dialogService;
+        private readonly IDatabaseService<Subject> service;
 
         private ObservableCollection<Subject> subjects;
         public ObservableCollection<Subject> Subjects
@@ -20,10 +21,10 @@ namespace Workspace.ViewModels
             set { SetProperty(ref subjects, value); }
         }
 
-
         public SubjectsViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
+            service = new SubjectService();
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
@@ -41,7 +42,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
-                            Subjects = new ObservableCollection<Subject>(SubjectService.Select());
+                            Subjects = new ObservableCollection<Subject>(service.Select());
                             break;
                         }
                     case ButtonResult.Cancel:
@@ -54,7 +55,7 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Subjects = new ObservableCollection<Subject>(SubjectService.Select());
+            Subjects = new ObservableCollection<Subject>(service.Select());
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

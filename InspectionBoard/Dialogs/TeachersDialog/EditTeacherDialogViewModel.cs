@@ -10,12 +10,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoard.Dialogs.SubjectsDialogs
+namespace InspectionBoard.Dialogs.TeachersDialog
 {
-    public class RemoveSubjectDialogViewModel : BindableBase, IDialogAware
+    public class EditTeacherDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
-        private readonly IDatabaseService<Subject> service;
+        private IDatabaseService<Teacher> service;
+
+        private Teacher teacher;
+        public Teacher Teacher
+        {
+            get { return teacher; }
+            set { SetProperty(ref teacher, value); }
+        }
 
         private int selectedSubjectId;
         public int SelectedSubjectId
@@ -23,23 +30,27 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
             get { return selectedSubjectId; }
             set { SetProperty(ref selectedSubjectId, value); }
         }
+
         public ObservableCollection<int> Ids
         {
             get => new ObservableCollection<int>(service.SelectIds());
         }
-        public string Title => "Удалить сведения о предмете";
+
+        public string Title => "Изменить сведения о преподавателе";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public RemoveSubjectDialogViewModel()
+        public EditTeacherDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            service = new SubjectService();
         }
 
         public event Action<IDialogResult> RequestClose;
-        private async Task RemoveSubject()
+
+        private async Task EditSubject()
         {
-            await service.RemoveAsync(SelectedSubjectId);
+            Teacher.Id = SelectedSubjectId;
+            service = new TeacherService();
+            await service.EditAsync(Teacher);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -47,7 +58,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await RemoveSubject();
+                await EditSubject();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
@@ -62,7 +73,11 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         {
             RequestClose?.Invoke(dialogResult);
         }
-        public bool CanCloseDialog() => true;
+
+        public bool CanCloseDialog()
+        {
+            return true;
+        }
 
         public void OnDialogClosed()
         {
@@ -72,6 +87,8 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            Teacher = new Teacher();
+            SelectedSubjectId = Ids[0];
         }
     }
 }

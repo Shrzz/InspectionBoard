@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public static class TeacherService
+    public class TeacherService : IDatabaseService<Teacher>
     {
-        public static async Task AddAsync(Teacher o)
+        public async Task AddAsync(Teacher o)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -20,7 +20,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static async Task EditAsync(Teacher o)
+        public async Task EditAsync(Teacher o)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -39,7 +39,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static async Task RemoveAsync(int id)
+        public async Task RemoveAsync(int id)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -52,11 +52,19 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static List<Teacher> Select()
+        public List<Teacher> Select()
         {
             using (ExamContext context = new ExamContext())
             {
                 return context.Teachers.Include(s => s.Category).AsNoTracking().ToList();
+            }
+        }
+
+        public List<int> SelectIds()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return context.Teachers.AsNoTracking().OrderBy(t => t.Id).Select(t => t.Id).ToList();
             }
         }
     }

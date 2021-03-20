@@ -8,9 +8,24 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public static class EducationFormService
+    public class EducationFormService : IDatabaseService<EducationForm>
     {
-        public static List<EducationForm> Select()
+        public Task AddAsync(EducationForm o)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task EditAsync(EducationForm o)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<EducationForm> Select()
         {
             using (ExamContext context = new ExamContext())
             {
@@ -18,12 +33,9 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static EducationForm SelectById(int id)
+        public List<int> SelectIds()
         {
-            using (ExamContext context = new ExamContext())
-            {
-                return context.EducationForms.FirstOrDefault(s => s.Id == id);
-            }
+            throw new NotImplementedException();
         }
     }
 }

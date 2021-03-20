@@ -15,6 +15,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
     public class EditSubjectDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
+        private readonly IDatabaseService<Subject> service;
 
         private Subject subject;
         public Subject Subject
@@ -32,7 +33,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
 
         public ObservableCollection<int> Ids
         {
-            get => new ObservableCollection<int>(SubjectService.SelectIds());
+            get => new ObservableCollection<int>(service.SelectIds());
         }
 
         public string Title => "Изменить сведения о предмете";
@@ -41,6 +42,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         public EditSubjectDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
+            service = new SubjectService();
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -48,7 +50,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         private async Task EditSubject()
         {
             Subject.Id = SelectedSubjectId;
-            await SubjectService.EditAsync(Subject);
+            await service.EditAsync(Subject);
         }
 
         protected virtual async void CloseDialog(string parameter)

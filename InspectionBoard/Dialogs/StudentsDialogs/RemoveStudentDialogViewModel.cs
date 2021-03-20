@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database.Services;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -11,6 +12,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
     public class RemoveStudentDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
+        private readonly IDatabaseService<Student> service;
 
         private int selectedStudentId;
         public int SelectedStudentId
@@ -20,7 +22,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         }
         public ObservableCollection<int> Ids
         {
-            get => new ObservableCollection<int>(StudentService.SelectIds());
+            get => new ObservableCollection<int>(service.SelectIds());
         }
         public string Title => "Удалить данные студента";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
@@ -28,12 +30,13 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         public RemoveStudentDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
+            service = new StudentService();
         }
 
         public event Action<IDialogResult> RequestClose;
         private async Task RemoveStudent()
         {
-            await StudentService.RemoveAsync(SelectedStudentId);
+            await service.RemoveAsync(SelectedStudentId);
         }
 
         protected virtual async void CloseDialog(string parameter)

@@ -105,26 +105,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialogs\Legacy\AddApplicantDialog.xaml.cs">
-      <DependentUpon>AddApplicantDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\Legacy\AddApplicantDialogViewModel.cs" />
     <Compile Include="Dialogs\Legacy\DocsSettingsDialog.xaml.cs">
       <DependentUpon>DocsSettingsDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Legacy\DocsSettingsDialogViewModel.cs" />
-    <Compile Include="Dialogs\Legacy\EditApplicantDialog.xaml.cs">
-      <DependentUpon>EditApplicantDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\Legacy\EditApplicantDialogViewModel.cs" />
     <Compile Include="Dialogs\Legacy\NotificationDialog.xaml.cs">
       <DependentUpon>NotificationDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Legacy\NotificationDialogViewModel.cs" />
-    <Compile Include="Dialogs\Legacy\RemoveApplicantDialog.xaml.cs">
-      <DependentUpon>RemoveApplicantDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\Legacy\RemoveApplicantDialogViewModel.cs" />
     <Compile Include="Dialogs\StudentsDialogs\AddStudentDialog.xaml.cs">
       <DependentUpon>AddStudentDialog.xaml</DependentUpon>
     </Compile>
@@ -153,24 +141,16 @@
       <DependentUpon>AddTeacherDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TeachersDialog\AddTeacherDialogViewModel.cs" />
+    <Compile Include="Dialogs\TeachersDialog\EditTeacherDialog.xaml.cs">
+      <DependentUpon>EditTeacherDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TeachersDialog\EditTeacherDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Page Include="Dialogs\Legacy\AddApplicantDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dialogs\Legacy\DocsSettingsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\Legacy\EditApplicantDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dialogs\Legacy\NotificationDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\Legacy\RemoveApplicantDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\TeachersDialog\AddTeacherDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TeachersDialog\EditTeacherDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

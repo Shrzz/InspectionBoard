@@ -17,7 +17,8 @@ namespace InspectionBoardLibrary.DataSeeder
             User u = new User();
             u.Username = "admin";
             u.Password = "admin";
-            await UserService.AddUser(u);
+            UserService service = new UserService();
+            await service.AddAsync(u);
         }
 
         public async Task AddStudent()
@@ -35,7 +36,8 @@ namespace InspectionBoardLibrary.DataSeeder
             EducationForm form = new EducationForm();
             form.Form = "Бюджетная";
             s.EducationForm = form;
-            await StudentService.AddAsync(s);
+            StudentService service = new StudentService();
+            await service.AddAsync(s);
         }
     }
 }

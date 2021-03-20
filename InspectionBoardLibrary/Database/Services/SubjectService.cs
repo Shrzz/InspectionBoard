@@ -1,17 +1,19 @@
-﻿using InspectionBoardLibrary.Models.DatabaseModels;
-using System;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
-using InspectionBoardLibrary.Database.Contexts;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public static class SubjectService
+    public class SubjectService : IDatabaseService<Subject>
     {
-        public static async Task AddAsync(Subject o)
+        public SubjectService()
+        {
+        }
+
+        public async Task AddAsync(Subject o)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -20,7 +22,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static async Task EditAsync(Subject o)
+        public async Task EditAsync(Subject o)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -36,7 +38,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static async Task RemoveAsync(int id)
+        public async Task RemoveAsync(int id)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -49,7 +51,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static List<Subject> Select()
+        public List<Subject> Select()
         {
             using (ExamContext context = new ExamContext())
             {
@@ -57,7 +59,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static List<int> SelectIds()
+        public List<int> SelectIds()
         {
             using (ExamContext context = new ExamContext())
             {

@@ -59,8 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Contexts\ExamContext.cs" />
+    <Compile Include="Database\Extensions\StudentServiceExtensions.cs" />
     <Compile Include="Database\Services\EducationFormService.cs" />
     <Compile Include="Database\Services\FacultyService.cs" />
+    <Compile Include="Database\Services\IDatabaseService.cs" />
     <Compile Include="Database\Services\LoginService.cs" />
     <Compile Include="Database\Services\SubjectService.cs" />
     <Compile Include="Database\Services\StudentService.cs" />
@@ -80,7 +82,6 @@
     </Compile>
     <Compile Include="Migrations\UserContext\UserContextConfig.cs" />
     <Compile Include="Migrations\ExamContext\ExamContextConfig.cs" />
-    <Compile Include="Models\Converters\StudentIdToStudentConverter.cs" />
     <Compile Include="Models\DatabaseModels\Category.cs" />
     <Compile Include="Models\DatabaseModels\EducationForm.cs" />
     <Compile Include="Models\DatabaseModels\Exam.cs" />

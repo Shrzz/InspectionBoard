@@ -8,15 +8,35 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public static class UserService
+    public class UserService : IDatabaseService<User>
     {
-        public async static Task AddUser(User u)
+        public async Task AddAsync(User u)
         {
             using (UserContext context = new UserContext())
             {
                 context.Users.Add(u);
                 await context.SaveChangesAsync();
             }
+        }
+
+        public Task EditAsync(User o)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<int> SelectIds()
+        {
+            throw new NotImplementedException();
         }
     }
 }

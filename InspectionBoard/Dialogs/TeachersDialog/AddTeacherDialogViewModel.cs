@@ -14,6 +14,7 @@ namespace InspectionBoard.Dialogs.TeachersDialog
     public class AddTeacherDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
+        private readonly IDatabaseService<Teacher> service;
 
         private Teacher teacher;
         public Teacher Teacher
@@ -25,6 +26,7 @@ namespace InspectionBoard.Dialogs.TeachersDialog
 
         public AddTeacherDialogViewModel()
         {
+            service = new TeacherService();
             Teacher = new Teacher();
         }
 
@@ -35,7 +37,7 @@ namespace InspectionBoard.Dialogs.TeachersDialog
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await TeacherService.AddAsync(Teacher);
+                await service.AddAsync(Teacher);
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")

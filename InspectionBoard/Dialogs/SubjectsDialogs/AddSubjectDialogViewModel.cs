@@ -15,6 +15,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
     public class AddSubjectDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
+        private readonly IDatabaseService<Subject> service;
 
         private Subject subject;
         public Subject Subject
@@ -28,6 +29,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         public AddSubjectDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
+            service = new SubjectService();
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -37,7 +39,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await SubjectService.AddAsync(Subject);
+                await service.AddAsync(Subject);
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")

@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database.Services;
+using InspectionBoardLibrary.Database.Extensions;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -8,11 +9,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
+
 namespace InspectionBoard.Dialogs.StudentsDialogs
 {
     public class EditStudentDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
+        private readonly IDatabaseService<Student> service;
 
         private Student student;
         public Student Student
@@ -30,17 +33,17 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 
         public ObservableCollection<int> Ids
         {
-            get => new ObservableCollection<int>(StudentService.SelectIds());
+            get => new ObservableCollection<int>(service.SelectIds());
         }
 
         public ObservableCollection<Faculty> Faculties
         {
-            get => new ObservableCollection<Faculty>(FacultyService.Select());
+            get => new ObservableCollection<Faculty>((service as StudentService).SelectFaculties());
         }
 
         public ObservableCollection<EducationForm> EducationForms
         {
-            get => new ObservableCollection<EducationForm>(EducationFormService.Select());
+            get => new ObservableCollection<EducationForm>((service as StudentService).SelectEducationForms());
         }
 
         public string Title => "Изменить данные студента";
@@ -49,6 +52,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         public EditStudentDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
+            service = new StudentService();
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -67,7 +71,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
                 Student.Retakes = new List<Retake>();
             }
 
-            await StudentService.EditAsync(Student);
+            await service.EditAsync(Student);
         }
 
         protected virtual async void CloseDialog(string parameter)

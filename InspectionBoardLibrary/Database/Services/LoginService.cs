@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public static class LoginService
+    public class LoginService
     {
-        public async static Task<bool> TryLogin(string login, string password)
+        public async Task<bool> TryLogin(string login, string password)
         {
             User a;
             using (UserContext context = new UserContext())

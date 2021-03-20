@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public static class StudentService 
+    public class StudentService : IDatabaseService<Student>
     {
-        public static async Task AddAsync(Student o)
+        public async Task AddAsync(Student o)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -20,7 +20,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static async Task EditAsync(Student newStudent)
+        public async Task EditAsync(Student newStudent)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -33,7 +33,7 @@ namespace InspectionBoardLibrary.Database.Services
                     oldStudent.Surname = newStudent.Surname;
                     oldStudent.Exams = newStudent.Exams;
                     oldStudent.Faculty = newStudent.Faculty;// FacultyService.SelectById(newStudent.Faculty.Id);
-                    oldStudent.EducationForm = EducationFormService.SelectById(newStudent.Faculty.Id);
+                    oldStudent.EducationForm = newStudent.EducationForm;
                     if (oldStudent.Faculty.Students is null) 
                     {
                         oldStudent.Faculty.Students = new List<Student> { oldStudent };
@@ -47,7 +47,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static async Task RemoveAsync(int id)
+        public async Task RemoveAsync(int id)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -60,7 +60,7 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static List<Student> Select()
+        public List<Student> Select()
         {
             using (ExamContext context = new ExamContext())
             {
@@ -68,11 +68,19 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static List<int> SelectIds()
+        public List<int> SelectIds()
         {
             using (ExamContext context = new ExamContext())
             {
                 return context.Students.OrderBy(s => s.Id).Select(s => s.Id).ToList();
+            }
+        }
+
+        public List<Faculty> SelectFaculties()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return context.Students.Select(s => s.Faculty).ToList();
             }
         }
     }

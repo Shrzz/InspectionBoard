@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public static class FacultyService
+    public class FacultyService : IDatabaseService<Faculty>
     {
-        public async static Task AddSync(Faculty o)
+        public Task AddAsync(Faculty o)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task AddSync(Faculty o)
         {
             using (ExamContext context = new ExamContext())
             {
@@ -20,7 +25,17 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static List<Faculty> Select()
+        public Task EditAsync(Faculty o)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Faculty> Select()
         {
             using (ExamContext context = new ExamContext())
             {
@@ -28,13 +43,9 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public static Faculty SelectById(int id)
+        public List<int> SelectIds()
         {
-            using (ExamContext context = new ExamContext())
-            {
-                var f = context.Faculties.FirstOrDefault(s => s.Id == id);
-                return f;
-            }
+            throw new NotImplementedException();
         }
     }
 }

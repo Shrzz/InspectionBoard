@@ -1,4 +1,5 @@
-﻿using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Extensions;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -13,6 +14,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
     public class AddStudentDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
+        private readonly IDatabaseService<Student> service;
 
         private Student student;
         public Student Student
@@ -22,18 +24,19 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         }
         public ObservableCollection<Faculty> Faculties
         {
-            get => new ObservableCollection<Faculty>(FacultyService.Select());
+            get => new ObservableCollection<Faculty>((service as StudentService).SelectFaculties());
         }
         public ObservableCollection<EducationForm> EducationForms
         {
-            get => new ObservableCollection<EducationForm>(EducationFormService.Select());
+            get => new ObservableCollection<EducationForm>((service as StudentService).SelectEducationForms());
         }
         public string Title => "Добавить студента";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
         public AddStudentDialogViewModel()
         {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog); 
+            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
+            service = new StudentService();
         }
 
         public event Action<IDialogResult> RequestClose;
@@ -42,7 +45,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         {
             Student.Exams = new List<Exam>();
             Student.Retakes = new List<Retake>();
-            await StudentService.AddAsync(Student);
+            await service.AddAsync(Student);
         }
 
         protected virtual async void CloseDialog(string parameter)
