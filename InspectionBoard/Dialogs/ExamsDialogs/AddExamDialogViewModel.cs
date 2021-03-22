@@ -24,6 +24,14 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
             get { return exam; }
             set { SetProperty(ref exam, value); }
         }
+
+        private DateTime date;
+        public DateTime Date
+        {
+            get { return date; }
+            set { SetProperty(ref date, value); }
+        }
+
         public ObservableCollection<ExamForm> ExamForms
         {
             get => new ObservableCollection<ExamForm>((service as ExamService).SelectExamForms());
@@ -61,6 +69,7 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
 
         private async Task AddExam()
         {
+            Exam.Date = Date.Date;
             await service.AddAsync(Exam);
         }
 
@@ -104,6 +113,7 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
             Exam.Student = Students.FirstOrDefault();
             Exam.Subject = Subjects.FirstOrDefault();
             Exam.Teacher = Teachers.FirstOrDefault();
+            Date = DateTime.Today.Date;
         }
     }
 }

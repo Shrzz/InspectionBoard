@@ -24,13 +24,15 @@
                 <TextBox materialDesign:HintAssist.Hint="Отчество"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Text="{Binding Student.Patronymic}"/>
-                <TextBlock Text="Факультет"/>
+                <TextBlock Text="Факультет"
+                           Margin="0 10 0 0"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Faculties}" 
                           DisplayMemberPath="Name"
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding Student.Faculty}"/>
-                <TextBlock Text="Форма обучения"/>
+                <TextBlock Text="Форма обучения"
+                           Margin="0 10 0 0"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding EducationForms}" 
                           DisplayMemberPath="Form"

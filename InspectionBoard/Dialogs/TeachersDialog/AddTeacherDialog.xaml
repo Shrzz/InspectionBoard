@@ -22,6 +22,8 @@
                 <TextBox materialDesign:HintAssist.Hint="Отчество"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Text="{Binding Teacher.Patronymic}"/>
+                <TextBlock Text="Категория преподавателя"
+                           Margin="0 5 0 0"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Categories}" 
                           DisplayMemberPath="Name"

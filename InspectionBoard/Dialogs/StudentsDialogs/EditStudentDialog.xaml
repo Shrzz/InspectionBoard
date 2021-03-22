@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:InspectionBoard.Dialogs.StudentsDialogs"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Height="450" Width="400">
+             Height="470" Width="400">
     <Grid>
         <materialDesign:Card Padding="20">
             <StackPanel Margin="20">
@@ -27,7 +27,8 @@
                 <TextBox materialDesign:HintAssist.Hint="Отчество"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Text="{Binding Student.Patronymic}"/>
-                <TextBlock Text="Факультет"/>
+                <TextBlock Text="Факультет"
+                           Margin="0 10 0 0"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Faculties}" 
                           DisplayMemberPath="Name"

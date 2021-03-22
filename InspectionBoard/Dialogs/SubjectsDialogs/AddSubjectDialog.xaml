@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:InspectionBoard.Dialogs.SubjectsDialogs"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             MaxHeight="450" MaxWidth="400" 
-             MinHeight="450" MinWidth="400">
+             Height="320" Width="400">
     <Grid>
         <materialDesign:Card Padding="20">
             <StackPanel Margin="20">

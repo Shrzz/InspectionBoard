@@ -96,6 +96,7 @@ namespace InspectionBoard.Dialogs.TeachersDialog
             this.dialogParameters = parameters;
             Teacher = new Teacher();
             SelectedTeacherId = Ids.FirstOrDefault();
+            Teacher.Category = Categories.FirstOrDefault();
         }
     }
 }

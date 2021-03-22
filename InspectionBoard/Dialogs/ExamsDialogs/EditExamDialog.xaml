@@ -41,7 +41,7 @@
                 <DatePicker materialDesign:HintAssist.Hint="Дата экзамена"
                             Width="Auto"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
-                            Text="{Binding Exam.Date}"/>
+                            SelectedDate="{Binding Date}"/>
                 <TextBlock Text="Форма экзамена"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding ExamForms}" 
