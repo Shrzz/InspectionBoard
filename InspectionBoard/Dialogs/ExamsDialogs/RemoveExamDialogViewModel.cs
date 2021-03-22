@@ -72,6 +72,7 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            SelectedExamId = Ids.FirstOrDefault();
         }
     }
 }

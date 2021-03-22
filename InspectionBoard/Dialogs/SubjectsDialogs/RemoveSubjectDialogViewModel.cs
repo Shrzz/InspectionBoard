@@ -72,6 +72,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            SelectedSubjectId = Ids.FirstOrDefault();
         }
     }
 }

@@ -73,6 +73,7 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            SelectedRetakeId = Ids.FirstOrDefault();
         }
     }
 }

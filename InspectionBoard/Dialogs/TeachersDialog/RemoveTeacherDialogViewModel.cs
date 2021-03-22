@@ -73,6 +73,7 @@ namespace InspectionBoard.Dialogs.TeachersDialog
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            SelectedTeacherId = Ids.FirstOrDefault();
         }
     }
 }

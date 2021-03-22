@@ -5,6 +5,7 @@ using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.StudentsDialogs
@@ -69,6 +70,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            SelectedStudentId = Ids.FirstOrDefault();
         }
     }
 }
