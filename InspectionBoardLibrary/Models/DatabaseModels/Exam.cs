@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public Student Student { get; set; }
         public ExamType ExamType { get; set; }
         public ExamForm ExamForm { get; set; }
-        public DateTime Date { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? Date { get; set; }
         public int Mark { get; set; }
     }
 }
