@@ -126,5 +126,36 @@ namespace InspectionBoardLibrary.DataSeeder
                 await service.AddAsync(faculty);
             }
         }
+
+        public async Task AddCategories()
+        {
+            var service = new CategoryService();
+            if (service.TableIsEmpty())
+            {
+                var category = new Category();
+                category.Id = 0;
+                category.Name = "Без категории";
+                category.Multiplier = "1";
+                await service.AddAsync(category);
+
+                category = new Category();
+                category.Id = 1;
+                category.Name = "Первая";
+                category.Multiplier = "1.10";
+                await service.AddAsync(category);
+
+                category = new Category();
+                category.Id = 2;
+                category.Name = "Вторая";
+                category.Multiplier = "1.25";
+                await service.AddAsync(category);
+
+                category = new Category();
+                category.Id = 3;
+                category.Name = "Высшая";
+                category.Multiplier = "1.5";
+                await service.AddAsync(category);
+            }
+        }
     }
 }

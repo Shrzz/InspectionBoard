@@ -63,6 +63,7 @@
     <Compile Include="Database\Extensions\RetakeServiceExtensions.cs" />
     <Compile Include="Database\Extensions\StudentServiceExtensions.cs" />
     <Compile Include="Database\Extensions\TeacherServiceExtensions.cs" />
+    <Compile Include="Database\Services\CategoryService.cs" />
     <Compile Include="Database\Services\EducationFormService.cs" />
     <Compile Include="Database\Services\ExamFormService.cs" />
     <Compile Include="Database\Services\ExamService.cs" />

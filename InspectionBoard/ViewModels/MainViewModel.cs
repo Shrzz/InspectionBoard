@@ -99,6 +99,7 @@ namespace InspectionBoard.ViewModels
             seeder.AddExamTypes();
             seeder.AddFaculties();
             seeder.AddStudent();
+            seeder.AddCategories();
         }
 
         private static IEnumerable<MenuItem> GenerateMenuItems()
