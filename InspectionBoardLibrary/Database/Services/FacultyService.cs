@@ -42,5 +42,13 @@ namespace InspectionBoardLibrary.Database.Services
         {
             throw new NotImplementedException();
         }
+
+        public bool TableIsEmpty()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return !context.Faculties.Any();
+            }
+        }
     }
 }

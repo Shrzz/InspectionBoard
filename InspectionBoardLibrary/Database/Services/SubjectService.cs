@@ -62,5 +62,12 @@ namespace InspectionBoardLibrary.Database.Services
                 return context.Subjects.OrderBy(s => s.Id).Select(s => s.Id).ToList();
             }
         }
+        public bool TableIsEmpty()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return !context.Subjects.Any();
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using InspectionBoardLibrary.DataSeeder;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -90,6 +91,14 @@ namespace InspectionBoard.ViewModels
             CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
 
             NavigateCommand = new DelegateCommand(Navigate);
+
+            DataSeeder seeder = new DataSeeder();
+            seeder.AddAdminUser();
+            seeder.AddEducationForms();
+            seeder.AddExamForms();
+            seeder.AddExamTypes();
+            seeder.AddFaculties();
+            seeder.AddStudent();
         }
 
         private static IEnumerable<MenuItem> GenerateMenuItems()

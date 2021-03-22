@@ -72,5 +72,13 @@ namespace InspectionBoardLibrary.Database.Services
                 return context.Exams.AsNoTracking().Select(e => e.Id).ToList();
             }
         }
+
+        public bool TableIsEmpty()
+        {
+            using (ExamContext context = new ExamContext())
+            {
+                return !context.Exams.Any();
+            }
+        }
     }
 }

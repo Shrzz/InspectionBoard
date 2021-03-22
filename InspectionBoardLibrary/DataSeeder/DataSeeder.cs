@@ -1,4 +1,6 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Extensions;
 using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
@@ -14,30 +16,115 @@ namespace InspectionBoardLibrary.DataSeeder
     {
         public async Task AddAdminUser()
         {
-            User u = new User();
-            u.Username = "admin";
-            u.Password = "admin";
             UserService service = new UserService();
-            await service.AddAsync(u);
+            if (service.TableIsEmpty())
+            {
+                User u = new User();
+                u.Username = "admin";
+                u.Password = "admin";
+                await service.AddAsync(u);
+            }
         }
 
         public async Task AddStudent()
         {
-            Student s = new Student();
-            s.Id = 0;
-            s.Name = "Студент1";
-            s.Surname = "Фамилия1";
-            s.Patronymic = "Отчество1";
-            //s.Retakes = null;
-            //s.Exams = null;
-            Faculty faculty = new Faculty();
-            faculty.Name = "Факультет1";            
-            s.Faculty = faculty;
-            EducationForm form = new EducationForm();
-            form.Form = "Бюджетная";
-            s.EducationForm = form;
             StudentService service = new StudentService();
-            await service.AddAsync(s);
+            if (service.TableIsEmpty())
+            {
+                Student s = new Student();
+                s.Id = 0;
+                s.Name = "Студент1";
+                s.Surname = "Фамилия1";
+                s.Patronymic = "Отчество1";
+                s.Faculty = service.SelectFaculties().FirstOrDefault();
+                s.EducationForm = service.SelectEducationForms().FirstOrDefault();
+                await service.AddAsync(s);
+            }
+        }
+
+        public async Task AddEducationForms()
+        {
+            var service = new EducationFormService();
+            if (service.TableIsEmpty())
+            {
+                var educationForm = new EducationForm();
+                educationForm.Id = 0;
+                educationForm.Form = "Бюджетная";
+                await service.AddAsync(educationForm);
+
+                educationForm = new EducationForm();
+                educationForm.Id = 1;
+                educationForm.Form = "Платная";
+                await service.AddAsync(educationForm);
+            }
+
+        }
+
+        public async Task AddExamTypes()
+        {
+            var service = new ExamTypeService();
+            if (service.TableIsEmpty())
+            {
+                ExamType type = new ExamType();
+                type.Id = 0;
+                type.Type = "Вступительный";
+                await service.AddAsync(type);
+
+                type = new ExamType();
+                type.Id = 1;
+                type.Type = "Промежуточный";
+                await service.AddAsync(type);
+
+                type = new ExamType();
+                type.Id = 2;
+                type.Type = "Итоговый";
+                await service.AddAsync(type);
+            }
+
+        }
+
+        public async Task AddExamForms()
+        {
+            var service = new ExamFormService();
+            if (service.TableIsEmpty())
+            {
+                var form = new ExamForm();
+                form.Id = 0;
+                form.Form = "Письменный";
+                await service.AddAsync(form);
+
+                form = new ExamForm();
+                form.Id = 1;
+                form.Form = "Устный";
+                await service.AddAsync(form);
+            }
+        }
+
+        public async Task AddFaculties()
+        {
+            var service = new FacultyService();
+            if (service.TableIsEmpty())
+            {
+                var faculty = new Faculty();
+                faculty.Id = 0;
+                faculty.Name = "ПОИТ";
+                await service.AddAsync(faculty);
+
+                faculty = new Faculty();
+                faculty.Id = 1;
+                faculty.Name = "КСИС";
+                await service.AddAsync(faculty);
+
+                faculty = new Faculty();
+                faculty.Id = 2;
+                faculty.Name = "РИЭ";
+                await service.AddAsync(faculty);
+
+                faculty = new Faculty();
+                faculty.Id = 3;
+                faculty.Name = "ИЭФ";
+                await service.AddAsync(faculty);
+            }
         }
     }
 }

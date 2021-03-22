@@ -13,5 +13,6 @@ namespace InspectionBoardLibrary.Database.Services
         Task EditAsync(T o);
         Task AddAsync(T o);
         Task RemoveAsync(int id);
+        bool TableIsEmpty();
     }
 }

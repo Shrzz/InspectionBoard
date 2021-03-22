@@ -40,15 +40,6 @@ namespace Authorization.ViewModels
         {
             this.regionManager = regionManager;
             LoginCommand = new DelegateCommand(Login);
-
-            using (UserContext context = new UserContext())
-            {
-                if (!context.Users.Any())
-                {
-                    DataSeeder seeder = new DataSeeder();
-                    seeder.AddAdminUser();
-                }
-            }
         }
 
 #pragma warning disable S3168 // "async" methods should not return "void"

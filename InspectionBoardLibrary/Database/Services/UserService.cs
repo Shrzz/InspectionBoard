@@ -24,6 +24,14 @@ namespace InspectionBoardLibrary.Database.Services
             throw new NotImplementedException();
         }
 
+        public bool TableIsEmpty()
+        {
+            using (UserContext context = new UserContext())
+            {
+                return !context.Users.Any();
+            }
+        }
+
         public Task RemoveAsync(int id)
         {
             throw new NotImplementedException();

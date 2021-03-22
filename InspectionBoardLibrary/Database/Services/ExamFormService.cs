@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Database.Services
 {
-    public class EducationFormService : IDatabaseService<EducationForm>
+    public class ExamFormService : IDatabaseService<ExamForm>
     {
-        public async Task AddAsync(EducationForm o)
+        public async Task AddAsync(ExamForm o)
         {
             using (ExamContext context = new ExamContext())
             {
-                context.EducationForms.Add(o);
+                context.ExamForms.Add(o);
                 await context.SaveChangesAsync();
             }
         }
 
-        public Task EditAsync(EducationForm o)
+        public Task EditAsync(ExamForm o)
         {
             throw new NotImplementedException();
         }
@@ -29,24 +29,20 @@ namespace InspectionBoardLibrary.Database.Services
             throw new NotImplementedException();
         }
 
-        public List<EducationForm> Select()
+        public List<ExamForm> Select()
         {
-            using (ExamContext context = new ExamContext())
-            {
-                return context.EducationForms.OrderBy(s => s.Id).ToList();
-            }
+            throw new NotImplementedException();
         }
 
         public List<int> SelectIds()
         {
             throw new NotImplementedException();
         }
-
         public bool TableIsEmpty()
         {
             using (ExamContext context = new ExamContext())
             {
-                return !context.EducationForms.Any();
+                return !context.ExamForms.Any();
             }
         }
     }
