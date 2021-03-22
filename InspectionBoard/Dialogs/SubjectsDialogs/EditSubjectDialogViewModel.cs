@@ -88,7 +88,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         {
             this.dialogParameters = parameters;
             Subject = new Subject();
-            SelectedSubjectId = Ids[0];
+            SelectedSubjectId = Ids.FirstOrDefault();
         }
     }
 }

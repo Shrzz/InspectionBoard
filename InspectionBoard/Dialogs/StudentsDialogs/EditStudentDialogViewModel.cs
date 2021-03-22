@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-
+using System.Linq;
 
 namespace InspectionBoard.Dialogs.StudentsDialogs
 {
@@ -109,9 +109,9 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         {
             this.dialogParameters = parameters;
             Student = new Student();
-            SelectedStudentId = Ids[0];
-            Student.EducationForm = EducationForms[0];
-            Student.Faculty = Faculties[0];
+            SelectedStudentId = Ids.FirstOrDefault();
+            Student.EducationForm = EducationForms.FirstOrDefault();
+            Student.Faculty = Faculties.FirstOrDefault();
         }
     }
 }

@@ -104,10 +104,10 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
         {
             this.dialogParameters = parameters;
             Retake = new Retake();
-            SelectedRetakeId = Ids[0];
-            Retake.Student = Students[0];
-            Retake.Subject = Subjects[0];
-            Retake.Teacher = Teachers[0];
+            SelectedRetakeId = Ids.FirstOrDefault();
+            Retake.Student = Students.FirstOrDefault();
+            Retake.Subject = Subjects.FirstOrDefault();
+            Retake.Teacher = Teachers.FirstOrDefault();
         }
     }
 }
