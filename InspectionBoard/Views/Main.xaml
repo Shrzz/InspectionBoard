@@ -70,15 +70,23 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </GroupBox>
-                    
+
+                        <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                Margin="20 0 20 0"
+                                Content="Добавить пользователя" 
+                                Command="{Binding ShowDialogCommand}"
+                                CommandParameter="AddUserDialog"/>
                         <!--Настройки в боковом меню-->
-                        <materialDesign:Card Margin="10"
+                        <!--<materialDesign:Card Margin="10"
                                              UniformCornerRadius="6" 
                                              BorderThickness="5">
                             <ListBox>
-                                <ListBoxItem>
-                                    <TextBlock Text="Настройка1"/>
-                                </ListBoxItem>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="domain:MenuItem">
+                                        <TextBlock Text="{Binding Name}" 
+                                                   Margin="16 0 16 0" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
                                 <ListBoxItem>
                                     <TextBlock Text="Настройка2"/>
                                 </ListBoxItem>
@@ -86,7 +94,7 @@
                                     <TextBlock Text="Настройка3"/>
                                 </ListBoxItem>
                             </ListBox>
-                        </materialDesign:Card>
+                        </materialDesign:Card>-->
                     </StackPanel>
                 </materialDesign:DrawerHost.LeftDrawerContent>
 

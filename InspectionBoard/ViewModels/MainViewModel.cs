@@ -78,7 +78,7 @@ namespace InspectionBoard.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
 
-            //regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())
@@ -91,6 +91,7 @@ namespace InspectionBoard.ViewModels
             menuItemsView.Filter = MenuItemsFilter;
             CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
 
+            ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand(Navigate);
 
             DataSeeder seeder = new DataSeeder();
@@ -148,6 +149,28 @@ namespace InspectionBoard.ViewModels
 
             return obj is MenuItem item
                    && item.Name.ToLower().Contains(searchKeyword.ToLower());
+        }
+
+        private void ShowDialog(string dialogName)
+        {
+            dialogService.ShowDialog(dialogName, new DialogParameters(), r =>
+            {
+                switch (r.Result)
+                {
+                    case ButtonResult.None:
+                        {
+                            break;
+                        }
+                    case ButtonResult.OK:
+                        {                          
+                            break;
+                        }
+                    case ButtonResult.Cancel:
+                        {
+                            break;
+                        }
+                }
+            });
         }
         #endregion
 

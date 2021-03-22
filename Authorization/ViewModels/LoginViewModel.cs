@@ -12,6 +12,7 @@ namespace Authorization.ViewModels
     public class LoginViewModel : BindableBase
     {
         private readonly IRegionManager regionManager;
+        private readonly LoginService service;
         private string message;
         public string Message
         {
@@ -39,6 +40,7 @@ namespace Authorization.ViewModels
         public LoginViewModel(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
+            this.service = new LoginService();
             LoginCommand = new DelegateCommand(Login);
         }
 
@@ -46,8 +48,8 @@ namespace Authorization.ViewModels
         private async void Login()
 #pragma warning restore S3168 // "async" methods should not return "void"
         {
-            //bool success = await LoginService.TryLogin(Username, Password);
-            var success = true;
+            bool success = await service.TryLogin(Username, Password);
+            // var success = true;
             if (success)
             {
                 Message = "Авторизация прошла успешно";

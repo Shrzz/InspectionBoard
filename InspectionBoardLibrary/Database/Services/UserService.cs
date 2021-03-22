@@ -14,8 +14,12 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (UserContext context = new UserContext())
             {
-                context.Users.Add(u);
-                await context.SaveChangesAsync();
+                var user = context.Users.FirstOrDefault(s => s.Username == u.Username);
+                if (user is null)
+                {
+                    context.Users.Add(u);
+                    await context.SaveChangesAsync();
+                }
             }
         }
 

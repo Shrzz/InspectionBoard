@@ -2,6 +2,7 @@
 using InspectionBoard.Dialogs;
 using InspectionBoard.Dialogs.ExamsDialogs;
 using InspectionBoard.Dialogs.RetakesDialogs;
+using InspectionBoard.Dialogs.SettingsDialogs;
 using InspectionBoard.Dialogs.StudentsDialogs;
 using InspectionBoard.Dialogs.SubjectsDialogs;
 using InspectionBoard.Dialogs.TeachersDialog;
@@ -25,7 +26,8 @@ namespace InspectionBoard
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {        
+        {
+            containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
             RegisterStudentDialogs(containerRegistry);
             RegisterSubjectDialogs(containerRegistry);
             RegisterTeacherDialogs(containerRegistry);
