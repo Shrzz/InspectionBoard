@@ -33,8 +33,8 @@ namespace InspectionBoardLibrary.DataSeeder
             {
                 Student s = new Student();
                 s.Id = 0;
-                s.Name = "Качалов";
-                s.Surname = "Дмитрий";
+                s.Surname = "Качалов";
+                s.Name = "Дмитрий";
                 s.Patronymic = "Геннадьевич";
                 s.Faculty = service.SelectFaculties().FirstOrDefault();
                 s.EducationForm = service.SelectEducationForms().FirstOrDefault();

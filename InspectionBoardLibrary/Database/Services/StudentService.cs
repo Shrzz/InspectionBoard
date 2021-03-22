@@ -34,6 +34,7 @@ namespace InspectionBoardLibrary.Database.Services
                     oldStudent.Surname = newStudent.Surname;
                     oldStudent.Faculty = newStudent.Faculty;
                     oldStudent.EducationForm = newStudent.EducationForm;
+
                     context.Faculties.Attach(oldStudent.Faculty);
                     context.EducationForms.Attach(oldStudent.EducationForm);
                 }

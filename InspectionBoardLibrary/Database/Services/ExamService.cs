@@ -15,6 +15,11 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
+                context.Students.Attach(o.Student);
+                context.Subjects.Attach(o.Subject);
+                context.Teachers.Attach(o.Teacher);
+                context.ExamForms.Attach(o.ExamForm);
+                context.ExamTypes.Attach(o.ExamType);
                 context.Exams.Add(o);
                 await context.SaveChangesAsync();
             }
@@ -34,6 +39,12 @@ namespace InspectionBoardLibrary.Database.Services
                     oldExam.Date = o.Date;
                     oldExam.ExamForm = o.ExamForm;
                     oldExam.ExamType = o.ExamType;
+
+                    context.Students.Attach(oldExam.Student);
+                    context.Subjects.Attach(oldExam.Subject);
+                    context.Teachers.Attach(oldExam.Teacher);
+                    context.ExamForms.Attach(oldExam.ExamForm);
+                    context.ExamTypes.Attach(oldExam.ExamType);
                 }
 
                 await context.SaveChangesAsync();
