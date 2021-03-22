@@ -35,8 +35,7 @@ namespace Workspace.ViewModels
                 SelectedRetake = Retakes.FirstOrDefault(r => r.Id.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  r.Student.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  r.Teacher.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
-                                                                 r.Subject.Name.ToLower().Contains(SearchKeyword.ToLower()) ||
-                                                                 r.DateTime.ToString().ToLower().Contains(SearchKeyword.ToLower())
+                                                                 r.Subject.Name.ToLower().Contains(SearchKeyword.ToLower())
                 ) ?? Retakes.FirstOrDefault();
             }
         }

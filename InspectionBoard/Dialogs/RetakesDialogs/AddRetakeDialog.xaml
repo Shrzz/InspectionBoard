@@ -15,23 +15,23 @@
                           ItemsSource="{Binding Subjects}" 
                           DisplayMemberPath="Name"
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding Exam.Subject}"/>
+                          SelectedItem="{Binding Retake.Subject}"/>
                 <TextBlock Text="Студент"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Students}" 
                           DisplayMemberPath="Surname"
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding Exam.Student}"/>
+                          SelectedItem="{Binding Retake.Student}"/>
                 <TextBlock Text="Преподаватель"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Teachers}" 
                           DisplayMemberPath="Surname"
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding Exam.Teacher}"/>
+                          SelectedItem="{Binding Retake.Teacher}"/>
                 <DatePicker materialDesign:HintAssist.Hint="Дата экзамена"
                             Width="Auto"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
-                            Text="{Binding Exam.Date}"/>
+                            SelectedDate="{Binding Date, StringFormat=d}"/>
                 <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"

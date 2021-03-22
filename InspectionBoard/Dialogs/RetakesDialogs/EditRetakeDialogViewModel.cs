@@ -32,6 +32,13 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
             set { SetProperty(ref selectedRetakeId, value); }
         }
 
+        private DateTime date;
+        public DateTime Date
+        {
+            get { return date; }
+            set { SetProperty(ref date, value); }
+        }
+
         public ObservableCollection<int> Ids
         {
             get => new ObservableCollection<int>(service.SelectIds());
@@ -66,6 +73,7 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
         private async Task EditRetake()
         {
             Retake.Id = SelectedRetakeId;
+            Retake.DateTime = Date.Date;
             await service.EditAsync(Retake);
         }
 
@@ -108,6 +116,7 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
             Retake.Student = Students.FirstOrDefault();
             Retake.Subject = Subjects.FirstOrDefault();
             Retake.Teacher = Teachers.FirstOrDefault();
+            Date = DateTime.Today.Date;
         }
     }
 }

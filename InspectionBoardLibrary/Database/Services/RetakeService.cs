@@ -57,7 +57,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Retakes.AsNoTracking().ToList();
+                return context.Retakes.AsNoTracking().Include(r => r.Student).Include(r => r.Subject).Include(r => r.Teacher).ToList();
             }
         }
 

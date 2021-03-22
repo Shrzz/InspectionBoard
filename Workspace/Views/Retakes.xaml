@@ -87,7 +87,7 @@
                         <DataGridTemplateColumn Header="Предмет">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Retake">
-                                    <TextBlock Text="{Binding Retake.Name}"/>
+                                    <TextBlock Text="{Binding Subject.Name}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -108,7 +108,7 @@
                         <DataGridTemplateColumn Header="Дата проведения">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Retake">
-                                    <TextBlock Text="{Binding Date}"/>
+                                    <TextBlock Text="{Binding DateTime, StringFormat=d}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
