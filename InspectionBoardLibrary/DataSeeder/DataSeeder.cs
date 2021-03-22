@@ -33,9 +33,9 @@ namespace InspectionBoardLibrary.DataSeeder
             {
                 Student s = new Student();
                 s.Id = 0;
-                s.Name = "Студент1";
-                s.Surname = "Фамилия1";
-                s.Patronymic = "Отчество1";
+                s.Name = "Качалов";
+                s.Surname = "Дмитрий";
+                s.Patronymic = "Геннадьевич";
                 s.Faculty = service.SelectFaculties().FirstOrDefault();
                 s.EducationForm = service.SelectEducationForms().FirstOrDefault();
                 await service.AddAsync(s);
