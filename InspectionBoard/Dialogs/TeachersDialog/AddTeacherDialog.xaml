@@ -25,7 +25,8 @@
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Categories}" 
                           DisplayMemberPath="Name"
-                          IsSynchronizedWithCurrentItem="True"/>
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding Teacher.Category}"/>
                 <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"

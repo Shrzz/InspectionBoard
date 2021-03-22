@@ -27,10 +27,14 @@ namespace Workspace.Views
         {
             InitializeComponent();
         }
+
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var dataGrid = sender as DataGrid;
-            dataGrid.ScrollIntoView(dataGrid.SelectedItem);
+            if (dataGrid.SelectedItem != null)
+            {
+                dataGrid.ScrollIntoView(dataGrid.SelectedItem);
+            }
         }
 
         private void dg_Sorting(object sender, DataGridSortingEventArgs e)

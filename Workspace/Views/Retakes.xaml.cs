@@ -28,7 +28,10 @@ namespace Workspace.Views
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var dataGrid = sender as DataGrid;
-            dataGrid.ScrollIntoView(dataGrid.SelectedItem);
+            if (dataGrid.SelectedItem != null)
+            {
+                dataGrid.ScrollIntoView(dataGrid.SelectedItem);
+            }
         }
     }
 }
