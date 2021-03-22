@@ -7,6 +7,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.StudentsDialogs
@@ -43,8 +44,8 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 
         private async Task AddStudent()
         {
-            Student.Exams = new List<Exam>();
-            Student.Retakes = new List<Retake>();
+            //Student.Exams = new List<Exam>();
+            //Student.Retakes = new List<Retake>();
             await service.AddAsync(Student);
         }
 
@@ -83,8 +84,8 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         {
             this.dialogParameters = parameters;
             Student = new Student();
-            Student.Faculty = Faculties[0];
-            Student.EducationForm = EducationForms[0];
+            Student.Faculty = Faculties.FirstOrDefault();
+            Student.EducationForm = EducationForms.FirstOrDefault();
         }
     }
 }

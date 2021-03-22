@@ -9,7 +9,6 @@ namespace InspectionBoardLibrary.Database.Services
     public interface IDatabaseService<T>
     {
         List<int> SelectIds();
-
         List<T> Select();
         Task EditAsync(T o);
         Task AddAsync(T o);

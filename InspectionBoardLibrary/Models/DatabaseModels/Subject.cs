@@ -12,7 +12,5 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public string Name { get; set; }
         public int LectoryHours { get; set; }
         public int LaboratoryHours { get; set; }
-
-        public List<Exam> Exams { get; set; }
     }
 }

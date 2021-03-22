@@ -67,7 +67,6 @@
     <Compile Include="Database\Services\ExamService.cs" />
     <Compile Include="Database\Services\FacultyService.cs" />
     <Compile Include="Database\Services\IDatabaseService.cs" />
-    <Compile Include="Database\Services\IDatabaseService1.cs" />
     <Compile Include="Database\Services\LoginService.cs" />
     <Compile Include="Database\Services\RetakeService.cs" />
     <Compile Include="Database\Services\SubjectService.cs" />

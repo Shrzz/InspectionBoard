@@ -15,6 +15,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
+                context.Categories.Attach(o.Category);
                 context.Teachers.Add(o);
                 await context.SaveChangesAsync();
             }
@@ -24,14 +25,14 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                var newStudent = await context.Teachers.Include(s => s.Category).FirstOrDefaultAsync(s => s.Id == o.Id);
+                var newTeacher = await context.Teachers.Include(s => s.Category).FirstOrDefaultAsync(s => s.Id == o.Id);
                 if (o != null)
                 {
-                    newStudent.Surname = o.Surname;
-                    newStudent.Name = o.Name;
-                    newStudent.Patronymic = o.Patronymic;
-                    newStudent.Category = o.Category;
-                    newStudent.Exams = o.Exams;
+                    newTeacher.Surname = o.Surname;
+                    newTeacher.Name = o.Name;
+                    newTeacher.Patronymic = o.Patronymic;
+                    newTeacher.Category = o.Category;
+                    context.Categories.Attach(newTeacher.Category);
                 }
 
                 await context.SaveChangesAsync();

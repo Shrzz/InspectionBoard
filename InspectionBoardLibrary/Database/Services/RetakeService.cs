@@ -15,6 +15,9 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
+                context.Students.Attach(o.Student);
+                context.Subjects.Attach(o.Subject);
+                context.Teachers.Attach(o.Teacher);
                 context.Retakes.Add(o);
                 await context.SaveChangesAsync();
             }
@@ -22,7 +25,22 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task EditAsync(Retake o)
         {
-            throw new NotImplementedException();
+            using (ExamContext context = new ExamContext())
+            {
+                var newRetake = await context.Retakes.FirstOrDefaultAsync(s => s.Id == o.Id);
+                if (o != null && newRetake != null)
+                {
+                    newRetake.Student = o.Student;
+                    newRetake.Subject = o.Subject;
+                    newRetake.Teacher = o.Teacher;
+                    newRetake.DateTime = o.DateTime;
+                    context.Students.Attach(o.Student);
+                    context.Teachers.Attach(o.Teacher);
+                    context.Subjects.Attach(o.Subject);
+                }
+
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task RemoveAsync(int id)

@@ -11,12 +11,7 @@ namespace InspectionBoardLibrary.Database.Services
 {
     public class FacultyService : IDatabaseService<Faculty>
     {
-        public Task AddAsync(Faculty o)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task AddSync(Faculty o)
+        public async Task AddAsync(Faculty o)
         {
             using (ExamContext context = new ExamContext())
             {

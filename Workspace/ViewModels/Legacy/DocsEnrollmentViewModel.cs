@@ -83,7 +83,7 @@ namespace Workspace.ViewModels
                 if (SelectedApplicant != null)
                 {
                     DocumentsHandler dh = new DocumentsHandler();
-                    dh.CreateSingleEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({SelectedApplicant}, {GroupName}).docx", GroupName, students.FirstOrDefault(c => c.Name == SelectedApplicant));
+                    //dh.CreateSingleEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({SelectedApplicant}, {GroupName}).docx", GroupName, students.FirstOrDefault(c => c.Name == SelectedApplicant));
                 }
             }
             else
@@ -91,7 +91,7 @@ namespace Workspace.ViewModels
                 if (students != null && students.Count > 0)
                 {
                     DocumentsHandler dh = new DocumentsHandler();
-                    dh.CreateEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({students[0].Faculty.Name}, {GroupName}).docx", students[0].Faculty.Name, GroupName, students);
+                    //dh.CreateEnrollmentReport(DocumentsSettings.Settings["EnrollmentReports"] + $"\\Приказ о зачислении ({students[0].Faculty.Name}, {GroupName}).docx", students[0].Faculty.Name, GroupName, students);
                     Return();
                 }
                 else

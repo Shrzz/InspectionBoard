@@ -28,8 +28,8 @@ namespace InspectionBoardLibrary.DataSeeder
             s.Name = "Студент1";
             s.Surname = "Фамилия1";
             s.Patronymic = "Отчество1";
-            s.Retakes = null;
-            s.Exams = null;
+            //s.Retakes = null;
+            //s.Exams = null;
             Faculty faculty = new Faculty();
             faculty.Name = "Факультет1";            
             s.Faculty = faculty;

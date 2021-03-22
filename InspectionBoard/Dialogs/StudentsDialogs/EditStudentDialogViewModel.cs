@@ -61,15 +61,15 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         {
             Student.Id = SelectedStudentId;
 
-            if (Student.Exams is null)
-            {
-                Student.Exams = new List<Exam>();
-            }
+            //if (Student.Exams is null)
+            //{
+            //    Student.Exams = new List<Exam>();
+            //}
 
-            if (Student.Retakes is null)
-            {
-                Student.Retakes = new List<Retake>();
-            }
+            //if (Student.Retakes is null)
+            //{
+            //    Student.Retakes = new List<Retake>();
+            //}
 
             await service.EditAsync(Student);
         }

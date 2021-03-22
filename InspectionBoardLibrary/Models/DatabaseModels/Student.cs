@@ -14,8 +14,5 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public string Patronymic { get; set; }
         public Faculty Faculty { get; set; }
         public EducationForm EducationForm { get; set; }
-
-        public List<Exam> Exams { get; set; }
-        public List<Retake> Retakes { get; set; }
     }
 }

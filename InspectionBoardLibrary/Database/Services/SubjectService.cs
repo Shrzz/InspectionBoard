@@ -9,10 +9,6 @@ namespace InspectionBoardLibrary.Database.Services
 {
     public class SubjectService : IDatabaseService<Subject>
     {
-        public SubjectService()
-        {
-        }
-
         public async Task AddAsync(Subject o)
         {
             using (ExamContext context = new ExamContext())

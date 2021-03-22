@@ -15,6 +15,8 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
+                context.Faculties.Attach(o.Faculty);
+                context.EducationForms.Attach(o.EducationForm);
                 context.Students.Add(o);
                 await context.SaveChangesAsync();
             }
@@ -29,19 +31,11 @@ namespace InspectionBoardLibrary.Database.Services
                 {
                     oldStudent.Name = newStudent.Name;
                     oldStudent.Patronymic = newStudent.Patronymic;
-                    oldStudent.Retakes = newStudent.Retakes;
                     oldStudent.Surname = newStudent.Surname;
-                    oldStudent.Exams = newStudent.Exams;
-                    oldStudent.Faculty = newStudent.Faculty;// FacultyService.SelectById(newStudent.Faculty.Id);
+                    oldStudent.Faculty = newStudent.Faculty;
                     oldStudent.EducationForm = newStudent.EducationForm;
-                    if (oldStudent.Faculty.Students is null) 
-                    {
-                        oldStudent.Faculty.Students = new List<Student> { oldStudent };
-                    }
-                    else 
-                    {
-                        oldStudent.Faculty.Students.Add(oldStudent);
-                    }
+                    context.Faculties.Attach(oldStudent.Faculty);
+                    context.EducationForms.Attach(oldStudent.EducationForm);
                 }
                 await context.SaveChangesAsync();
             }
@@ -73,14 +67,6 @@ namespace InspectionBoardLibrary.Database.Services
             using (ExamContext context = new ExamContext())
             {
                 return context.Students.OrderBy(s => s.Id).Select(s => s.Id).ToList();
-            }
-        }
-
-        public List<Faculty> SelectFaculties()
-        {
-            using (ExamContext context = new ExamContext())
-            {
-                return context.Students.Select(s => s.Faculty).ToList();
             }
         }
     }
