@@ -57,7 +57,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Retakes.AsNoTracking().Include(r => r.Student).Include(r => r.Subject).Include(r => r.Teacher).ToList();
+                return context.Retakes.AsNoTracking().OrderBy(r => r.Id).Include(r => r.Student).Include(r => r.Subject).Include(r => r.Teacher).ToList();
             }
         }
 
@@ -65,7 +65,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Retakes.AsNoTracking().Select(r => r.Id).ToList();
+                return context.Retakes.AsNoTracking().OrderBy(r => r.Id).Select(r => r.Id).ToList();
             }
         }
 

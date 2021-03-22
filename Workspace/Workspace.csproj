@@ -57,8 +57,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\MenuItem.cs" />
-    <Compile Include="Domain\SnackbarMessageQueue.cs" />
     <Compile Include="ViewModels\Legacy\DocsEnrollmentViewModel.cs" />
     <Compile Include="ViewModels\ExamsViewModel.cs" />
     <Compile Include="ViewModels\FacultiesViewModel.cs" />

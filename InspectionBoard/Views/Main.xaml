@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:domain="clr-namespace:Workspace.Domain;assembly=Workspace"
+        xmlns:domain="clr-namespace:InspectionBoardLibrary.Domain;assembly=InspectionBoardLibrary"
         xmlns:prism="http://prismlibrary.com/"
         Title="Помощник экзаменатора" Height="500" Width="1050" 
         MinHeight="400" MinWidth="750"

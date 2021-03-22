@@ -51,7 +51,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Subjects.AsNoTracking().ToList();
+                return context.Subjects.AsNoTracking().OrderBy(s => s.Id).ToList();
             }
         }
 

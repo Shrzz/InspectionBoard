@@ -80,7 +80,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Exams.AsNoTracking().Select(e => e.Id).ToList();
+                return context.Exams.AsNoTracking().OrderBy(e => e.Id).Select(e => e.Id).ToList();
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.DataSeeder;
+using InspectionBoardLibrary.Domain;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using Workspace.Domain;
+using InspectionBoardLibrary.Domain;
 
 namespace InspectionBoard.ViewModels
 {

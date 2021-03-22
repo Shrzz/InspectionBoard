@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Workspace.Domain
+namespace InspectionBoardLibrary.Domain
 {
     public class MenuItem 
     {
