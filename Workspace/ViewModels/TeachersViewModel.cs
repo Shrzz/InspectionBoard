@@ -31,8 +31,29 @@ namespace Workspace.ViewModels
         public string SearchKeyword
         {
             get { return searchKeyword; }
-            set { SetProperty(ref searchKeyword, value); }
+            set 
+            { 
+                SetProperty(ref searchKeyword, value);
+                SelectedTeacher = Teachers.FirstOrDefault(t => t.Id.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 t.Name.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 t.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 t.Patronymic.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 t.Category.Name.ToLower().Contains(SearchKeyword.ToLower())
+                ) ?? Teachers.FirstOrDefault();
+            }
         }
+
+        private Teacher selectedTeacher;
+        public Teacher SelectedTeacher
+        {
+            get { return selectedTeacher; }
+            set
+            {
+                SetProperty(ref selectedTeacher, value);
+            }
+        }
+
+
 
         public TeachersViewModel(IDialogService dialogService)
         {

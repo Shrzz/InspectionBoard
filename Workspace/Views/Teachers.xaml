@@ -59,10 +59,12 @@
                   Grid.Column="0" 
                   Grid.ColumnSpan="10"
                   ItemsSource="{Binding Teachers}" 
+                  SelectedItem="{Binding SelectedTeacher}"
                   TabIndex="1" 
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  CanUserDeleteRows="False">
+                  CanUserDeleteRows="False"
+                  SelectionChanged="OnSelectionChanged">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Идентификатор">
                     <DataGridTemplateColumn.CellTemplate>

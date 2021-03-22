@@ -1,20 +1,11 @@
-﻿using InspectionBoardLibrary.Database;
-using InspectionBoardLibrary.Database.Services;
-using InspectionBoardLibrary.Models;
+﻿using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Workspace.ViewModels
 {
@@ -34,7 +25,27 @@ namespace Workspace.ViewModels
         public string SearchKeyword
         {
             get { return searchKeyword; }
-            set { SetProperty(ref searchKeyword, value); }
+            set 
+            {
+                SetProperty(ref searchKeyword, value);
+                SelectedStudent = Students.FirstOrDefault(s => s.Id.ToString().ToLower().Contains(SearchKeyword.ToLower())||
+                                                                 s.Name.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 s.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 s.Patronymic.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 s.Faculty.Name.ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 s.EducationForm.Form.ToLower().Contains(SearchKeyword.ToLower())
+                ) ?? Students.FirstOrDefault();     
+            }
+        }
+
+        public Student selectedStudent;
+        public Student SelectedStudent
+        {
+            get => selectedStudent;
+            set
+            {
+                SetProperty(ref selectedStudent, value);
+            }
         }
 
         public StudentsViewModel(IDialogService dialogService)
@@ -81,7 +92,7 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+
         }
     }
 }

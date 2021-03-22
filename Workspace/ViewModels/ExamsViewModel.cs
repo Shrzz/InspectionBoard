@@ -29,9 +29,27 @@ namespace Workspace.ViewModels
         public string SearchKeyword
         {
             get { return searchKeyword; }
-            set { SetProperty(ref searchKeyword, value); }
+            set 
+            { 
+                SetProperty(ref searchKeyword, value);
+                SelectedExam = Exams.FirstOrDefault(e => e.Id.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 e.Student.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 e.Teacher.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 e.Subject.Name.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 e.Date.ToString().ToLower().Contains(SearchKeyword.ToLower())
+                ) ?? Exams.FirstOrDefault();
+            }
         }
 
+        private Exam selectedExam;
+        public Exam SelectedExam 
+        {
+            get { return selectedExam; }
+            set
+            {
+                SetProperty(ref selectedExam, value);
+            }
+        }
         public ExamsViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;

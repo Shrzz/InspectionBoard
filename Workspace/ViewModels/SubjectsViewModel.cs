@@ -6,6 +6,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Workspace.ViewModels
 {
@@ -19,6 +20,29 @@ namespace Workspace.ViewModels
         {
             get { return subjects; }
             set { SetProperty(ref subjects, value); }
+        }
+
+        private string searchKeyword;
+        public string SearchKeyword
+        {
+            get { return searchKeyword; }
+            set
+            {
+                SetProperty(ref searchKeyword, value);
+                SelectedSubject = Subjects.FirstOrDefault(s => s.Id.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
+                                                                 s.Name.ToString().ToLower().Contains(SearchKeyword.ToLower())
+                ) ?? Subjects.FirstOrDefault();
+            }
+        }
+
+        private Subject selectedSubject;
+        public Subject SelectedSubject
+        {
+            get { return selectedSubject; }
+            set
+            {
+                SetProperty(ref selectedSubject, value);
+            }
         }
 
         public SubjectsViewModel(IDialogService dialogService)

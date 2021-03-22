@@ -99,11 +99,11 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
         {
             this.dialogParameters = parameters;
             Exam = new Exam();
-            Exam.ExamForm = ExamForms[0];
-            Exam.ExamType = ExamTypes[0];
-            Exam.Student = Students[0];
-            Exam.Subject = Subjects[0];
-            Exam.Teacher = Teachers[0];
+            Exam.ExamForm = ExamForms.FirstOrDefault();
+            Exam.ExamType = ExamTypes.FirstOrDefault();
+            Exam.Student = Students.FirstOrDefault();
+            Exam.Subject = Subjects.FirstOrDefault();
+            Exam.Teacher = Teachers.FirstOrDefault();
         }
     }
 }

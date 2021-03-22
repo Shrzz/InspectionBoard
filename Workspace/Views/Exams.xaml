@@ -68,12 +68,14 @@
                           Grid.Column="0"
                           Grid.ColumnSpan="10"
                           ItemsSource="{Binding Exams}" 
+                          SelectedItem="{Binding SelectedExam}"
                           TabIndex="1" 
                           IsReadOnly="True"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
-                          SelectionUnit="FullRow">
+                          SelectionUnit="FullRow"
+                          SelectionChanged="OnSelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="Идентификатор">
                             <DataGridTemplateColumn.CellTemplate>
