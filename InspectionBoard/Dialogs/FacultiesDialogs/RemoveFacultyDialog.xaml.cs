@@ -13,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Workspace.Views
+namespace InspectionBoard.Dialogs.FacultiesDialogs
 {
     /// <summary>
-    /// Логика взаимодействия для Faculties.xaml
+    /// Логика взаимодействия для RemoveFacultyDialof.xaml
     /// </summary>
-    public partial class Faculties : UserControl
+    public partial class RemoveFacultyDialog : UserControl
     {
-        public Faculties()
+        public RemoveFacultyDialog()
         {
             InitializeComponent();
-        }
-
-        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var dataGrid = sender as DataGrid;
-            if (dataGrid.SelectedItem != null)
-            {
-                dataGrid.ScrollIntoView(dataGrid.SelectedItem);
-            }
         }
     }
 }

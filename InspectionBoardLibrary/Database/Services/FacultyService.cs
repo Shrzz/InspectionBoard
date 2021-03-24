@@ -20,27 +20,48 @@ namespace InspectionBoardLibrary.Database.Services
             }
         }
 
-        public Task EditAsync(Faculty o)
+        public async Task EditAsync(Faculty o)
         {
-            throw new NotImplementedException();
+            using (ExamContext context = new ExamContext())
+            {
+                var oldFaculty = await context.Faculties.FirstOrDefaultAsync(f => f.Id == o.Id);
+                if (oldFaculty != null && o != null)
+                {
+                    oldFaculty.Name = o.Name;
+                }
+
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task RemoveAsync(int id)
+        public async Task RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            using (ExamContext context = new ExamContext())
+            {
+                var facultyToRemove = await context.Faculties.FirstOrDefaultAsync(f => f.Id == id);
+                if (facultyToRemove != null)
+                {
+                    context.Faculties.Remove(facultyToRemove);
+                }
+
+                await context.SaveChangesAsync();
+            }
         }
 
         public List<Faculty> Select()
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Faculties.OrderBy(s => s.Id).Distinct().ToListAsync().Result;
+                return context.Faculties.OrderBy(s => s.Id).ToListAsync().Result;
             }
         }
 
         public List<int> SelectIds()
         {
-            throw new NotImplementedException();
+            using (ExamContext context = new ExamContext())
+            {
+                return context.Faculties.OrderBy(f => f.Id).Select(f => f.Id).ToListAsync().Result;
+            }
         }
 
         public bool TableIsEmpty()

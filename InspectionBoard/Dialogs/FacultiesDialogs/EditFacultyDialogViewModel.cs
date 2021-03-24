@@ -1,5 +1,4 @@
 ﻿using InspectionBoardLibrary.Database.Services;
-using InspectionBoardLibrary.Database.Extensions;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -7,28 +6,29 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace InspectionBoard.Dialogs.StudentsDialogs
+namespace InspectionBoard.Dialogs.FacultiesDialogs
 {
-    public class EditStudentDialogViewModel : BindableBase, IDialogAware
+    public class EditFacultyDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
-        private readonly IDatabaseService<Student> service;
+        private readonly IDatabaseService<Faculty> service;
 
-        private Student student;
-        public Student Student
+        private Faculty faculty;
+        public Faculty Faculty
         {
-            get { return student; }
-            set { SetProperty(ref student, value); }
+            get { return faculty; }
+            set { SetProperty(ref faculty, value); }
         }
 
-        private int selectedStudentId;
-        public int SelectedStudentId
+        private int selectedFacultyId;
+        public int SelectedFacultyId
         {
-            get { return selectedStudentId; }
-            set { SetProperty(ref selectedStudentId, value); }
+            get { return selectedFacultyId; }
+            set { SetProperty(ref selectedFacultyId, value); }
         }
 
         public ObservableCollection<int> Ids
@@ -36,31 +36,21 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             get => new ObservableCollection<int>(service.SelectIds());
         }
 
-        public ObservableCollection<Faculty> Faculties
-        {
-            get => new ObservableCollection<Faculty>((service as StudentService).SelectFaculties());
-        }
-
-        public ObservableCollection<EducationForm> EducationForms
-        {
-            get => new ObservableCollection<EducationForm>((service as StudentService).SelectEducationForms());
-        }
-
-        public string Title => "Изменить данные студента";
+        public string Title => "Изменить факультет";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public EditStudentDialogViewModel()
+        public EditFacultyDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            service = new StudentService();
+            service = new FacultyService();
         }
 
         public event Action<IDialogResult> RequestClose;
 
         private async Task EditStudent()
         {
-            Student.Id = SelectedStudentId;
-            await service.EditAsync(Student);
+            Faculty.Id = SelectedFacultyId;
+            await service.EditAsync(Faculty);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -97,10 +87,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Student = new Student();
-            SelectedStudentId = Ids.FirstOrDefault();
-            Student.EducationForm = EducationForms.FirstOrDefault();
-            Student.Faculty = Faculties.FirstOrDefault();
+            Faculty = new Faculty();
         }
     }
 }

@@ -18,7 +18,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Shrzz\Desktop\</PublishUrl>
+    <PublishUrl>C:\Users\olegm\Desktop\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,8 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -146,6 +145,18 @@
       <DependentUpon>RemoveExamDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ExamsDialogs\RemoveExamDialogViewModel.cs" />
+    <Compile Include="Dialogs\FacultiesDialogs\AddFacultyDialog.xaml.cs">
+      <DependentUpon>AddFacultyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FacultiesDialogs\AddFacultyDialogViewModel.cs" />
+    <Compile Include="Dialogs\FacultiesDialogs\EditFacultyDialog.xaml.cs">
+      <DependentUpon>EditFacultyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FacultiesDialogs\EditFacultyDialogViewModel.cs" />
+    <Compile Include="Dialogs\FacultiesDialogs\RemoveFacultyDialog.xaml.cs">
+      <DependentUpon>RemoveFacultyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FacultiesDialogs\RemoveFacultyDialogViewModel.cs" />
     <Compile Include="Dialogs\Legacy\DocsSettingsDialog.xaml.cs">
       <DependentUpon>DocsSettingsDialog.xaml</DependentUpon>
     </Compile>
@@ -216,6 +227,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\ExamsDialogs\RemoveExamDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\FacultiesDialogs\AddFacultyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\FacultiesDialogs\EditFacultyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\FacultiesDialogs\RemoveFacultyDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

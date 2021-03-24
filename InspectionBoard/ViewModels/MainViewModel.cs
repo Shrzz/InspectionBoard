@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using InspectionBoardLibrary.Domain;
 
 namespace InspectionBoard.ViewModels
 {
@@ -78,7 +77,7 @@ namespace InspectionBoard.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
 
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            //regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())
@@ -111,6 +110,7 @@ namespace InspectionBoard.ViewModels
             yield return new MenuItem("Предметы", "Subjects");
             yield return new MenuItem("Экзамены", "Exams");
             yield return new MenuItem("Пересдачи", "Retakes");
+            yield return new MenuItem("Факультеты", "Faculties");
         }
 
         #region methods
