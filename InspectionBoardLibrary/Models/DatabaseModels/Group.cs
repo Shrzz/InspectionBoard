@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models.DatabaseModels
 {
-    public class Category
+    public class Group
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Multiplier { get; set; }
+        public string Faculty { get; set; }
     }
 }

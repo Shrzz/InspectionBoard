@@ -37,8 +37,7 @@ namespace Workspace.ViewModels
                 SelectedTeacher = Teachers.FirstOrDefault(t => t.Id.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  t.Name.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  t.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
-                                                                 t.Patronymic.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
-                                                                 t.Category.Name.ToLower().Contains(SearchKeyword.ToLower())
+                                                                 t.Patronymic.ToString().ToLower().Contains(SearchKeyword.ToLower())
                 ) ?? Teachers.FirstOrDefault();
             }
         }

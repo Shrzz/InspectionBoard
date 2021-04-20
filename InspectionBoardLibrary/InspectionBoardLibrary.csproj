@@ -66,18 +66,12 @@
   <ItemGroup>
     <Compile Include="Database\Contexts\ExamContext.cs" />
     <Compile Include="Database\Extensions\ExamServiceExtensions.cs" />
-    <Compile Include="Database\Extensions\RetakeServiceExtensions.cs" />
     <Compile Include="Database\Extensions\StudentServiceExtensions.cs" />
     <Compile Include="Database\Extensions\TeacherServiceExtensions.cs" />
-    <Compile Include="Database\Services\CategoryService.cs" />
-    <Compile Include="Database\Services\EducationFormService.cs" />
-    <Compile Include="Database\Services\ExamFormService.cs" />
     <Compile Include="Database\Services\ExamService.cs" />
-    <Compile Include="Database\Services\ExamTypeService.cs" />
-    <Compile Include="Database\Services\FacultyService.cs" />
+    <Compile Include="Database\Services\GroupService.cs" />
     <Compile Include="Database\Services\IDatabaseService.cs" />
     <Compile Include="Database\Services\LoginService.cs" />
-    <Compile Include="Database\Services\RetakeService.cs" />
     <Compile Include="Database\Services\SubjectService.cs" />
     <Compile Include="Database\Services\StudentService.cs" />
     <Compile Include="Database\Services\TeacherService.cs" />
@@ -98,17 +92,15 @@
     </Compile>
     <Compile Include="Migrations\UserContext\UserContextConfig.cs" />
     <Compile Include="Migrations\ExamContext\ExamContextConfig.cs" />
-    <Compile Include="Models\DatabaseModels\Category.cs" />
-    <Compile Include="Models\DatabaseModels\EducationForm.cs" />
     <Compile Include="Models\DatabaseModels\Exam.cs" />
-    <Compile Include="Models\DatabaseModels\ExamForm.cs" />
-    <Compile Include="Models\DatabaseModels\ExamType.cs" />
-    <Compile Include="Models\DatabaseModels\Faculty.cs" />
-    <Compile Include="Models\DatabaseModels\Retake.cs" />
+    <Compile Include="Models\DatabaseModels\Group.cs" />
     <Compile Include="Models\DatabaseModels\Student.cs" />
     <Compile Include="Models\DatabaseModels\Subject.cs" />
     <Compile Include="Models\DatabaseModels\Teacher.cs" />
     <Compile Include="Models\DatabaseModels\User.cs" />
+    <Compile Include="Models\Enums\EducationForm.cs" />
+    <Compile Include="Models\Enums\ExamForm.cs" />
+    <Compile Include="Models\Enums\ExamType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

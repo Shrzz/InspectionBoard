@@ -10,47 +10,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoard.Dialogs.FacultiesDialogs
+namespace InspectionBoard.Dialogs.GroupsDialogs
 {
-    public class EditFacultyDialogViewModel : BindableBase, IDialogAware
+    public class RemoveGroupDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
-        private readonly IDatabaseService<Faculty> service;
-
-        private Faculty faculty;
-        public Faculty Faculty
-        {
-            get { return faculty; }
-            set { SetProperty(ref faculty, value); }
-        }
+        private readonly IDatabaseService<Group> service;
 
         private int selectedFacultyId;
-        public int SelectedFacultyId
+        public int SelectedGroupId
         {
             get { return selectedFacultyId; }
             set { SetProperty(ref selectedFacultyId, value); }
         }
-
         public ObservableCollection<int> Ids
         {
             get => new ObservableCollection<int>(service.SelectIds());
         }
-
-        public string Title => "Изменить факультет";
+        public string Title => "Удалить группу";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public EditFacultyDialogViewModel()
+        public RemoveGroupDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            service = new FacultyService();
+            service = new GroupService();
         }
 
         public event Action<IDialogResult> RequestClose;
-
-        private async Task EditStudent()
+        private async Task RemoveFaculty()
         {
-            Faculty.Id = SelectedFacultyId;
-            await service.EditAsync(Faculty);
+            await service.RemoveAsync(SelectedGroupId);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -58,7 +47,7 @@ namespace InspectionBoard.Dialogs.FacultiesDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await EditStudent();
+                await RemoveFaculty();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
@@ -73,11 +62,7 @@ namespace InspectionBoard.Dialogs.FacultiesDialogs
         {
             RequestClose?.Invoke(dialogResult);
         }
-
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
+        public bool CanCloseDialog() => true;
 
         public void OnDialogClosed()
         {
@@ -87,7 +72,7 @@ namespace InspectionBoard.Dialogs.FacultiesDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Faculty = new Faculty();
+            SelectedGroupId = Ids.FirstOrDefault();
         }
     }
 }

@@ -35,7 +35,6 @@ namespace Workspace.ViewModels
                 SelectedExam = Exams.FirstOrDefault(e => e.Id.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  e.Student.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  e.Teacher.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
-                                                                 e.Subject.Name.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  e.Date.ToString().ToLower().Contains(SearchKeyword.ToLower())
                 ) ?? Exams.FirstOrDefault();
             }

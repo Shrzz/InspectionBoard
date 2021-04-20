@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Linq;
+using InspectionBoardLibrary.Models.Enums;
 
 namespace InspectionBoard.Dialogs.StudentsDialogs
 {
@@ -36,14 +37,14 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             get => new ObservableCollection<int>(service.SelectIds());
         }
 
-        public ObservableCollection<Faculty> Faculties
+        public ObservableCollection<Group> Groups
         {
-            get => new ObservableCollection<Faculty>((service as StudentService).SelectFaculties());
+            get => new ObservableCollection<Group>((service as StudentService).SelectGroups());
         }
 
-        public ObservableCollection<EducationForm> EducationForms
+        public List<string> EducationForms
         {
-            get => new ObservableCollection<EducationForm>((service as StudentService).SelectEducationForms());
+            get => new List<string>(Enum.GetNames(typeof(EducationForm)));
         }
 
         public string Title => "Изменить данные студента";
@@ -99,8 +100,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             this.dialogParameters = parameters;
             Student = new Student();
             SelectedStudentId = Ids.FirstOrDefault();
-            Student.EducationForm = EducationForms.FirstOrDefault();
-            Student.Faculty = Faculties.FirstOrDefault();
+            Student.Group = Groups.FirstOrDefault();
         }
     }
 }

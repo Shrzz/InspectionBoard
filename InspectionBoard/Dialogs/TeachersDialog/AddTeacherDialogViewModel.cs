@@ -26,11 +26,6 @@ namespace InspectionBoard.Dialogs.TeachersDialog
             set { SetProperty(ref teacher, value); }
         }
 
-        public ObservableCollection<Category> Categories
-        {
-            get => new ObservableCollection<Category>((service as TeacherService).SelectEducationForms());
-        }
-
         public string Title => "Добавить преподавателя";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
@@ -77,7 +72,6 @@ namespace InspectionBoard.Dialogs.TeachersDialog
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Teacher.Category = Categories.FirstOrDefault();
         }
     }
 }

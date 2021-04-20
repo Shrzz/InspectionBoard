@@ -1,5 +1,6 @@
 ﻿using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using InspectionBoardLibrary.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,22 +12,15 @@ namespace InspectionBoardLibrary.Database.Contexts
 {
     public class ExamContext : DbContext
     {
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<EducationForm> EducationForms { get; set; }
         public DbSet<Exam> Exams { get; set; }
-        public DbSet<ExamForm> ExamForms { get; set; }
-        public DbSet<ExamType> ExamTypes { get; set; }
-        public DbSet<Faculty> Faculties { get; set; }
-        public DbSet<Retake> Retakes { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
         public ExamContext() : base("DbConnection")
         {
 
-        }
-
-        
+        }        
     }
 }

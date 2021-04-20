@@ -10,6 +10,7 @@
         public ExamContextConfig()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(InspectionBoardLibrary.Database.Contexts.ExamContext context)

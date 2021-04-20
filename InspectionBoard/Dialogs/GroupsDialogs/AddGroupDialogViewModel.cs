@@ -9,32 +9,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoard.Dialogs.FacultiesDialogs
+namespace InspectionBoard.Dialogs.GroupsDialogs
 {
-    public class AddFacultyDialogViewModel : BindableBase, IDialogAware
+    public class AddGroupDialogViewModel : BindableBase, IDialogAware
     {
-        private IDatabaseService<Faculty> service;
+        private IDatabaseService<Group> service;
         public string Title => "Добавить факультет";
 
-        private Faculty faculty;
-        public Faculty Faculty
+        private Group group;
+        public Group Group
         {
-            get { return faculty; }
-            set { SetProperty(ref faculty, value); }
+            get { return group; }
+            set { SetProperty(ref group, value); }
         }
 
         public event Action<IDialogResult> RequestClose;
 
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public AddFacultyDialogViewModel()
+        public AddGroupDialogViewModel()
         {
-            service = new FacultyService();
+            service = new GroupService();
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
         }
         private async Task AddFaculty()
         {
-            await service.AddAsync(Faculty);
+            await service.AddAsync(Group);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -66,7 +66,7 @@ namespace InspectionBoard.Dialogs.FacultiesDialogs
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            Faculty = new Faculty();
+            Group = new Group();
         }
     }
 }

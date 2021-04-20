@@ -23,9 +23,7 @@ namespace Workspace
             containerRegistry.RegisterForNavigation<Teachers, TeachersViewModel>("Teachers");
             containerRegistry.RegisterForNavigation<Exams, ExamsViewModel>("Exams");
             containerRegistry.RegisterForNavigation<Subjects, SubjectsViewModel>("Subjects");
-            containerRegistry.RegisterForNavigation<Faculties, FacultiesViewModel>("Faculties");
-            containerRegistry.RegisterForNavigation<Retakes, RetakesViewModel>("Retakes");
-
+            containerRegistry.RegisterForNavigation<Groups, GroupsViewModel>("Groups");
         }
 
         

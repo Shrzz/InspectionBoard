@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoard.Dialogs.FacultiesDialogs
+namespace InspectionBoard.Dialogs.GroupsDialogs
 {
     /// <summary>
-    /// Логика взаимодействия для EditFacultyDialog.xaml
+    /// Логика взаимодействия для RemoveFacultyDialof.xaml
     /// </summary>
-    public partial class EditFacultyDialog : UserControl
+    public partial class RemoveFacultyDialog : UserControl
     {
-        public EditFacultyDialog()
+        public RemoveFacultyDialog()
         {
             InitializeComponent();
         }

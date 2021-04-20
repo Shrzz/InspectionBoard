@@ -32,8 +32,7 @@ namespace Workspace.ViewModels
                                                                  s.Name.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  s.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  s.Patronymic.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
-                                                                 s.Faculty.Name.ToLower().Contains(SearchKeyword.ToLower()) ||
-                                                                 s.EducationForm.Form.ToLower().Contains(SearchKeyword.ToLower())
+                                                                 s.Group.Name.ToLower().Contains(SearchKeyword.ToLower()) 
                 ) ?? Students.FirstOrDefault();     
             }
         }

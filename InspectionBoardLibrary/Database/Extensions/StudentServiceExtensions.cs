@@ -12,19 +12,11 @@ namespace InspectionBoardLibrary.Database.Extensions
 {
     public static class StudentServiceExtensions
     {
-        public static List<Faculty> SelectFaculties(this StudentService service)
+        public static List<Group> SelectGroups(this StudentService service)
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Faculties.AsNoTracking().ToList();
-            }
-        }
-
-        public static List<EducationForm> SelectEducationForms(this StudentService service)
-        {
-            using (ExamContext context = new ExamContext())
-            {
-                return context.EducationForms.AsNoTracking().ToList();
+                return context.Groups.AsNoTracking().ToList();
             }
         }
     }

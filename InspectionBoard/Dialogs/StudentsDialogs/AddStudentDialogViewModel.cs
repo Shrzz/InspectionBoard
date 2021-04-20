@@ -1,6 +1,7 @@
 ﻿using InspectionBoardLibrary.Database.Extensions;
 using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using InspectionBoardLibrary.Models.Enums;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -23,14 +24,16 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             get { return student; }
             set { SetProperty(ref student, value); }
         }
-        public ObservableCollection<Faculty> Faculties
+        public ObservableCollection<Group> Groups
         {
-            get => new ObservableCollection<Faculty>((service as StudentService).SelectFaculties());
+            get => new ObservableCollection<Group>((service as StudentService).SelectGroups());
         }
-        public ObservableCollection<EducationForm> EducationForms
+
+        public List<string> EducationForms
         {
-            get => new ObservableCollection<EducationForm>((service as StudentService).SelectEducationForms());
+            get => new List<string>(Enum.GetNames(typeof(EducationForm)));
         }
+
         public string Title => "Добавить студента";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
@@ -44,8 +47,6 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 
         private async Task AddStudent()
         {
-            //Student.Exams = new List<Exam>();
-            //Student.Retakes = new List<Retake>();
             await service.AddAsync(Student);
         }
 
@@ -84,8 +85,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         {
             this.dialogParameters = parameters;
             Student = new Student();
-            Student.Faculty = Faculties.FirstOrDefault();
-            Student.EducationForm = EducationForms.FirstOrDefault();
+            Student.Group = Groups.FirstOrDefault();
         }
     }
 }

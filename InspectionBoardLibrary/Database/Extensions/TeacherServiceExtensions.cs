@@ -11,12 +11,6 @@ namespace InspectionBoardLibrary.Database.Extensions
 {
     public static class TeacherServiceExtensions
     {
-        public static List<Category> SelectEducationForms(this TeacherService service)
-        {
-            using (ExamContext context = new ExamContext())
-            {
-                return context.Categories.AsNoTracking().ToList();
-            }
-        }
+
     }
 }

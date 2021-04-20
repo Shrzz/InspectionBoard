@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoard.Dialogs.RetakesDialogs
+namespace InspectionBoard.Dialogs.GroupsDialogs
 {
     /// <summary>
-    /// Логика взаимодействия для AddRetakeDialog.xaml
+    /// Логика взаимодействия для AddFacultyDialog.xaml
     /// </summary>
-    public partial class AddRetakeDialog : UserControl
+    public partial class AddFacultyDialog : UserControl
     {
-        public AddRetakeDialog()
+        public AddFacultyDialog()
         {
             InitializeComponent();
         }

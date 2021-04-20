@@ -59,8 +59,7 @@
   <ItemGroup>
     <Compile Include="ViewModels\Legacy\DocsEnrollmentViewModel.cs" />
     <Compile Include="ViewModels\ExamsViewModel.cs" />
-    <Compile Include="ViewModels\FacultiesViewModel.cs" />
-    <Compile Include="ViewModels\RetakesViewModel.cs" />
+    <Compile Include="ViewModels\GroupsViewModel.cs" />
     <Compile Include="ViewModels\Legacy\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\StudentsViewModel.cs" />
     <Compile Include="ViewModels\SubjectsViewModel.cs" />
@@ -70,11 +69,8 @@
     <Compile Include="Views\Exams.xaml.cs">
       <DependentUpon>Exams.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Faculties.xaml.cs">
-      <DependentUpon>Faculties.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Retakes.xaml.cs">
-      <DependentUpon>Retakes.xaml</DependentUpon>
+    <Compile Include="Views\Groups.xaml.cs">
+      <DependentUpon>Groups.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Legacy\Analysis.xaml.cs">
       <DependentUpon>Analysis.xaml</DependentUpon>
@@ -126,15 +122,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Faculties.xaml">
+    <Page Include="Views\Groups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Main.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Retakes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

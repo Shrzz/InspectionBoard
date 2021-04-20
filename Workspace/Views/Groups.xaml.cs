@@ -13,16 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoard.Dialogs.RetakesDialogs
+namespace Workspace.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EditRetakeDialog.xaml
+    /// Логика взаимодействия для Faculties.xaml
     /// </summary>
-    public partial class EditRetakeDialog : UserControl
+    public partial class Groups : UserControl
     {
-        public EditRetakeDialog()
+        public Groups()
         {
             InitializeComponent();
+        }
+
+        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var dataGrid = sender as DataGrid;
+            if (dataGrid.SelectedItem != null)
+            {
+                dataGrid.ScrollIntoView(dataGrid.SelectedItem);
+            }
         }
     }
 }

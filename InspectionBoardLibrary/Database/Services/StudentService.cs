@@ -15,8 +15,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                context.Faculties.Attach(o.Faculty);
-                context.EducationForms.Attach(o.EducationForm);
+                context.Groups.Attach(o.Group);
                 context.Students.Add(o);
                 await context.SaveChangesAsync();
             }
@@ -32,11 +31,10 @@ namespace InspectionBoardLibrary.Database.Services
                     oldStudent.Name = newStudent.Name;
                     oldStudent.Patronymic = newStudent.Patronymic;
                     oldStudent.Surname = newStudent.Surname;
-                    oldStudent.Faculty = newStudent.Faculty;
+                    oldStudent.Group = newStudent.Group;
                     oldStudent.EducationForm = newStudent.EducationForm;
 
-                    context.Faculties.Attach(oldStudent.Faculty);
-                    context.EducationForms.Attach(oldStudent.EducationForm);
+                    context.Groups.Attach(oldStudent.Group);
                 }
                 await context.SaveChangesAsync();
             }
@@ -59,7 +57,7 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                return context.Students.Include(a => a.Faculty).Include(s => s.EducationForm).OrderBy(s => s.Id).ToList();
+                return context.Students.Include(a => a.Group).OrderBy(s => s.Id).ToList();
             }
         }
 

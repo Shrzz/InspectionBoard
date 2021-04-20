@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Commands;
+using InspectionBoardLibrary.Models.Enums;
 
 namespace InspectionBoard.Dialogs.ExamsDialogs
 {
@@ -32,13 +33,13 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
             set { SetProperty(ref date, value); }
         }
 
-        public ObservableCollection<ExamForm> ExamForms
+        public List<string> ExamForms
         {
-            get => new ObservableCollection<ExamForm>((service as ExamService).SelectExamForms());
+            get => new List<string>(Enum.GetNames(typeof(ExamForm)));
         }
-        public ObservableCollection<ExamType> ExamTypes
+        public List<string> ExamTypes
         {
-            get => new ObservableCollection<ExamType>((service as ExamService).SelectExamTypes());
+            get => new List<string>(Enum.GetNames(typeof(ExamType)));
         }
 
         public ObservableCollection<Student> Students
@@ -108,10 +109,7 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
         {
             this.dialogParameters = parameters;
             Exam = new Exam();
-            Exam.ExamForm = ExamForms.FirstOrDefault();
-            Exam.ExamType = ExamTypes.FirstOrDefault();
             Exam.Student = Students.FirstOrDefault();
-            Exam.Subject = Subjects.FirstOrDefault();
             Exam.Teacher = Teachers.FirstOrDefault();
             Date = DateTime.Today.Date;
         }

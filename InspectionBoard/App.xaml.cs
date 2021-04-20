@@ -1,8 +1,7 @@
 ﻿using Authorization;
 using InspectionBoard.Dialogs;
 using InspectionBoard.Dialogs.ExamsDialogs;
-using InspectionBoard.Dialogs.FacultiesDialogs;
-using InspectionBoard.Dialogs.RetakesDialogs;
+using InspectionBoard.Dialogs.GroupsDialogs;
 using InspectionBoard.Dialogs.SettingsDialogs;
 using InspectionBoard.Dialogs.StudentsDialogs;
 using InspectionBoard.Dialogs.SubjectsDialogs;
@@ -33,8 +32,7 @@ namespace InspectionBoard
             RegisterSubjectDialogs(containerRegistry);
             RegisterTeacherDialogs(containerRegistry);
             RegisterExamDialogs(containerRegistry);
-            RegisterRetakeDialogs(containerRegistry);
-            RegisterFacultyDialogs(containerRegistry);
+            RegisterGroupDialogs(containerRegistry);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -76,19 +74,11 @@ namespace InspectionBoard
             containerRegistry.RegisterDialog<EditExamDialog, EditExamDialogViewModel>("EditExamDialog");
             containerRegistry.RegisterDialog<RemoveExamDialog, RemoveExamDialogViewModel>("RemoveExamDialog");
         }
-
-        private void RegisterRetakeDialogs(IContainerRegistry containerRegistry)
+        private void RegisterGroupDialogs(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterDialog<AddRetakeDialog, AddRetakeDialogViewModel>("AddRetakeDialog");
-            containerRegistry.RegisterDialog<EditRetakeDialog, EditRetakeDialogViewModel>("EditRetakeDialog");
-            containerRegistry.RegisterDialog<RemoveRetakeDialog, RemoveRetakeDialogViewModel>("RemoveRetakeDialog");
-        }
-
-        private void RegisterFacultyDialogs(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterDialog<AddFacultyDialog, AddFacultyDialogViewModel>("AddFacultyDialog");
-            containerRegistry.RegisterDialog<EditFacultyDialog, EditFacultyDialogViewModel>("EditFacultyDialog");
-            containerRegistry.RegisterDialog<RemoveFacultyDialog, RemoveFacultyDialogViewModel>("RemoveFacultyDialog");
+            containerRegistry.RegisterDialog<AddFacultyDialog, AddGroupDialogViewModel>("AddFacultyDialog");
+            containerRegistry.RegisterDialog<EditFacultyDialog, EditGroupDialogViewModel>("EditFacultyDialog");
+            containerRegistry.RegisterDialog<RemoveFacultyDialog, RemoveGroupDialogViewModel>("RemoveFacultyDialog");
         }
     }
 }

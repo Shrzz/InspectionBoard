@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace Workspace.ViewModels
 {
-    public class FacultiesViewModel : BindableBase, INavigationAware
+    public class GroupsViewModel : BindableBase, INavigationAware
     {
         private readonly IDialogService dialogService;
-        private readonly IDatabaseService<Faculty> service;
+        private readonly IDatabaseService<Group> service;
 
-        private ObservableCollection<Faculty> faculties;
-        public ObservableCollection<Faculty> Faculties
+        private ObservableCollection<Group> groups;
+        public ObservableCollection<Group> Groups
         {
-            get { return faculties; }
-            set { SetProperty(ref faculties, value); }
+            get { return groups; }
+            set { SetProperty(ref groups, value); }
         }
 
         private string searchKeyword;
@@ -32,12 +32,12 @@ namespace Workspace.ViewModels
             set
             {
                 SetProperty(ref searchKeyword, value);
-                SelectedFaculty = Faculties.FirstOrDefault(f => f.Name.ToLower().Contains(SearchKeyword.ToLower())) ?? Faculties.FirstOrDefault();
+                SelectedFaculty = Groups.FirstOrDefault(f => f.Name.ToLower().Contains(SearchKeyword.ToLower())) ?? Groups.FirstOrDefault();
             }
         }
 
-        private Faculty selectedFaculty;
-        public Faculty SelectedFaculty
+        private Group selectedFaculty;
+        public Group SelectedFaculty
         {
             get { return selectedFaculty; }
             set
@@ -45,10 +45,10 @@ namespace Workspace.ViewModels
                 SetProperty(ref selectedFaculty, value);
             }
         }
-        public FacultiesViewModel(IDialogService dialogService)
+        public GroupsViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            service = new FacultyService();
+            service = new GroupService();
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
@@ -66,7 +66,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
-                            Faculties = new ObservableCollection<Faculty>(service.Select());
+                            Groups = new ObservableCollection<Group>(service.Select());
                             break;
                         }
                     case ButtonResult.Cancel:
@@ -79,7 +79,7 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Faculties = new ObservableCollection<Faculty>(service.Select());
+            Groups = new ObservableCollection<Group>(service.Select());
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

@@ -145,18 +145,18 @@
       <DependentUpon>RemoveExamDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ExamsDialogs\RemoveExamDialogViewModel.cs" />
-    <Compile Include="Dialogs\FacultiesDialogs\AddFacultyDialog.xaml.cs">
-      <DependentUpon>AddFacultyDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\GroupsDialogs\AddGroupDialog.xaml.cs">
+      <DependentUpon>AddGroupDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FacultiesDialogs\AddFacultyDialogViewModel.cs" />
-    <Compile Include="Dialogs\FacultiesDialogs\EditFacultyDialog.xaml.cs">
-      <DependentUpon>EditFacultyDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\GroupsDialogs\AddGroupDialogViewModel.cs" />
+    <Compile Include="Dialogs\GroupsDialogs\EditGroupDialog.xaml.cs">
+      <DependentUpon>EditGroupDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FacultiesDialogs\EditFacultyDialogViewModel.cs" />
-    <Compile Include="Dialogs\FacultiesDialogs\RemoveFacultyDialog.xaml.cs">
-      <DependentUpon>RemoveFacultyDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\GroupsDialogs\EditGroupDialogViewModel.cs" />
+    <Compile Include="Dialogs\GroupsDialogs\RemoveGroupDialog.xaml.cs">
+      <DependentUpon>RemoveGroupDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FacultiesDialogs\RemoveFacultyDialogViewModel.cs" />
+    <Compile Include="Dialogs\GroupsDialogs\RemoveGroupDialogViewModel.cs" />
     <Compile Include="Dialogs\Legacy\DocsSettingsDialog.xaml.cs">
       <DependentUpon>DocsSettingsDialog.xaml</DependentUpon>
     </Compile>
@@ -165,18 +165,6 @@
       <DependentUpon>NotificationDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Legacy\NotificationDialogViewModel.cs" />
-    <Compile Include="Dialogs\RetakesDialogs\AddRetakeDialog.xaml.cs">
-      <DependentUpon>AddRetakeDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\RetakesDialogs\AddRetakeDialogViewModel.cs" />
-    <Compile Include="Dialogs\RetakesDialogs\EditRetakeDialog.xaml.cs">
-      <DependentUpon>EditRetakeDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\RetakesDialogs\EditRetakeDialogViewModel.cs" />
-    <Compile Include="Dialogs\RetakesDialogs\RemoveRetakeDialog.xaml.cs">
-      <DependentUpon>RemoveRetakeDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\RetakesDialogs\RemoveRetakeDialogViewModel.cs" />
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialog.xaml.cs">
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
@@ -230,15 +218,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\FacultiesDialogs\AddFacultyDialog.xaml">
+    <Page Include="Dialogs\GroupsDialogs\AddGroupDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\FacultiesDialogs\EditFacultyDialog.xaml">
+    <Page Include="Dialogs\GroupsDialogs\EditGroupDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\FacultiesDialogs\RemoveFacultyDialog.xaml">
+    <Page Include="Dialogs\GroupsDialogs\RemoveGroupDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,18 +235,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Legacy\NotificationDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\RetakesDialogs\AddRetakeDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\RetakesDialogs\EditRetakeDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\RetakesDialogs\RemoveRetakeDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

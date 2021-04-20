@@ -1,6 +1,7 @@
 ﻿using InspectionBoardLibrary.Database.Extensions;
 using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using InspectionBoardLibrary.Models.Enums;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -44,13 +45,13 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
             get => new ObservableCollection<int>(service.SelectIds());
         }
 
-        public ObservableCollection<ExamForm> ExamForms
+        public List<string> ExamForms
         {
-            get => new ObservableCollection<ExamForm>((service as ExamService).SelectExamForms());
+            get => new List<string>(Enum.GetNames(typeof(ExamForm)));
         }
-        public ObservableCollection<ExamType> ExamTypes
+        public List<string> ExamTypes
         {
-            get => new ObservableCollection<ExamType>((service as ExamService).SelectExamTypes());
+            get => new List<string>(Enum.GetNames(typeof(ExamType)));
         }
 
         public ObservableCollection<Student> Students
@@ -122,10 +123,7 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
             this.dialogParameters = parameters;
             Exam = new Exam();
             SelectedExamId = Ids.FirstOrDefault();
-            Exam.ExamForm = ExamForms.FirstOrDefault();
-            Exam.ExamType = ExamTypes.FirstOrDefault();
             Exam.Student = Students.FirstOrDefault();
-            Exam.Subject = Subjects.FirstOrDefault();
             Exam.Teacher = Teachers.FirstOrDefault();
             Date = DateTime.Today.Date;
         }

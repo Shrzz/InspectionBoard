@@ -16,10 +16,7 @@ namespace InspectionBoardLibrary.Database.Services
             using (ExamContext context = new ExamContext())
             {
                 context.Students.Attach(o.Student);
-                context.Subjects.Attach(o.Subject);
                 context.Teachers.Attach(o.Teacher);
-                context.ExamForms.Attach(o.ExamForm);
-                context.ExamTypes.Attach(o.ExamType);
                 context.Exams.Add(o);
                 await context.SaveChangesAsync();
             }
@@ -32,7 +29,6 @@ namespace InspectionBoardLibrary.Database.Services
                 var oldExam = await context.Exams.FirstOrDefaultAsync(e => e.Id == o.Id);
                 if (o != null && oldExam != null)
                 {
-                    oldExam.Mark = o.Mark;
                     oldExam.Student = o.Student;
                     oldExam.Subject = o.Subject;
                     oldExam.Teacher = o.Teacher;
@@ -41,10 +37,7 @@ namespace InspectionBoardLibrary.Database.Services
                     oldExam.ExamType = o.ExamType;
 
                     context.Students.Attach(oldExam.Student);
-                    context.Subjects.Attach(oldExam.Subject);
                     context.Teachers.Attach(oldExam.Teacher);
-                    context.ExamForms.Attach(oldExam.ExamForm);
-                    context.ExamTypes.Attach(oldExam.ExamType);
                 }
 
                 await context.SaveChangesAsync();

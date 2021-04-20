@@ -11,22 +11,6 @@ namespace InspectionBoardLibrary.Database.Extensions
 {
     public static class ExamServiceExtensions
     {
-        public static List<ExamForm> SelectExamForms(this ExamService service)
-        {
-            using (ExamContext context = new ExamContext())
-            {
-                return context.ExamForms.AsNoTracking().ToList();
-            }
-        }
-
-        public static List<ExamType> SelectExamTypes(this ExamService service)
-        {
-            using (ExamContext context = new ExamContext())
-            {
-                return context.ExamTypes.AsNoTracking().ToList();
-            }
-        }
-
         public static List<Student> SelectStudents(this ExamService service)
         {
             using (ExamContext context = new ExamContext())

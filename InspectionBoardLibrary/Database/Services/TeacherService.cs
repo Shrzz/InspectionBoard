@@ -15,7 +15,6 @@ namespace InspectionBoardLibrary.Database.Services
         {
             using (ExamContext context = new ExamContext())
             {
-                context.Categories.Attach(o.Category);
                 context.Teachers.Add(o);
                 await context.SaveChangesAsync();
             }
@@ -32,7 +31,6 @@ namespace InspectionBoardLibrary.Database.Services
                     newTeacher.Name = o.Name;
                     newTeacher.Patronymic = o.Patronymic;
                     newTeacher.Category = o.Category;
-                    context.Categories.Attach(newTeacher.Category);
                 }
 
                 await context.SaveChangesAsync();

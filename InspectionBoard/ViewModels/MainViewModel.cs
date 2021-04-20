@@ -95,12 +95,8 @@ namespace InspectionBoard.ViewModels
 
             DataSeeder seeder = new DataSeeder();
             seeder.AddAdminUser();
-            seeder.AddEducationForms();
-            seeder.AddExamForms();
-            seeder.AddExamTypes();
             seeder.AddFaculties();
             seeder.AddStudent();
-            seeder.AddCategories();
         }
 
         private static IEnumerable<MenuItem> GenerateMenuItems()

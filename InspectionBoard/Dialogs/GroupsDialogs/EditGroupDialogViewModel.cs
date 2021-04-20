@@ -10,37 +10,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoard.Dialogs.RetakesDialogs
+namespace InspectionBoard.Dialogs.GroupsDialogs
 {
-    public class RemoveRetakeDialogViewModel : BindableBase, IDialogAware
+    public class EditGroupDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
-        private readonly IDatabaseService<Retake> service;
+        private readonly IDatabaseService<Group> service;
 
-        private int selectedRetakeId;
-        public int SelectedRetakeId
+        private Group group;
+        public Group Group
         {
-            get { return selectedRetakeId; }
-            set { SetProperty(ref selectedRetakeId, value); }
+            get { return group; }
+            set { SetProperty(ref group, value); }
         }
+
+        private int selectedFacultyId;
+        public int SelectedFacultyId
+        {
+            get { return selectedFacultyId; }
+            set { SetProperty(ref selectedFacultyId, value); }
+        }
+
         public ObservableCollection<int> Ids
         {
             get => new ObservableCollection<int>(service.SelectIds());
         }
-        public string Title => "Удалить сведения о пересдаче";
 
+        public string Title => "Изменить факультет";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public RemoveRetakeDialogViewModel()
+        public EditGroupDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            service = new RetakeService();
+            service = new GroupService();
         }
 
         public event Action<IDialogResult> RequestClose;
-        private async Task RemoveRetake()
+
+        private async Task EditStudent()
         {
-            await service.RemoveAsync(SelectedRetakeId);
+            Group.Id = SelectedFacultyId;
+            await service.EditAsync(Group);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -48,7 +58,7 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await RemoveRetake();
+                await EditStudent();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
@@ -63,7 +73,11 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
         {
             RequestClose?.Invoke(dialogResult);
         }
-        public bool CanCloseDialog() => true;
+
+        public bool CanCloseDialog()
+        {
+            return true;
+        }
 
         public void OnDialogClosed()
         {
@@ -73,7 +87,7 @@ namespace InspectionBoard.Dialogs.RetakesDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            SelectedRetakeId = Ids.FirstOrDefault();
+            Group = new Group();
         }
     }
 }
