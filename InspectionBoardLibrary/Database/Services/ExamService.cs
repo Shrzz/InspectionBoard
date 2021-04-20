@@ -59,8 +59,6 @@ namespace InspectionBoardLibrary.Database.Services
             using (ExamContext context = new ExamContext())
             {
                 return context.Exams.
-                    Include(e => e.ExamForm).
-                    Include(e => e.ExamType).
                     Include(e => e.Student).
                     Include(e => e.Teacher).
                     Include(e => e.Subject).

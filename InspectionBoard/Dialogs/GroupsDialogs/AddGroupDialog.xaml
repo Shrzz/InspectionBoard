@@ -12,9 +12,13 @@
             <StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="0 0 0 0">
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                             materialDesign:HintAssist.Hint="Название"
+                             materialDesign:HintAssist.Hint="Код группы"
                              Margin="20 0 20 0"
-                             Text="{Binding Faculty.Name}"/>
+                             Text="{Binding Group.Name}"/>
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             materialDesign:HintAssist.Hint="Название факультета"
+                             Margin="20 0 20 0"
+                             Text="{Binding Group.Faculty}"/>
                     <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"

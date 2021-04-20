@@ -7,19 +7,25 @@
              xmlns:local="clr-namespace:InspectionBoard.Dialogs.GroupsDialogs"
              mc:Ignorable="d" 
              Height="450" Width="400">
+
     <Grid>
         <materialDesign:Card Padding="20">
             <StackPanel Margin="20">
-                <TextBlock Text="Идентификатор факультета"/>
+                <TextBlock Text="Идентификатор группы"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Ids}" 
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding SelectedFacultyId}"/>
-                <TextBox materialDesign:HintAssist.Hint="Название"
+                          SelectedItem="{Binding SelectedGroupId}"/>
+                <TextBox materialDesign:HintAssist.Hint="Код группы"
                          Margin="0 5" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Focusable="True" 
-                         Text="{Binding Faculty.Name}"/>
+                         Text="{Binding Group.Name}"/>
+                <TextBox materialDesign:HintAssist.Hint="Название факультета"
+                         Margin="0 5" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Focusable="True" 
+                         Text="{Binding Group.Faculty}"/>
                 <Button Margin="20 10 20 0"
                         Content="Изменить"
                         Command="{Binding CloseDialogCommand}"
