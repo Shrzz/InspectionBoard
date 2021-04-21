@@ -1,4 +1,6 @@
-﻿using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -16,7 +18,7 @@ namespace Workspace.ViewModels
     public class GroupsViewModel : BindableBase, INavigationAware
     {
         private readonly IDialogService dialogService;
-        private readonly IDatabaseService<Group> service;
+        private readonly GroupRepository repository;
 
         private ObservableCollection<Group> groups;
         public ObservableCollection<Group> Groups
@@ -32,23 +34,23 @@ namespace Workspace.ViewModels
             set
             {
                 SetProperty(ref searchKeyword, value);
-                SelectedFaculty = Groups.FirstOrDefault(f => f.Name.ToLower().Contains(SearchKeyword.ToLower())) ?? Groups.FirstOrDefault();
+                SelectedGroup = Groups.FirstOrDefault(f => f.Name.ToLower().Contains(SearchKeyword.ToLower())) ?? Groups.FirstOrDefault();
             }
         }
 
-        private Group selectedFaculty;
-        public Group SelectedFaculty
+        private Group selectedGroup;
+        public Group SelectedGroup
         {
-            get { return selectedFaculty; }
+            get { return selectedGroup; }
             set
             {
-                SetProperty(ref selectedFaculty, value);
+                SetProperty(ref selectedGroup, value);
             }
         }
         public GroupsViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            service = new GroupService();
+            repository = new GroupRepository(new ExamContext());
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
@@ -66,7 +68,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
-                            Groups = new ObservableCollection<Group>(service.Select());
+                            Groups = repository.Select().Result;
                             break;
                         }
                     case ButtonResult.Cancel:
@@ -77,9 +79,9 @@ namespace Workspace.ViewModels
             });
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Groups = new ObservableCollection<Group>(service.Select());
+            Groups = await repository.Select();
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

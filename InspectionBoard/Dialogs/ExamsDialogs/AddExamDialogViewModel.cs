@@ -1,29 +1,21 @@
-﻿using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
-using InspectionBoardLibrary.Database.Extensions;
-using Prism.Mvvm;
+using InspectionBoardLibrary.Models.Enums;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Commands;
-using InspectionBoardLibrary.Models.Enums;
 
 namespace InspectionBoard.Dialogs.ExamsDialogs
 {
-    public class AddExamDialogViewModel : BindableBase, IDialogAware
+    public class AddExamDialogViewModel : AddDialogViewModel<Exam, ExamContext>
     {
-        private IDialogParameters dialogParameters;
-        private readonly IDatabaseService<Exam> service;
-
-        private Exam exam;
-        public Exam Exam
+        public AddExamDialogViewModel(ExamRepository repository) : base(repository)
         {
-            get { return exam; }
-            set { SetProperty(ref exam, value); }
+
         }
 
         private DateTime date;
@@ -44,73 +36,42 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
 
         public ObservableCollection<Student> Students
         {
-            get => new ObservableCollection<Student>((service as ExamService).SelectStudents());
+            get
+            {
+                using (ExamContext context = new ExamContext())
+                {
+                    return new ObservableCollection<Student>(context.Students.AsNoTracking().ToList());
+                }
+            }
         }
 
         public ObservableCollection<Teacher> Teachers
         {
-            get => new ObservableCollection<Teacher>((service as ExamService).SelectTeachers());
+            get
+            {
+                using (ExamContext context = new ExamContext())
+                {
+                    return new ObservableCollection<Teacher>(context.Teachers.AsNoTracking().ToList());
+                }
+            }
         }
 
         public ObservableCollection<Subject> Subjects
         {
-            get => new ObservableCollection<Subject>((service as ExamService).SelectSubjects());
-        }
-
-        public string Title => "Добавить студента";
-        public DelegateCommand<string> CloseDialogCommand { get; private set; }
-
-        public AddExamDialogViewModel()
-        {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            service = new ExamService();
-        }
-
-        public event Action<IDialogResult> RequestClose;
-
-        private async Task AddExam()
-        {
-            Exam.Date = Date.Date;
-            await service.AddAsync(Exam);
-        }
-
-        protected virtual async void CloseDialog(string parameter)
-        {
-            ButtonResult result = ButtonResult.None;
-            if (parameter?.ToLower() == "true")
+            get
             {
-                await AddExam();
-                result = ButtonResult.OK;
+                using (ExamContext context = new ExamContext())
+                {
+                    return new ObservableCollection<Subject>(context.Subjects.AsNoTracking().ToList());
+                }
             }
-            else if (parameter?.ToLower() == "false")
-            {
-                result = ButtonResult.Cancel;
-            }
-
-            RaiseRequestClose(new DialogResult(result));
         }
-
-        public virtual void RaiseRequestClose(IDialogResult dialogResult)
-        {
-            RequestClose?.Invoke(dialogResult);
-        }
-
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
-
-        public void OnDialogClosed()
-        {
-
-        }
-
-        public void OnDialogOpened(IDialogParameters parameters)
+        public override void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Exam = new Exam();
-            Exam.Student = Students.FirstOrDefault();
-            Exam.Teacher = Teachers.FirstOrDefault();
+            Entity = new Exam();
+            Entity.Student = Students.FirstOrDefault();
+            Entity.Teacher = Teachers.FirstOrDefault();
             Date = DateTime.Today.Date;
         }
     }

@@ -1,131 +1,15 @@
-﻿using InspectionBoardLibrary.Database.Extensions;
-using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
-using InspectionBoardLibrary.Models.Enums;
-using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.ExamsDialogs
 {
-    public class EditExamDialogViewModel : BindableBase, IDialogAware
+    public class EditExamDialogViewModel : EditDialogViewModel<Exam, ExamContext>
     {
-        private IDialogParameters dialogParameters;
-        private readonly IDatabaseService<Exam> service;
-
-        private Exam exam;
-        public Exam Exam
-        {
-            get { return exam; }
-            set { SetProperty(ref exam, value); }
-        }
-
-        private int selectedExamId;
-        public int SelectedExamId
-        {
-            get { return selectedExamId; }
-            set { SetProperty(ref selectedExamId, value); }
-        }
-
-        private DateTime date;
-        public DateTime Date
-        {
-            get { return date; }
-            set { SetProperty(ref date, value); }
-        }
-
-        public ObservableCollection<int> Ids
-        {
-            get => new ObservableCollection<int>(service.SelectIds());
-        }
-
-        public List<string> ExamForms
-        {
-            get => new List<string>(Enum.GetNames(typeof(ExamForm)));
-        }
-        public List<string> ExamTypes
-        {
-            get => new List<string>(Enum.GetNames(typeof(ExamType)));
-        }
-
-        public ObservableCollection<Student> Students
-        {
-            get => new ObservableCollection<Student>((service as ExamService).SelectStudents());
-        }
-
-        public ObservableCollection<Teacher> Teachers
-        {
-            get => new ObservableCollection<Teacher>((service as ExamService).SelectTeachers());
-        }
-
-        public ObservableCollection<Subject> Subjects
-        {
-            get => new ObservableCollection<Subject>((service as ExamService).SelectSubjects());
-        }
-
-        public string Title => "Изменить сведения об экзамене";
-        public DelegateCommand<string> CloseDialogCommand { get; private set; }
-
-        public EditExamDialogViewModel()
-        {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            service = new ExamService();
-        }
-
-        public event Action<IDialogResult> RequestClose;
-
-        private async Task EditExam()
-        {
-            Exam.Id = SelectedExamId;
-            Exam.Date = Date.Date;
-            await service.EditAsync(Exam);
-        }
-
-        protected virtual async void CloseDialog(string parameter)
-        {
-            ButtonResult result = ButtonResult.None;
-            if (parameter?.ToLower() == "true")
-            {
-                await EditExam();
-                result = ButtonResult.OK;
-            }
-            else if (parameter?.ToLower() == "false")
-            {
-                result = ButtonResult.Cancel;
-            }
-
-            RaiseRequestClose(new DialogResult(result));
-        }
-
-        public virtual void RaiseRequestClose(IDialogResult dialogResult)
-        {
-            RequestClose?.Invoke(dialogResult);
-        }
-
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
-
-        public void OnDialogClosed()
+        public EditExamDialogViewModel(ExamRepository repository) : base(repository)
         {
 
-        }
-
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-            this.dialogParameters = parameters;
-            Exam = new Exam();
-            SelectedExamId = Ids.FirstOrDefault();
-            Exam.Student = Students.FirstOrDefault();
-            Exam.Teacher = Teachers.FirstOrDefault();
-            Date = DateTime.Today.Date;
         }
     }
 }

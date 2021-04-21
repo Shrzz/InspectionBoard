@@ -1,4 +1,6 @@
 ﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.DatabaseModels;
@@ -18,7 +20,7 @@ namespace Workspace.ViewModels
     public class TeachersViewModel : BindableBase, INavigationAware
     {
         private readonly IDialogService dialogService;
-        private readonly IDatabaseService<Teacher> service;
+        private readonly TeacherRepository repository;
 
         private ObservableCollection<Teacher> teachers;
         public ObservableCollection<Teacher> Teachers
@@ -57,7 +59,7 @@ namespace Workspace.ViewModels
         public TeachersViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            service = new TeacherService();
+            repository = new TeacherRepository(new ExamContext());
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
@@ -75,7 +77,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
-                            Teachers = new ObservableCollection<Teacher>(service.Select());
+                            Teachers = repository.Select().Result;
                             break;
                         }
                     case ButtonResult.Cancel:
@@ -86,9 +88,10 @@ namespace Workspace.ViewModels
             });
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Teachers = new ObservableCollection<Teacher>(service.Select());
+            var collection = await repository.Select();
+            Teachers = collection;
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

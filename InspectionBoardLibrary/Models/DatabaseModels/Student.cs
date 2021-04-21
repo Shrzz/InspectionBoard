@@ -1,4 +1,6 @@
-﻿using InspectionBoardLibrary.Models.Enums;
+﻿using InspectionBoardLibrary.Database;
+using InspectionBoardLibrary.Database.Domain;
+using InspectionBoardLibrary.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models.DatabaseModels
 {
-    public class Student 
+    public class Student : IEntity
     {
         public int Id { get; set; }
         public string Surname { get; set; }

@@ -1,22 +1,19 @@
-﻿using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Workspace.ViewModels
 {
     public class ExamsViewModel : BindableBase, INavigationAware
     {
         private readonly IDialogService dialogService;
-        private readonly IDatabaseService<Exam> service;
+        private readonly ExamRepository repository;
 
         private ObservableCollection<Exam> exams;
         public ObservableCollection<Exam> Exams
@@ -29,8 +26,8 @@ namespace Workspace.ViewModels
         public string SearchKeyword
         {
             get { return searchKeyword; }
-            set 
-            { 
+            set
+            {
                 SetProperty(ref searchKeyword, value);
                 SelectedExam = Exams.FirstOrDefault(e => e.Id.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
                                                                  e.Student.Surname.ToString().ToLower().Contains(SearchKeyword.ToLower()) ||
@@ -41,7 +38,7 @@ namespace Workspace.ViewModels
         }
 
         private Exam selectedExam;
-        public Exam SelectedExam 
+        public Exam SelectedExam
         {
             get { return selectedExam; }
             set
@@ -52,7 +49,7 @@ namespace Workspace.ViewModels
         public ExamsViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            service = new ExamService();
+            repository = new ExamRepository(new ExamContext());
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
@@ -70,7 +67,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
-                            Exams = new ObservableCollection<Exam>(service.Select());
+                            Exams = repository.Select().Result;
                             break;
                         }
                     case ButtonResult.Cancel:
@@ -83,7 +80,7 @@ namespace Workspace.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Exams = new ObservableCollection<Exam>(service.Select());
+            Exams = repository.Select().Result;
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

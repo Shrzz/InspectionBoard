@@ -1,4 +1,7 @@
-﻿using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Database.Services;
+using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -11,62 +14,17 @@ using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.GroupsDialogs
 {
-    public class AddGroupDialogViewModel : BindableBase, IDialogAware
+    public class AddGroupDialogViewModel : AddDialogViewModel<Group, ExamContext>
     {
-        private IDatabaseService<Group> service;
-        public string Title => "Добавить факультет";
-
-        private Group group;
-        public Group Group
+        public AddGroupDialogViewModel(GroupRepository repository) : base(repository)
         {
-            get { return group; }
-            set { SetProperty(ref group, value); }
+
         }
 
-        public event Action<IDialogResult> RequestClose;
-
-        public DelegateCommand<string> CloseDialogCommand { get; private set; }
-
-        public AddGroupDialogViewModel()
+        public override void OnDialogOpened(IDialogParameters parameters)
         {
-            service = new GroupService();
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-        }
-        private async Task AddFaculty()
-        {
-            await service.AddAsync(Group);
-        }
-
-        protected virtual async void CloseDialog(string parameter)
-        {
-            ButtonResult result = ButtonResult.None;
-            if (parameter?.ToLower() == "true")
-            {
-                await AddFaculty();
-                result = ButtonResult.OK;
-            }
-            else if (parameter?.ToLower() == "false")
-            {
-                result = ButtonResult.Cancel;
-            }
-
-            RaiseRequestClose(new DialogResult(result));
-        }
-
-        public virtual void RaiseRequestClose(IDialogResult dialogResult)
-        {
-            RequestClose?.Invoke(dialogResult);
-        }
-
-        public bool CanCloseDialog() => true;
-
-        public void OnDialogClosed()
-        {
-        }
-
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-            Group = new Group();
+            this.dialogParameters = parameters;
+            Entity = new Group();
         }
     }
 }

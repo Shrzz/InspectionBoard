@@ -95,7 +95,7 @@ namespace InspectionBoard.ViewModels
 
             DataSeeder seeder = new DataSeeder();
             seeder.AddAdminUser();
-            seeder.AddFaculties();
+            seeder.AddGroups();
             seeder.AddStudent();
         }
 

@@ -1,4 +1,8 @@
-﻿using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Database.Services;
+using InspectionBoardLibrary.Domain;
+using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -12,67 +16,11 @@ using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.SubjectsDialogs
 {
-    public class RemoveSubjectDialogViewModel : BindableBase, IDialogAware
+    public class RemoveSubjectDialogViewModel : RemoveDialogViewModel<Subject, ExamContext>
     {
-        private IDialogParameters dialogParameters;
-        private readonly IDatabaseService<Subject> service;
-
-        private int selectedSubjectId;
-        public int SelectedSubjectId
-        {
-            get { return selectedSubjectId; }
-            set { SetProperty(ref selectedSubjectId, value); }
-        }
-        public ObservableCollection<int> Ids
-        {
-            get => new ObservableCollection<int>(service.SelectIds());
-        }
-        public string Title => "Удалить сведения о предмете";
-        public DelegateCommand<string> CloseDialogCommand { get; private set; }
-
-        public RemoveSubjectDialogViewModel()
-        {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            service = new SubjectService();
-        }
-
-        public event Action<IDialogResult> RequestClose;
-        private async Task RemoveSubject()
-        {
-            await service.RemoveAsync(SelectedSubjectId);
-        }
-
-        protected virtual async void CloseDialog(string parameter)
-        {
-            ButtonResult result = ButtonResult.None;
-            if (parameter?.ToLower() == "true")
-            {
-                await RemoveSubject();
-                result = ButtonResult.OK;
-            }
-            else if (parameter?.ToLower() == "false")
-            {
-                result = ButtonResult.Cancel;
-            }
-
-            RaiseRequestClose(new DialogResult(result));
-        }
-
-        public virtual void RaiseRequestClose(IDialogResult dialogResult)
-        {
-            RequestClose?.Invoke(dialogResult);
-        }
-        public bool CanCloseDialog() => true;
-
-        public void OnDialogClosed()
+        public RemoveSubjectDialogViewModel(SubjectRepository repository) : base(repository)
         {
 
-        }
-
-        public void OnDialogOpened(IDialogParameters parameters)
-        {
-            this.dialogParameters = parameters;
-            SelectedSubjectId = Ids.FirstOrDefault();
         }
     }
 }

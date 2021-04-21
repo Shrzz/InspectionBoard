@@ -1,4 +1,6 @@
-﻿using InspectionBoardLibrary.Database.Services;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -12,7 +14,7 @@ namespace Workspace.ViewModels
     public class StudentsViewModel : BindableBase, INavigationAware
     {
         private readonly IDialogService dialogService;
-        private readonly IDatabaseService<Student> service;
+        private readonly StudentRepository repository;
 
         private ObservableCollection<Student> students;
         public ObservableCollection<Student> Students
@@ -50,7 +52,7 @@ namespace Workspace.ViewModels
         public StudentsViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            service = new StudentService();
+            repository = new StudentRepository(new ExamContext());
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
@@ -68,7 +70,7 @@ namespace Workspace.ViewModels
                         }
                     case ButtonResult.OK:
                         {
-                            Students = new ObservableCollection<Student>(service.Select());
+                            Students = repository.Select().Result;
                             break;
                         }
                     case ButtonResult.Cancel:
@@ -79,9 +81,10 @@ namespace Workspace.ViewModels
             });
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Students = new ObservableCollection<Student>(service.Select());
+            var students = await repository.Select();
+            Students = new ObservableCollection<Student>(students);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

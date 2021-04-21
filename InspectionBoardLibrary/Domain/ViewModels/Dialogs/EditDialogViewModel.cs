@@ -1,35 +1,36 @@
-﻿using InspectionBoardLibrary.Database.Contexts;
-using InspectionBoardLibrary.Database.Repositories;
-using InspectionBoardLibrary.Models.DatabaseModels;
-using InspectionBoardLibrary.Models.Enums;
+﻿using InspectionBoardLibrary.Database.Domain;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoard.Dialogs.StudentsDialogs
+namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
 {
-    public class EditStudentDialogViewModel : BindableBase, IDialogAware
+    public abstract class EditDialogViewModel<TEntity, TContext> : BindableBase, IDialogAware
+        where TEntity : class, IEntity
+        where TContext : DbContext
     {
         private IDialogParameters dialogParameters;
-        private readonly StudentRepository repository;
+        private readonly EfRepository<TEntity, TContext> repository;
 
-        private Student student;
-        public Student Student
+        private TEntity entity;
+        public TEntity Entity
         {
-            get { return student; }
-            set { SetProperty(ref student, value); }
+            get { return entity; }
+            set { SetProperty(ref entity, value); }
         }
 
-        private int selectedStudentId;
-        public int SelectedStudentId
+        private int selectedEntityId;
+        public int SelectedEntityId
         {
-            get { return selectedStudentId; }
-            set { SetProperty(ref selectedStudentId, value); }
+            get { return selectedEntityId; }
+            set { SetProperty(ref selectedEntityId, value); }
         }
 
         public ObservableCollection<int> Ids
@@ -37,31 +38,21 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             get => repository.SelectIds().Result;
         }
 
-        public ObservableCollection<Group> Groups
-        {
-            get => repository.SelectGroups().Result;
-        }
-
-        public List<string> EducationForms
-        {
-            get => new List<string>(Enum.GetNames(typeof(EducationForm)));
-        }
-
-        public string Title => "Изменить данные студента";
+        public string Title => "Изменение сведений";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public EditStudentDialogViewModel()
+        public EditDialogViewModel(EfRepository<TEntity, TContext> repository)
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            repository = new StudentRepository(new ExamContext());
+            this.repository = repository;
         }
 
         public event Action<IDialogResult> RequestClose;
 
-        private async Task EditStudent()
+        private async Task EditSubject()
         {
-            Student.Id = SelectedStudentId;
-            await repository.Update(Student);
+            Entity.Id = SelectedEntityId;
+            await repository.Update(Entity);
         }
 
         protected virtual async void CloseDialog(string parameter)
@@ -69,7 +60,7 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await EditStudent();
+                await EditSubject();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
@@ -98,9 +89,8 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Student = new Student();
-            SelectedStudentId = Ids.FirstOrDefault();
-            Student.Group = Groups.FirstOrDefault();
+            Entity = repository.SelectSingle(0).Result;
+            SelectedEntityId = Ids.FirstOrDefault();
         }
     }
 }
