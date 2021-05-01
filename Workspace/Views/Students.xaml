@@ -112,14 +112,14 @@
                         <DataGridTemplateColumn Header="Факультет">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Student">
-                                    <TextBlock Text="{Binding Faculty.Name}"/>
+                                    <TextBlock Text="{Binding Group.Name}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Форма обучения">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Student">
-                                    <TextBlock Text="{Binding EducationForm.Form}"/>
+                                    <TextBlock Text="{Binding EducationForm}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

@@ -39,7 +39,7 @@ namespace InspectionBoardLibrary.Database.Domain
             return entity;
         }
 
-        public async Task<ObservableCollection<TEntity>> Select()
+        public virtual async Task<ObservableCollection<TEntity>> Select()
         {
             var list = await context.Set<TEntity>().ToListAsync();
             return new ObservableCollection<TEntity>(list);

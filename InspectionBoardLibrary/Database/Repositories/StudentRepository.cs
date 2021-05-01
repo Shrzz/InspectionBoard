@@ -17,6 +17,12 @@ namespace InspectionBoardLibrary.Database.Repositories
 
         }
 
+        public override async Task<ObservableCollection<Student>> Select()
+        {
+            var list = await context.Set<Student>().Include(e => e.Group).ToListAsync();
+            return new ObservableCollection<Student>(list);
+        }
+
         internal bool TableIsEmpty()
         {
             return !context.Students.Any();

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Domain.Searchers;
+using Prism.Services.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Workspace.ViewModels;
 
 namespace Workspace.Views
 {
@@ -20,9 +25,10 @@ namespace Workspace.Views
     /// </summary>
     public partial class Subjects : UserControl
     {
-        public Subjects()
+        public Subjects(IDialogService dialogService)
         {
             InitializeComponent();
+            DataContext = new SubjectsViewModel(dialogService, new SubjectRepository(new ExamContext()), new SubjectSearcher());
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

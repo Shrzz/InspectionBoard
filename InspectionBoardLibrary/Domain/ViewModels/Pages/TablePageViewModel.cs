@@ -47,7 +47,6 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
         }
 
         public TablePage(IDialogService dialogService, EfRepository<TEntity, TContext> repository, ISearcher<TEntity> searcher)
-        public TablePage(IDialogService dialogService, EfRepository<TEntity, TContext> repository, Searcher<TEntity> searcher)
         {
             this.dialogService = dialogService;
             this.repository = repository;

@@ -18,6 +18,12 @@ namespace InspectionBoardLibrary.Database.Repositories
 
         }
 
+        public override async Task<ObservableCollection<Exam>> Select()
+        {
+            var list = await context.Set<Exam>().Include(e => e.Student).Include(e => e.Subject).Include(e => e.Teacher).ToListAsync();
+            return new ObservableCollection<Exam>(list);
+        }
+
         public async Task<ObservableCollection<Student>> SelectStudents()
         {
             var collection = await context.Students.AsNoTracking().ToListAsync();

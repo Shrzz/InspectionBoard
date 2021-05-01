@@ -42,19 +42,19 @@
                 Grid.Column="7"
                 Margin="10"
                 Content="Добавить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="AddFacultyDialog"/>
+                Command="{Binding ShowDialogCommand}" CommandParameter="AddGroupDialog"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="8"
                 Margin="10"
                 Content="Изменить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="EditFacultyDialog"/>
+                Command="{Binding ShowDialogCommand}" CommandParameter="EditGroupDialog"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="9"
                 Margin="10"
                 Content="Удалить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="RemoveFacultyDialog"/>
+                Command="{Binding ShowDialogCommand}" CommandParameter="RemoveGroupDialog"/>
 
         <DataGrid Grid.Row="1" 
                   Grid.Column="0" 
@@ -69,15 +69,22 @@
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Идентификатор">
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate DataType="models:Faculty">
+                        <DataTemplate DataType="models:Group">
                             <TextBlock Text="{Binding Id}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Название">
+                <DataGridTemplateColumn Header="Название группы">
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate DataType="models:Faculty">
+                        <DataTemplate DataType="models:Group">
                             <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Название факультета">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Group">
+                            <TextBlock Text="{Binding Faculty}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

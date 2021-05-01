@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Services.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Workspace.ViewModels;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Domain.Searchers;
+using InspectionBoardLibrary.Database.Contexts;
 
 namespace Workspace.Views
 {
@@ -20,9 +25,10 @@ namespace Workspace.Views
     /// </summary>
     public partial class Groups : UserControl
     {
-        public Groups()
+        public Groups(IDialogService dialogService)
         {
             InitializeComponent();
+            DataContext = new GroupsViewModel(dialogService, new GroupRepository(new ExamContext()), new GroupSearcher());
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

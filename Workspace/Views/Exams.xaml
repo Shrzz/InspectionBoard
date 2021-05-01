@@ -105,13 +105,6 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Оценка">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="models:Exam">
-                                    <TextBlock Text="{Binding Mark}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Дата проведения">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Exam">
@@ -122,14 +115,14 @@
                         <DataGridTemplateColumn Header="Форма экзамена">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Exam">
-                                    <TextBlock Text="{Binding ExamForm.Form}"/>
+                                    <TextBlock Text="{Binding ExamForm}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Тип экзамена">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Exam">
-                                    <TextBlock Text="{Binding ExamType.Type}"/>
+                                    <TextBlock Text="{Binding ExamType}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

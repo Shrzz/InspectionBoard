@@ -107,7 +107,7 @@
     <Compile Include="Domain\ViewModels\Dialogs\RemoveDialogViewModel.cs" />
     <Compile Include="Domain\MenuItem.cs" />
     <Compile Include="Domain\SnackbarMessageQueue.cs" />
-    <Compile Include="Domain\ViewModels\Pages\TablePage.cs" />
+    <Compile Include="Domain\ViewModels\Pages\TablePageViewModel.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
     <Compile Include="FileHandlers\DocumentsSettings.cs" />
     <Compile Include="Migrations\ExamContext\202103160603523_InitialExam.cs" />

@@ -22,11 +22,5 @@ namespace InspectionBoardLibrary.Database.Repositories
         {
             return !context.Groups.Any();
         }
-
-        public async Task<ObservableCollection<int>> SelectIds()
-        {
-            var collection = await context.Groups.OrderBy(g => g.Id).Select(g => g.Id).ToListAsync();
-            return new ObservableCollection<int>(collection);
-        }
     }
 }
