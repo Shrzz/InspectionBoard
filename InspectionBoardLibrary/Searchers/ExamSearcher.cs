@@ -8,14 +8,9 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Domain.Searchers
 {
-    public class ExamSearcher : Searcher<Exam>
+    public class ExamSearcher : ISearcher<Exam>
     {
-        public ExamSearcher(ObservableCollection<Exam> entities, string searchWord) : base(entities, searchWord)
-        {
-
-        }
-
-        public override Exam Search()
+        public Exam Search(ObservableCollection<Exam> entities, string searchWord)
         {
             return entities.FirstOrDefault(e => e.Id.ToString().ToLower().Contains(searchWord.ToLower()) ||
                                                                  e.Student.Surname.ToString().ToLower().Contains(searchWord.ToLower()) ||

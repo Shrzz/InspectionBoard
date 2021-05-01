@@ -8,13 +8,21 @@ using InspectionBoard.Dialogs.SubjectsDialogs;
 using InspectionBoard.Dialogs.TeachersDialog;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
+using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Domain.Searchers;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using Prism.Unity;
+using System.Collections.ObjectModel;
 using System.Windows;
 using Workspace;
-
+using Workspace.ViewModels;
+using Workspace.Views;
 
 namespace InspectionBoard
 {
@@ -22,12 +30,11 @@ namespace InspectionBoard
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<Main>();
+            return Container.Resolve<Views.Main>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
             RegisterStudentDialogs(containerRegistry);
             RegisterSubjectDialogs(containerRegistry);
             RegisterTeacherDialogs(containerRegistry);

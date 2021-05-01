@@ -9,7 +9,7 @@ namespace Workspace.ViewModels
 {
     public class StudentsViewModel : TablePage<Student, ExamContext>
     {
-        public StudentsViewModel(DialogService service, StudentRepository repository, StudentSearcher searcher) : base(service, repository, searcher)
+        public StudentsViewModel(IDialogService service, StudentRepository repository, StudentSearcher searcher) : base(service, repository, searcher)
         {
 
         }

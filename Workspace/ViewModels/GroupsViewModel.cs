@@ -9,7 +9,7 @@ namespace Workspace.ViewModels
 {
     public class GroupsViewModel : TablePage<Group, ExamContext>
     {
-        public GroupsViewModel(DialogService service, GroupRepository repository, GroupSearcher searcher) : base(service, repository, searcher)
+        public GroupsViewModel(IDialogService service, GroupRepository repository, GroupSearcher searcher) : base(service, repository, searcher)
         {
 
         }

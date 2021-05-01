@@ -10,13 +10,13 @@ using System.Linq;
 
 namespace InspectionBoardLibrary.Domain.ViewModels.Pages
 {
-    public abstract class TablePage<TEntity, TContext> : BindableBase, INavigationAware
+    public class TablePage<TEntity, TContext> : BindableBase, INavigationAware
         where TEntity : class, IEntity
         where TContext : DbContext
     {
         protected readonly IDialogService dialogService;
         protected readonly EfRepository<TEntity, TContext> repository;
-        protected readonly Searcher<TEntity> searcher;
+        protected readonly ISearcher<TEntity> searcher;
 
         private ObservableCollection<TEntity> entities;
         public ObservableCollection<TEntity> Entities
@@ -32,7 +32,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
             set
             {
                 SetProperty(ref searchKeyword, value);
-                SelectedEntity = searcher.Search();
+                SelectedEntity = searcher.Search(Entities, SearchKeyword);
             }
         }
 
@@ -46,15 +46,16 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
             }
         }
 
-        public TablePage(IDialogService dialogService, EfRepository<TEntity, TContext> repository, Searcher<TEntity> searcher)
+        public TablePage(IDialogService dialogService, EfRepository<TEntity, TContext> repository, ISearcher<TEntity> searcher)
         {
-            this.dialogService = dialogService;
             this.repository = repository;
             this.searcher = searcher;
+            this.dialogService = dialogService;
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
+
 
         private void ShowDialog(string dialogName)
         {

@@ -12,6 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Workspace.ViewModels;
+using Prism.Services.Dialogs;
+using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Domain.Searchers;
+using InspectionBoardLibrary.Database.Contexts;
+using System.Collections.ObjectModel;
+using InspectionBoardLibrary.Models.DatabaseModels;
+using Prism.Ioc;
+using InspectionBoardLibrary.Domain.ViewModels.Pages;
 
 namespace Workspace.Views
 {
@@ -20,9 +29,10 @@ namespace Workspace.Views
     /// </summary>
     public partial class Exams : UserControl
     {
-        public Exams()
+        public Exams(IDialogService dialogService)
         {
             InitializeComponent();
+            DataContext = new ExamsViewModel(dialogService, new ExamRepository(new ExamContext()), new ExamSearcher());
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

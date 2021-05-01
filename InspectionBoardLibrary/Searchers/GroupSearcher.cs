@@ -8,14 +8,9 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Domain.Searchers
 {
-    public class GroupSearcher : Searcher<Group>
+    public class GroupSearcher : ISearcher<Group>
     {
-        public GroupSearcher(ObservableCollection<Group> entities, string searchWord) : base(entities, searchWord)
-        {
-
-        }
-
-        public override Group Search()
+        public Group Search(ObservableCollection<Group> entities, string searchWord)
         {
             return entities.FirstOrDefault(f => f.Name.ToLower().Contains(searchWord.ToLower())) ?? entities.FirstOrDefault();
         }

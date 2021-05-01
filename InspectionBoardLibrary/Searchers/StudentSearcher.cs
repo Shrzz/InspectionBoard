@@ -4,14 +4,9 @@ using System.Linq;
 
 namespace InspectionBoardLibrary.Domain.Searchers
 {
-    public class StudentSearcher : Searcher<Student>
+    public class StudentSearcher : ISearcher<Student>
     {
-        public StudentSearcher(ObservableCollection<Student> entities, string searchWord) : base(entities, searchWord)
-        {
-
-        }
-
-        public override Student Search()
+        public Student Search(ObservableCollection<Student> entities, string searchWord)
         {
             return entities.FirstOrDefault(s => s.Id.ToString().ToLower().Contains(searchWord.ToLower()) ||
                                                                   s.Name.ToString().ToLower().Contains(searchWord.ToLower()) ||
