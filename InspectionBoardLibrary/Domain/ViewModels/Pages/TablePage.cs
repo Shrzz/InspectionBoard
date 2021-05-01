@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace InspectionBoardLibrary.Domain.ViewModels.Pages
 {
-    public class TablePage<TEntity, TContext> : BindableBase, INavigationAware
+    public abstract class TablePage<TEntity, TContext> : BindableBase, INavigationAware
         where TEntity : class, IEntity
         where TContext : DbContext
     {
@@ -47,7 +47,9 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
         }
 
         public TablePage(IDialogService dialogService, EfRepository<TEntity, TContext> repository, ISearcher<TEntity> searcher)
+        public TablePage(IDialogService dialogService, EfRepository<TEntity, TContext> repository, Searcher<TEntity> searcher)
         {
+            this.dialogService = dialogService;
             this.repository = repository;
             this.searcher = searcher;
             this.dialogService = dialogService;
