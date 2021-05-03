@@ -83,9 +83,9 @@ namespace InspectionBoard
         }
         private void RegisterGroupDialogs(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterDialog<AddFacultyDialog, AddGroupDialogViewModel>("AddFacultyDialog");
-            containerRegistry.RegisterDialog<EditFacultyDialog, EditGroupDialogViewModel>("EditFacultyDialog");
-            containerRegistry.RegisterDialog<RemoveFacultyDialog, RemoveGroupDialogViewModel>("RemoveFacultyDialog");
+            containerRegistry.RegisterDialog<AddFacultyDialog, AddGroupDialogViewModel>("AddGroupDialog");
+            containerRegistry.RegisterDialog<EditFacultyDialog, EditGroupDialogViewModel>("EditGroupDialog");
+            containerRegistry.RegisterDialog<RemoveFacultyDialog, RemoveGroupDialogViewModel>("RemoveGroupDialog");
         }
     }
 }

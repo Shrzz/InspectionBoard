@@ -29,6 +29,7 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
         {
             get => new List<string>(Enum.GetNames(typeof(ExamForm)));
         }
+
         public List<string> ExamTypes
         {
             get => new List<string>(Enum.GetNames(typeof(ExamType)));
@@ -36,36 +37,19 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
 
         public ObservableCollection<Student> Students
         {
-            get
-            {
-                using (ExamContext context = new ExamContext())
-                {
-                    return new ObservableCollection<Student>(context.Students.AsNoTracking().ToList());
-                }
-            }
+            get => (repository as ExamRepository).SelectStudents().Result;
         }
 
         public ObservableCollection<Teacher> Teachers
         {
-            get
-            {
-                using (ExamContext context = new ExamContext())
-                {
-                    return new ObservableCollection<Teacher>(context.Teachers.AsNoTracking().ToList());
-                }
-            }
+            get => (repository as ExamRepository).SelectTeachers().Result;
         }
 
         public ObservableCollection<Subject> Subjects
         {
-            get
-            {
-                using (ExamContext context = new ExamContext())
-                {
-                    return new ObservableCollection<Subject>(context.Subjects.AsNoTracking().ToList());
-                }
-            }
+            get => (repository as ExamRepository).SelectSubjects().Result;
         }
+
         public override void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;

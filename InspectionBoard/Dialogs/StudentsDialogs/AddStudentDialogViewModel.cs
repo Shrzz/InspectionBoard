@@ -17,7 +17,17 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 
         }
 
-        public override void OnDialogOpened(IDialogParameters parameters)
+        public ObservableCollection<string> EducationForms 
+        { 
+            get => new ObservableCollection<string>(Enum.GetNames(typeof(EducationForm)));
+        }
+
+        public ObservableCollection<Group> Groups
+        {
+            get => (repository as StudentRepository).SelectGroups().Result;
+        }
+
+        public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
             this.Entity = new Student();
