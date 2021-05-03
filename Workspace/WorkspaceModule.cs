@@ -7,6 +7,7 @@ using Prism.Modularity;
 using Prism.Services.Dialogs;
 using Workspace.ViewModels;
 using Workspace.Views;
+using Workspace.Windows;
 
 namespace Workspace
 {
@@ -19,7 +20,9 @@ namespace Workspace
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterDialogWindow<DialogWindow>("DialogWindow");
+            containerRegistry.RegisterDialogWindow<AddDialogWindow>("AddDialogWindow");
+            containerRegistry.RegisterDialogWindow<EditDialogWindow>("EditDialogWindow");
+            containerRegistry.RegisterDialogWindow<RemoveDialogWindow>("RemoveDialogWindow");
 
             containerRegistry.Register<IRepository<Teacher>, TeacherRepository>();
             containerRegistry.Register<IRepository<Student>, StudentRepository>();

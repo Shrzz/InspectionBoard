@@ -50,12 +50,28 @@ namespace InspectionBoardLibrary.Models.ViewModels.Pages
             this.dialogService = dialogService;
             this.repository = repository;
             this.dialogService = dialogService;
-            ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
+            ShowDialogCommand = new DelegateCommand<string>(DefineDialogType);
         }
 
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
 
-        private void ShowDialog(string dialogName)
+        private void DefineDialogType(string dialogName)
+        {
+            if (dialogName.StartsWith("Add"))
+            {
+                ShowDialog(dialogName, "AddDialogWindow");
+            }
+            else if (dialogName.StartsWith("Edit"))
+            {
+                ShowDialog(dialogName, "EditDialogWindow");
+            }
+            else if (dialogName.StartsWith("Remove"))
+            {
+                ShowDialog(dialogName, "RemoveDialogWindow");
+            }
+        }
+
+        private void ShowDialog(string dialogName, string dialogWindowName)
         {
             var parameters = new DialogParameters();
             dialogService.ShowDialog(dialogName, parameters, r =>
@@ -80,8 +96,8 @@ namespace InspectionBoardLibrary.Models.ViewModels.Pages
                             break;
                         }
                 }
-                
-            }, "DialogWindow");
+
+            }, dialogWindowName);
         }
 
         public async void OnNavigatedTo(NavigationContext navigationContext)

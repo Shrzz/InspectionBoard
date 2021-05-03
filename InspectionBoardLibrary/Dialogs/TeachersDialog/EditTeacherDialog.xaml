@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:InspectionBoardLibrary.Windows.TeachersDialog"
              mc:Ignorable="d" 
-             Height="450" Width="400">
+             Height="Auto" Width="Auto">
     <Grid>
         <materialDesign:Card Padding="20">
             <StackPanel Margin="20">

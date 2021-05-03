@@ -40,7 +40,7 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
-            Groups = await (repository as StudentRepository).SelectGroups();
+            Groups = await (repository as GroupRepository).Select();
             EducationForms = new ObservableCollection<string>(Enum.GetNames(typeof(EducationForm)));
         }
     }

@@ -102,8 +102,8 @@ namespace InspectionBoardLibrary.Models.ViewModels.Dialogs
         public virtual async void OnDialogOpened(IDialogParameters parameters)
         {
             dialogParameters = parameters;
-            Entities = await repository.Select();
             Ids = await repository.SelectIds();
+            Entities = await repository.Select();
             SelectedEntityId = 0;
             Entity = Entities[SelectedEntityId];
         }
