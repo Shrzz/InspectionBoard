@@ -84,6 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Contexts\ExamContext.cs" />
+    <Compile Include="Dialogs\SettingsDialogs\AddUserDialog.xaml.cs">
+      <DependentUpon>AddUserDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
     <Compile Include="Models\Database\EfRepository.cs" />
     <Compile Include="Models\Database\IEntity.cs" />
     <Compile Include="Models\Database\IRepository.cs" />
@@ -266,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Dialogs\SettingsDialogs\AddUserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\StudentsDialogs\AddStudentDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -311,9 +319,7 @@
       <DependentUpon>202103160603210_InitialUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dialogs\SettingsDialogs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
