@@ -6,7 +6,6 @@ using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Linq;
 
 namespace InspectionBoardLibrary.Domain.ViewModels.Pages
 {
@@ -46,11 +45,10 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
             }
         }
 
-        public TablePage(IDialogService dialogService, IRepository<TEntity> repository, ISearcher<TEntity> searcher)
+        public TablePage(IDialogService dialogService, IRepository<TEntity> repository)
         {
             this.dialogService = dialogService;
             this.repository = repository;
-            this.searcher = searcher;
             this.dialogService = dialogService;
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
