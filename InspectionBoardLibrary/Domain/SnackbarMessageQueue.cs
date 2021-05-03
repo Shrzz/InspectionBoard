@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Domain
+namespace InspectionBoardLibrary.Models
 {
     public class SnackbarMessageQueue : ISnackbarMessageQueue
     {

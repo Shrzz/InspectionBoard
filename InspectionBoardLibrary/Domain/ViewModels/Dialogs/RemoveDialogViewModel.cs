@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 
-namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
+namespace InspectionBoardLibrary.Models.ViewModels.Dialogs
 {
     public abstract class RemoveDialogViewModel<TEntity, TContext> : BindableBase, IDialogAware
         where TEntity : class, IEntity

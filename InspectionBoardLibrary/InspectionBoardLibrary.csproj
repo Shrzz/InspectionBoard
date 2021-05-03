@@ -168,12 +168,12 @@
     <Compile Include="Domain\ViewModels\Pages\MenuTop.xaml.cs">
       <DependentUpon>MenuTop.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Searchers\ExamSearcher.cs" />
-    <Compile Include="Searchers\GroupSearcher.cs" />
+    <Compile Include="Models\Searchers\ExamSearcher.cs" />
+    <Compile Include="Models\Searchers\GroupSearcher.cs" />
     <Compile Include="Domain\ISearcher.cs" />
-    <Compile Include="Searchers\StudentSearcher.cs" />
-    <Compile Include="Searchers\SubjectSearcher.cs" />
-    <Compile Include="Searchers\TeacherSearcher.cs" />
+    <Compile Include="Models\Searchers\StudentSearcher.cs" />
+    <Compile Include="Models\Searchers\SubjectSearcher.cs" />
+    <Compile Include="Models\Searchers\TeacherSearcher.cs" />
     <Compile Include="Domain\ViewModels\Dialogs\AddDialogViewModel.cs" />
     <Compile Include="Domain\ViewModels\Dialogs\EditDialogViewModel.cs" />
     <Compile Include="Domain\ViewModels\Dialogs\RemoveDialogViewModel.cs" />

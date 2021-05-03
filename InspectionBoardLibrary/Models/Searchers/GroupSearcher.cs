@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Domain.Searchers
+namespace InspectionBoardLibrary.Models.Searchers
 {
     public class GroupSearcher : ISearcher<Group>
     {

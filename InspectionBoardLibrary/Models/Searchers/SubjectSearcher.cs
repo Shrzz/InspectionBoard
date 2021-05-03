@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace InspectionBoardLibrary.Domain.Searchers
+namespace InspectionBoardLibrary.Models.Searchers
 {
     public class SubjectSearcher : ISearcher<Subject>
     {

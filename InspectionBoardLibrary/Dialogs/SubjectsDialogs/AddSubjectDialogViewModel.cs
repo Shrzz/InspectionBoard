@@ -1,7 +1,7 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
 using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
-using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
+using InspectionBoardLibrary.Models.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;

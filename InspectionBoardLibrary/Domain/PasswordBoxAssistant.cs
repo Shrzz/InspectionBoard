@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 
 
-namespace InspectionBoardLibrary.Domain
+namespace InspectionBoardLibrary.Models
 {
     public static class PasswordBoxAssistant
     {

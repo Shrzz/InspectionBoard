@@ -1,4 +1,4 @@
-﻿using InspectionBoardLibrary.Domain.Searchers;
+﻿using InspectionBoardLibrary.Models.Searchers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

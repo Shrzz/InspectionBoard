@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Authorization.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:utility="clr-namespace:InspectionBoardLibrary.Domain;assembly=InspectionBoardLibrary"
+             xmlns:utility="clr-namespace:InspectionBoardLibrary.Models;assembly=InspectionBoardLibrary"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"

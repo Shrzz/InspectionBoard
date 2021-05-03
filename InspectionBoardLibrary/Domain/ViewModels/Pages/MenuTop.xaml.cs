@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InspectionBoardLibrary.Domain.ViewModels.Pages
+namespace InspectionBoardLibrary.Models.ViewModels.Pages
 {
     /// <summary>
     /// Логика взаимодействия для MenuTop.xaml
