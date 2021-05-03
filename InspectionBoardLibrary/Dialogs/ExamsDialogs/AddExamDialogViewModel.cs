@@ -8,6 +8,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace InspectionBoardLibrary.Windows.ExamsDialogs
 {
@@ -25,14 +26,14 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
             set { SetProperty(ref date, value); }
         }
 
-        public List<string> ExamForms
+        public List<ExamForm> ExamForms
         {
-            get => new List<string>(Enum.GetNames(typeof(ExamForm)));
+            get => Enum.GetValues(typeof(ExamForm)).Cast<ExamForm>().ToList();
         }
 
-        public List<string> ExamTypes
+        public List<ExamType> ExamTypes
         {
-            get => new List<string>(Enum.GetNames(typeof(ExamType)));
+            get => Enum.GetValues(typeof(ExamType)).Cast<ExamType>().ToList();
         }
 
         private ObservableCollection<Student> students;

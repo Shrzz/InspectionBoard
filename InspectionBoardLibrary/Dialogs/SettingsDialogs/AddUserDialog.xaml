@@ -17,7 +17,7 @@
                              Margin="20 0 20 0"
                              Text="{Binding User.Username}"/>
                     <PasswordBox  u:PasswordBoxAssistant.BindPassword="True"
-                                  u:PasswordBoxAssistant.BoundPassword="{Binding User.Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                  u:PasswordBoxAssistant.BoundPassword="{Binding User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                   materialDesign:TextFieldAssist.HasClearButton="True"  
                                   materialDesign:HintAssist.Hint="Пароль" 
                                   Margin="20 15 20 0" 
