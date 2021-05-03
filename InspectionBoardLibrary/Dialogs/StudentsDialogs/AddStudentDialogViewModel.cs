@@ -1,12 +1,11 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
 using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
-using InspectionBoardLibrary.Models.ViewModels.Dialogs;
+using InspectionBoardLibrary.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using InspectionBoardLibrary.Models.Enums;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace InspectionBoardLibrary.Windows.StudentsDialogs
@@ -15,7 +14,7 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
     {
 
         private ObservableCollection<string> educationForms;
-        public ObservableCollection<string> EducationForms 
+        public ObservableCollection<string> EducationForms
         {
             get => educationForms;
             set { SetProperty(ref educationForms, value); }

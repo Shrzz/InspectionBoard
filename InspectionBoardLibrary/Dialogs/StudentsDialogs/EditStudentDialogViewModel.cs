@@ -1,16 +1,12 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
 using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
-using InspectionBoardLibrary.Models.ViewModels.Dialogs;
+using InspectionBoardLibrary.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using InspectionBoardLibrary.Models.Enums;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Windows.StudentsDialogs
 {

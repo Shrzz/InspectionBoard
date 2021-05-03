@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Models.ViewModels.Dialogs
+namespace InspectionBoardLibrary.Dialogs
 {
     public abstract class AddDialogViewModel<TEntity, TContext> : BindableBase, IDialogAware
         where TEntity : class, IEntity

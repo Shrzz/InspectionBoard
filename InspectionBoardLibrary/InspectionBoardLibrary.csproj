@@ -174,9 +174,9 @@
     <Compile Include="Models\Searchers\StudentSearcher.cs" />
     <Compile Include="Models\Searchers\SubjectSearcher.cs" />
     <Compile Include="Models\Searchers\TeacherSearcher.cs" />
-    <Compile Include="Domain\ViewModels\Dialogs\AddDialogViewModel.cs" />
-    <Compile Include="Domain\ViewModels\Dialogs\EditDialogViewModel.cs" />
-    <Compile Include="Domain\ViewModels\Dialogs\RemoveDialogViewModel.cs" />
+    <Compile Include="Dialogs\AddDialogViewModel.cs" />
+    <Compile Include="Dialogs\EditDialogViewModel.cs" />
+    <Compile Include="Dialogs\RemoveDialogViewModel.cs" />
     <Compile Include="Domain\MenuItem.cs" />
     <Compile Include="Domain\SnackbarMessageQueue.cs" />
     <Compile Include="Domain\ViewModels\Pages\TablePageViewModel.cs" />
@@ -320,6 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\SettingsDialogs\" />
+    <Folder Include="Domain\ViewModels\Dialogs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

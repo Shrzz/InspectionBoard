@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Models.ViewModels.Dialogs
+namespace InspectionBoardLibrary.Dialogs
 {
     public abstract class EditDialogViewModel<TEntity, TContext> : BindableBase, IDialogAware
         where TEntity : class, IEntity
