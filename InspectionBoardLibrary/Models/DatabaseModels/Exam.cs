@@ -1,4 +1,4 @@
-﻿using InspectionBoardLibrary.Database.Domain;
+﻿using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.Enums;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;

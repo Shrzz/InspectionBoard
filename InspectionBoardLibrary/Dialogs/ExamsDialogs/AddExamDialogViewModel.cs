@@ -1,7 +1,7 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
-using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Dialogs;
+using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using InspectionBoardLibrary.Models.Enums;
 using Prism.Services.Dialogs;

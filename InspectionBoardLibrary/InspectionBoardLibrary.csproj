@@ -84,9 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Contexts\ExamContext.cs" />
-    <Compile Include="Database\Domain\EfRepository.cs" />
-    <Compile Include="Database\Domain\IEntity.cs" />
-    <Compile Include="Database\Domain\IRepository.cs" />
+    <Compile Include="Models\Database\EfRepository.cs" />
+    <Compile Include="Models\Database\IEntity.cs" />
+    <Compile Include="Models\Database\IRepository.cs" />
     <Compile Include="Database\Repositories\StudentRepository.cs" />
     <Compile Include="Database\Repositories\ExamRepository.cs" />
     <Compile Include="Database\Repositories\GroupRepository.cs" />
@@ -164,22 +164,19 @@
       <DependentUpon>RemoveTeacherDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TeachersDialog\RemoveTeacherDialogViewModel.cs" />
-    <Compile Include="Domain\PasswordBoxAssistant.cs" />
-    <Compile Include="Domain\ViewModels\Pages\MenuTop.xaml.cs">
-      <DependentUpon>MenuTop.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ISearcher.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\PasswordBoxAssistant.cs" />
     <Compile Include="Models\Searchers\ExamSearcher.cs" />
     <Compile Include="Models\Searchers\GroupSearcher.cs" />
-    <Compile Include="Domain\ISearcher.cs" />
     <Compile Include="Models\Searchers\StudentSearcher.cs" />
     <Compile Include="Models\Searchers\SubjectSearcher.cs" />
     <Compile Include="Models\Searchers\TeacherSearcher.cs" />
     <Compile Include="Dialogs\AddDialogViewModel.cs" />
     <Compile Include="Dialogs\EditDialogViewModel.cs" />
     <Compile Include="Dialogs\RemoveDialogViewModel.cs" />
-    <Compile Include="Domain\MenuItem.cs" />
-    <Compile Include="Domain\SnackbarMessageQueue.cs" />
-    <Compile Include="Domain\ViewModels\Pages\TablePageViewModel.cs" />
+    <Compile Include="Models\SnackbarMessageQueue.cs" />
+    <Compile Include="Models\TablePageViewModel.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
     <Compile Include="FileHandlers\DocumentsSettings.cs" />
     <Compile Include="Migrations\ExamContext\202103160603523_InitialExam.cs" />
@@ -305,10 +302,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Domain\ViewModels\Pages\MenuTop.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\ExamContext\202103160603523_InitialExam.resx">
@@ -320,7 +313,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\SettingsDialogs\" />
-    <Folder Include="Domain\ViewModels\Dialogs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

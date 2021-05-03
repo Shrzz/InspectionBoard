@@ -1,16 +1,11 @@
-﻿using InspectionBoardLibrary.Models.Searchers;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Database.Domain
+namespace InspectionBoardLibrary.Models.Database
 {
     public interface IRepository<T> where T : class, IEntity
     {
-        ISearcher<T> Searcher { get; set; } 
+        ISearcher<T> Searcher { get; set; }
         Task<ObservableCollection<T>> Select();
         Task<T> SelectSingle(int id);
         Task<T> SelectFirst();

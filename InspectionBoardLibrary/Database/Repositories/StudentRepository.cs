@@ -1,8 +1,6 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
-using InspectionBoardLibrary.Database.Domain;
+using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;

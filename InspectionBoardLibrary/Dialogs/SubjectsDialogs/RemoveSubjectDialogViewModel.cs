@@ -1,6 +1,6 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
-using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Dialogs;
+using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
 
 namespace InspectionBoardLibrary.Windows.SubjectsDialogs

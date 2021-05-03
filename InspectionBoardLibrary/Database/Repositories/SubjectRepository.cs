@@ -1,10 +1,6 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using InspectionBoardLibrary.Database.Domain;
 
 namespace InspectionBoardLibrary.Database.Repositories
 {

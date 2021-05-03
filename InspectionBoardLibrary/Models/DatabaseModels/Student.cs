@@ -1,11 +1,5 @@
-﻿using InspectionBoardLibrary.Database;
-using InspectionBoardLibrary.Database.Domain;
+﻿using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models.DatabaseModels
 {

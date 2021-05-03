@@ -1,10 +1,8 @@
-﻿using InspectionBoardLibrary.Database.Domain;
-using InspectionBoardLibrary.Database.Repositories;
+﻿using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
-using InspectionBoardLibrary.Windows;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Services.Dialogs;
 using Workspace.ViewModels;
 using Workspace.Views;
 using Workspace.Windows;

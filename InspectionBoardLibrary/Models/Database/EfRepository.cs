@@ -1,13 +1,9 @@
-﻿using InspectionBoardLibrary.Models.Searchers;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Database.Domain
+namespace InspectionBoardLibrary.Models.Database
 {
     public abstract class EfRepository<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class, IEntity

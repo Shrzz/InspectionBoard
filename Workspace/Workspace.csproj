@@ -63,7 +63,6 @@
     <Compile Include="ViewModels\Legacy\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\StudentsViewModel.cs" />
     <Compile Include="ViewModels\SubjectsViewModel.cs" />
-    <Compile Include="ViewModels\TEntity.cs" />
     <Compile Include="Views\Legacy\DocsEnrollment.xaml.cs">
       <DependentUpon>DocsEnrollment.xaml</DependentUpon>
     </Compile>

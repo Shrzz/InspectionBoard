@@ -1,5 +1,4 @@
-﻿using InspectionBoardLibrary.Database.Domain;
-using InspectionBoardLibrary.Models.Searchers;
+﻿using InspectionBoardLibrary.Models.Database;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -7,7 +6,7 @@ using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 
-namespace InspectionBoardLibrary.Models.ViewModels.Pages
+namespace InspectionBoardLibrary.Models
 {
     public abstract class TablePage<TEntity, TContext> : BindableBase, INavigationAware
         where TEntity : class, IEntity
