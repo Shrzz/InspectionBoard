@@ -1,19 +1,6 @@
-﻿using InspectionBoardLibrary.Database;
-using InspectionBoardLibrary.DataSeeder;
-using InspectionBoardLibrary.Models;
-using MaterialDesignThemes.Wpf;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Data;
-using InspectionBoardLibrary.Domain;
 
 namespace Workspace.ViewModels
 {
@@ -32,15 +19,15 @@ namespace Workspace.ViewModels
         {
             Message = "message";
             this.dialogService = dialogService;
-            ShowDialogCommand = new DelegateCommand(ShowDialog);
+            ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
         }
 
-        public DelegateCommand ShowDialogCommand { get; set; }
+        public DelegateCommand<string> ShowDialogCommand { get; set; }
 
-        public void ShowDialog()
+        public void ShowDialog(string name)
         {
             var param = new DialogParameters();
-            dialogService.Show("AddExamDialog", param, r =>
+            dialogService.Show(name, param, r =>
             {
                 if (r.Result == ButtonResult.OK)
                 {
@@ -50,7 +37,7 @@ namespace Workspace.ViewModels
                 {
                     Message = "Not OK";
                 }
-            });
+            }, "DialogWindow");
         }
 
     }

@@ -57,6 +57,17 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Test\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test\GenericDialog.xaml.cs">
+      <DependentUpon>GenericDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test\GenericDialogViewModel.cs" />
+    <Compile Include="Test\NotificationDialog.xaml.cs">
+      <DependentUpon>NotificationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test\NotificationDialogViewModel.cs" />
     <Compile Include="ViewModels\Legacy\DocsEnrollmentViewModel.cs" />
     <Compile Include="ViewModels\ExamsViewModel.cs" />
     <Compile Include="ViewModels\GroupsViewModel.cs" />
@@ -115,6 +126,18 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Test\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test\GenericDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test\NotificationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Legacy\DocsEnrollment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

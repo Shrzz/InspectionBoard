@@ -133,9 +133,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialogs\DialogWindow.xaml.cs">
-      <DependentUpon>DialogWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\ExamsDialogs\AddExamDialog.xaml.cs">
       <DependentUpon>AddExamDialog.xaml</DependentUpon>
     </Compile>
@@ -209,10 +206,6 @@
     </Compile>
     <Compile Include="Dialogs\TeachersDialog\RemoveTeacherDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Page Include="Dialogs\DialogWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dialogs\ExamsDialogs\AddExamDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

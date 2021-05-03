@@ -18,7 +18,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
         where TContext : DbContext
     {
         protected IDialogParameters dialogParameters;
-        protected readonly EfRepository<TEntity, TContext> repository;
+        protected readonly IRepository<TEntity> repository;
 
         private TEntity entity;
         public TEntity Entity
@@ -30,7 +30,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
         public string Title => "Добавление объекта";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public AddDialogViewModel(EfRepository<TEntity, TContext> repository)
+        public AddDialogViewModel(IRepository<TEntity> repository)
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
             this.repository = repository;

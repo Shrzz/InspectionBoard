@@ -37,9 +37,6 @@ namespace InspectionBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
- 
-            containerRegistry.RegisterDialogWindow<Dialogs.DialogWindow>();
-            
             RegisterStudentDialogs(containerRegistry);
             RegisterSubjectDialogs(containerRegistry);
             RegisterTeacherDialogs(containerRegistry);

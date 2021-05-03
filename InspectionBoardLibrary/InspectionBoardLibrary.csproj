@@ -96,10 +96,6 @@
     <Compile Include="Database\Repositories\UserRepository.cs" />
     <Compile Include="Database\Contexts\UserContext.cs" />
     <Compile Include="DataSeeder\DataSeeder.cs" />
-    <Compile Include="Domain\ViewModels\Dialogs\NotificationDialog.xaml.cs">
-      <DependentUpon>NotificationDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\ViewModels\Dialogs\NotificationDialogViewModel.cs" />
     <Compile Include="Searchers\ExamSearcher.cs" />
     <Compile Include="Searchers\GroupSearcher.cs" />
     <Compile Include="Domain\ISearcher.cs" />
@@ -168,9 +164,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ExamContextMigrations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\ExamContext\202103160603523_InitialExam.resx">
       <DependentUpon>202103160603523_InitialExam.cs</DependentUpon>
@@ -178,12 +172,6 @@
     <EmbeddedResource Include="Migrations\UserContext\202103160603210_InitialUser.resx">
       <DependentUpon>202103160603210_InitialUser.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Domain\ViewModels\Dialogs\NotificationDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

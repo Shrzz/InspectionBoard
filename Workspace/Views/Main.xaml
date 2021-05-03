@@ -9,7 +9,12 @@
              xmlns:prism="http://prismlibrary.com/"      
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <Button Command="{Binding ShowDialogCommand}" Height="500" Width="500" Content="{Binding Text}"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Command="{Binding ShowDialogCommand}" CommandParameter="NotificationDialog" Height="500" Width="500" Content="{Binding Message}" Grid.Row="0"></Button>
+        <Button Command="{Binding ShowDialogCommand}" CommandParameter="GenericDialog" Height="500" Width="500" Content="{Binding Message}" Grid.Row="1"></Button>
         <ContentControl prism:RegionManager.RegionName="WorkspaceRegion"/>
     </Grid>
 </UserControl>
