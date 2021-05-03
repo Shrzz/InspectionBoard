@@ -1,18 +1,19 @@
 ﻿using Authorization;
-using InspectionBoard.Dialogs;
-using InspectionBoard.Dialogs.DialogWindows;
-using InspectionBoard.Dialogs.ExamsDialogs;
-using InspectionBoard.Dialogs.GroupsDialogs;
-using InspectionBoard.Dialogs.StudentsDialogs;
-using InspectionBoard.Dialogs.SubjectsDialogs;
-using InspectionBoard.Dialogs.TeachersDialog;
+using InspectionBoardLibrary.Windows;
+using InspectionBoardLibrary.Windows.ExamsDialogs;
+using InspectionBoardLibrary.Windows.GroupsDialogs;
+using InspectionBoardLibrary.Windows.StudentsDialogs;
+using InspectionBoardLibrary.Windows.StudentsDialogs;
+using InspectionBoardLibrary.Windows.SubjectsDialogs;
+using InspectionBoardLibrary.Windows.TeachersDialog;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using System.Windows;
 using Workspace;
+using Workspace.Windows;
 
-namespace InspectionBoard
+namespace InspectionBoardLibrary
 {
     public partial class App : PrismApplication
     {

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="InspectionBoardLibrary.Windows.SubjectsDialogs.AddSubjectDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InspectionBoardLibrary.Windows.SubjectsDialogs"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="320" Width="400">
+    <Grid>
+        <materialDesign:Card Padding="20">
+            <StackPanel Margin="20">
+                <TextBox materialDesign:HintAssist.Hint="Название предмета"
+                         Margin="0 5" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Focusable="True" 
+                         Text="{Binding Subject.Name}" />
+                <TextBox materialDesign:HintAssist.Hint="Количество лекционных часов"
+                         Margin="0 5" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Text="{Binding Subject.LectoryHours}"/>
+                <TextBox materialDesign:HintAssist.Hint="Количество лабораторных часов"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Text="{Binding Subject.LaboratoryHours}"/>
+                <Button Margin="20 10 20 0"
+                        Content="Добавить"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="true"/>
+                <Button Margin="20"
+                        Content="Отмена"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="false"/>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

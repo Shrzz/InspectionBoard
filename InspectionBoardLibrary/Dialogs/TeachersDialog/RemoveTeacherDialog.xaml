@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="InspectionBoardLibrary.Windows.TeachersDialog.RemoveTeacherDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InspectionBoardLibrary.Windows.TeachersDialog"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="450" Width="400">
+    <Grid>
+        <materialDesign:Card Padding="20">
+            <Grid Margin="20"
+                  Height="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1">
+                    <TextBlock
+                           Text="Идентификатор преподавателя"/>
+                    <ComboBox Margin="0 5" 
+                          ItemsSource="{Binding Ids}" 
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding SelectedTeacherId}"/>
+                </StackPanel>
+                <Button Grid.Row="4"
+                        Margin="20" 
+                        Content="Отмена"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="false"/>
+                <Button Grid.Row="3"
+                        Margin="20 10 20 0"
+                        Content="Удалить"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="true"/>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

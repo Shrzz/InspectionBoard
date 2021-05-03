@@ -57,17 +57,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test\DialogWindow.xaml.cs">
-      <DependentUpon>DialogWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Test\GenericDialog.xaml.cs">
-      <DependentUpon>GenericDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Test\GenericDialogViewModel.cs" />
-    <Compile Include="Test\NotificationDialog.xaml.cs">
-      <DependentUpon>NotificationDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Test\NotificationDialogViewModel.cs" />
     <Compile Include="ViewModels\Legacy\DocsEnrollmentViewModel.cs" />
     <Compile Include="ViewModels\ExamsViewModel.cs" />
     <Compile Include="ViewModels\GroupsViewModel.cs" />
@@ -96,6 +85,15 @@
     </Compile>
     <Compile Include="Views\Teachers.xaml.cs">
       <DependentUpon>Teachers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddDialogWindow.xaml.cs">
+      <DependentUpon>AddDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditDialogWindow.xaml.cs">
+      <DependentUpon>EditDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RemoveDialogWindow.xaml.cs">
+      <DependentUpon>RemoveDialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkspaceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -126,18 +124,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Test\DialogWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Test\GenericDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Test\NotificationDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Legacy\DocsEnrollment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +155,18 @@
     <Page Include="Views\Teachers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddDialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EditDialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\RemoveDialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

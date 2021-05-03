@@ -1,5 +1,4 @@
-﻿using InspectionBoardLibrary.DataSeeder;
-using InspectionBoardLibrary.Domain;
+﻿using InspectionBoardLibrary.Domain;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -9,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
 
-namespace InspectionBoard.ViewModels
+namespace InspectionBoardLibrary.ViewModels
 {
     public class MainViewModel : BindableBase
     {
@@ -93,7 +92,7 @@ namespace InspectionBoard.ViewModels
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand(Navigate);
 
-            DataSeeder seeder = new DataSeeder();
+            DataSeeder.DataSeeder seeder = new DataSeeder.DataSeeder();
             seeder.AddAdminUser();
             seeder.AddGroups();
             seeder.AddStudent();
@@ -158,7 +157,7 @@ namespace InspectionBoard.ViewModels
                             break;
                         }
                     case ButtonResult.OK:
-                        {                          
+                        {
                             break;
                         }
                     case ButtonResult.Cancel:

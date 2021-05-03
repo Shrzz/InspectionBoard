@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace InspectionBoard.Views
+namespace InspectionBoardLibrary.Views
 {
     /// <summary>
     /// Логика взаимодействия для Main.xaml

@@ -1,10 +1,10 @@
 ﻿using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
-using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using InspectionBoardLibrary.Windows;
 using Prism.Ioc;
 using Prism.Modularity;
-using Workspace.Test;
+using Prism.Services.Dialogs;
 using Workspace.ViewModels;
 using Workspace.Views;
 
@@ -20,9 +20,6 @@ namespace Workspace
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialogWindow<DialogWindow>("DialogWindow");
-            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
-            containerRegistry.RegisterDialog<GenericDialog, GenericDialogViewModel>("GenericDialog");
-
 
             containerRegistry.Register<IRepository<Teacher>, TeacherRepository>();
             containerRegistry.Register<IRepository<Student>, StudentRepository>();

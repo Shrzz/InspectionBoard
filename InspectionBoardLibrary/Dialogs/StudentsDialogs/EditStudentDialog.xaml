@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="InspectionBoardLibrary.Windows.StudentsDialogs.EditStudentDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InspectionBoardLibrary.Windows.StudentsDialogs"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="470" Width="400">
+    <Grid>
+        <materialDesign:Card Padding="20">
+            <StackPanel Margin="20">
+                <TextBlock Text="Идентификатор студента"/>
+                <ComboBox Margin="0 5" 
+                          ItemsSource="{Binding Ids}" 
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding SelectedStudentId}"/>
+                <TextBox materialDesign:HintAssist.Hint="Фамилия"
+                         Margin="0 5" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Focusable="True" 
+                         Text="{Binding Student.Surname}"/>
+                <TextBox materialDesign:HintAssist.Hint="Имя"
+                         Margin="0 5" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Text="{Binding Student.Name}"/>
+                <TextBox materialDesign:HintAssist.Hint="Отчество"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Text="{Binding Student.Patronymic}"/>
+                <TextBlock Text="Факультет"
+                           Margin="0 10 0 0"/>
+                <ComboBox Margin="0 5" 
+                          ItemsSource="{Binding Faculties}" 
+                          DisplayMemberPath="Name"
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding Student.Faculty}"/>
+                <TextBlock Text="Форма обучения"/>
+                <ComboBox Margin="0 5" 
+                          ItemsSource="{Binding EducationForms}" 
+                          DisplayMemberPath="Form"
+                          IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding Student.EducationForm}"/>
+                <Button Margin="20 10 20 0"
+                        Content="Изменить"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="true"/>
+                <Button Margin="20 10 20 0"
+                        Content="Отмена"
+                        Command="{Binding CloseDialogCommand}"
+                        CommandParameter="false"/>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>
