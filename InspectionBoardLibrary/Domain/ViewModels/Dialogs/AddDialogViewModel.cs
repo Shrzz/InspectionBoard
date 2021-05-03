@@ -77,8 +77,6 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
         public virtual void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Entity = repository.SelectSingle(0).Result;
-            //Date = DateTime.Today.Date;
         }
     }
 }

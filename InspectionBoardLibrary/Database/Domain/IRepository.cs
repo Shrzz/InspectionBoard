@@ -11,6 +11,7 @@ namespace InspectionBoardLibrary.Database.Domain
     {
         Task<ObservableCollection<T>> Select();
         Task<T> SelectSingle(int id);
+        Task<T> SelectFirst();
         Task<T> Add(T entity);
         Task<T> Remove(int id);
         Task<T> Update(T entity);

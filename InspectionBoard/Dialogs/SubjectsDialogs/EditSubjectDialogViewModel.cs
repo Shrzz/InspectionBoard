@@ -2,6 +2,7 @@
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using Prism.Services.Dialogs;
 
 namespace InspectionBoard.Dialogs.SubjectsDialogs
 {
@@ -10,6 +11,11 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
         public EditSubjectDialogViewModel(SubjectRepository repository) : base(repository)
         {
 
+        }
+
+        public override void OnDialogOpened(IDialogParameters parameters)
+        {
+            base.OnDialogOpened(parameters);
         }
     }
 }

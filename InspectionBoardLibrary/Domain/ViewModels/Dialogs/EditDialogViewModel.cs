@@ -86,11 +86,17 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
 
         }
 
-        public void OnDialogOpened(IDialogParameters parameters)
+        public virtual void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            Entity = repository.SelectSingle(0).Result;
-            SelectedEntityId = Ids.FirstOrDefault();
+            SelectedEntityId = 0;
+            var e = repository.SelectSingle(SelectedEntityId).Result;
+            if (e == null)
+            {
+                return;
+            }
+
+            Entity = e;
         }
     }
 }

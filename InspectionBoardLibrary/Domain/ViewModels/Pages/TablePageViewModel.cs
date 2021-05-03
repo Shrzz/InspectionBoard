@@ -15,7 +15,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
         where TContext : DbContext
     {
         protected readonly IDialogService dialogService;
-        protected readonly EfRepository<TEntity, TContext> repository;
+        protected readonly IRepository<TEntity> repository;
         protected readonly ISearcher<TEntity> searcher;
 
         private ObservableCollection<TEntity> entities;
@@ -46,7 +46,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
             }
         }
 
-        public TablePage(IDialogService dialogService, EfRepository<TEntity, TContext> repository, ISearcher<TEntity> searcher)
+        public TablePage(IDialogService dialogService, IRepository<TEntity> repository, ISearcher<TEntity> searcher)
         {
             this.dialogService = dialogService;
             this.repository = repository;
@@ -56,7 +56,6 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
         }
 
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
-
 
         private void ShowDialog(string dialogName)
         {

@@ -5,6 +5,7 @@ using Prism.Regions;
 using Workspace.ViewModels;
 using MaterialDesignThemes.Wpf;
 using Prism.Mvvm;
+using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 
 namespace Workspace
 {
@@ -26,6 +27,8 @@ namespace Workspace
             containerRegistry.RegisterForNavigation<Exams, ExamsViewModel>("Exams");
             containerRegistry.RegisterForNavigation<Subjects, SubjectsViewModel>("Subjects");
             containerRegistry.RegisterForNavigation<Groups, GroupsViewModel>("Groups");
+
+            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
 
         }
     }

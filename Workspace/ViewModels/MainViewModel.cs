@@ -19,9 +19,38 @@ namespace Workspace.ViewModels
 {
     public class MainViewModel : BindableBase
     {
-        public MainViewModel()
+        private string message;
+        public string Message
         {
+            get => message;
+            set { SetProperty(ref message, value); }
+        }
 
+        private IDialogService dialogService;
+
+        public MainViewModel(IDialogService dialogService)
+        {
+            Message = "message";
+            this.dialogService = dialogService;
+            ShowDialogCommand = new DelegateCommand(ShowDialog);
+        }
+
+        public DelegateCommand ShowDialogCommand { get; set; }
+
+        public void ShowDialog()
+        {
+            var param = new DialogParameters();
+            dialogService.Show("AddExamDialog", param, r =>
+            {
+                if (r.Result == ButtonResult.OK)
+                {
+                    Message = "OK";
+                }
+                else
+                {
+                    Message = "Not OK";
+                }
+            });
         }
 
     }

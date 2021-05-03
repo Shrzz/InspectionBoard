@@ -52,10 +52,9 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
-            this.dialogParameters = parameters;
             Entity = new Exam();
-            Entity.Student = Students.FirstOrDefault();
-            Entity.Teacher = Teachers.FirstOrDefault();
+            //Entity.Student = Students.FirstOrDefault();
+            //Entity.Teacher = Teachers.FirstOrDefault();
             Date = DateTime.Today.Date;
         }
     }

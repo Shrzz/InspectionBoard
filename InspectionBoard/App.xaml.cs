@@ -9,6 +9,7 @@ using InspectionBoard.Dialogs.TeachersDialog;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
 using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.Searchers;
 using InspectionBoardLibrary.Models.DatabaseModels;
@@ -19,6 +20,7 @@ using Prism.Regions;
 using Prism.Services.Dialogs;
 using Prism.Unity;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Windows;
 using Workspace;
 using Workspace.ViewModels;
@@ -35,11 +37,16 @@ namespace InspectionBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterScoped<IRepository<IEntity>, EfRepository<IEntity, DbContext>>();
+            
+            containerRegistry.RegisterDialogWindow<Dialogs.DialogWindow>();
+            
             RegisterStudentDialogs(containerRegistry);
             RegisterSubjectDialogs(containerRegistry);
             RegisterTeacherDialogs(containerRegistry);
             RegisterExamDialogs(containerRegistry);
             RegisterGroupDialogs(containerRegistry);
+
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

@@ -56,6 +56,11 @@ namespace InspectionBoardLibrary.Database.Domain
             return await context.Set<TEntity>().FindAsync(id);
         }
 
+        public async Task<TEntity> SelectFirst()
+        {
+            return await context.Set<TEntity>().FirstOrDefaultAsync();
+        }
+
         public async Task<TEntity> Update(TEntity entity)
         {
             context.Entry(entity).State = EntityState.Modified;
