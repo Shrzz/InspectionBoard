@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using InspectionBoardLibrary.Models.DatabaseModels;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 
@@ -27,7 +28,10 @@ namespace Workspace.ViewModels
         public void ShowDialog(string name)
         {
             var param = new DialogParameters();
-            dialogService.Show(name, param, r =>
+            var s = new Student();
+            s.Name = "Имя";
+            param.Add("Entity", s);
+            dialogService.ShowDialog(name, param, r =>
             {
                 if (r.Result == ButtonResult.OK)
                 {
@@ -37,7 +41,7 @@ namespace Workspace.ViewModels
                 {
                     Message = "Not OK";
                 }
-            }, "DialogWindow");
+            }, "AddDialogWindow");
         }
 
     }

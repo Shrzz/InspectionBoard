@@ -57,7 +57,8 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
 
         private void ShowDialog(string dialogName)
         {
-            dialogService.ShowDialog(dialogName, new DialogParameters(), r =>
+            var parameters = new DialogParameters();
+            dialogService.ShowDialog(dialogName, parameters, r =>
             {
                 switch (r.Result)
                 {
@@ -74,8 +75,13 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Pages
                         {
                             break;
                         }
+                    default:
+                        {
+                            break;
+                        }
                 }
-            });
+                
+            }, "DialogWindow");
         }
 
         public async void OnNavigatedTo(NavigationContext navigationContext)

@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.Domain;
@@ -18,7 +19,7 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
 {
     public class RemoveSubjectDialogViewModel : RemoveDialogViewModel<Subject, ExamContext>
     {
-        public RemoveSubjectDialogViewModel(SubjectRepository repository) : base(repository)
+        public RemoveSubjectDialogViewModel(IRepository<Subject> repository) : base(repository)
         {
 
         }

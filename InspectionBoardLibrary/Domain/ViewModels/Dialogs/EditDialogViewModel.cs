@@ -3,11 +3,8 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
@@ -17,13 +14,27 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
         where TContext : DbContext
     {
         private IDialogParameters dialogParameters;
-        private readonly EfRepository<TEntity, TContext> repository;
+        private readonly IRepository<TEntity> repository;
+
+        private string message;
+        public string Message
+        {
+            get => message;
+            set { SetProperty(ref message, value); }
+        }
 
         private TEntity entity;
         public TEntity Entity
         {
             get { return entity; }
             set { SetProperty(ref entity, value); }
+        }
+
+        private ObservableCollection<TEntity> entities;
+        public ObservableCollection<TEntity> Entities
+        {
+            get => entities;
+            set { SetProperty(ref entities, value); }
         }
 
         private int selectedEntityId;
@@ -33,23 +44,25 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
             set { SetProperty(ref selectedEntityId, value); }
         }
 
+        private ObservableCollection<int> ids;
         public ObservableCollection<int> Ids
         {
-            get => repository.SelectIds().Result;
+            get => ids;
+            set { SetProperty(ref ids, value); }
         }
 
         public string Title => "Изменение сведений";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public EditDialogViewModel(EfRepository<TEntity, TContext> repository)
+        public EditDialogViewModel(IRepository<TEntity> repository)
         {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
             this.repository = repository;
+            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
         }
 
         public event Action<IDialogResult> RequestClose;
 
-        private async Task EditSubject()
+        public async Task EditEntity()
         {
             Entity.Id = SelectedEntityId;
             await repository.Update(Entity);
@@ -60,7 +73,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await EditSubject();
+                await EditEntity();
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
@@ -86,17 +99,13 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
 
         }
 
-        public virtual void OnDialogOpened(IDialogParameters parameters)
+        public virtual async void OnDialogOpened(IDialogParameters parameters)
         {
-            this.dialogParameters = parameters;
+            dialogParameters = parameters;
+            Entities = await repository.Select();
+            Ids = await repository.SelectIds();
             SelectedEntityId = 0;
-            var e = repository.SelectSingle(SelectedEntityId).Result;
-            if (e == null)
-            {
-                return;
-            }
-
-            Entity = e;
+            Entity = Entities[SelectedEntityId];
         }
     }
 }

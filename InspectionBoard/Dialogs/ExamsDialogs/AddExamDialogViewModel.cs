@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
@@ -13,7 +14,7 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
 {
     public class AddExamDialogViewModel : AddDialogViewModel<Exam, ExamContext>
     {
-        public AddExamDialogViewModel(ExamRepository repository) : base(repository)
+        public AddExamDialogViewModel(IRepository<Exam> repository) : base(repository)
         {
 
         }
@@ -35,23 +36,32 @@ namespace InspectionBoard.Dialogs.ExamsDialogs
             get => new List<string>(Enum.GetNames(typeof(ExamType)));
         }
 
+        private ObservableCollection<Student> students;
         public ObservableCollection<Student> Students
         {
-            get => (repository as ExamRepository).SelectStudents().Result;
+            get => students;
+            set { SetProperty(ref students, value); }
         }
 
+        private ObservableCollection<Teacher> teachers;
         public ObservableCollection<Teacher> Teachers
         {
-            get => (repository as ExamRepository).SelectTeachers().Result;
+            get => teachers;
+            set { SetProperty(ref teachers, value); }
         }
 
+        private ObservableCollection<Subject> subjects;
         public ObservableCollection<Subject> Subjects
         {
-            get => (repository as ExamRepository).SelectSubjects().Result;
+            get => subjects;
+            set { SetProperty(ref subjects, value); }
         }
 
-        public override void OnDialogOpened(IDialogParameters parameters)
+        public override async void OnDialogOpened(IDialogParameters parameters)
         {
+            Students = await (repository as ExamRepository).SelectStudents();
+            Teachers = await (repository as ExamRepository).SelectTeachers();
+            Subjects = await (repository as ExamRepository).SelectSubjects();
             Entity = new Exam();
             //Entity.Student = Students.FirstOrDefault();
             //Entity.Teacher = Teachers.FirstOrDefault();

@@ -27,7 +27,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
             set { SetProperty(ref entity, value); }
         }
 
-        public string Title => "Добавление объекта";
+        public string Title => "Добавление сведений";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
         public AddDialogViewModel(IRepository<TEntity> repository)

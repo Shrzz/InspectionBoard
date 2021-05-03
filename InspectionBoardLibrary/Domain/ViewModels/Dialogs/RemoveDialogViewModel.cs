@@ -14,7 +14,7 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
         where TContext : DbContext
     {
         private IDialogParameters dialogParameters;
-        private readonly EfRepository<TEntity, TContext> repository;
+        private readonly IRepository<TEntity> repository;
 
         private int selectedEntityId;
         public int SelectedEntityId
@@ -23,34 +23,23 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
             set { SetProperty(ref selectedEntityId, value); }
         }
 
+        private ObservableCollection<int> ids;
         public ObservableCollection<int> Ids
         {
-            get => repository.SelectIds().Result;
+            get => ids;
+            set { SetProperty(ref ids, value); }
         }
 
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public virtual string Title => "Удаление объекта";
+        public virtual string Title => "Удаление сведений";
 
-        public event Action<IDialogParameters> RequestClose;
+        public event Action<IDialogResult> RequestClose;
 
-        public RemoveDialogViewModel(EfRepository<TEntity, TContext> repository)
+        public RemoveDialogViewModel(IRepository<TEntity> repository)
         {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
             this.repository = repository;
-        }
-
-        event Action<IDialogResult> IDialogAware.RequestClose
-        {
-            add
-            {
-                throw new NotImplementedException();
-            }
-
-            remove
-            {
-                throw new NotImplementedException();
-            }
+            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
         }
 
         public bool CanCloseDialog() => true;
@@ -60,15 +49,16 @@ namespace InspectionBoardLibrary.Domain.ViewModels.Dialogs
 
         }
 
-        public void OnDialogOpened(IDialogParameters parameters)
+        public async void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            Ids = await repository.SelectIds();
             SelectedEntityId = Ids.FirstOrDefault();
         }
 
         public virtual void RaiseRequestClose(IDialogResult dialogResult)
         {
-            RequestClose?.Invoke((IDialogParameters)dialogResult);
+            RequestClose?.Invoke(dialogResult);
         }
 
         protected virtual async void CloseDialog(string parameter)

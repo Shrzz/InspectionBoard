@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
@@ -11,14 +12,14 @@ namespace InspectionBoard.Dialogs.SubjectsDialogs
 {
     public class AddSubjectDialogViewModel : AddDialogViewModel<Subject, ExamContext>
     {
-        public AddSubjectDialogViewModel(SubjectRepository repository) : base(repository) 
+        public AddSubjectDialogViewModel(IRepository<Subject> repository) : base(repository) 
         { 
 
         }
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
-            this.dialogParameters = parameters;
+            dialogParameters = parameters;
             Entity = new Subject();
         }
     }

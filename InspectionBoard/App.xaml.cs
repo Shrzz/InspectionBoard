@@ -1,35 +1,22 @@
 ﻿using Authorization;
 using InspectionBoard.Dialogs;
+using InspectionBoard.Dialogs.DialogWindows;
 using InspectionBoard.Dialogs.ExamsDialogs;
 using InspectionBoard.Dialogs.GroupsDialogs;
-using InspectionBoard.Dialogs.SettingsDialogs;
 using InspectionBoard.Dialogs.StudentsDialogs;
 using InspectionBoard.Dialogs.SubjectsDialogs;
 using InspectionBoard.Dialogs.TeachersDialog;
-using InspectionBoard.ViewModels;
-using InspectionBoard.Views;
-using InspectionBoardLibrary.Database.Contexts;
-using InspectionBoardLibrary.Database.Domain;
-using InspectionBoardLibrary.Database.Repositories;
-using InspectionBoardLibrary.Domain.Searchers;
-using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Mvvm;
-using Prism.Regions;
-using Prism.Services.Dialogs;
 using Prism.Unity;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Windows;
 using Workspace;
-using Workspace.ViewModels;
-using Workspace.Views;
 
 namespace InspectionBoard
 {
     public partial class App : PrismApplication
     {
+        private IContainerRegistry containerRegistry;
         protected override Window CreateShell()
         {
             return Container.Resolve<Views.Main>();
@@ -37,11 +24,15 @@ namespace InspectionBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            RegisterStudentDialogs(containerRegistry);
-            RegisterSubjectDialogs(containerRegistry);
-            RegisterTeacherDialogs(containerRegistry);
-            RegisterExamDialogs(containerRegistry);
-            RegisterGroupDialogs(containerRegistry);
+            this.containerRegistry = containerRegistry;
+
+            RegisterDialogWindows();
+
+            RegisterStudentDialogs();
+            RegisterSubjectDialogs();
+            RegisterTeacherDialogs();
+            RegisterExamDialogs();
+            RegisterGroupDialogs();
 
         }
 
@@ -51,40 +42,47 @@ namespace InspectionBoard
             moduleCatalog.AddModule<WorkspaceModule>();
         }
 
-        private void RegisterLegacyDialogs(IContainerRegistry containerRegistry)
+        private void RegisterDialogWindows()
+        {
+            containerRegistry.RegisterDialogWindow<AddDialogWindow>("AddDialogWindow");
+            containerRegistry.RegisterDialogWindow<EditDialogWindow>("EditDialogWindow");
+            containerRegistry.RegisterDialogWindow<RemoveDialogWindow>("RemoveDialogWindow");
+        }
+
+        private void RegisterLegacyDialogs()
         {
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
             containerRegistry.RegisterDialog<DocsSettingsDialog, DocsSettingsDialogViewModel>();
         }
 
-        private void RegisterSubjectDialogs(IContainerRegistry containerRegistry)
+        private void RegisterSubjectDialogs()
         {
             containerRegistry.RegisterDialog<AddSubjectDialog, AddSubjectDialogViewModel>("AddSubjectDialog");
             containerRegistry.RegisterDialog<EditSubjectDialog, EditSubjectDialogViewModel>("EditSubjectDialog");
             containerRegistry.RegisterDialog<RemoveSubjectDialog, RemoveSubjectDialogViewModel>("RemoveSubjectDialog");
         }
 
-        private void RegisterStudentDialogs(IContainerRegistry containerRegistry)
+        private void RegisterStudentDialogs()
         {
             containerRegistry.RegisterDialog<AddStudentDialog, AddStudentDialogViewModel>("AddStudentDialog");
             containerRegistry.RegisterDialog<EditStudentDialog, EditStudentDialogViewModel>("EditStudentDialog");
             containerRegistry.RegisterDialog<RemoveStudentDialog, RemoveStudentDialogViewModel>("RemoveStudentDialog");
         }
 
-        private void RegisterTeacherDialogs(IContainerRegistry containerRegistry)
+        private void RegisterTeacherDialogs()
         {
             containerRegistry.RegisterDialog<AddTeacherDialog, AddTeacherDialogViewModel>("AddTeacherDialog");
             containerRegistry.RegisterDialog<EditTeacherDialog, EditTeacherDialogViewModel>("EditTeacherDialog");
             containerRegistry.RegisterDialog<RemoveTeacherDialog, RemoveTeacherDialogViewModel>("RemoveTeacherDialog");
         }
 
-        private void RegisterExamDialogs(IContainerRegistry containerRegistry)
+        private void RegisterExamDialogs()
         {
             containerRegistry.RegisterDialog<AddExamDialog, AddExamDialogViewModel>("AddExamDialog");
             containerRegistry.RegisterDialog<EditExamDialog, EditExamDialogViewModel>("EditExamDialog");
             containerRegistry.RegisterDialog<RemoveExamDialog, RemoveExamDialogViewModel>("RemoveExamDialog");
         }
-        private void RegisterGroupDialogs(IContainerRegistry containerRegistry)
+        private void RegisterGroupDialogs()
         {
             containerRegistry.RegisterDialog<AddFacultyDialog, AddGroupDialogViewModel>("AddGroupDialog");
             containerRegistry.RegisterDialog<EditFacultyDialog, EditGroupDialogViewModel>("EditGroupDialog");

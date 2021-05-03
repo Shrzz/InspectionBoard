@@ -1,5 +1,7 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
+using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using InspectionBoardLibrary.Models.Enums;
 using Prism.Commands;
@@ -13,94 +15,34 @@ using System.Threading.Tasks;
 
 namespace InspectionBoard.Dialogs.StudentsDialogs
 {
-    public class EditStudentDialogViewModel : BindableBase, IDialogAware
+    public class EditStudentDialogViewModel : EditDialogViewModel<Student, ExamContext>
     {
         private IDialogParameters dialogParameters;
-        private readonly StudentRepository repository;
+        private readonly IRepository<Student> repository;
 
-        private Student student;
-        public Student Student
-        {
-            get { return student; }
-            set { SetProperty(ref student, value); }
-        }
-
-        private int selectedStudentId;
-        public int SelectedStudentId
-        {
-            get { return selectedStudentId; }
-            set { SetProperty(ref selectedStudentId, value); }
-        }
-
-        public ObservableCollection<int> Ids
-        {
-            get => repository.SelectIds().Result;
-        }
-
+        private ObservableCollection<Group> groups;
         public ObservableCollection<Group> Groups
         {
-            get => repository.SelectGroups().Result;
+            get => groups;
+            set { SetProperty(ref groups, value); }
         }
 
-        public List<string> EducationForms
+        private ObservableCollection<string> educationForms;
+        public ObservableCollection<string> EducationForms
         {
-            get => new List<string>(Enum.GetNames(typeof(EducationForm)));
+            get => educationForms;
+            set { SetProperty(ref educationForms, value); }
         }
-
-        public string Title => "Изменить данные студента";
-        public DelegateCommand<string> CloseDialogCommand { get; private set; }
-
-        public EditStudentDialogViewModel()
-        {
-            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            repository = new StudentRepository(new ExamContext());
-        }
-
-        public event Action<IDialogResult> RequestClose;
-
-        private async Task EditStudent()
-        {
-            Student.Id = SelectedStudentId;
-            await repository.Update(Student);
-        }
-
-        protected virtual async void CloseDialog(string parameter)
-        {
-            ButtonResult result = ButtonResult.None;
-            if (parameter?.ToLower() == "true")
-            {
-                await EditStudent();
-                result = ButtonResult.OK;
-            }
-            else if (parameter?.ToLower() == "false")
-            {
-                result = ButtonResult.Cancel;
-            }
-
-            RaiseRequestClose(new DialogResult(result));
-        }
-
-        public virtual void RaiseRequestClose(IDialogResult dialogResult)
-        {
-            RequestClose?.Invoke(dialogResult);
-        }
-
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
-
-        public void OnDialogClosed()
+        public EditStudentDialogViewModel(IRepository<Student> repository) : base(repository)
         {
 
         }
 
-        public void OnDialogOpened(IDialogParameters parameters)
+        public override async void OnDialogOpened(IDialogParameters parameters)
         {
-            this.dialogParameters = parameters;
-            Student = new Student();
-            SelectedStudentId = Ids.FirstOrDefault();
-            Student.Group = Groups.FirstOrDefault();
+            base.OnDialogOpened(parameters);
+            Groups = await (repository as StudentRepository).SelectGroups();
+            EducationForms = new ObservableCollection<string>(Enum.GetNames(typeof(EducationForm)));
         }
     }
 }

@@ -10,11 +10,11 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Button Command="{Binding ShowDialogCommand}" CommandParameter="NotificationDialog" Height="500" Width="500" Content="{Binding Message}" Grid.Row="0"></Button>
-        <Button Command="{Binding ShowDialogCommand}" CommandParameter="GenericDialog" Height="500" Width="500" Content="{Binding Message}" Grid.Row="1"></Button>
+        <Button Command="{Binding ShowDialogCommand}" CommandParameter="NotificationDialog" Content="{Binding Message}" Grid.Row="0"></Button>
+        <Button Command="{Binding ShowDialogCommand}" CommandParameter="AddStudentDialog" Content="{Binding Message}" Grid.Row="1"></Button>
         <ContentControl prism:RegionManager.RegionName="WorkspaceRegion"/>
     </Grid>
 </UserControl>

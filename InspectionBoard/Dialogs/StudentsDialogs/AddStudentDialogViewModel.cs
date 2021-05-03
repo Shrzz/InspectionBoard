@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.ViewModels.Dialogs;
 using InspectionBoardLibrary.Models.DatabaseModels;
@@ -12,24 +13,31 @@ namespace InspectionBoard.Dialogs.StudentsDialogs
 {
     public class AddStudentDialogViewModel : AddDialogViewModel<Student, ExamContext>
     {
-        public AddStudentDialogViewModel(StudentRepository repository) : base(repository)
-        {
 
-        }
-
+        private ObservableCollection<string> educationForms;
         public ObservableCollection<string> EducationForms 
-        { 
-            get => new ObservableCollection<string>(Enum.GetNames(typeof(EducationForm)));
+        {
+            get => educationForms;
+            set { SetProperty(ref educationForms, value); }
         }
 
+        private ObservableCollection<Group> groups;
         public ObservableCollection<Group> Groups
         {
-            get => (repository as StudentRepository).SelectGroups().Result;
+            get => groups;
+            set { SetProperty(ref groups, value); }
+        }
+
+        public AddStudentDialogViewModel(IRepository<Student> repository) : base(repository)
+        {
+
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
+            EducationForms = new ObservableCollection<string>(Enum.GetNames(typeof(EducationForm)));
+            Groups = await (repository as StudentRepository).SelectGroups();
             this.Entity = new Student();
         }
     }
