@@ -1,6 +1,8 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.Searchers;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -25,10 +27,9 @@ namespace Workspace.Views
     /// </summary>
     public partial class Teachers : UserControl
     {
-        public Teachers(IDialogService dialogService)
+        public Teachers(IDialogService dialogService, IRepository<Teacher> repository)
         {
             InitializeComponent();
-            DataContext = new TeachersViewModel(dialogService, new TeacherRepository(new ExamContext()), new TeacherSearcher());
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

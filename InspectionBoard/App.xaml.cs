@@ -37,8 +37,7 @@ namespace InspectionBoard
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterScoped<IRepository<IEntity>, EfRepository<IEntity, DbContext>>();
-            
+ 
             containerRegistry.RegisterDialogWindow<Dialogs.DialogWindow>();
             
             RegisterStudentDialogs(containerRegistry);

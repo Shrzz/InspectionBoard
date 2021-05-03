@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InspectionBoardLibrary.Domain.Searchers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -13,6 +14,9 @@ namespace InspectionBoardLibrary.Database.Domain
         where TContext : DbContext
     {
         protected readonly TContext context;
+
+        public ISearcher<TEntity> Searcher { get; set; }
+
         public EfRepository(TContext context)
         {
             this.context = context;

@@ -17,6 +17,8 @@ using Workspace.ViewModels;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.Searchers;
 using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
+using InspectionBoardLibrary.Models.DatabaseModels;
 
 namespace Workspace.Views
 {
@@ -25,10 +27,10 @@ namespace Workspace.Views
     /// </summary>
     public partial class Groups : UserControl
     {
-        public Groups(IDialogService dialogService)
+        public Groups(IDialogService dialogService, IRepository<Group> repository)
         {
             InitializeComponent();
-            DataContext = new GroupsViewModel(dialogService, new GroupRepository(new ExamContext()), new GroupSearcher());
+            DataContext = new GroupsViewModel(dialogService, repository);
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.Searchers;
 using InspectionBoardLibrary.Models.DatabaseModels;
@@ -28,10 +29,10 @@ namespace Workspace.Views
     /// </summary>
     public partial class Students : UserControl
     {
-        public Students(IDialogService dialogService)
+        public Students(IDialogService dialogService, IRepository<Student> repository)
         {
             InitializeComponent();
-            DataContext = new StudentsViewModel(dialogService, new StudentRepository(new ExamContext()), new StudentSearcher());
+            DataContext = new StudentsViewModel(dialogService, repository);
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,6 +1,8 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Domain;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Domain.Searchers;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -25,10 +27,10 @@ namespace Workspace.Views
     /// </summary>
     public partial class Subjects : UserControl
     {
-        public Subjects(IDialogService dialogService)
+        public Subjects(IDialogService dialogService, IRepository<Subject> repository)
         {
             InitializeComponent();
-            DataContext = new SubjectsViewModel(dialogService, new SubjectRepository(new ExamContext()), new SubjectSearcher());
+            DataContext = new SubjectsViewModel(dialogService, repository);
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

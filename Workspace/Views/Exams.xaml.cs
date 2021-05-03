@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Ioc;
 using InspectionBoardLibrary.Domain.ViewModels.Pages;
+using InspectionBoardLibrary.Database.Domain;
 
 namespace Workspace.Views
 {
@@ -29,10 +30,10 @@ namespace Workspace.Views
     /// </summary>
     public partial class Exams : UserControl
     {
-        public Exams(IDialogService dialogService)
+        public Exams(IDialogService dialogService, IRepository<Exam> repository)
         {
             InitializeComponent();
-            DataContext = new ExamsViewModel(dialogService, new ExamRepository(new ExamContext()), new ExamSearcher());
+            DataContext = new ExamsViewModel(dialogService, repository);
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
