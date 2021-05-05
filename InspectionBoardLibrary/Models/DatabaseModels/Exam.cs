@@ -12,6 +12,7 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public Teacher Teacher { get; set; }
         public Student Student { get; set; }
         [Column(TypeName = "datetime2")]
+        public Ticket Ticket { get; set; }
         public DateTime? Date { get; set; }
         public ExamType ExamType { get; set; }
         public ExamForm ExamForm { get; set; }

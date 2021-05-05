@@ -12,5 +12,6 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public Subject Subject { get; set; }
         public User User { get; set; }
         public string Text { get; set; }
+        public int Number { get; set; }
     }
 }
