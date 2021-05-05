@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Workspace.Windows"
         mc:Ignorable="d"
-        Title="Удалить сведения" Height="300" Width="400" ResizeMode="NoResize">
+        Title="Удалить сведения" Height="500" Width="400" ResizeMode="NoResize">
     <Grid>
         
     </Grid>

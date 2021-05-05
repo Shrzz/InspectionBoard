@@ -168,6 +168,7 @@
       <DependentUpon>RemoveTeacherDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TeachersDialog\RemoveTeacherDialogViewModel.cs" />
+    <Compile Include="Models\Enums\Category.cs" />
     <Compile Include="Models\ISearcher.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\PasswordBoxAssistant.cs" />

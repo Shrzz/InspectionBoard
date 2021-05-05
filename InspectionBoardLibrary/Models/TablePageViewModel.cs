@@ -3,8 +3,11 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
+using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace InspectionBoardLibrary.Models
 {
@@ -70,10 +73,10 @@ namespace InspectionBoardLibrary.Models
             }
         }
 
-        private void ShowDialog(string dialogName, string dialogWindowName)
+        private async void ShowDialog(string dialogName, string dialogWindowName)
         {
             var parameters = new DialogParameters();
-            dialogService.ShowDialog(dialogName, parameters, r =>
+            dialogService.ShowDialog(dialogName, parameters, async r =>
             {
                 switch (r.Result)
                 {
@@ -83,7 +86,7 @@ namespace InspectionBoardLibrary.Models
                         }
                     case ButtonResult.OK:
                         {
-                            Entities = repository.Select().Result;
+                            Entities = await repository.Select();
                             break;
                         }
                     case ButtonResult.Cancel:
@@ -95,7 +98,6 @@ namespace InspectionBoardLibrary.Models
                             break;
                         }
                 }
-
             }, dialogWindowName);
         }
 

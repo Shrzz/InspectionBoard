@@ -35,7 +35,6 @@ namespace InspectionBoardLibrary.Models.Database
 
             context.Set<TEntity>().Remove(entity);
             await context.SaveChangesAsync();
-
             return entity;
         }
 

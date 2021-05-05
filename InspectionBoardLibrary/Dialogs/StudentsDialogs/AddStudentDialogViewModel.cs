@@ -14,19 +14,18 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
 {
     public class AddStudentDialogViewModel : AddDialogViewModel<Student, ExamContext>
     {
+        private ObservableCollection<Group> groups;
+        public ObservableCollection<Group> Groups
+        {
+            get => groups;
+            set { SetProperty(ref groups, value); }
+        }
 
         private IList<EducationForm> educationForms;
         public IList<EducationForm> EducationForms
         {
             get => educationForms;
             set { SetProperty(ref educationForms, value); }
-        }
-
-        private ObservableCollection<Group> groups;
-        public ObservableCollection<Group> Groups
-        {
-            get => groups;
-            set { SetProperty(ref groups, value); }
         }
 
         public AddStudentDialogViewModel(IRepository<Student> repository) : base(repository)
@@ -37,10 +36,12 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
-            EducationForms = Enum.GetValues(typeof(EducationForm)).Cast<EducationForm>().ToList<EducationForm>();
             Groups = await (repository as StudentRepository).SelectGroups();
-            this.Entity = new Student();
-            Entity.Group = Groups[0];
+            EducationForms = Enum.GetValues(typeof(EducationForm)).Cast<EducationForm>().ToList<EducationForm>();
+
+            Entity = new Student();
+            Entity.Group = Groups.FirstOrDefault();
+            Entity.EducationForm = EducationForms.FirstOrDefault();
         }
     }
 }

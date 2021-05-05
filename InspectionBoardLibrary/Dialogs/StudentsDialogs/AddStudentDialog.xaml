@@ -30,13 +30,13 @@
                           ItemsSource="{Binding Groups}" 
                           DisplayMemberPath="Name"
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding Groups[0]}"/>
+                          SelectedItem="{Binding Entity.Group}"/>
                 <TextBlock Text="Форма обучения"
                            Margin="0 10 0 0"/>
                 <ComboBox Margin="0 5" 
                           ItemsSource="{Binding EducationForms}" 
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding EducationForms[0]}"/>
+                          SelectedItem="{Binding Entity.EducationForm}"/>
                 <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"

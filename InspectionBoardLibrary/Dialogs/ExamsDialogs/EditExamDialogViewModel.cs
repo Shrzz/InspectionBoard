@@ -1,9 +1,14 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Dialogs;
 using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using InspectionBoardLibrary.Models.Enums;
 using Prism.Services.Dialogs;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace InspectionBoardLibrary.Windows.ExamsDialogs
 {
@@ -14,21 +19,57 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
 
         }
 
-        public ObservableCollection<Exam> Entities { get; set; }
-
-        public override void OnDialogOpened(IDialogParameters parameters)
+        private ObservableCollection<Student> students;
+        public ObservableCollection<Student> Students
         {
-            var entities = new ObservableCollection<Exam>();
-            parameters.TryGetValue("Entities", out entities);
-            if (entities == null)
-            {
-                RaiseRequestClose(new DialogResult(ButtonResult.Abort));
-                return;
-            }
+            get => students;
+            set { SetProperty(ref students, value); }
+        }
 
-            SelectedEntityId = 0;
-            Entities = entities;
-            Entity = Entities[SelectedEntityId];
+        private ObservableCollection<Teacher> teachers;
+        public ObservableCollection<Teacher> Teachers
+        {
+            get => teachers;
+            set { SetProperty(ref teachers, value); }
+        }
+
+        private ObservableCollection<Subject> subjects;
+        public ObservableCollection<Subject> Subjects
+        {
+            get => subjects;
+            set { SetProperty(ref subjects, value); }
+        }
+
+        private IList<ExamForm> examForms;
+        public IList<ExamForm> ExamForms
+        {
+            get => examForms;
+            set { SetProperty(ref examForms, value); }
+        }
+
+        public IList<ExamType> examTypes;
+        public IList<ExamType> ExamTypes
+        {
+            get => examTypes;
+            set { SetProperty(ref examTypes, value); }
+        }
+
+        private DateTime date;
+        public DateTime Date
+        {
+            get { return date; }
+            set { SetProperty(ref date, value); }
+        }
+
+        public async override void OnDialogOpened(IDialogParameters parameters)
+        {
+            Entities = await repository.Select();
+            Entity = await repository.SelectFirst();
+            Ids = await repository.SelectIds();
+
+
+            ExamForms = Enum.GetValues(typeof(ExamForm)).Cast<ExamForm>().ToList();
+            ExamTypes = Enum.GetValues(typeof(ExamType)).Cast<ExamType>().ToList();
         }
     }
 }

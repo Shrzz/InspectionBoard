@@ -13,8 +13,8 @@ namespace InspectionBoardLibrary.Dialogs
         where TEntity : class, IEntity
         where TContext : DbContext
     {
-        private IDialogParameters dialogParameters;
-        private readonly IRepository<TEntity> repository;
+        protected IDialogParameters dialogParameters;
+        protected readonly IRepository<TEntity> repository;
 
         private int selectedEntityId;
         public int SelectedEntityId

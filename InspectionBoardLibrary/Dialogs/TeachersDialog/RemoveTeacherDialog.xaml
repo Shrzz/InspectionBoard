@@ -24,7 +24,7 @@
                     <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Ids}" 
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding SelectedTeacherId}"/>
+                          SelectedItem="{Binding SelectedEntityId}"/>
                 </StackPanel>
                 <Button Grid.Row="4"
                         Margin="20" 

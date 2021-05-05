@@ -97,7 +97,7 @@
                 <DataGridTemplateColumn Header="Категория">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="models:Teacher">
-                            <TextBlock Text="{Binding Category.Name}"/>
+                            <TextBlock Text="{Binding Category}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

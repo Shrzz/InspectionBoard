@@ -36,7 +36,6 @@
                         Content="Удалить"
                         Command="{Binding CloseDialogCommand}"
                         CommandParameter="true"/>
-
             </Grid>
         </materialDesign:Card>
     </Grid>

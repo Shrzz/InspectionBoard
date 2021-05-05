@@ -9,14 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Windows.StudentsDialogs
 {
     public class EditStudentDialogViewModel : EditDialogViewModel<Student, ExamContext>
     {
-        private IDialogParameters dialogParameters;
-        private readonly IRepository<Student> repository;
-
         private ObservableCollection<Group> groups;
         public ObservableCollection<Group> Groups
         {
@@ -24,12 +22,13 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
             set { SetProperty(ref groups, value); }
         }
 
-        private List<EducationForm> educationForms;
-        public List<EducationForm> EducationForms
+        private IList<EducationForm> educationForms;
+        public IList<EducationForm> EducationForms
         {
             get => educationForms;
             set { SetProperty(ref educationForms, value); }
         }
+
         public EditStudentDialogViewModel(IRepository<Student> repository) : base(repository)
         {
 
@@ -38,8 +37,20 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
-            Groups = await (repository as GroupRepository).Select();
+            Entities = await repository.Select();
+            Entity = await repository.SelectFirst();
+            Ids = await repository.SelectIds();
+            if (Ids.Count > 0)
+            {
+                SelectedEntityId = Ids[0];
+            }
+            else
+            {
+                SelectedEntityId = -1;
+            }
+
             EducationForms = Enum.GetValues(typeof(EducationForm)).Cast<EducationForm>().ToList();
+            Groups = await (repository as StudentRepository).SelectGroups();
         }
     }
 }

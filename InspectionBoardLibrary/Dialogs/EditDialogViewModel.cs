@@ -13,8 +13,8 @@ namespace InspectionBoardLibrary.Dialogs
         where TEntity : class, IEntity
         where TContext : DbContext
     {
-        private IDialogParameters dialogParameters;
-        private readonly IRepository<TEntity> repository;
+        protected IDialogParameters dialogParameters;
+        protected readonly IRepository<TEntity> repository;
 
         private string message;
         public string Message
@@ -41,7 +41,13 @@ namespace InspectionBoardLibrary.Dialogs
         public int SelectedEntityId
         {
             get { return selectedEntityId; }
-            set { SetProperty(ref selectedEntityId, value); }
+            set 
+            {
+                SetProperty(ref selectedEntityId, value);
+                
+                   Entity = repository.SelectSingle(SelectedEntityId).Result;
+                     
+            }
         }
 
         private ObservableCollection<int> ids;
@@ -64,7 +70,6 @@ namespace InspectionBoardLibrary.Dialogs
 
         public async Task EditEntity()
         {
-            Entity.Id = SelectedEntityId;
             await repository.Update(Entity);
         }
 
@@ -89,23 +94,16 @@ namespace InspectionBoardLibrary.Dialogs
             RequestClose?.Invoke(dialogResult);
         }
 
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
+        public bool CanCloseDialog() => true;
 
         public void OnDialogClosed()
         {
 
         }
 
-        public virtual async void OnDialogOpened(IDialogParameters parameters)
+        public virtual void OnDialogOpened(IDialogParameters parameters)
         {
-            dialogParameters = parameters;
-            Ids = await repository.SelectIds();
-            Entities = await repository.Select();
-            SelectedEntityId = 0;
-            Entity = Entities[SelectedEntityId];
+            this.dialogParameters = parameters;
         }
     }
 }

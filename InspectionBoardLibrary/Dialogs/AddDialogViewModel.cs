@@ -3,6 +3,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
@@ -59,10 +60,7 @@ namespace InspectionBoardLibrary.Dialogs
             RequestClose?.Invoke(dialogResult);
         }
 
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
+        public bool CanCloseDialog() => true;
 
         public void OnDialogClosed()
         {

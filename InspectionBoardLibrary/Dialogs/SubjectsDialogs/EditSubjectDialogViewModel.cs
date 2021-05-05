@@ -13,9 +13,12 @@ namespace InspectionBoardLibrary.Windows.SubjectsDialogs
 
         }
 
-        public override void OnDialogOpened(IDialogParameters parameters)
+        public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
+            Entities = await repository.Select();
+            Entity = await repository.SelectFirst();
+            Ids = await repository.SelectIds();
         }
     }
 }
