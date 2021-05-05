@@ -14,7 +14,7 @@ namespace InspectionBoardLibrary.Database.Services
         public async Task<bool> TryLogin(string login, string password)
         {
             User a;
-            using (UserContext context = new UserContext())
+            using (ExamContext context = new ExamContext())
             {
                 a = await context.Users.FirstOrDefaultAsync(u => u.Username == login && u.Password == password);
             }

@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace InspectionBoardLibrary.Database.Repositories
 {
-    public class UserRepository : EfRepository<User, UserContext>
+    public class UserRepository : EfRepository<User, ExamContext>
     {
-        public UserRepository(UserContext context) : base(context)
+        public UserRepository(ExamContext context) : base(context)
         {
 
         }

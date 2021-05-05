@@ -27,7 +27,7 @@ namespace InspectionBoardLibrary.Windows.SettingsDialogs
         public AddUserDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
-            repository = new UserRepository(new UserContext());
+            repository = new UserRepository(new ExamContext());
         }
 
         public event Action<IDialogResult> RequestClose;

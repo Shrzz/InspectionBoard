@@ -10,7 +10,7 @@ namespace InspectionBoardLibrary.DataSeeder
     {
         public async Task AddAdminUser()
         {
-            UserRepository repository = new UserRepository(new UserContext());
+            UserRepository repository = new UserRepository(new ExamContext());
             if (repository.TableIsEmpty())
             {
                 User u = new User();

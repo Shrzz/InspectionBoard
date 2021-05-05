@@ -1,4 +1,4 @@
-﻿namespace InspectionBoardLibrary.Migrations
+﻿namespace InspectionBoardLibrary.Migrations.ExamContext
 {
     using System;
     using System.Data.Entity;

@@ -88,6 +88,12 @@
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
+    <Compile Include="Migrations\202105050751511_Initial.cs" />
+    <Compile Include="Migrations\202105050751511_Initial.designer.cs">
+      <DependentUpon>202105050751511_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatabaseModels\Journal.cs" />
+    <Compile Include="Models\DatabaseModels\Ticket.cs" />
     <Compile Include="Models\Database\EfRepository.cs" />
     <Compile Include="Models\Database\IEntity.cs" />
     <Compile Include="Models\Database\IRepository.cs" />
@@ -98,7 +104,6 @@
     <Compile Include="Database\Repositories\SubjectRepository.cs" />
     <Compile Include="Database\Repositories\TeacherRepository.cs" />
     <Compile Include="Database\Repositories\UserRepository.cs" />
-    <Compile Include="Database\Contexts\UserContext.cs" />
     <Compile Include="DataSeeder\DataSeeder.cs" />
     <Compile Include="Dialogs\ExamsDialogs\AddExamDialog.xaml.cs">
       <DependentUpon>AddExamDialog.xaml</DependentUpon>
@@ -184,15 +189,6 @@
     <Compile Include="Models\TablePageViewModel.cs" />
     <Compile Include="FileHandlers\DocumentsHandler.cs" />
     <Compile Include="FileHandlers\DocumentsSettings.cs" />
-    <Compile Include="Migrations\ExamContext\202103160603523_InitialExam.cs" />
-    <Compile Include="Migrations\ExamContext\202103160603523_InitialExam.designer.cs">
-      <DependentUpon>202103160603523_InitialExam.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserContext\202103160603210_InitialUser.cs" />
-    <Compile Include="Migrations\UserContext\202103160603210_InitialUser.designer.cs">
-      <DependentUpon>202103160603210_InitialUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserContext\UserContextConfig.cs" />
     <Compile Include="Migrations\ExamContext\ExamContextConfig.cs" />
     <Compile Include="Models\DatabaseModels\Exam.cs" />
     <Compile Include="Models\DatabaseModels\Group.cs" />
@@ -313,14 +309,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ExamContext\202103160603523_InitialExam.resx">
-      <DependentUpon>202103160603523_InitialExam.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserContext\202103160603210_InitialUser.resx">
-      <DependentUpon>202103160603210_InitialUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105050751511_Initial.resx">
+      <DependentUpon>202105050751511_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -17,6 +17,9 @@ namespace InspectionBoardLibrary.Database.Contexts
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<Journal> Journals { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public ExamContext() : base("DbConnection")
         {
