@@ -134,6 +134,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,9 +149,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -182,9 +190,17 @@
       <Project>{f97c7026-69f4-41fb-9b89-e93e90ebce79}</Project>
       <Name>Authorization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Documentation\Documentation.csproj">
+      <Project>{48e29dbb-ad38-49a3-ae8a-a5083acb86f4}</Project>
+      <Name>Documentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InspectionBoardLibrary\InspectionBoardLibrary.csproj">
       <Project>{a9f67d85-1f10-42d9-a636-f59dac16b710}</Project>
       <Name>InspectionBoardLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tickets\Tickets.csproj">
+      <Project>{9031de25-5391-48aa-869c-0744991e5567}</Project>
+      <Name>Tickets</Name>
     </ProjectReference>
     <ProjectReference Include="..\Workspace\Workspace.csproj">
       <Project>{fecf048a-5186-44aa-9b75-dc21cf0f3ba7}</Project>

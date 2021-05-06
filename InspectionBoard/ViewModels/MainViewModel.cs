@@ -17,6 +17,7 @@ namespace InspectionBoardLibrary.ViewModels
         private readonly ICollectionView menuItemsView;
 
         public ObservableCollection<MenuItem> MenuItems { get; }
+        public ObservableCollection<MenuItem> AdditionalMenuItems { get; }
 
         #region properties
 
@@ -38,6 +39,13 @@ namespace InspectionBoardLibrary.ViewModels
         // свойство для перехода на новую страницу
         private int selectedMenuIndex;
         public int SelectedMenuIndex
+        {
+            get { return selectedMenuIndex; }
+            set { SetProperty(ref selectedMenuIndex, value); }
+        }
+
+        private int selectedAdditionalMenuIndex;
+        public int SelectedAdditionalMenuIndex
         {
             get { return selectedMenuIndex; }
             set { SetProperty(ref selectedMenuIndex, value); }
@@ -84,6 +92,12 @@ namespace InspectionBoardLibrary.ViewModels
                 MenuItems.Add(item);
             }
 
+            AdditionalMenuItems = new ObservableCollection<MenuItem>();
+            foreach (var item in GenerateAdditionalMenuItems())
+            {
+                AdditionalMenuItems.Add(item);
+            }
+
             SelectedMenuIndex = 0;
             menuItemsView = CollectionViewSource.GetDefaultView(MenuItems);
             menuItemsView.Filter = MenuItemsFilter;
@@ -106,6 +120,14 @@ namespace InspectionBoardLibrary.ViewModels
             yield return new MenuItem("Экзамены", "Exams");
             yield return new MenuItem("Группы", "Groups");
             yield return new MenuItem("Тестовая", "Workspace");
+        }
+
+        private static IEnumerable<MenuItem> GenerateAdditionalMenuItems()
+        {
+            yield return new MenuItem("Документы", "Documents");
+            yield return new MenuItem("Билеты", "Tickets");
+            yield return new MenuItem("Настройки", "Settings");
+            
         }
 
         #region methods

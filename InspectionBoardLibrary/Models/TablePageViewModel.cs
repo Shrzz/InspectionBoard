@@ -3,11 +3,8 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Threading.Tasks;
-using System.Windows.Data;
 
 namespace InspectionBoardLibrary.Models
 {
@@ -33,7 +30,10 @@ namespace InspectionBoardLibrary.Models
             set
             {
                 SetProperty(ref searchKeyword, value);
-                SelectedEntity = searcher.Search(Entities, SearchKeyword);
+                if (Entities.Count > 0)
+                {
+                    SelectedEntity = searcher.Search(Entities, SearchKeyword);
+                }
             }
         }
 

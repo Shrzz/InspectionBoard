@@ -71,6 +71,33 @@
                             </ListBox>
                         </GroupBox>
 
+                        <GroupBox Header="Области" 
+                                  Margin="10">
+                            <ListBox x:Name="AdditionalMenuItemsListBox" 
+                                     Margin="0 16 0 16"
+                                     ItemsSource="{Binding AdditionalMenuItems}"
+                                     SelectedItem="{Binding SelectedMenuItem}"
+                                     SelectedIndex="{Binding SelectedAdditionalMenuIndex}">
+                                <ListBox.Resources >
+                                    <Style TargetType="ScrollBar" 
+                                           BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                                </ListBox.Resources>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <i:InvokeCommandAction Command="{Binding NavigateCommand}"/>
+                                        <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"             
+                                                               CommandParameter="{x:Static Dock.Left}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="domain:MenuItem">
+                                        <TextBlock Text="{Binding Name}" 
+                                                   Margin="16 0 16 0" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
+                        
                         <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                                 Margin="20 0 20 0"
                                 Content="Добавить пользователя" 

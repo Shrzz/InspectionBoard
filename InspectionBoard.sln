@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization", "Authorizat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InspectionBoardLibrary", "InspectionBoardLibrary\InspectionBoardLibrary.csproj", "{A9F67D85-1F10-42D9-A636-F59DAC16B710}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documentation", "Documentation\Documentation.csproj", "{48E29DBB-AD38-49A3-AE8A-A5083ACB86F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickets", "Tickets\Tickets.csproj", "{9031DE25-5391-48AA-869C-0744991E5567}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{A9F67D85-1F10-42D9-A636-F59DAC16B710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9F67D85-1F10-42D9-A636-F59DAC16B710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9F67D85-1F10-42D9-A636-F59DAC16B710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E29DBB-AD38-49A3-AE8A-A5083ACB86F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E29DBB-AD38-49A3-AE8A-A5083ACB86F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E29DBB-AD38-49A3-AE8A-A5083ACB86F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E29DBB-AD38-49A3-AE8A-A5083ACB86F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9031DE25-5391-48AA-869C-0744991E5567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9031DE25-5391-48AA-869C-0744991E5567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9031DE25-5391-48AA-869C-0744991E5567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9031DE25-5391-48AA-869C-0744991E5567}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

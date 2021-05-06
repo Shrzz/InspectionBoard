@@ -45,7 +45,7 @@ namespace Authorization.ViewModels
         }
 
 #pragma warning disable S3168 // "async" methods should not return "void"
-        private async void Login()
+        private async void Login()  
 #pragma warning restore S3168 // "async" methods should not return "void"
         {
             bool success = await service.TryLogin(Username, Password);

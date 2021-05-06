@@ -1,8 +1,10 @@
 ﻿using Authorization;
+using Documentation;
+using InspectionBoard.ViewModels;
+using InspectionBoard.Views;
 using InspectionBoardLibrary.Windows;
 using InspectionBoardLibrary.Windows.ExamsDialogs;
 using InspectionBoardLibrary.Windows.GroupsDialogs;
-using InspectionBoardLibrary.Windows.StudentsDialogs;
 using InspectionBoardLibrary.Windows.StudentsDialogs;
 using InspectionBoardLibrary.Windows.SubjectsDialogs;
 using InspectionBoardLibrary.Windows.TeachersDialog;
@@ -10,6 +12,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using System.Windows;
+using Tickets;
 using Workspace;
 using Workspace.Windows;
 
@@ -27,20 +30,21 @@ namespace InspectionBoardLibrary
         {
             this.containerRegistry = containerRegistry;
 
+            containerRegistry.RegisterForNavigation<Settings, SettingsViewModel>("Settings");
             RegisterDialogWindows();
-
             RegisterStudentDialogs();
             RegisterSubjectDialogs();
             RegisterTeacherDialogs();
             RegisterExamDialogs();
             RegisterGroupDialogs();
-
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<AuthorizationModule>();
             moduleCatalog.AddModule<WorkspaceModule>();
+            moduleCatalog.AddModule<DocumentationModule>();
+            moduleCatalog.AddModule<TicketsModule>();
         }
 
         private void RegisterDialogWindows()

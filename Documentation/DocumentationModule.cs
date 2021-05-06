@@ -1,11 +1,11 @@
-﻿using Authorization.ViewModels;
-using Authorization.Views;
+﻿using Documentation.ViewModels;
+using Documentation.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 
-namespace Authorization
+namespace Documentation
 {
-    public class AuthorizationModule : IModule
+    public class DocumentationModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
@@ -14,7 +14,7 @@ namespace Authorization
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<Login, LoginViewModel>("Auth");
+            containerRegistry.RegisterForNavigation<Main, MainViewModel>("Documents");
         }
     }
 }
