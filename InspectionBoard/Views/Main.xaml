@@ -76,7 +76,7 @@
                             <ListBox x:Name="AdditionalMenuItemsListBox" 
                                      Margin="0 16 0 16"
                                      ItemsSource="{Binding AdditionalMenuItems}"
-                                     SelectedItem="{Binding SelectedMenuItem}"
+                                     SelectedItem="{Binding SelectedAdditionalMenuItem}"
                                      SelectedIndex="{Binding SelectedAdditionalMenuIndex}">
                                 <ListBox.Resources >
                                     <Style TargetType="ScrollBar" 

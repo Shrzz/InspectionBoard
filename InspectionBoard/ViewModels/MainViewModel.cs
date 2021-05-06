@@ -51,6 +51,13 @@ namespace InspectionBoardLibrary.ViewModels
             set { SetProperty(ref selectedMenuIndex, value); }
         }
 
+        private MenuItem selectedAdditionalMenuItem;
+        public MenuItem SelectedAdditionalMenuItem
+        {
+            get { return selectedMenuItem; }
+            set { SetProperty(ref selectedMenuItem, value); }
+        }
+
         // поиск по пунктам меню
         private string searchKeyword;
         public string SearchKeyword
@@ -99,6 +106,7 @@ namespace InspectionBoardLibrary.ViewModels
             }
 
             SelectedMenuIndex = 0;
+            SelectedAdditionalMenuIndex = 0;
             menuItemsView = CollectionViewSource.GetDefaultView(MenuItems);
             menuItemsView.Filter = MenuItemsFilter;
             CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
@@ -119,15 +127,16 @@ namespace InspectionBoardLibrary.ViewModels
             yield return new MenuItem("Предметы", "Subjects");
             yield return new MenuItem("Экзамены", "Exams");
             yield return new MenuItem("Группы", "Groups");
+            yield return new MenuItem("Журналы", "Journals");
             yield return new MenuItem("Тестовая", "Workspace");
+
         }
 
         private static IEnumerable<MenuItem> GenerateAdditionalMenuItems()
         {
             yield return new MenuItem("Документы", "Documents");
             yield return new MenuItem("Билеты", "Tickets");
-            yield return new MenuItem("Настройки", "Settings");
-            
+            yield return new MenuItem("Настройки", "Settings");     
         }
 
         #region methods
@@ -139,13 +148,18 @@ namespace InspectionBoardLibrary.ViewModels
                 regionManager.RequestNavigate(CurrentMenuItem.Region, "ContentRegion");
                 regionManager.RequestNavigate("ContentRegion", SelectedMenuItem.Region);
                 CurrentMenuItem = SelectedMenuItem;
+                SelectedMenuItem = null;
+            }
+            else if (SelectedAdditionalMenuItem != null)
+            {
+                regionManager.RequestNavigate(CurrentMenuItem.Region, "ContentRegion");
+                regionManager.RequestNavigate("ContentRegion", SelectedAdditionalMenuItem.Region);
+                CurrentMenuItem = SelectedAdditionalMenuItem;
+                SelectedAdditionalMenuItem = null;
             }
         }
 
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            return true;
-        }
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {

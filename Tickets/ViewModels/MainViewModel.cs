@@ -1,5 +1,10 @@
-﻿using Prism.Mvvm;
+﻿using InspectionBoardLibrary.Database.Contexts;
+using InspectionBoardLibrary.Models;
+using InspectionBoardLibrary.Models.Database;
+using InspectionBoardLibrary.Models.DatabaseModels;
+using Prism.Mvvm;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +13,13 @@ using System.Threading.Tasks;
 
 namespace Tickets.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public class MainViewModel : TablePage<Ticket, ExamContext>
     {
-        private readonly IRegionManager regionManager;
-        public MainViewModel(IRegionManager regionManager)
+        public MainViewModel(IDialogService service, IRepository<Ticket> repository) : base(service, repository)
         {
-            this.regionManager = regionManager;
+
         }
+
+
     }
 }

@@ -84,10 +84,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Contexts\ExamContext.cs" />
+    <Compile Include="Database\Repositories\JournalRepository.cs" />
+    <Compile Include="Database\Repositories\TicketRepository.cs" />
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialog.xaml.cs">
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
+    <Compile Include="Dialogs\TicketsDialogs\AddTicketDialogViewModel.cs" />
     <Compile Include="Migrations\202105050751511_Initial.cs" />
     <Compile Include="Migrations\202105050751511_Initial.designer.cs">
       <DependentUpon>202105050751511_Initial.cs</DependentUpon>

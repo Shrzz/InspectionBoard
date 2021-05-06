@@ -19,7 +19,7 @@
                          Margin="0 5" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Text="{Binding Entity.LectoryHours}"/>
-                <TextBox materialDesign:HintAssist.Hint="Количество лабораторных часов"
+                <TextBox materialDesign:HintAssist.Hint="Количество лабораторных и практических часов"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Text="{Binding Entity.LaboratoryHours}"/>
                 <Button Margin="20 10 20 0"

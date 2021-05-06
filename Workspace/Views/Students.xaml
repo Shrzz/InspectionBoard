@@ -110,7 +110,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Факультет">
+                        <DataGridTemplateColumn Header="Группа">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Student">
                                     <TextBlock Text="{Binding Group.Name}"/>

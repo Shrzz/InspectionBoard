@@ -105,7 +105,7 @@ namespace InspectionBoardLibrary.Models
             }, dialogWindowName);
         }
 
-        public async void OnNavigatedTo(NavigationContext navigationContext)
+        public virtual async void OnNavigatedTo(NavigationContext navigationContext)
         {
             var entities = await repository.Select();
             Entities = new ObservableCollection<TEntity>(entities);
