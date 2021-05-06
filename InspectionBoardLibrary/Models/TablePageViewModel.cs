@@ -14,7 +14,7 @@ namespace InspectionBoardLibrary.Models
     {
         protected readonly IDialogService dialogService;
         protected readonly IRepository<TEntity> repository;
-        protected readonly ISearcher<TEntity> searcher;
+        protected ISearcher<TEntity> searcher;
 
         private ObservableCollection<TEntity> entities;
         public ObservableCollection<TEntity> Entities
@@ -30,9 +30,13 @@ namespace InspectionBoardLibrary.Models
             set
             {
                 SetProperty(ref searchKeyword, value);
-                if (Entities.Count > 0)
+                if (searchKeyword.Length > 0 && Entities.Count > 0)
                 {
-                    SelectedEntity = searcher.Search(Entities, SearchKeyword);
+                    SelectedEntity = repository.Searcher.Search(Entities, SearchKeyword);
+                }
+                else
+                {
+                    SelectedEntity = null;
                 }
             }
         }
