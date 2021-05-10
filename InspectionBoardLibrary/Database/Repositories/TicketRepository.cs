@@ -11,13 +11,9 @@ namespace InspectionBoardLibrary.Database.Repositories
 {
     public class TicketRepository : EfRepository<Ticket, ExamContext>
     {
-
-
         public TicketRepository(ExamContext context) : base(context)
         {
 
         }
-
-
     }
 }

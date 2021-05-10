@@ -14,7 +14,6 @@ namespace InspectionBoardLibrary.Database.Repositories
         {
 
         }
-
         public override async Task<ObservableCollection<Student>> Select()
         {
             var list = await context.Set<Student>().Include(e => e.Group).ToListAsync();

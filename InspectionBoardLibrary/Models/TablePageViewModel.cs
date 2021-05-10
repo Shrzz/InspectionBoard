@@ -109,6 +109,17 @@ namespace InspectionBoardLibrary.Models
         {
             var entities = await repository.Select();
             Entities = new ObservableCollection<TEntity>(entities);
+            Entities.CollectionChanged += Entities_CollectionChanged;
+        }
+
+        private async void Entities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
+            {
+                Entities = await repository.Select();
+            }
+            
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

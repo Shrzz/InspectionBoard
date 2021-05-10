@@ -57,7 +57,8 @@
                                 </ListBox.Resources>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonUp">
-                                        <i:InvokeCommandAction Command="{Binding NavigateCommand}"/>
+                                        <i:InvokeCommandAction Command="{Binding NavigateCommand}"
+                                                               CommandParameter="{Binding SelectedMenuItem.Region}"/>
                                         <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"             
                                                                CommandParameter="{x:Static Dock.Left}"/>
                                     </i:EventTrigger>
@@ -71,38 +72,26 @@
                             </ListBox>
                         </GroupBox>
 
-                        <GroupBox Header="Области" 
-                                  Margin="10">
-                            <ListBox x:Name="AdditionalMenuItemsListBox" 
-                                     Margin="0 16 0 16"
-                                     ItemsSource="{Binding AdditionalMenuItems}"
-                                     SelectedItem="{Binding SelectedAdditionalMenuItem}"
-                                     SelectedIndex="{Binding SelectedAdditionalMenuIndex}">
-                                <ListBox.Resources >
-                                    <Style TargetType="ScrollBar" 
-                                           BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
-                                </ListBox.Resources>
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseLeftButtonUp">
-                                        <i:InvokeCommandAction Command="{Binding NavigateCommand}"/>
-                                        <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"             
-                                                               CommandParameter="{x:Static Dock.Left}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate DataType="domain:MenuItem">
-                                        <TextBlock Text="{Binding Name}" 
-                                                   Margin="16 0 16 0" />
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </GroupBox>
-                        
-                        <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
-                                Margin="20 0 20 0"
-                                Content="Добавить пользователя" 
-                                Command="{Binding ShowDialogCommand}"
-                                CommandParameter="AddUserDialog"/>
+                        <StackPanel Margin="20 0 20 0">
+                            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    Margin="0 20 0 0"
+                                    Content="Документация" 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Documents"/>
+
+                            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    Margin="0 20 0 0"
+                                    Content="Добавить пользователя" 
+                                    Command="{Binding ShowDialogCommand}"
+                                    CommandParameter="AddUserDialog"/>
+
+                            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                    Margin="0 20 0 0"
+                                    Content="Настройки" 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Settings"/>
+                        </StackPanel>
+
                         <!--Настройки в боковом меню-->
                         <!--<materialDesign:Card Margin="10"
                                              UniformCornerRadius="6" 

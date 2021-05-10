@@ -17,7 +17,6 @@ namespace InspectionBoardLibrary.ViewModels
         private readonly ICollectionView menuItemsView;
 
         public ObservableCollection<MenuItem> MenuItems { get; }
-        public ObservableCollection<MenuItem> AdditionalMenuItems { get; }
 
         #region properties
 
@@ -44,20 +43,6 @@ namespace InspectionBoardLibrary.ViewModels
             set { SetProperty(ref selectedMenuIndex, value); }
         }
 
-        private int selectedAdditionalMenuIndex;
-        public int SelectedAdditionalMenuIndex
-        {
-            get { return selectedMenuIndex; }
-            set { SetProperty(ref selectedMenuIndex, value); }
-        }
-
-        private MenuItem selectedAdditionalMenuItem;
-        public MenuItem SelectedAdditionalMenuItem
-        {
-            get { return selectedMenuItem; }
-            set { SetProperty(ref selectedMenuItem, value); }
-        }
-
         // поиск по пунктам меню
         private string searchKeyword;
         public string SearchKeyword
@@ -80,7 +65,7 @@ namespace InspectionBoardLibrary.ViewModels
             set { SetProperty(ref currentMenuItem, value); }
         }
 
-        public DelegateCommand NavigateCommand { get; private set; }
+        public DelegateCommand<string> NavigateCommand { get; private set; }
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
         public DelegateCommand GetApplicantsCommand { get; private set; }
 
@@ -99,20 +84,13 @@ namespace InspectionBoardLibrary.ViewModels
                 MenuItems.Add(item);
             }
 
-            AdditionalMenuItems = new ObservableCollection<MenuItem>();
-            foreach (var item in GenerateAdditionalMenuItems())
-            {
-                AdditionalMenuItems.Add(item);
-            }
-
             SelectedMenuIndex = 0;
-            SelectedAdditionalMenuIndex = 0;
             menuItemsView = CollectionViewSource.GetDefaultView(MenuItems);
             menuItemsView.Filter = MenuItemsFilter;
             CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
 
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
-            NavigateCommand = new DelegateCommand(Navigate);
+            NavigateCommand = new DelegateCommand<string>(Navigate);
 
             DataSeeder.DataSeeder seeder = new DataSeeder.DataSeeder();
             seeder.AddAdminUser();
@@ -129,34 +107,16 @@ namespace InspectionBoardLibrary.ViewModels
             yield return new MenuItem("Группы", "Groups");
             yield return new MenuItem("Журналы", "Journals");
             yield return new MenuItem("Тестовая", "Workspace");
-
-        }
-
-        private static IEnumerable<MenuItem> GenerateAdditionalMenuItems()
-        {
-            yield return new MenuItem("Документы", "Documents");
             yield return new MenuItem("Билеты", "Tickets");
-            yield return new MenuItem("Настройки", "Settings");     
         }
 
         #region methods
 
-        private void Navigate()
+        private void Navigate(string region)
         {
-            if (SelectedMenuItem != null)
-            {
-                regionManager.RequestNavigate(CurrentMenuItem.Region, "ContentRegion");
-                regionManager.RequestNavigate("ContentRegion", SelectedMenuItem.Region);
-                CurrentMenuItem = SelectedMenuItem;
-                SelectedMenuItem = null;
-            }
-            else if (SelectedAdditionalMenuItem != null)
-            {
-                regionManager.RequestNavigate(CurrentMenuItem.Region, "ContentRegion");
-                regionManager.RequestNavigate("ContentRegion", SelectedAdditionalMenuItem.Region);
-                CurrentMenuItem = SelectedAdditionalMenuItem;
-                SelectedAdditionalMenuItem = null;
-            }
+            regionManager.RequestNavigate(region, "ContentRegion");
+            regionManager.RequestNavigate("ContentRegion", region);
+            CurrentMenuItem = SelectedMenuItem;
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) => true;

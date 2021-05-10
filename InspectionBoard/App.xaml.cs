@@ -2,9 +2,11 @@
 using Documentation;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
+using InspectionBoardLibrary.Dialogs.SettingsDialogs;
 using InspectionBoardLibrary.Windows;
 using InspectionBoardLibrary.Windows.ExamsDialogs;
 using InspectionBoardLibrary.Windows.GroupsDialogs;
+using InspectionBoardLibrary.Windows.SettingsDialogs;
 using InspectionBoardLibrary.Windows.StudentsDialogs;
 using InspectionBoardLibrary.Windows.SubjectsDialogs;
 using InspectionBoardLibrary.Windows.TeachersDialog;
@@ -30,13 +32,15 @@ namespace InspectionBoardLibrary
         {
             this.containerRegistry = containerRegistry;
 
-            containerRegistry.RegisterForNavigation<Settings, SettingsViewModel>("Settings");
+            this.containerRegistry.RegisterForNavigation<Settings, SettingsViewModel>("Settings");
             RegisterDialogWindows();
             RegisterStudentDialogs();
             RegisterSubjectDialogs();
             RegisterTeacherDialogs();
             RegisterExamDialogs();
             RegisterGroupDialogs();
+
+            this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

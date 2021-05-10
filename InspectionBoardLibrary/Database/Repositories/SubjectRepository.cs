@@ -10,5 +10,6 @@ namespace InspectionBoardLibrary.Database.Repositories
         {
 
         }
+
     }
 }

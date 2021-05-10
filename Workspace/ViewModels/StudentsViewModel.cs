@@ -4,6 +4,7 @@ using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using InspectionBoardLibrary.Models.Searchers;
 using Prism.Services.Dialogs;
+using System.ComponentModel;
 
 namespace Workspace.ViewModels
 {
@@ -13,5 +14,8 @@ namespace Workspace.ViewModels
         {
             this.repository.Searcher = new StudentSearcher();
         }
+
+
+
     }
 }

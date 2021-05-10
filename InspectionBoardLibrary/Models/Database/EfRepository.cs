@@ -25,6 +25,14 @@ namespace InspectionBoardLibrary.Models.Database
             return entity;
         }
 
+        public async Task<TEntity> Add(TEntity entity, int id)
+        {
+            context.Set<TEntity>().Add(entity);
+            await context.SaveChangesAsync();
+            entity.Id = id;
+            return entity;
+        }
+
         public async Task<TEntity> Remove(int id)
         {
             var entity = await context.Set<TEntity>().FindAsync(id);
