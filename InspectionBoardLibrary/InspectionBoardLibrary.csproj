@@ -91,7 +91,18 @@
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
+    <Compile Include="Dialogs\TicketsDialogs\AddTicketDialog.xaml.cs">
+      <DependentUpon>AddTicketDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\TicketsDialogs\AddTicketDialogViewModel.cs" />
+    <Compile Include="Dialogs\TicketsDialogs\EditTicketDialog.xaml.cs">
+      <DependentUpon>EditTicketDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TicketsDialogs\EditTicketDialogViewModel.cs" />
+    <Compile Include="Dialogs\TicketsDialogs\RemoveTicketDialog.xaml.cs">
+      <DependentUpon>RemoveTicketDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TicketsDialogs\RemoveTicketDialogViewModel.cs" />
     <Compile Include="Migrations\202105050751511_Initial.cs" />
     <Compile Include="Migrations\202105050751511_Initial.designer.cs">
       <DependentUpon>202105050751511_Initial.cs</DependentUpon>
@@ -314,6 +325,18 @@
     <Page Include="Dialogs\TeachersDialog\RemoveTeacherDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TicketsDialogs\AddTicketDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TicketsDialogs\EditTicketDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TicketsDialogs\RemoveTicketDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -198,10 +198,6 @@
       <Project>{a9f67d85-1f10-42d9-a636-f59dac16b710}</Project>
       <Name>InspectionBoardLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tickets\Tickets.csproj">
-      <Project>{9031de25-5391-48aa-869c-0744991e5567}</Project>
-      <Name>Tickets</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Workspace\Workspace.csproj">
       <Project>{fecf048a-5186-44aa-9b75-dc21cf0f3ba7}</Project>
       <Name>Workspace</Name>

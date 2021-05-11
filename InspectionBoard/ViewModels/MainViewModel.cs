@@ -106,8 +106,8 @@ namespace InspectionBoardLibrary.ViewModels
             yield return new MenuItem("Экзамены", "Exams");
             yield return new MenuItem("Группы", "Groups");
             yield return new MenuItem("Журналы", "Journals");
-            yield return new MenuItem("Тестовая", "Workspace");
             yield return new MenuItem("Билеты", "Tickets");
+            yield return new MenuItem("Тестовая", "Workspace");
         }
 
         #region methods

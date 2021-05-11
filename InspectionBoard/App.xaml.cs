@@ -14,7 +14,6 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using System.Windows;
-using Tickets;
 using Workspace;
 using Workspace.Windows;
 
@@ -48,7 +47,6 @@ namespace InspectionBoardLibrary
             moduleCatalog.AddModule<AuthorizationModule>();
             moduleCatalog.AddModule<WorkspaceModule>();
             moduleCatalog.AddModule<DocumentationModule>();
-            moduleCatalog.AddModule<TicketsModule>();
         }
 
         private void RegisterDialogWindows()
