@@ -86,6 +86,7 @@
     <Compile Include="Database\Contexts\ExamContext.cs" />
     <Compile Include="Database\Repositories\JournalRepository.cs" />
     <Compile Include="Database\Repositories\TicketRepository.cs" />
+    <Compile Include="Database\Services\ExamService.cs" />
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialog.xaml.cs">
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>

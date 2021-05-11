@@ -75,7 +75,7 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
             Entity.Subject = Subjects.FirstOrDefault();
             Entity.ExamForm = ExamForm.Письменный;
             Entity.ExamType = ExamType.Промежуточный;
-            Date = DateTime.Today.Date;
+            Entity.Date = DateTime.Today.Date;
         }
     }
 }

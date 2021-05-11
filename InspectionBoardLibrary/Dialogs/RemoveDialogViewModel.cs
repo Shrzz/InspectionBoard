@@ -61,12 +61,12 @@ namespace InspectionBoardLibrary.Dialogs
             RequestClose?.Invoke(dialogResult);
         }
 
-        protected virtual async void CloseDialog(string parameter)
+        public virtual async void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                await repository.Remove(SelectedEntityId); ;
+                await repository.Remove(SelectedEntityId);
                 result = ButtonResult.OK;
             }
             else if (parameter?.ToLower() == "false")
