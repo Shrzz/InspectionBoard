@@ -27,38 +27,29 @@
         <ComboBox Grid.Row="0" 
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
-                  ItemsSource="{Binding Groups}" 
+                  ItemsSource="{Binding Subjects}" 
                   DisplayMemberPath="Name"
                   IsSynchronizedWithCurrentItem="True"
-                  SelectedItem="{Binding SelectedGroup}"
+                  SelectedItem="{Binding SelectedSubject}"
                   Margin="20 0 20 0"/>
-
-        <ComboBox Grid.Row="0" 
-                      Grid.Column="2"
-                      Grid.ColumnSpan="2"
-                      ItemsSource="{Binding Subjects}" 
-                      DisplayMemberPath="Name"
-                      IsSynchronizedWithCurrentItem="True"
-                      SelectedItem="{Binding SelectedSubject}"
-                      Margin="20 0 20 0"/>
 
         <Button Grid.Row="0"
                 Grid.Column="7"
                 Margin="10"
                 Content="Добавить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="AddGroupDialog"/>
+                Command="{Binding ShowDialogCommand}" CommandParameter="AddTicketDialog"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="8"
                 Margin="10"
                 Content="Изменить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="EditGroupDialog"/>
+                Command="{Binding ShowDialogCommand}" CommandParameter="EditTicketDialog"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="9"
                 Margin="10"
                 Content="Удалить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="RemoveGroupDialog"/>
+                Command="{Binding ShowDialogCommand}" CommandParameter="RemoveTicketDialog"/>
 
         <DataGrid Grid.Row="1" 
                     Grid.Column="0" 
@@ -73,14 +64,28 @@
                 <DataGridTemplateColumn Header="Идентификатор">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="models:Ticket">
-                            <TextBlock Text="{Binding Date}"/>
+                            <TextBlock Text="{Binding Id}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Название группы">
+                <DataGridTemplateColumn Header="Предмет">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="models:Ticket">
-                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Subject.Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Номер билета">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Ticket">
+                            <TextBlock Text="{Binding Number}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Вопрос" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="models:Ticket">
+                            <TextBlock Text="{Binding Text}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -28,6 +28,7 @@ namespace Workspace
             containerRegistry.Register<IRepository<Subject>, SubjectRepository>();
             containerRegistry.Register<IRepository<Group>, GroupRepository>();
             containerRegistry.Register<IRepository<Journal>, JournalRepository>();
+            containerRegistry.Register<IRepository<Ticket>, TicketRepository>();
 
             //containerRegistry.RegisterForNavigation<Analysis, AnalysisViewModel>("Analyze");
             //containerRegistry.RegisterForNavigation<DocsEnrollment, DocsEnrollmentViewModel>("DocsEnrollment");
@@ -39,6 +40,7 @@ namespace Workspace
             containerRegistry.RegisterForNavigation<Subjects, SubjectsViewModel>("Subjects");
             containerRegistry.RegisterForNavigation<Groups, GroupsViewModel>("Groups");
             containerRegistry.RegisterForNavigation<Journals, JournalsViewModel>("Journals");
+            containerRegistry.RegisterForNavigation<Tickets, TicketsViewModel>("Tickets");
 
 
 

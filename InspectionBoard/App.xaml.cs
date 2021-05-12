@@ -3,6 +3,7 @@ using Documentation;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
 using InspectionBoardLibrary.Dialogs.SettingsDialogs;
+using InspectionBoardLibrary.Dialogs.TicketsDialogs;
 using InspectionBoardLibrary.Windows;
 using InspectionBoardLibrary.Windows.ExamsDialogs;
 using InspectionBoardLibrary.Windows.GroupsDialogs;
@@ -38,6 +39,7 @@ namespace InspectionBoardLibrary
             RegisterTeacherDialogs();
             RegisterExamDialogs();
             RegisterGroupDialogs();
+            RegisterTicketDialogs();
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
         }
@@ -94,6 +96,13 @@ namespace InspectionBoardLibrary
             containerRegistry.RegisterDialog<AddFacultyDialog, AddGroupDialogViewModel>("AddGroupDialog");
             containerRegistry.RegisterDialog<EditFacultyDialog, EditGroupDialogViewModel>("EditGroupDialog");
             containerRegistry.RegisterDialog<RemoveFacultyDialog, RemoveGroupDialogViewModel>("RemoveGroupDialog");
+        }
+
+        private void RegisterTicketDialogs()
+        {
+            containerRegistry.RegisterDialog<AddTicketDialog, AddTicketDialogViewModel>("AddTicketDialog");
+            containerRegistry.RegisterDialog<EditTicketDialog, EditTicketDialogViewModel>("EditTicketDialog");
+            containerRegistry.RegisterDialog<RemoveTicketDialog, RemoveTicketDialogViewModel>("RemoveTicketDialog");
         }
     }
 }

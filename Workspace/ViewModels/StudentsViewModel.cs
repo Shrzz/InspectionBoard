@@ -14,8 +14,5 @@ namespace Workspace.ViewModels
         {
             this.repository.Searcher = new StudentSearcher();
         }
-
-
-
     }
 }
