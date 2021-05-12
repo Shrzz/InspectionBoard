@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Windows.ExamsDialogs
 {
@@ -64,12 +65,28 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
         public async override void OnDialogOpened(IDialogParameters parameters)
         {
             Entities = await repository.Select();
-            Entity = await repository.SelectFirst();
             Ids = await repository.SelectIds();
+            Entity = await repository.SelectSingle(Ids.First());
+            if (Ids.Count > 0)
+            {
+                SelectedEntityId = Ids[0];
+            }
+            else
+            {
+                SelectedEntityId = -1;
+            }
 
-
+            Students = await (repository as ExamRepository).SelectStudents();
+            Teachers = await (repository as ExamRepository).SelectTeachers();
+            Subjects = await (repository as ExamRepository).SelectSubjects();
             ExamForms = Enum.GetValues(typeof(ExamForm)).Cast<ExamForm>().ToList();
             ExamTypes = Enum.GetValues(typeof(ExamType)).Cast<ExamType>().ToList();
+        }
+
+        public override void CloseDialog(string parameter)
+        {
+            Entity.Date = Date;
+            base.CloseDialog(parameter);
         }
     }
 }

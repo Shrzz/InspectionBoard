@@ -75,7 +75,13 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
             Entity.Subject = Subjects.FirstOrDefault();
             Entity.ExamForm = ExamForm.Письменный;
             Entity.ExamType = ExamType.Промежуточный;
-            Entity.Date = DateTime.Today.Date;
+            Date = DateTime.Today.Date;
+        }
+
+        public async override void CloseDialog(string parameter)
+        {
+            Entity.Date = Date;
+            base.CloseDialog(parameter);
         }
     }
 }

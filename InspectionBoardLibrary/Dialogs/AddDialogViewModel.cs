@@ -39,7 +39,7 @@ namespace InspectionBoardLibrary.Dialogs
             await repository.Add(Entity);
         }
 
-        protected virtual async void CloseDialog(string parameter)
+        public virtual async void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")

@@ -108,7 +108,7 @@
                         <DataGridTemplateColumn Header="Дата проведения">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Exam">
-                                    <TextBlock Text="{Binding Entity.Date, StringFormat=d}" />
+                                    <TextBlock Text="{Binding Date, StringFormat=d}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
