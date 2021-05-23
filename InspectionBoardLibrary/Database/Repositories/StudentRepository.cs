@@ -1,6 +1,7 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
 using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -14,9 +15,10 @@ namespace InspectionBoardLibrary.Database.Repositories
         {
 
         }
+
         public override async Task<ObservableCollection<Student>> Select()
         {
-            var list = await context.Set<Student>().Include(e => e.Group).ToListAsync();
+            var list = await context.Set<Student>().Include(e => e.Group).OrderBy(e => e.Id).ToListAsync();
             return new ObservableCollection<Student>(list);
         }
 
@@ -30,6 +32,5 @@ namespace InspectionBoardLibrary.Database.Repositories
             var collection = await context.Groups.ToListAsync();
             return new ObservableCollection<Group>(collection);
         }
-
     }
 }

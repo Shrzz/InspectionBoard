@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:Microsoft.CSharp;assembly=System"
         mc:Ignorable="d"
-        Title="Добавить сведения" Height="600" Width="400" ResizeMode="NoResize">
+        Height="600" Width="400"
+        Title="Добавить сведения" ResizeMode="NoResize">
     <Grid>
         
     </Grid>

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Workspace.Views"        
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:InspectionBoardLibrary.Models.Converters;assembly=InspectionBoardLibrary" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -38,12 +39,20 @@
                  materialDesign:TextFieldAssist.HasOutlinedTextField="True"
                  materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
                  materialDesign:TextFieldAssist.TextFieldCornerRadius="4"/>
-    
+
         <Button Grid.Row="0"
                 Grid.Column="7"
                 Margin="10"
                 Content="Добавить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="AddStudentDialog"/>
+                Command="{Binding ShowDialogCommand}">
+            <!--<Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource ArrayMultiValueConverter}">
+                    <Binding Path="AddStudentDialog" ElementName="s"/>
+                    <Binding Path="AddDialogWindow" />
+                </MultiBinding>
+            </Button.CommandParameter>-->
+
+        </Button>
 
         <Button Grid.Row="0" 
                 Grid.Column="8"
@@ -81,7 +90,14 @@
                           SelectionUnit="FullRow"
                           SelectionChanged="OnSelectionChanged"
                           Sorting="dg_Sorting">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="MouseLeftButtonUp">
+                            <b:InvokeCommandAction Command="{Binding ShowDescriptionCommand}"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+
                     <DataGrid.Columns>
+
                         <DataGridTemplateColumn Header="Идентификатор" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Student" >

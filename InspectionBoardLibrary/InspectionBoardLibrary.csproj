@@ -87,10 +87,15 @@
     <Compile Include="Database\Repositories\JournalRepository.cs" />
     <Compile Include="Database\Repositories\TicketRepository.cs" />
     <Compile Include="Database\Services\ExamService.cs" />
+    <Compile Include="Dialogs\DescriptionDialogViewModel.cs" />
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialog.xaml.cs">
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
+    <Compile Include="Dialogs\StudentsDialogs\StudentDescriptionDialog.xaml.cs">
+      <DependentUpon>StudentDescriptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StudentsDialogs\StudentDescriptionDialogViewModel.cs" />
     <Compile Include="Dialogs\TicketsDialogs\AddTicketDialog.xaml.cs">
       <DependentUpon>AddTicketDialog.xaml</DependentUpon>
     </Compile>
@@ -111,8 +116,15 @@
     <Compile Include="Migrations\202105050816002_AddedTicketNumber.designer.cs">
       <DependentUpon>202105050816002_AddedTicketNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105231030015_Optimal.cs" />
+    <Compile Include="Migrations\202105231030015_Optimal.designer.cs">
+      <DependentUpon>202105231030015_Optimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApplicationSettings.cs" />
+    <Compile Include="Models\Converters\ArrayMultiValueConverter.cs" />
     <Compile Include="Models\DatabaseModels\Journal.cs" />
     <Compile Include="Models\DatabaseModels\Ticket.cs" />
+    <Compile Include="Models\Database\AbstractEntity.cs" />
     <Compile Include="Models\Database\EfRepository.cs" />
     <Compile Include="Models\Database\IEntity.cs" />
     <Compile Include="Models\Database\IRepository.cs" />
@@ -302,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Dialogs\StudentsDialogs\StudentDescriptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -345,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105050816002_AddedTicketNumber.resx">
       <DependentUpon>202105050816002_AddedTicketNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105231030015_Optimal.resx">
+      <DependentUpon>202105231030015_Optimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

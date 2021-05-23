@@ -1,13 +1,14 @@
 ﻿using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.Enums;
 using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace InspectionBoardLibrary.Models.DatabaseModels
 {
-    public class Exam : IEntity
-    {
-        public int Id { get; set; }
+    public class Exam : AbstractEntity
+    { 
         public Subject Subject { get; set; }
         public Teacher Teacher { get; set; }
         public Student Student { get; set; }
@@ -16,5 +17,20 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public DateTime? Date { get; set; }
         public ExamType ExamType { get; set; }
         public ExamForm ExamForm { get; set; }
+
+        public override string GetDescription()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Идентификатор: {Id}\n");
+            sb.Append(GetValidString(Subject, $"Предмет: ", "Name"));
+            sb.Append(GetValidString(Teacher, $"Преподаватель: ", "Surname"));
+            sb.Append(GetValidString(Student, $"Студент: ", "Surname"));
+            sb.Append(GetValidString(Ticket, $"Билет: ", "Number"));
+            sb.Append($"Дата проведения: {Date}\n");
+            sb.Append($"Тип экзамена: {ExamType}\n");
+            sb.Append($"Форма проведения экзамена: {ExamForm}\n");
+
+            return sb.ToString();
+        }
     }
 }

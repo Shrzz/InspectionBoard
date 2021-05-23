@@ -1,6 +1,7 @@
 ﻿using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
+using InspectionBoardLibrary.Windows.SubjectsDialogs;
 using Prism.Ioc;
 using Prism.Modularity;
 using Workspace.ViewModels;
@@ -21,6 +22,7 @@ namespace Workspace
             containerRegistry.RegisterDialogWindow<AddDialogWindow>("AddDialogWindow");
             containerRegistry.RegisterDialogWindow<EditDialogWindow>("EditDialogWindow");
             containerRegistry.RegisterDialogWindow<RemoveDialogWindow>("RemoveDialogWindow");
+            containerRegistry.RegisterDialogWindow<DescriptionDialogWindow>("DescriptionDialogWindow");
 
             containerRegistry.Register<IRepository<Teacher>, TeacherRepository>();
             containerRegistry.Register<IRepository<Student>, StudentRepository>();
@@ -41,9 +43,6 @@ namespace Workspace
             containerRegistry.RegisterForNavigation<Groups, GroupsViewModel>("Groups");
             containerRegistry.RegisterForNavigation<Journals, JournalsViewModel>("Journals");
             containerRegistry.RegisterForNavigation<Tickets, TicketsViewModel>("Tickets");
-
-
-
         }
     }
 }

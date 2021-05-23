@@ -7,12 +7,23 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models.DatabaseModels
 {
-    public class Ticket : IEntity
-    {
-        public int Id { get; set; }
+    public class Ticket : AbstractEntity
+    { 
         public Subject Subject { get; set; }
         public User User { get; set; }
         public string Text { get; set; }
         public int Number { get; set; }
+
+        public override string GetDescription()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Идентификатор: {Id}\n");
+            sb.Append(GetValidString(Subject, "Предмет: ", "Name"));
+            sb.Append(GetValidString(User, "Создано пользователем: ", "Username"));
+            sb.Append($"Текст билета: {Text}\n");
+            sb.Append($"Номер билета: {Number}\n");
+
+            return sb.ToString();
+        }
     }
 }

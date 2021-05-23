@@ -96,6 +96,9 @@
     <Compile Include="Windows\AddDialogWindow.xaml.cs">
       <DependentUpon>AddDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DescriptionDialogWindow.xaml.cs">
+      <DependentUpon>DescriptionDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\EditDialogWindow.xaml.cs">
       <DependentUpon>EditDialogWindow.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
     <Page Include="Windows\AddDialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\DescriptionDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\EditDialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -5,6 +5,7 @@ using Prism.Regions;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models
 {
@@ -57,9 +58,11 @@ namespace InspectionBoardLibrary.Models
             this.repository = repository;
             this.dialogService = dialogService;
             ShowDialogCommand = new DelegateCommand<string>(DefineDialogType);
+            ShowDescriptionCommand = new DelegateCommand(ShowDescription);
         }
 
         public DelegateCommand<string> ShowDialogCommand { get; private set; }
+        public DelegateCommand ShowDescriptionCommand { get; private set; }
 
         private void DefineDialogType(string dialogName)
         {
@@ -77,9 +80,10 @@ namespace InspectionBoardLibrary.Models
             }
         }
 
-        private async void ShowDialog(string dialogName, string dialogWindowName)
+        public async Task ShowDialog(string dialogName, string dialogWindowName)
         {
             var parameters = new DialogParameters();
+
             dialogService.ShowDialog(dialogName, parameters, async r =>
             {
                 switch (r.Result)
@@ -103,6 +107,59 @@ namespace InspectionBoardLibrary.Models
                         }
                 }
             }, dialogWindowName);
+
+            //dialogService.ShowDialog(dialogName, parameters, async r =>
+            //{
+            //    switch (r.Result)
+            //    {
+            //        case ButtonResult.None:
+            //            {
+            //                break;
+            //            }
+            //        case ButtonResult.OK:
+            //            {
+            //                Entities = await repository.Select();
+            //                break;
+            //            }
+            //        case ButtonResult.Cancel:
+            //            {
+            //                break;
+            //            }
+            //        default:
+            //            {
+            //                break;
+            //            }
+            //    }
+            //}, dialogWindowName);
+        }
+
+        public void ShowDescription()
+        {
+            var parameters = new DialogParameters();
+            parameters.Add("Entity", SelectedEntity);
+
+            dialogService.ShowDialog("StudentDescriptionDialog", parameters, async r =>
+            {
+                switch (r.Result)
+                {
+                    case ButtonResult.None:
+                        {
+                            break;
+                        }
+                    case ButtonResult.OK:
+                        {
+                            break;
+                        }
+                    case ButtonResult.Cancel:
+                        {
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }, "DescriptionDialogWindow");
         }
 
         public virtual async void OnNavigatedTo(NavigationContext navigationContext)
@@ -114,12 +171,12 @@ namespace InspectionBoardLibrary.Models
 
         private async void Entities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-
+            
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
             {
                 Entities = await repository.Select();
             }
-            
+
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

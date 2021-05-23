@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Services.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Documentaton
+namespace Workspace.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для DescriptionDialogWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DescriptionDialogWindow : Window, IDialogWindow
     {
-        public MainWindow()
+        public DescriptionDialogWindow()
         {
             InitializeComponent();
         }
+
+        public IDialogResult Result { get; set; }
     }
 }

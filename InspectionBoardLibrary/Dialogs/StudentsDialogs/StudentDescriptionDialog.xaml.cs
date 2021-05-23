@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Tickets.Views
+namespace InspectionBoardLibrary.Dialogs.StudentsDialogs
 {
     /// <summary>
-    /// Логика взаимодействия для Main.xaml
+    /// Логика взаимодействия для StudentDescriptionDialog.xaml
     /// </summary>
-    public partial class Main : UserControl
+    public partial class StudentDescriptionDialog : UserControl
     {
-        public Main()
+        public StudentDescriptionDialog()
         {
             InitializeComponent();
         }
