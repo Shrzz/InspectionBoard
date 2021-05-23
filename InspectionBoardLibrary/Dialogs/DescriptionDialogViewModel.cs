@@ -1,13 +1,8 @@
 ﻿using InspectionBoardLibrary.Models.Database;
-using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Dialogs
 {
@@ -70,7 +65,7 @@ namespace InspectionBoardLibrary.Dialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             Entity = parameters.GetValue<TEntity>("Entity");
-            Description = Entity.GetDescription();
+            Description = Entity.GetFullDescription();
         }
     }
 }

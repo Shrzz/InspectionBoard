@@ -14,14 +14,27 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public DateTime Date { get; set; }
         public byte Mark { get; set; }
 
-        public override string GetDescription()
+        public override string GetShortDescription()
         {
             StringBuilder sb = new StringBuilder();
+            sb.Append("Журнал: \n");
             sb.Append($"Идентификатор: {Id}\n");
             sb.Append(GetValidString(Subject, "Предмет: ", "Name"));
             sb.Append(GetValidString(Student, "Студент: ", "Surname"));
             sb.Append($"Дата: {Date}\n");
             sb.Append($"Оценка: {Mark}\n");
+            sb.Append("\n");
+
+            return sb.ToString();
+        }
+
+        public override string GetFullDescription()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(GetShortDescription());
+            sb.Append(Subject.GetShortDescription());
+            sb.Append(Student.GetShortDescription());
 
             return sb.ToString();
         }

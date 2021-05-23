@@ -10,7 +10,7 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public string Patronymic { get; set; }
         public string Category { get; set; }
 
-        public override string GetDescription()
+        public override string GetShortDescription()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"Идентификатор: {Id}\n");
@@ -18,8 +18,14 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
             sb.Append($"Имя: {Name}\n");
             sb.Append($"Отчество: {Patronymic}\n");
             sb.Append($"Категория: {Category}\n");
+            sb.Append("\n");
 
             return sb.ToString();
+        }
+
+        public override string GetFullDescription()
+        {
+            return GetShortDescription();
         }
     }
 }

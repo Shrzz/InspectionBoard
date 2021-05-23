@@ -3,9 +3,11 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
+using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace InspectionBoardLibrary.Models
 {

@@ -10,9 +10,14 @@ namespace InspectionBoardLibrary.Models.Database
     {
         public int Id { get; set; }
 
-        public virtual string GetDescription()
+        public virtual string GetShortDescription()
         {
-            return "abstract entity";
+            return "abstract entity description";
+        }
+
+        public virtual string GetFullDescription()
+        {
+            return "description of abstract entity and it's related entities";
         }
 
         public string GetValidString(IEntity o, string empty, string propName)

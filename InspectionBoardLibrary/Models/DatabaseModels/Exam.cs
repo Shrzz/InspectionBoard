@@ -18,9 +18,11 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public ExamType ExamType { get; set; }
         public ExamForm ExamForm { get; set; }
 
-        public override string GetDescription()
+        public override string GetShortDescription()
         {
             StringBuilder sb = new StringBuilder();
+
+            sb.Append("Экзамен: ");
             sb.Append("Идентификатор: {Id}\n");
             sb.Append(GetValidString(Subject, $"Предмет: ", "Name"));
             sb.Append(GetValidString(Teacher, $"Преподаватель: ", "Surname"));
@@ -29,6 +31,19 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
             sb.Append($"Дата проведения: {Date}\n");
             sb.Append($"Тип экзамена: {ExamType}\n");
             sb.Append($"Форма проведения экзамена: {ExamForm}\n");
+
+            return sb.ToString();
+        }
+
+        public override string GetFullDescription()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(GetShortDescription());
+            sb.Append(Subject.GetShortDescription());
+            sb.Append(Teacher.GetShortDescription());
+            sb.Append(Student.GetShortDescription());
+            sb.Append(Ticket.GetShortDescription());
 
             return sb.ToString();
         }

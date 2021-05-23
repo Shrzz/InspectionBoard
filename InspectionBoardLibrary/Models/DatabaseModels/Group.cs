@@ -10,14 +10,23 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public string Faculty { get; set; }
         public virtual ICollection<Student> Students { get; set; }
 
-        public override string GetDescription()
+        public override string GetShortDescription()
         {
             StringBuilder sb = new StringBuilder();
+
+            sb.Append("Группа: ");
             sb.Append($"Идентификатор: {Id}\n");
             sb.Append($"Код группы: {Name}\n");
             sb.Append($"Факультет: {Faculty}\n");
+            sb.Append("\n");
 
             return sb.ToString();
         }
+
+        public override string GetFullDescription()
+        {
+            return GetShortDescription();
+        }
+
     }
 }

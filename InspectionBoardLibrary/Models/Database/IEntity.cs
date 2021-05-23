@@ -6,7 +6,9 @@ namespace InspectionBoardLibrary.Models.Database
     {
         int Id { get; set; }
 
-        string GetDescription();
+        string GetShortDescription();
+
+        string GetFullDescription();
 
         string GetValidString(IEntity o, string empty, string propName);
     }
