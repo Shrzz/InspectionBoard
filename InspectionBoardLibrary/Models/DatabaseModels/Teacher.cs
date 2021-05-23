@@ -13,6 +13,8 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public override string GetShortDescription()
         {
             StringBuilder sb = new StringBuilder();
+
+            sb.Append("Преподаватель: \n");
             sb.Append($"Идентификатор: {Id}\n");
             sb.Append($"Фамилия: {Surname}\n");
             sb.Append($"Имя: {Name}\n");

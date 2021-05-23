@@ -140,7 +140,7 @@ namespace InspectionBoardLibrary.Models
             var parameters = new DialogParameters();
             parameters.Add("Entity", SelectedEntity);
 
-            dialogService.ShowDialog("StudentDescriptionDialog", parameters, async r =>
+            dialogService.ShowDialog("DescriptionDialog", parameters, async r =>
             {
                 switch (r.Result)
                 {

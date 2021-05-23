@@ -11,6 +11,8 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         public override string GetShortDescription()
         {
             StringBuilder sb = new StringBuilder();
+
+            sb.Append("Пользователь: \n");
             sb.Append($"Идентификатор: {Id}\n");
             sb.Append($"Имя пользователя: {Username}\n");
             sb.Append($"Пароль: {Password}\n");

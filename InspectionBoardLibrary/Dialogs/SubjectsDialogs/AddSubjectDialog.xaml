@@ -14,14 +14,14 @@
                          Margin="0 5" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Focusable="True" 
-                         Text="{Binding Entity.Name}" />
+                         Text="{Binding Name}" />
                 <TextBox materialDesign:HintAssist.Hint="Количество лекционных часов"
                          Margin="0 5" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Text="{Binding Entity.LectoryHours}"/>
+                         Text="{Binding LectoryHours}"/>
                 <TextBox materialDesign:HintAssist.Hint="Количество лабораторных и практических часов"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Text="{Binding Entity.LaboratoryHours}"/>
+                         Text="{Binding LaboratoryHours}"/>
                 <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"

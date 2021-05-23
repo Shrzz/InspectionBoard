@@ -14,11 +14,30 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
 {
     public class AddExamDialogViewModel : AddDialogViewModel<Exam, ExamContext>
     {
-        public AddExamDialogViewModel(IRepository<Exam> repository) : base(repository)
-        {
+        // entity properties
+        private Subject subject;
+        public Subject Subject { get => subject; set => SetProperty(ref subject, value); }
 
-        }
+        private Teacher teacher;
+        public Teacher Teacher { get => teacher; set => SetProperty(ref teacher, value); }
 
+        private Student student;
+        public Student Student { get => student; set => SetProperty(ref student, value); }
+
+        private Ticket ticket;
+        public Ticket Ticket { get => ticket; set => SetProperty(ref ticket, value); }
+
+        private DateTime date;
+        public DateTime Date { get => date; set => SetProperty(ref date, value); }
+
+        private ExamType examType;
+        public ExamType ExamType { get => examType; set => SetProperty(ref examType, value); }
+
+        private ExamForm examForm;
+        public ExamForm ExamForm { get => examForm; set => SetProperty(ref examForm, value); }
+
+
+        // values collections
         private ObservableCollection<Student> students;
         public ObservableCollection<Student> Students
         {
@@ -53,16 +72,15 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
             get => examTypes;
             set { SetProperty(ref examTypes, value); }
         }
-
-        private DateTime date;
-        public DateTime Date
+        public AddExamDialogViewModel(IRepository<Exam> repository) : base(repository)
         {
-            get { return date; }
-            set { SetProperty(ref date, value); }
+
         }
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
+            this.dialogParameters = parameters;
+
             Students = await (repository as ExamRepository).SelectStudents();
             Teachers = await (repository as ExamRepository).SelectTeachers();
             Subjects = await (repository as ExamRepository).SelectSubjects();

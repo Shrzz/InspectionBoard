@@ -14,6 +14,23 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
 {
     public class AddStudentDialogViewModel : AddDialogViewModel<Student, ExamContext>
     {
+        // Entity properties
+        private string surname;
+        public string Surname { get => surname; set { SetProperty(ref surname, value); } }
+
+        private string name;
+        public string Name { get => name; set { SetProperty(ref name, value); } }
+
+        private string patronymic;
+        public string Patronymic { get => patronymic; set { SetProperty(ref patronymic, value); } }
+
+        private Group group;
+        public Group Group { get => group; set { SetProperty(ref group, value); } }
+
+        private EducationForm educationForm;
+        public EducationForm EducationForm { get => educationForm; set { SetProperty(ref educationForm, value); } }
+
+        // Values collections
         private ObservableCollection<Group> groups;
         public ObservableCollection<Group> Groups
         {
@@ -35,13 +52,21 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
-            base.OnDialogOpened(parameters);
+            dialogParameters = parameters;
             Groups = await (repository as StudentRepository).SelectGroups();
-            EducationForms = Enum.GetValues(typeof(EducationForm)).Cast<EducationForm>().ToList<EducationForm>();
+            EducationForms = Enum.GetValues(typeof(EducationForm)).Cast<EducationForm>().ToList();
+        }
 
+        public override void CloseDialog(string parameter)
+        {
             Entity = new Student();
-            Entity.Group = Groups.FirstOrDefault();
-            Entity.EducationForm = EducationForms.FirstOrDefault();
+            Entity.Surname = Surname;
+            Entity.Name = Name;
+            Entity.Patronymic = Patronymic;
+            Entity.Group = Group;
+            Entity.EducationForm = EducationForm;
+
+            base.CloseDialog(parameter);
         }
     }
 }

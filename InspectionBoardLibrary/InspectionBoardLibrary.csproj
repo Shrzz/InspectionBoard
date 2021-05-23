@@ -87,15 +87,14 @@
     <Compile Include="Database\Repositories\JournalRepository.cs" />
     <Compile Include="Database\Repositories\TicketRepository.cs" />
     <Compile Include="Database\Services\ExamService.cs" />
-    <Compile Include="Dialogs\DescriptionDialogViewModel.cs" />
+    <Compile Include="Dialogs\CommonDialogs\DescriptionDialog.xaml.cs">
+      <DependentUpon>DescriptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CommonDialogs\DescriptionDialogViewModel.cs" />
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialog.xaml.cs">
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
-    <Compile Include="Dialogs\StudentsDialogs\StudentDescriptionDialog.xaml.cs">
-      <DependentUpon>StudentDescriptionDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\StudentsDialogs\StudentDescriptionDialogViewModel.cs" />
     <Compile Include="Dialogs\TicketsDialogs\AddTicketDialog.xaml.cs">
       <DependentUpon>AddTicketDialog.xaml</DependentUpon>
     </Compile>
@@ -266,6 +265,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Dialogs\CommonDialogs\DescriptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\ExamsDialogs\AddExamDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -313,10 +316,6 @@
     <Page Include="Dialogs\StudentsDialogs\RemoveStudentDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialogs\StudentsDialogs\StudentDescriptionDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\SubjectsDialogs\AddSubjectDialog.xaml">
       <Generator>MSBuild:Compile</Generator>

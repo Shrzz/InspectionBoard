@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Workspace.Views"        
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:converters="clr-namespace:InspectionBoardLibrary.Models.Converters;assembly=InspectionBoardLibrary" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converters="clr-namespace:InspectionBoardLibrary.Models.Converters;assembly=InspectionBoardLibrary" 
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -44,7 +45,7 @@
                 Grid.Column="7"
                 Margin="10"
                 Content="Добавить"
-                Command="{Binding ShowDialogCommand}">
+                Command="{Binding ShowDialogCommand}" CommandParameter="AddStudentDialog">
             <!--<Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource ArrayMultiValueConverter}">
                     <Binding Path="AddStudentDialog" ElementName="s"/>
@@ -97,7 +98,6 @@
                     </b:Interaction.Triggers>
 
                     <DataGrid.Columns>
-
                         <DataGridTemplateColumn Header="Идентификатор" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="models:Student" >

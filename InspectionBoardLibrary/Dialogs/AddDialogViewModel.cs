@@ -69,7 +69,7 @@ namespace InspectionBoardLibrary.Dialogs
 
         public virtual void OnDialogOpened(IDialogParameters parameters)
         {
-            this.dialogParameters = parameters;
+            dialogParameters = parameters;
         }
     }
 }

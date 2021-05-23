@@ -9,6 +9,12 @@ namespace InspectionBoardLibrary.Windows.GroupsDialogs
 {
     public class AddGroupDialogViewModel : AddDialogViewModel<Group, ExamContext>
     {
+        private string name;
+        public string Name { get => name; set => SetProperty(ref name, value); }
+
+        private string faculty;
+        public string Faculty { get => faculty; set => SetProperty(ref faculty, value); }
+
         public AddGroupDialogViewModel(IRepository<Group> repository) : base(repository)
         {
 
@@ -16,8 +22,16 @@ namespace InspectionBoardLibrary.Windows.GroupsDialogs
 
         public override void OnDialogOpened(IDialogParameters parameters)
         {
-            this.dialogParameters = parameters;
+            dialogParameters = parameters;
+        }
+
+        public override void CloseDialog(string parameter)
+        {
             Entity = new Group();
+            Entity.Name = Name;
+            Entity.Faculty = Faculty;
+
+            base.CloseDialog(parameter);
         }
     }
 }

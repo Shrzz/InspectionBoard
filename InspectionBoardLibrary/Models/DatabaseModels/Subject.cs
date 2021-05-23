@@ -16,7 +16,7 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
             sb.Append($"Идентификатор: {Id}\n");
             sb.Append($"Имя пользователя: {Name}\n");
             sb.Append($"Количество лекционных часов: {LectoryHours}\n");
-            sb.Append($"Количество лабораторных и практических часов:{LaboratoryHours}");
+            sb.Append($"Количество лабораторных \nи практических часов: {LaboratoryHours}\n");
             sb.Append("\n");
 
             return sb.ToString();

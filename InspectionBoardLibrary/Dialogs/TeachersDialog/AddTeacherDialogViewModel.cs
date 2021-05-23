@@ -13,11 +13,20 @@ namespace InspectionBoardLibrary.Windows.TeachersDialog
 {
     public class AddTeacherDialogViewModel : AddDialogViewModel<Teacher, ExamContext>
     {
-        public AddTeacherDialogViewModel(IRepository<Teacher> repository) : base(repository)
-        {
+        //entity properties
+        private string surname;
+        public string Surname { get => surname; set { SetProperty(ref surname, value); } }
 
-        }
+        private string name;
+        public string Name { get => name; set { SetProperty(ref name, value); } }
 
+        private string patronymic;
+        public string Patronymic { get => patronymic; set { SetProperty(ref patronymic, value); } }
+
+        private Category category;
+        public Category Category { get => category; set { SetProperty(ref category, value); } }
+
+        //values collections
         private IList<Category> categories;
         public IList<Category> Categories
         {
@@ -25,11 +34,26 @@ namespace InspectionBoardLibrary.Windows.TeachersDialog
             set { SetProperty(ref categories, value); }
         }
 
+        public AddTeacherDialogViewModel(IRepository<Teacher> repository) : base(repository)
+        {
+
+        }
+
         public override void OnDialogOpened(IDialogParameters parameters)
         {
-            this.dialogParameters = parameters;
-            this.Entity = new Teacher();
-            Categories = Enum.GetValues(typeof(Category)).Cast<Category>().ToList<Category>();
+            dialogParameters = parameters;
+            Categories = Enum.GetValues(typeof(Category)).Cast<Category>().ToList();
+        }
+
+        public override void CloseDialog(string parameter)
+        {
+            Entity = new Teacher();
+            Entity.Surname = Surname;
+            Entity.Name = Name;
+            Entity.Patronymic = Patronymic;
+            Entity.Category = Category.ToString();
+
+            base.CloseDialog(parameter);
         }
     }
 }

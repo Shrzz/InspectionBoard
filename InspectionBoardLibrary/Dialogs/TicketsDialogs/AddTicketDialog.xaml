@@ -15,7 +15,7 @@
                           ItemsSource="{Binding Subjects}" 
                           DisplayMemberPath="Name"
                           IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding Entity.Subject}"/>
+                          SelectedItem="{Binding Subject}"/>
                 
                 <TextBox materialDesign:HintAssist.Hint="Текст вопроса"
                          Margin="0 5" 
@@ -24,7 +24,7 @@
                          VerticalScrollBarVisibility="Auto"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Focusable="True" 
-                         Text="{Binding Entity.Text}" 
+                         Text="{Binding Text}" 
                          TextWrapping="Wrap"/>
 
                 <TextBox materialDesign:HintAssist.Hint="Номер вопроса"
@@ -34,7 +34,7 @@
                          VerticalScrollBarVisibility="Auto"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Focusable="True" 
-                         Text="{Binding Entity.Number}" />
+                         Text="{Binding Number}" />
 
                 <Button Margin="20 10 20 0"
                         Content="Добавить"

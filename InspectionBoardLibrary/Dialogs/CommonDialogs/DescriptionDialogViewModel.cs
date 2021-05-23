@@ -4,14 +4,12 @@ using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
 
-namespace InspectionBoardLibrary.Dialogs
+namespace InspectionBoardLibrary.Dialogs.CommonDialogs
 {
-    public abstract class DescriptionDialogViewModel<TEntity> : BindableBase, IDialogAware
-        where TEntity : class, IEntity
+    public class DescriptionDialogViewModel : BindableBase, IDialogAware
     {
-
-        private TEntity entity;
-        public TEntity Entity
+        private IEntity entity;
+        public IEntity Entity
         {
             get => entity;
             set { SetProperty(ref entity, value); }
@@ -64,7 +62,7 @@ namespace InspectionBoardLibrary.Dialogs
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            Entity = parameters.GetValue<TEntity>("Entity");
+            Entity = parameters.GetValue<IEntity>("Entity");
             Description = Entity.GetFullDescription();
         }
     }

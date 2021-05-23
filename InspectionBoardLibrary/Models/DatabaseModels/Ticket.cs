@@ -18,6 +18,7 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         {
             StringBuilder sb = new StringBuilder();
 
+            sb.Append("Билет: \n");
             sb.Append($"Идентификатор: {Id}\n");
             sb.Append(GetValidString(Subject, "Предмет: ", "Name"));
             sb.Append(GetValidString(User, "Создано пользователем: ", "Username"));

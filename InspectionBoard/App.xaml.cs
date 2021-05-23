@@ -2,8 +2,8 @@
 using Documentation;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
+using InspectionBoardLibrary.Dialogs.CommonDialogs;
 using InspectionBoardLibrary.Dialogs.SettingsDialogs;
-using InspectionBoardLibrary.Dialogs.StudentsDialogs;
 using InspectionBoardLibrary.Dialogs.TicketsDialogs;
 using InspectionBoardLibrary.Windows;
 using InspectionBoardLibrary.Windows.ExamsDialogs;
@@ -43,7 +43,7 @@ namespace InspectionBoardLibrary
             RegisterTicketDialogs();
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
-            this.containerRegistry.RegisterDialog<StudentDescriptionDialog, StudentDescriptionDialogViewModel>("StudentDescriptionDialog");
+            this.containerRegistry.RegisterDialog<DescriptionDialog, DescriptionDialogViewModel>("DescriptionDialog");
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

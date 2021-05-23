@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Workspace.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:models="clr-namespace:InspectionBoardLibrary.Models.DatabaseModels;assembly=InspectionBoardLibrary"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -67,6 +68,11 @@
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   SelectionChanged="OnSelectionChanged">
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="MouseLeftButtonUp">
+                    <b:InvokeCommandAction Command="{Binding ShowDescriptionCommand}" />
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Идентификатор">
                     <DataGridTemplateColumn.CellTemplate>

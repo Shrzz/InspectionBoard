@@ -14,7 +14,7 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("Группа: ");
+            sb.Append("Группа: \n");
             sb.Append($"Идентификатор: {Id}\n");
             sb.Append($"Код группы: {Name}\n");
             sb.Append($"Факультет: {Faculty}\n");

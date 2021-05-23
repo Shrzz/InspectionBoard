@@ -14,6 +14,18 @@ namespace InspectionBoardLibrary.Dialogs.TicketsDialogs
 {
     public class AddTicketDialogViewModel : AddDialogViewModel<Ticket, ExamContext>
     {
+        private Subject subject;
+        public Subject Subject { get => subject; set { SetProperty(ref subject, value); } }
+
+        private User user;
+        public User User { get => user; set { SetProperty(ref user, value); } }
+
+        private int number;
+        public int Number { get => number; set { SetProperty(ref number, value); } }
+
+        private string text;
+        public string Text { get => text; set { SetProperty(ref text, value); } }
+
         private ObservableCollection<Subject> subjects;
         public ObservableCollection<Subject> Subjects
         {
@@ -28,11 +40,19 @@ namespace InspectionBoardLibrary.Dialogs.TicketsDialogs
 
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
-            base.OnDialogOpened(parameters);
+            dialogParameters = parameters;
             Subjects = await (repository as TicketRepository).SelectSubjects();
+        }
+
+        public override void CloseDialog(string parameter)
+        {
             Entity = new Ticket();
-            Entity.Subject = Subjects.FirstOrDefault();
-            Entity.Number = 1;
+            Entity.Subject = Subject;
+            Entity.User = User;
+            Entity.Number = Number;
+            Entity.Text = Text;
+
+            base.CloseDialog(parameter);
         }
     }
 }
