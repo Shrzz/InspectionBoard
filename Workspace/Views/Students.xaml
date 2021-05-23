@@ -85,8 +85,9 @@
                           Sorting="dg_Sorting">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Изменить" Command="{Binding ShowDialogCommand}" CommandParameter="EditStudentDialog"/>
-                            <MenuItem Header="Удалить" Command="{Binding ShowDialogCommand}" CommandParameter="RemoveStudentDialog"/>
+                            <MenuItem Header="Добавить" Command="{Binding ShowAddDialogCommand}"/>
+                            <MenuItem Header="Изменить" Command="{Binding ShowEditDialogCommand}"/>
+                            <MenuItem Header="Удалить" Command="{Binding RemoveEntityCommand}"/>
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                     <b:Interaction.Triggers>

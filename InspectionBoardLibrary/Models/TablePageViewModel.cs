@@ -66,17 +66,18 @@ namespace InspectionBoardLibrary.Models
             ShowEditDialogCommand = new DelegateCommand(ShowEditDialog);
             ShowRemoveDialogCommand = new DelegateCommand(ShowRemoveDialog);
             ShowDescriptionCommand = new DelegateCommand(ShowDescriptionDialog);
+            RemoveEntityCommand = new DelegateCommand(RemoveEntity);
         }
 
         public DelegateCommand ShowAddDialogCommand { get; private set; }
         public DelegateCommand ShowEditDialogCommand { get; private set; }
         public DelegateCommand ShowRemoveDialogCommand { get; private set; }
         public DelegateCommand ShowDescriptionCommand { get; private set; }
+        public DelegateCommand RemoveEntityCommand { get; private set; }
+        
 
-        public async Task ShowDialog(string dialogName, string dialogWindowName)
+        public async Task ShowDialog(string dialogName, string dialogWindowName, DialogParameters parameters)
         {
-            var parameters = new DialogParameters();
-
             dialogService.ShowDialog(dialogName, parameters, async r =>
             {
                 switch (r.Result)
@@ -94,17 +95,33 @@ namespace InspectionBoardLibrary.Models
 
         public async virtual void ShowAddDialog()
         {
-            await ShowDialog(AddDialogName, "AddDialogWindow");
+            DialogParameters parameters = new DialogParameters();
+            await ShowDialog(AddDialogName, "AddDialogWindow", parameters);
         }
 
         public async virtual void ShowEditDialog()
         {
-            await ShowDialog(EditDialogName, "EditDialogWindow");
+            DialogParameters parameters = new DialogParameters();
+            await ShowDialog(EditDialogName, "EditDialogWindow", parameters);
+        }
+
+        public async virtual void ShowEditDialog(int id)
+        {
+            DialogParameters parameters = new DialogParameters();
+            parameters.Add("Id", id);
+            await ShowDialog(EditDialogName, "EditDialogWindow", parameters);
         }
 
         public async virtual void ShowRemoveDialog()
         {
-            await ShowDialog(RemoveDialogName, "RemoveDialogWindow");
+            DialogParameters parameters = new DialogParameters();
+            await ShowDialog(RemoveDialogName, "RemoveDialogWindow", parameters);
+        }
+
+        public async virtual void RemoveEntity()
+        {
+            await repository.Remove(SelectedEntity.Id);
+            Entities = await repository.Select();
         }
 
         public void ShowDescriptionDialog()

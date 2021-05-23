@@ -68,6 +68,13 @@
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   SelectionChanged="OnSelectionChanged">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить" Command="{Binding ShowAddDialogCommand}"/>
+                    <MenuItem Header="Изменить" Command="{Binding ShowEditDialogCommand}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveEntityCommand}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="MouseLeftButtonUp">
                     <b:InvokeCommandAction Command="{Binding ShowDescriptionCommand}" />
