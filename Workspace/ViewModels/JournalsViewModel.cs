@@ -11,6 +11,10 @@ namespace Workspace.ViewModels
 {
     public class JournalsViewModel : TablePage<Journal, ExamContext>
     {
+        protected override string AddDialogName { get; set; }
+        protected override string EditDialogName { get; set; }
+        protected override string RemoveDialogName { get; set; }
+
         private ObservableCollection<Group> groups;
         public ObservableCollection<Group> Groups
         {
@@ -42,6 +46,9 @@ namespace Workspace.ViewModels
         public JournalsViewModel(IDialogService service, IRepository<Journal> repository) : base(service, repository)
         {
             //this.repository.Searcher = new JournalSearcher();
+            AddDialogName = "AddJournalDialog";
+            EditDialogName = "EditJournalDialog";
+            RemoveDialogName = "RemoveJournalDialog";
         }
 
         public override async void OnNavigatedTo(NavigationContext navigationContext)

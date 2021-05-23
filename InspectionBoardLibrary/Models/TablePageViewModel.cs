@@ -3,11 +3,9 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace InspectionBoardLibrary.Models
 {
@@ -18,6 +16,11 @@ namespace InspectionBoardLibrary.Models
         protected readonly IDialogService dialogService;
         protected readonly IRepository<TEntity> repository;
         protected ISearcher<TEntity> searcher;
+
+        protected virtual string AddDialogName { get; set; }
+        protected virtual string EditDialogName { get; set; }
+        protected virtual string RemoveDialogName { get; set; }
+
 
         private ObservableCollection<TEntity> entities;
         public ObservableCollection<TEntity> Entities
@@ -59,28 +62,16 @@ namespace InspectionBoardLibrary.Models
             this.dialogService = dialogService;
             this.repository = repository;
             this.dialogService = dialogService;
-            ShowDialogCommand = new DelegateCommand<string>(DefineDialogType);
-            ShowDescriptionCommand = new DelegateCommand(ShowDescription);
+            ShowAddDialogCommand = new DelegateCommand(ShowAddDialog);
+            ShowEditDialogCommand = new DelegateCommand(ShowEditDialog);
+            ShowRemoveDialogCommand = new DelegateCommand(ShowRemoveDialog);
+            ShowDescriptionCommand = new DelegateCommand(ShowDescriptionDialog);
         }
 
-        public DelegateCommand<string> ShowDialogCommand { get; private set; }
+        public DelegateCommand ShowAddDialogCommand { get; private set; }
+        public DelegateCommand ShowEditDialogCommand { get; private set; }
+        public DelegateCommand ShowRemoveDialogCommand { get; private set; }
         public DelegateCommand ShowDescriptionCommand { get; private set; }
-
-        private void DefineDialogType(string dialogName)
-        {
-            if (dialogName.StartsWith("Add"))
-            {
-                ShowDialog(dialogName, "AddDialogWindow");
-            }
-            else if (dialogName.StartsWith("Edit"))
-            {
-                ShowDialog(dialogName, "EditDialogWindow");
-            }
-            else if (dialogName.StartsWith("Remove"))
-            {
-                ShowDialog(dialogName, "RemoveDialogWindow");
-            }
-        }
 
         public async Task ShowDialog(string dialogName, string dialogWindowName)
         {
@@ -90,78 +81,38 @@ namespace InspectionBoardLibrary.Models
             {
                 switch (r.Result)
                 {
-                    case ButtonResult.None:
-                        {
-                            break;
-                        }
                     case ButtonResult.OK:
                         {
                             Entities = await repository.Select();
                             break;
                         }
-                    case ButtonResult.Cancel:
-                        {
-                            break;
-                        }
                     default:
-                        {
-                            break;
-                        }
+                        break;
                 }
             }, dialogWindowName);
-
-            //dialogService.ShowDialog(dialogName, parameters, async r =>
-            //{
-            //    switch (r.Result)
-            //    {
-            //        case ButtonResult.None:
-            //            {
-            //                break;
-            //            }
-            //        case ButtonResult.OK:
-            //            {
-            //                Entities = await repository.Select();
-            //                break;
-            //            }
-            //        case ButtonResult.Cancel:
-            //            {
-            //                break;
-            //            }
-            //        default:
-            //            {
-            //                break;
-            //            }
-            //    }
-            //}, dialogWindowName);
         }
 
-        public void ShowDescription()
+        public async virtual void ShowAddDialog()
+        {
+            await ShowDialog(AddDialogName, "AddDialogWindow");
+        }
+
+        public async virtual void ShowEditDialog()
+        {
+            await ShowDialog(EditDialogName, "EditDialogWindow");
+        }
+
+        public async virtual void ShowRemoveDialog()
+        {
+            await ShowDialog(RemoveDialogName, "RemoveDialogWindow");
+        }
+
+        public void ShowDescriptionDialog()
         {
             var parameters = new DialogParameters();
             parameters.Add("Entity", SelectedEntity);
 
-            dialogService.ShowDialog("DescriptionDialog", parameters, async r =>
-            {
-                switch (r.Result)
-                {
-                    case ButtonResult.None:
-                        {
-                            break;
-                        }
-                    case ButtonResult.OK:
-                        {
-                            break;
-                        }
-                    case ButtonResult.Cancel:
-                        {
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
-                }
-            }, "DescriptionDialogWindow");
+            dialogService.ShowDialog("DescriptionDialog", parameters, r => { }, "DescriptionDialogWindow");
         }
 
         public virtual async void OnNavigatedTo(NavigationContext navigationContext)
@@ -173,12 +124,10 @@ namespace InspectionBoardLibrary.Models
 
         private async void Entities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
             {
                 Entities = await repository.Select();
             }
-
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

@@ -11,6 +11,10 @@ namespace Workspace.ViewModels
 {
     public class TicketsViewModel : TablePage<Ticket, ExamContext>
     {
+        protected override string AddDialogName { get; set; }
+        protected override string EditDialogName { get; set; }
+        protected override string RemoveDialogName { get; set; }
+
         private ObservableCollection<Subject> subjects;
         public ObservableCollection<Subject> Subjects
         {
@@ -28,7 +32,9 @@ namespace Workspace.ViewModels
 
         public TicketsViewModel(IDialogService service, IRepository<Ticket> repository) : base(service, repository)
         {
-
+            AddDialogName = "AddTicketDialog";
+            EditDialogName = "EditTicketDialog";
+            RemoveDialogName = "RemoveTicketDialog";
         }
 
         public async override void OnNavigatedTo(NavigationContext navigationContext)

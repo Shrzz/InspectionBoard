@@ -44,19 +44,19 @@
                 Grid.Column="7"
                 Margin="10"
                 Content="Добавить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="AddSubjectDialog"/>
+                Command="{Binding ShowAddDialogCommand}"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="8"
                 Margin="10"
                 Content="Изменить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="EditSubjectDialog"/>
+                Command="{Binding ShowEditDialogCommand}"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="9"
                 Margin="10"
                 Content="Удалить"
-                Command="{Binding ShowDialogCommand}" CommandParameter="RemoveSubjectDialog"/>
+                Command="{Binding ShowRemoveDialogCommand}"/>
 
         <DataGrid Grid.Row="1" 
                   Grid.Column="0" 
