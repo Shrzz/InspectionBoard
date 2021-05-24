@@ -76,7 +76,7 @@ namespace InspectionBoardLibrary.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
 
-            //regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())

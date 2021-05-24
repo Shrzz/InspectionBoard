@@ -85,6 +85,7 @@
                           Sorting="dg_Sorting">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
+                            <MenuItem Header="Сведения" Command="{Binding ShowDescriptionCommand}"/>
                             <MenuItem Header="Добавить" Command="{Binding ShowAddDialogCommand}"/>
                             <MenuItem Header="Изменить" Command="{Binding ShowEditDialogCommand}"/>
                             <MenuItem Header="Удалить" Command="{Binding RemoveEntityCommand}"/>
