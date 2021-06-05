@@ -8,16 +8,8 @@
              mc:Ignorable="d" >
     <Grid>
         <materialDesign:Card Padding="20">
-            <Grid Margin="20"
-                  Height="Auto">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="1">
+            <DockPanel Margin="20" LastChildFill="False">
+                <StackPanel DockPanel.Dock="Top">
                     <TextBlock
                            Text="Идентификатор билета"/>
                     <ComboBox Margin="0 5" 
@@ -25,17 +17,19 @@
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding SelectedEntityId}"/>
                 </StackPanel>
-                <Button Grid.Row="4"
-                        Margin="20" 
-                        Content="Отмена"
-                        Command="{Binding CloseDialogCommand}"
-                        CommandParameter="false"/>
-                <Button Grid.Row="3"
-                        Margin="20 10 20 0"
-                        Content="Удалить"
-                        Command="{Binding CloseDialogCommand}"
-                        CommandParameter="true"/>
-            </Grid>
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Button Grid.Row="4"
+                            Margin="20" 
+                            Content="Отмена"
+                            Command="{Binding CloseDialogCommand}"
+                            CommandParameter="false"/>
+                    <Button Grid.Row="3"
+                            Margin="20 10 20 0"
+                            Content="Удалить"
+                            Command="{Binding CloseDialogCommand}"
+                            CommandParameter="true"/>
+                </StackPanel>
+            </DockPanel>
         </materialDesign:Card>
     </Grid>
 </UserControl>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
+using Workspace.Views;
 
 namespace InspectionBoardLibrary.ViewModels
 {
@@ -76,7 +77,7 @@ namespace InspectionBoardLibrary.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
 
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            ///regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())
@@ -88,7 +89,6 @@ namespace InspectionBoardLibrary.ViewModels
             menuItemsView = CollectionViewSource.GetDefaultView(MenuItems);
             menuItemsView.Filter = MenuItemsFilter;
             CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
-
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);
 
@@ -107,7 +107,6 @@ namespace InspectionBoardLibrary.ViewModels
             yield return new MenuItem("Группы", "Groups");
             yield return new MenuItem("Журналы", "Journals");
             yield return new MenuItem("Билеты", "Tickets");
-            yield return new MenuItem("Тестовая", "Workspace");
         }
 
         #region methods
@@ -123,6 +122,7 @@ namespace InspectionBoardLibrary.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            regionManager.RegisterViewWithRegion("WorkspaceRegion", typeof(Students));
 
         }
 

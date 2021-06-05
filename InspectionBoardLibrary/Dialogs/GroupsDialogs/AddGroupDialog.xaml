@@ -8,9 +8,9 @@
              mc:Ignorable="d" 
              Height="Auto" Width="Auto">
     <Grid>
-        <materialDesign:Card Padding="19" >
-            <StackPanel>
-                <StackPanel VerticalAlignment="Center" Margin="0 0 0 0">
+        <materialDesign:Card Padding="19">
+            <DockPanel Margin="20" LastChildFill="False">
+                <StackPanel DockPanel.Dock="Top">
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                              materialDesign:HintAssist.Hint="Код группы"
                              Margin="20 0 20 0"
@@ -19,6 +19,8 @@
                              materialDesign:HintAssist.Hint="Название факультета"
                              Margin="20 0 20 0"
                              Text="{Binding Faculty}"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom">
                     <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"
@@ -28,7 +30,7 @@
                         Command="{Binding CloseDialogCommand}"
                         CommandParameter="false"/>
                 </StackPanel>
-            </StackPanel>
+            </DockPanel>
         </materialDesign:Card>
     </Grid>
 </UserControl>

@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Linq;
+using Workspace.Views;
 
 namespace Authorization.ViewModels
 {
@@ -53,7 +54,8 @@ namespace Authorization.ViewModels
             if (success)
             {
                 Message = "Авторизация прошла успешно";
-                regionManager.RequestNavigate("MainRegion", "Workspace");
+                //regionManager.RegisterViewWithRegion("MainRegion", typeof(Students));
+                regionManager.RequestNavigate("MainRegion", "WorkspaceRegion");
             }
             else
             {

@@ -66,7 +66,7 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
         {
             Entities = await repository.Select();
             Ids = await repository.SelectIds();
-            Entity = await repository.SelectSingle(Ids.First());
+            Entity = await repository.SelectSingle(Ids.FirstOrDefault());
             if (Ids.Count > 0)
             {
                 SelectedEntityId = Ids[0];

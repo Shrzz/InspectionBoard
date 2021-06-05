@@ -16,6 +16,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using System.Windows;
+using Unity;
 using Workspace;
 using Workspace.Windows;
 
@@ -24,9 +25,11 @@ namespace InspectionBoardLibrary
     public partial class App : PrismApplication
     {
         private IContainerRegistry containerRegistry;
+
         protected override Window CreateShell()
         {
             return Container.Resolve<Views.Main>();
+            
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

@@ -9,58 +9,62 @@
              Height="Auto" Width="Auto">
     <Grid>
         <materialDesign:Card Padding="20">
-            <StackPanel Margin="20">
-                <TextBlock Text="Идентификатор"/>
-                <ComboBox Margin="0 5" 
+            <DockPanel Margin="20" LastChildFill="False">
+                <StackPanel DockPanel.Dock="Top">
+                    <TextBlock Text="Идентификатор"/>
+                    <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Ids}" 
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding SelectedEntityId}"/>
-                <TextBlock Text="Предмет"/>
-                <ComboBox Margin="0 5" 
+                    <TextBlock Text="Предмет"/>
+                    <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Subjects}" 
                           DisplayMemberPath="Name"
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding Entity.Subject}"/>
-                <TextBlock Text="Студент"/>
-                <ComboBox Margin="0 5" 
+                    <TextBlock Text="Студент"/>
+                    <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Students}" 
                           DisplayMemberPath="Surname"
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding Entity.Student}"/>
-                <TextBlock Text="Преподаватель"/>
-                <ComboBox Margin="0 5" 
+                    <TextBlock Text="Преподаватель"/>
+                    <ComboBox Margin="0 5" 
                           ItemsSource="{Binding Teachers}" 
                           DisplayMemberPath="Surname"
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding Entity.Teacher}"/>
-                <TextBox materialDesign:HintAssist.Hint="Оценка"
+                    <TextBox materialDesign:HintAssist.Hint="Оценка"
                          Margin="0 5" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Focusable="True" 
                          Text="{Binding Entity.Mark}"/>
-                <DatePicker materialDesign:HintAssist.Hint="Дата экзамена"
+                    <DatePicker materialDesign:HintAssist.Hint="Дата экзамена"
                             Width="Auto"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                             SelectedDate="{Binding Date}"/>
-                <TextBlock Text="Форма экзамена"/>
-                <ComboBox Margin="0 5" 
+                    <TextBlock Text="Форма экзамена"/>
+                    <ComboBox Margin="0 5" 
                           ItemsSource="{Binding ExamForms}" 
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding Entity.ExamForm}"/>
-                <TextBlock Text="Тип экзамена"/>
-                <ComboBox Margin="0 5" 
+                    <TextBlock Text="Тип экзамена"/>
+                    <ComboBox Margin="0 5" 
                           ItemsSource="{Binding ExamTypes}" 
                           IsSynchronizedWithCurrentItem="True"
                           SelectedItem="{Binding Entity.ExamType}"/>
-                <Button Margin="20 10 20 0"
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Button Margin="20 10 20 0"
                         Content="Добавить"
                         Command="{Binding CloseDialogCommand}"
                         CommandParameter="true"/>
-                <Button Margin="20"
+                    <Button Margin="20"
                         Content="Отмена"
                         Command="{Binding CloseDialogCommand}"
                         CommandParameter="false"/>
-            </StackPanel>
+                </StackPanel>
+            </DockPanel>
         </materialDesign:Card>
     </Grid>
 </UserControl>

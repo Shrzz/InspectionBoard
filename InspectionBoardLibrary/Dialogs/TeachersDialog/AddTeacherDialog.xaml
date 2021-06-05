@@ -7,36 +7,38 @@
              xmlns:local="clr-namespace:InspectionBoardLibrary.Windows.TeachersDialog"
              mc:Ignorable="d" 
              Height="Auto" Width="Auto">
-    <Grid>
-        <materialDesign:Card Padding="20">
-            <StackPanel Margin="20">
-                <TextBox materialDesign:HintAssist.Hint="Фамилия"
-                         Margin="0 5" 
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Focusable="True" 
-                         Text="{Binding Surname}" />
-                <TextBox materialDesign:HintAssist.Hint="Имя"
-                         Margin="0 5" 
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Text="{Binding Name}"/>
-                <TextBox materialDesign:HintAssist.Hint="Отчество"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Text="{Binding Patronymic}"/>
-                <TextBlock Text="Категория преподавателя"
-                           Margin="0 5 0 0"/>
-                <ComboBox Margin="0 5" 
-                          ItemsSource="{Binding Categories}" 
-                          IsSynchronizedWithCurrentItem="True"
-                          SelectedItem="{Binding Category}"/>
-                <Button Margin="20 10 20 0"
-                        Content="Добавить"
-                        Command="{Binding CloseDialogCommand}"
-                        CommandParameter="true"/>
-                <Button Margin="20"
-                        Content="Отмена"
-                        Command="{Binding CloseDialogCommand}"
-                        CommandParameter="false"/>
-            </StackPanel>
+    <materialDesign:Card Padding="20">
+            <DockPanel Margin="20" LastChildFill="False">
+                <StackPanel DockPanel.Dock="Top" >
+                    <TextBox materialDesign:HintAssist.Hint="Фамилия"
+                             Margin="0 5" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Focusable="True" 
+                             Text="{Binding Surname}" />
+                    <TextBox materialDesign:HintAssist.Hint="Имя"
+                             Margin="0 5" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Text="{Binding Name}"/>
+                    <TextBox materialDesign:HintAssist.Hint="Отчество"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Text="{Binding Patronymic}"/>
+                    <TextBlock Text="Категория преподавателя"
+                               Margin="0 5 0 0"/>
+                    <ComboBox Margin="0 5" 
+                              ItemsSource="{Binding Categories}" 
+                              IsSynchronizedWithCurrentItem="True"
+                              SelectedItem="{Binding Category}"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom">
+                    <Button Margin="20 10 20 0"
+                            Content="Добавить"
+                            Command="{Binding CloseDialogCommand}"
+                            CommandParameter="true"/>
+                    <Button Margin="20 10 20 0"
+                            Content="Отмена"
+                            Command="{Binding CloseDialogCommand}"
+                            CommandParameter="false"/>
+                </StackPanel>
+            </DockPanel>
         </materialDesign:Card>
-    </Grid>
 </UserControl>
