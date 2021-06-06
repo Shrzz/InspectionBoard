@@ -37,18 +37,6 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
-            Entities = await repository.Select();
-            Entity = await repository.SelectFirst();
-            Ids = await repository.SelectIds();
-            if (Ids.Count > 0)
-            {
-                SelectedEntityId = Ids[0];
-            }
-            else
-            {
-                SelectedEntityId = -1;
-            }
-
             EducationForms = Enum.GetValues(typeof(EducationForm)).Cast<EducationForm>().ToList();
             Groups = await (repository as StudentRepository).SelectGroups();
         }

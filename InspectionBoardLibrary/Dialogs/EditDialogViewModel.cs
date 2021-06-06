@@ -5,6 +5,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Dialogs
@@ -70,7 +71,10 @@ namespace InspectionBoardLibrary.Dialogs
 
         public async Task EditEntity()
         {
-            await repository.Update(Entity);
+            if (Entity != null)
+            {
+                await repository.Update(Entity);
+            }
         }
 
         public virtual async void CloseDialog(string parameter)
@@ -101,9 +105,17 @@ namespace InspectionBoardLibrary.Dialogs
 
         }
 
-        public virtual void OnDialogOpened(IDialogParameters parameters)
+        public async virtual void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
+            var list = await repository.Select();
+            if (list.Count > 0) 
+            {
+                Entities = list;
+                Entity = Entities.FirstOrDefault();
+                Ids = await repository.SelectIds();
+                SelectedEntityId = Ids.First();
+            }
         }
     }
 }

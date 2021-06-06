@@ -28,9 +28,6 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
         public override async void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
-            Entities = await repository.Select();
-            Entity = await repository.SelectFirst();
-            Ids = await repository.SelectIds();
             Categories = Enum.GetValues(typeof(Category)).Cast<Category>().ToList();
         }
     }

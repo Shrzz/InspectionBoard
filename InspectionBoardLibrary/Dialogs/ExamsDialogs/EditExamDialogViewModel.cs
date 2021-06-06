@@ -64,18 +64,7 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
 
         public async override void OnDialogOpened(IDialogParameters parameters)
         {
-            Entities = await repository.Select();
-            Ids = await repository.SelectIds();
-            Entity = await repository.SelectSingle(Ids.FirstOrDefault());
-            if (Ids.Count > 0)
-            {
-                SelectedEntityId = Ids[0];
-            }
-            else
-            {
-                SelectedEntityId = -1;
-            }
-
+            base.OnDialogOpened(parameters);
             Students = await (repository as ExamRepository).SelectStudents();
             Teachers = await (repository as ExamRepository).SelectTeachers();
             Subjects = await (repository as ExamRepository).SelectSubjects();
@@ -85,7 +74,10 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
 
         public override void CloseDialog(string parameter)
         {
-            Entity.Date = Date;
+            if (Entity != null)
+            {
+                Entity.Date = Date;
+            }
             base.CloseDialog(parameter);
         }
     }
