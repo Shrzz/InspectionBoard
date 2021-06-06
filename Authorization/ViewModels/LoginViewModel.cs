@@ -2,6 +2,7 @@
 using InspectionBoardLibrary.Database.Contexts;
 using InspectionBoardLibrary.Database.Services;
 using InspectionBoardLibrary.DataSeeder;
+using InspectionBoardLibrary.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -49,13 +50,12 @@ namespace Authorization.ViewModels
         private async void Login()  
 #pragma warning restore S3168 // "async" methods should not return "void"
         {
-            bool success = await service.TryLogin(Username, Password);
-            // var success = true;
-            if (success)
+            var user = await service.TryLogin(Username, Password);            
+            if (user != null)
             {
+                ApplicationSettings.CurrentUser = user;
                 Message = "Авторизация прошла успешно";
-                //regionManager.RegisterViewWithRegion("MainRegion", typeof(Students));
-                regionManager.RequestNavigate("MainRegion", "WorkspaceRegion");
+                regionManager.RequestNavigate("MainRegion", "Workspace");
             }
             else
             {

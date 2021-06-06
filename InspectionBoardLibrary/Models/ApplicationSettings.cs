@@ -9,29 +9,21 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models
 {
-    public class ApplicationSettings
+    public static class ApplicationSettings
     {
-        private readonly ExamContext context;
-        public User CurrentUser { get; set; }
-        public string settingsFileDefaultPath;
+        public static User CurrentUser { get; set; }
+        public static string settingsFileDefaultPath;
 
-
-        public ApplicationSettings(User user, ExamContext context)
+        public static async void SetUsername(string newUsername)
         {
-            CurrentUser = user;
-            this.context = context;
-        }
-            
-        public async void SetUsername(string newUsername)
-        {
-            UserRepository repository = new UserRepository(this.context);
+            UserRepository repository = new UserRepository(new ExamContext());
             CurrentUser.Username = newUsername;
             await repository.Update(CurrentUser);
         }
 
-        public async void SetPassword(string newPassword)
+        public static async void SetPassword(string newPassword)
         {
-            UserRepository repository = new UserRepository(this.context);
+            UserRepository repository = new UserRepository(new ExamContext());
             CurrentUser.Password = newPassword;
             await repository.Update(CurrentUser);
         }

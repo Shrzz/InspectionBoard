@@ -77,7 +77,8 @@ namespace InspectionBoardLibrary.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
 
-            ///regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.Students));
+            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())
@@ -88,7 +89,7 @@ namespace InspectionBoardLibrary.ViewModels
             SelectedMenuIndex = 0;
             menuItemsView = CollectionViewSource.GetDefaultView(MenuItems);
             menuItemsView.Filter = MenuItemsFilter;
-            CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
+            CurrentMenuItem = new MenuItem("Студенты", "ContentRegion");
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);
 
@@ -96,6 +97,7 @@ namespace InspectionBoardLibrary.ViewModels
             seeder.AddAdminUser();
             seeder.AddGroups();
             seeder.AddStudent();
+            regionManager.RequestNavigate("Authorization", "MainRegion");
         }
 
         private static IEnumerable<MenuItem> GenerateMenuItems()
@@ -123,7 +125,6 @@ namespace InspectionBoardLibrary.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             regionManager.RegisterViewWithRegion("WorkspaceRegion", typeof(Students));
-
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)

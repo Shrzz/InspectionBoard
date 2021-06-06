@@ -14,7 +14,7 @@ namespace Authorization
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<Login, LoginViewModel>("Auth");
+            containerRegistry.RegisterForNavigation<Login, LoginViewModel>("Authorization");
         }
     }
 }
