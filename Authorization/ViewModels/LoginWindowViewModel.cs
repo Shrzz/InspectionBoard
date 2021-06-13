@@ -11,7 +11,7 @@ using Workspace.Views;
 
 namespace Authorization.ViewModels
 {
-    public class LoginViewModel : BindableBase
+    public class LoginWindowViewModel : BindableBase, INavigationAware
     {
         private readonly IRegionManager regionManager;
         private readonly LoginService service;
@@ -39,7 +39,7 @@ namespace Authorization.ViewModels
         public DelegateCommand<string> NavigateCommand { get; private set; }
         public DelegateCommand LoginCommand { get; private set; }
 
-        public LoginViewModel(IRegionManager regionManager)
+        public LoginWindowViewModel(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
             this.service = new LoginService();
@@ -52,15 +52,27 @@ namespace Authorization.ViewModels
         {
             var user = await service.TryLogin(Username, Password);            
             if (user != null)
-            {
+            {   
                 ApplicationSettings.CurrentUser = user;
                 Message = "Авторизация прошла успешно";
-                regionManager.RequestNavigate("MainRegion", "Workspace");
+                regionManager.RequestNavigate("AuthorizationRegion", "MainRegion");
             }
             else
             {
-                Message = "Неверно введены данные";
+                Message = "Введены неверные данные";
             }
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            Message = "";
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            
         }
     }
 }

@@ -32,8 +32,9 @@ namespace InspectionBoardLibrary
         private IContainerRegistry containerRegistry;
 
         protected override Window CreateShell()
-        {
+        { 
             return Container.Resolve<InspectionBoard.Views.Main>();
+            //return Container.Resolve<Authorization.Views.LoginWindow>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -50,6 +51,7 @@ namespace InspectionBoardLibrary
             RegisterTicketDialogs();
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
+            this.containerRegistry.RegisterDialog<EditUserDialog, EditUserDialogViewModel>("EditUserDialog");
             this.containerRegistry.RegisterDialog<DescriptionDialog, DescriptionDialogViewModel>("DescriptionDialog");
 
             containerRegistry.RegisterDialogWindow<AddDialogWindow>("AddDialogWindow");

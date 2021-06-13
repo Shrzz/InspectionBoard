@@ -95,6 +95,10 @@
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
+    <Compile Include="Dialogs\SettingsDialogs\EditUserDialog.xaml.cs">
+      <DependentUpon>EditUserDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SettingsDialogs\EditUserDialogViewModel.cs" />
     <Compile Include="Dialogs\TicketsDialogs\AddTicketDialog.xaml.cs">
       <DependentUpon>AddTicketDialog.xaml</DependentUpon>
     </Compile>
@@ -302,6 +306,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialogs\SettingsDialogs\AddUserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SettingsDialogs\EditUserDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

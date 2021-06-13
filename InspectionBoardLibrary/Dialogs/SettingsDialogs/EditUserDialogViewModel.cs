@@ -5,11 +5,14 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoardLibrary.Windows.SettingsDialogs
+namespace InspectionBoardLibrary.Dialogs.SettingsDialogs
 {
-    public class AddUserDialogViewModel : BindableBase, IDialogAware
+    public class EditUserDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
         private readonly UserRepository repository;
@@ -21,6 +24,13 @@ namespace InspectionBoardLibrary.Windows.SettingsDialogs
             set { SetProperty(ref user, value); }
         }
 
+        private string newPassword;
+        public string NewPassword
+        {
+            get => newPassword;
+            set { SetProperty(ref newPassword, value); }
+        }
+
         private string message;
         public string Message
         {
@@ -28,10 +38,12 @@ namespace InspectionBoardLibrary.Windows.SettingsDialogs
             set { SetProperty(ref message, value); }
         }
 
+
+
         public string Title => "Добавить пользователя";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public AddUserDialogViewModel()
+        public EditUserDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
             repository = new UserRepository(new ExamContext());
@@ -39,7 +51,7 @@ namespace InspectionBoardLibrary.Windows.SettingsDialogs
 
         public event Action<IDialogResult> RequestClose;
 
-        private async Task<bool> AddUser()
+        private async Task<bool> EditUser()
         {
             if (User is null || User.Username is null || User.Password is null)
             {
@@ -51,13 +63,15 @@ namespace InspectionBoardLibrary.Windows.SettingsDialogs
                 return false;
             }
 
-            if ((repository as UserRepository).UsernameIsTaken(User.Username))
+            var user = (repository as UserRepository).GetUser(User.Username, User.Password);
+            if (user == null)
             {
-                Message = "Пользователь с таким логином уже существует.";
+                Message = "Введённый пароль неверен, либо запрашиваемый пользователь не зарегистрирован.";
                 return false;
             }
-            
-            await repository.Add(User);
+
+            user.Password = NewPassword;
+            await repository.Update(user);
             return true;
         }
 
@@ -67,7 +81,7 @@ namespace InspectionBoardLibrary.Windows.SettingsDialogs
             ButtonResult result = ButtonResult.None;
             if (parameter?.ToLower() == "true")
             {
-                bool success = await AddUser();
+                var success = await EditUser();
                 if (success == false) return;
                 result = ButtonResult.OK;
             }

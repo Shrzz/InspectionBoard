@@ -16,5 +16,16 @@ namespace InspectionBoardLibrary.Database.Repositories
         {
             return !context.Users.Any<User>();
         }
+
+        public User GetUser(string username, string password)
+        {
+            return context.Users.FirstOrDefault(u => u.Username.ToLower() == username.ToLower() && u.Password == password);
+        }
+
+        public bool UsernameIsTaken(string username)
+        {
+            var user = context.Users.FirstOrDefault(u => u.Username.ToLower() == username.ToLower());
+            return !(user is null);
+        }
     }
 }

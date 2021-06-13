@@ -1,12 +1,156 @@
-﻿<UserControl x:Class="InspectionBoard.Views.Settings"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:InspectionBoard.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="{Binding Username}"></TextBlock>
+﻿<UserControl
+    x:Class="InspectionBoard.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:InspectionBoard.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <DockPanel LastChildFill="True">
+            <materialDesign:ColorZone
+                Padding="16"
+                materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                DockPanel.Dock="Top"
+                Mode="PrimaryMid">
+                <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="15,0,0,5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="34"
+                            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                            Text="Настройки" />
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:ColorZone>
+
+            <materialDesign:ColorZone
+                Padding="16"
+                materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                DockPanel.Dock="Bottom"
+                Mode="PrimaryMid">
+                <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            Margin="15,0,0,0"
+                            Padding="10,0,10,10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="White"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="MainMenuRegion"
+                            Content="В главное меню"
+                            FontSize="20"
+                            Foreground="Black" />
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:ColorZone>
+            <Grid
+                Height="Auto"
+                Margin="20"
+                Background="White"
+                DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding ShowAddUserDialogCommand}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="new profile.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock FontSize="30" Text="Новый профиль" />
+                        </materialDesign:ColorZone>
+                    </Grid>
+                </Button>
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding ShowEditUserDialogCommand}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="edit profile.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock FontSize="30" Text="Изменить профиль" />
+                        </materialDesign:ColorZone>
+                    </Grid>
+                </Button>
+
+                <!--Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Students">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="change colors.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock FontSize="30" Text="Изменить палитру" />
+                        </materialDesign:ColorZone>
+                    </Grid>
+                </-->
+            </Grid>
+        </DockPanel>
+        <ContentControl prism:RegionManager.RegionName="TablesRegion" />
     </Grid>
 </UserControl>

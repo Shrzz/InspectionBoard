@@ -41,6 +41,7 @@ namespace InspectionBoard.Views
 
             Snackbar = MainSnackbar;*/
         }
+
         //private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e) => MainScrollViewer.ScrollToHome();
 
     }

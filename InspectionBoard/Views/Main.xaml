@@ -8,13 +8,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
-    Title="Помощник экзаменатора"
     Width="750"
     Height="500"
     MinWidth="750"
     MinHeight="500"
-    WindowStartupLocation="CenterScreen"
-    WindowState="Maximized"
     mc:Ignorable="d">
 
     <Grid Background="White">

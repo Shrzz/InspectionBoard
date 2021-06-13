@@ -17,10 +17,6 @@ namespace InspectionBoard.ViewModels
     { 
         private readonly IRegionManager regionManager;
         private readonly IDialogService dialogService;
-        private readonly ICollectionView menuItemsView;
-
-        public string RegionName { get; }
-        public ObservableCollection<MenuItem> MenuItems { get; }
 
         #region properties
 
@@ -34,8 +30,7 @@ namespace InspectionBoard.ViewModels
         {
             this.regionManager = regionManager;
             this.dialogService = dialogService;
-
-            MenuItems = new ObservableCollection<MenuItem>();
+            regionManager.RegisterViewWithRegion("MainMenuRegion", typeof(Authorization.Views.Login));
 
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);
