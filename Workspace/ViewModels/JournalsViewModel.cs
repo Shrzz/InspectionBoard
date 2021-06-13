@@ -43,12 +43,13 @@ namespace Workspace.ViewModels
             set { SetProperty(ref selectedSubject, value); }
         }
 
-        public JournalsViewModel(IDialogService service, IRepository<Journal> repository) : base(service, repository)
+        public JournalsViewModel(IDialogService service, IRegionManager regionManager, IRepository<Journal> repository) : base(service, regionManager, repository)
         {
             //this.repository.Searcher = new JournalSearcher();
             AddDialogName = "AddJournalDialog";
             EditDialogName = "EditJournalDialog";
             RemoveDialogName = "RemoveJournalDialog";
+            RegionName = "Journals";
         }
 
         public override async void OnNavigatedTo(NavigationContext navigationContext)

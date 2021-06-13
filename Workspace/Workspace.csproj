@@ -62,6 +62,7 @@
     <Compile Include="ViewModels\GroupsViewModel.cs" />
     <Compile Include="ViewModels\Legacy\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\JournalsViewModel.cs" />
+    <Compile Include="ViewModels\TablesViewModel.cs" />
     <Compile Include="ViewModels\TicketsViewModel.cs" />
     <Compile Include="ViewModels\StudentsViewModel.cs" />
     <Compile Include="ViewModels\SubjectsViewModel.cs" />
@@ -86,6 +87,9 @@
     <Compile Include="ViewModels\TeachersViewModel.cs" />
     <Compile Include="Views\Subjects.xaml.cs">
       <DependentUpon>Subjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tables.xaml.cs">
+      <DependentUpon>Tables.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Teachers.xaml.cs">
       <DependentUpon>Teachers.xaml</DependentUpon>
@@ -166,6 +170,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Tables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Teachers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +220,26 @@
       <Name>InspectionBoardLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Views\StudentsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\TeachersIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\SubjectsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\ExamsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\GroupsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\TicketsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\JournalsIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

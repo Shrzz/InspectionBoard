@@ -31,18 +31,6 @@ namespace Workspace
             containerRegistry.Register<IRepository<Group>, GroupRepository>();
             containerRegistry.Register<IRepository<Journal>, JournalRepository>();
             containerRegistry.Register<IRepository<Ticket>, TicketRepository>();
-
-            //containerRegistry.RegisterForNavigation<Analysis, AnalysisViewModel>("Analyze");
-            //containerRegistry.RegisterForNavigation<DocsEnrollment, DocsEnrollmentViewModel>("DocsEnrollment");
-
-            containerRegistry.RegisterForNavigation<Main, MainViewModel>("Workspace");
-            containerRegistry.RegisterForNavigation<Students, StudentsViewModel>("Students");
-            containerRegistry.RegisterForNavigation<Teachers, TeachersViewModel>("Teachers");
-            containerRegistry.RegisterForNavigation<Exams, ExamsViewModel>("Exams");
-            containerRegistry.RegisterForNavigation<Subjects, SubjectsViewModel>("Subjects");
-            containerRegistry.RegisterForNavigation<Groups, GroupsViewModel>("Groups");
-            containerRegistry.RegisterForNavigation<Journals, JournalsViewModel>("Journals");
-            containerRegistry.RegisterForNavigation<Tickets, TicketsViewModel>("Tickets");
         }
     }
 }

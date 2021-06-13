@@ -13,9 +13,11 @@ namespace InspectionBoardLibrary.Models
         where TEntity : class, IEntity
         where TContext : DbContext
     {
+        protected readonly IRegionManager regionManager;
         protected readonly IDialogService dialogService;
         protected readonly IRepository<TEntity> repository;
         protected ISearcher<TEntity> searcher;
+        protected string RegionName;
 
         protected virtual string AddDialogName { get; set; }
         protected virtual string EditDialogName { get; set; }
@@ -57,16 +59,17 @@ namespace InspectionBoardLibrary.Models
             }
         }
 
-        public TablePage(IDialogService dialogService, IRepository<TEntity> repository)
+        public TablePage(IDialogService dialogService, IRegionManager regionManager, IRepository<TEntity> repository)
         {
             this.dialogService = dialogService;
             this.repository = repository;
-            this.dialogService = dialogService;
+            this.regionManager = regionManager;
             ShowAddDialogCommand = new DelegateCommand(ShowAddDialog);
             ShowEditDialogCommand = new DelegateCommand(ShowEditDialog);
             ShowRemoveDialogCommand = new DelegateCommand(ShowRemoveDialog);
             ShowDescriptionCommand = new DelegateCommand(ShowDescriptionDialog);
             RemoveEntityCommand = new DelegateCommand(RemoveEntity);
+            NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
         public DelegateCommand ShowAddDialogCommand { get; private set; }
@@ -74,9 +77,9 @@ namespace InspectionBoardLibrary.Models
         public DelegateCommand ShowRemoveDialogCommand { get; private set; }
         public DelegateCommand ShowDescriptionCommand { get; private set; }
         public DelegateCommand RemoveEntityCommand { get; private set; }
+        public DelegateCommand<string> NavigateCommand { get; private set; }
         
-
-        public async Task ShowDialog(string dialogName, string dialogWindowName, DialogParameters parameters)
+        public void ShowDialog(string dialogName, string dialogWindowName, DialogParameters parameters)
         {
             dialogService.ShowDialog(dialogName, parameters, async r =>
             {
@@ -93,29 +96,29 @@ namespace InspectionBoardLibrary.Models
             }, dialogWindowName);
         }
 
-        public async virtual void ShowAddDialog()
+        public virtual void ShowAddDialog()
         {
             DialogParameters parameters = new DialogParameters();
-            await ShowDialog(AddDialogName, "AddDialogWindow", parameters);
+            ShowDialog(AddDialogName, "AddDialogWindow", parameters);
         }
 
-        public async virtual void ShowEditDialog()
+        public virtual void ShowEditDialog()
         {
             DialogParameters parameters = new DialogParameters();
-            await ShowDialog(EditDialogName, "EditDialogWindow", parameters);
+            ShowDialog(EditDialogName, "EditDialogWindow", parameters);
         }
 
-        public async virtual void ShowEditDialog(int id)
+        public virtual void ShowEditDialog(int id)
         {
             DialogParameters parameters = new DialogParameters();
             parameters.Add("Id", id);
-            await ShowDialog(EditDialogName, "EditDialogWindow", parameters);
+            ShowDialog(EditDialogName, "EditDialogWindow", parameters);
         }
 
-        public async virtual void ShowRemoveDialog()
+        public virtual void ShowRemoveDialog()
         {
             DialogParameters parameters = new DialogParameters();
-            await ShowDialog(RemoveDialogName, "RemoveDialogWindow", parameters);
+            ShowDialog(RemoveDialogName, "RemoveDialogWindow", parameters);
         }
 
         public async virtual void RemoveEntity()
@@ -155,6 +158,11 @@ namespace InspectionBoardLibrary.Models
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
 
+        }
+
+        private void Navigate(string region)
+        {
+            regionManager.RequestNavigate("MainRegion", region);
         }
     }
 }

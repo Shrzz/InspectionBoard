@@ -68,6 +68,7 @@ namespace InspectionBoardLibrary
             //containerRegistry.RegisterForNavigation<Analysis, AnalysisViewModel>("Analyze");
             //containerRegistry.RegisterForNavigation<DocsEnrollment, DocsEnrollmentViewModel>("DocsEnrollment");
 
+            containerRegistry.RegisterForNavigation<InspectionBoard.Views.Main, InspectionBoard.ViewModels.MainViewModel>("MainMenu");
             containerRegistry.RegisterForNavigation<Students, StudentsViewModel>("Students");
             containerRegistry.RegisterForNavigation<Teachers, TeachersViewModel>("Teachers");
             containerRegistry.RegisterForNavigation<Exams, ExamsViewModel>("Exams");
@@ -75,6 +76,7 @@ namespace InspectionBoardLibrary
             containerRegistry.RegisterForNavigation<Groups, GroupsViewModel>("Groups");
             containerRegistry.RegisterForNavigation<Journals, JournalsViewModel>("Journals");
             containerRegistry.RegisterForNavigation<Tickets, TicketsViewModel>("Tickets");
+            containerRegistry.RegisterForNavigation<Tables, TablesViewModel>("Tables");
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

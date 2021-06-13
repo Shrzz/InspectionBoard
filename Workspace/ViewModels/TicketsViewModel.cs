@@ -30,11 +30,12 @@ namespace Workspace.ViewModels
         }
 
 
-        public TicketsViewModel(IDialogService service, IRepository<Ticket> repository) : base(service, repository)
+        public TicketsViewModel(IDialogService service, IRegionManager regionManager, IRepository<Ticket> repository) : base(service, regionManager, repository)
         {
             AddDialogName = "AddTicketDialog";
             EditDialogName = "EditTicketDialog";
             RemoveDialogName = "RemoveTicketDialog";
+            RegionName = "Tickets";
         }
 
         public async override void OnNavigatedTo(NavigationContext navigationContext)

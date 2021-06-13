@@ -3,6 +3,7 @@ using InspectionBoardLibrary.Models;
 using InspectionBoardLibrary.Models.Database;
 using InspectionBoardLibrary.Models.DatabaseModels;
 using InspectionBoardLibrary.Models.Searchers;
+using Prism.Regions;
 using Prism.Services.Dialogs;
 
 namespace Workspace.ViewModels
@@ -13,12 +14,13 @@ namespace Workspace.ViewModels
         protected override string EditDialogName { get; set; }
         protected override string RemoveDialogName { get; set; }
 
-        public ExamsViewModel(IDialogService service, IRepository<Exam> repository) : base(service, repository)
+        public ExamsViewModel(IDialogService service, IRegionManager regionManager, IRepository<Exam> repository) : base(service, regionManager, repository)
         {
             this.repository.Searcher = new ExamSearcher();
             AddDialogName = "AddExamDialog";
             EditDialogName = "EditExamDialog";
             RemoveDialogName = "RemoveExamDialog";
+            RegionName = "Exams";
         }
     }
 }

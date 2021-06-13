@@ -14,11 +14,12 @@ using Workspace.Views;
 namespace InspectionBoard.ViewModels
 {
     public class MainViewModel : BindableBase
-    {
+    { 
         private readonly IRegionManager regionManager;
         private readonly IDialogService dialogService;
         private readonly ICollectionView menuItemsView;
 
+        public string RegionName { get; }
         public ObservableCollection<MenuItem> MenuItems { get; }
 
         #region properties
@@ -78,7 +79,7 @@ namespace InspectionBoard.ViewModels
         {
             this.regionManager = regionManager;
             this.dialogService = dialogService;
-
+            this.RegionName = "Главная страница";
             //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.Students));
             //regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
             //regionManager.RegisterViewWithRegion("MainRegion", typeof(Main));
@@ -120,8 +121,7 @@ namespace InspectionBoard.ViewModels
 
         private void Navigate(string region)
         {
-            regionManager.RequestNavigate(region, "ContentRegion");
-            regionManager.RequestNavigate("ContentRegion", region);
+            regionManager.RequestNavigate("MainRegion", region);
             CurrentMenuItem = SelectedMenuItem;
         }
 
