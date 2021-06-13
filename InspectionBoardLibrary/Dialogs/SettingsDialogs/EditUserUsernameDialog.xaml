@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="InspectionBoardLibrary.Dialogs.SettingsDialogs.EditUserDialog"
+    x:Class="InspectionBoardLibrary.Dialogs.SettingsDialogs.EditUserUsernameDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -33,18 +33,16 @@
                         Text="{Binding User.Username}" />
                     <PasswordBox
                         Margin="20,15,20,0"
-                        materialDesign:HintAssist.Hint="Старый пароль"
+                        materialDesign:HintAssist.Hint="Пароль"
                         materialDesign:TextFieldAssist.HasClearButton="True"
                         u:PasswordBoxAssistant.BindPassword="True"
                         u:PasswordBoxAssistant.BoundPassword="{Binding User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                    <PasswordBox
+                    <TextBox
                         Margin="20,15,20,0"
-                        materialDesign:HintAssist.Hint="Новый пароль"
-                        materialDesign:TextFieldAssist.HasClearButton="True"
-                        u:PasswordBoxAssistant.BindPassword="True"
-                        u:PasswordBoxAssistant.BoundPassword="{Binding NewPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                        materialDesign:HintAssist.Hint="Новый логин"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding NewUsername}" />
                     <TextBlock
                         HorizontalAlignment="Center"
                         Foreground="Red"

@@ -95,10 +95,14 @@
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialogViewModel.cs" />
-    <Compile Include="Dialogs\SettingsDialogs\EditUserDialog.xaml.cs">
-      <DependentUpon>EditUserDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\SettingsDialogs\EditUserPasswordDialog.xaml.cs">
+      <DependentUpon>EditUserPasswordDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SettingsDialogs\EditUserDialogViewModel.cs" />
+    <Compile Include="Dialogs\SettingsDialogs\EditUserPasswordDialogViewModel.cs" />
+    <Compile Include="Dialogs\SettingsDialogs\EditUserUsernameDialog.xaml.cs">
+      <DependentUpon>EditUserUsernameDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SettingsDialogs\EditUserUsernameDialogViewModel.cs" />
     <Compile Include="Dialogs\TicketsDialogs\AddTicketDialog.xaml.cs">
       <DependentUpon>AddTicketDialog.xaml</DependentUpon>
     </Compile>
@@ -309,7 +313,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\SettingsDialogs\EditUserDialog.xaml">
+    <Page Include="Dialogs\SettingsDialogs\EditUserPasswordDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SettingsDialogs\EditUserUsernameDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

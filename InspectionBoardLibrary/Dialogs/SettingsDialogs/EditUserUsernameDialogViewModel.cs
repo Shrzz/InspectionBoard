@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Dialogs.SettingsDialogs
 {
-    public class EditUserDialogViewModel : BindableBase, IDialogAware
+    public class EditUserUsernameDialogViewModel : BindableBase, IDialogAware
     {
         private IDialogParameters dialogParameters;
         private readonly UserRepository repository;
@@ -24,11 +24,11 @@ namespace InspectionBoardLibrary.Dialogs.SettingsDialogs
             set { SetProperty(ref user, value); }
         }
 
-        private string newPassword;
-        public string NewPassword
+        private string newUsername;
+        public string NewUsername
         {
-            get => newPassword;
-            set { SetProperty(ref newPassword, value); }
+            get => newUsername;
+            set { SetProperty(ref newUsername, value); }
         }
 
         private string message;
@@ -40,10 +40,10 @@ namespace InspectionBoardLibrary.Dialogs.SettingsDialogs
 
 
 
-        public string Title => "Добавить пользователя";
+        public string Title => "Изменить логин пользователя";
         public DelegateCommand<string> CloseDialogCommand { get; private set; }
 
-        public EditUserDialogViewModel()
+        public EditUserUsernameDialogViewModel()
         {
             CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
             repository = new UserRepository(new ExamContext());
@@ -70,7 +70,7 @@ namespace InspectionBoardLibrary.Dialogs.SettingsDialogs
                 return false;
             }
 
-            user.Password = NewPassword;
+            user.Username = NewUsername;
             await repository.Update(user);
             return true;
         }

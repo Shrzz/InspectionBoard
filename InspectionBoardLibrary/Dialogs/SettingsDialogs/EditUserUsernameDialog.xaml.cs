@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace InspectionBoardLibrary.Dialogs.SettingsDialogs
 {
     /// <summary>
-    /// Логика взаимодействия для EditUserDialog.xaml
+    /// Логика взаимодействия для EditUserUsernameDialog.xaml
     /// </summary>
-    public partial class EditUserDialog : UserControl
+    public partial class EditUserUsernameDialog : UserControl
     {
-        public EditUserDialog()
+        public EditUserUsernameDialog()
         {
             InitializeComponent();
         }

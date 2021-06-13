@@ -20,7 +20,7 @@ namespace InspectionBoard.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
             ShowAddUserDialogCommand = new DelegateCommand(ShowAddUserDialog);
-            ShowEditUserDialogCommand = new DelegateCommand(ShowEditUserDialog);
+            ShowEditUserDialogCommand = new DelegateCommand<string>(ShowEditUserDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
@@ -28,7 +28,7 @@ namespace InspectionBoard.ViewModels
 
         public event Action<IDialogResult> RequestClose;
         public DelegateCommand ShowAddUserDialogCommand { get; private set; }
-        public DelegateCommand ShowEditUserDialogCommand { get; private set; }
+        public DelegateCommand<string> ShowEditUserDialogCommand { get; private set; }
         public DelegateCommand<string> NavigateCommand { get; private set; }
 
         public string Username
@@ -93,10 +93,17 @@ namespace InspectionBoard.ViewModels
             ShowDialog("AddUserDialog", parameters);
         }
 
-        private void ShowEditUserDialog()
+        private void ShowEditUserDialog(string parameter)
         {
             DialogParameters parameters = new DialogParameters();
-            ShowDialog("EditUserDialog", parameters);
+            if (parameter == "username")
+            {
+                ShowDialog("EditUserUsernameDialog", parameters);
+            }
+            else if (parameter == "password")
+            {
+                ShowDialog("EditUserPasswordDialog", parameters);
+            }
         }
 
         private void Navigate(string path)

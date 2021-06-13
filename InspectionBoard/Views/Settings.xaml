@@ -99,7 +99,8 @@
                     Background="White"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                     BorderThickness="3"
-                    Command="{Binding ShowEditUserDialogCommand}">
+                    Command="{Binding ShowEditUserDialogCommand}"
+                    CommandParameter="username">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="7*" />
@@ -115,7 +116,37 @@
                             Grid.Row="1"
                             HorizontalAlignment="Center"
                             DockPanel.Dock="Bottom">
-                            <TextBlock FontSize="30" Text="Изменить профиль" />
+                            <TextBlock FontSize="30" Text="Изменить логин" />
+                        </materialDesign:ColorZone>
+                    </Grid>
+                </Button>
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding ShowEditUserDialogCommand}"
+                    CommandParameter="password">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="edit profile.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock FontSize="30" Text="Изменить пароль" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>

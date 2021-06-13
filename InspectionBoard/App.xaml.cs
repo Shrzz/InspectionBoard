@@ -51,7 +51,8 @@ namespace InspectionBoardLibrary
             RegisterTicketDialogs();
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
-            this.containerRegistry.RegisterDialog<EditUserDialog, EditUserDialogViewModel>("EditUserDialog");
+            this.containerRegistry.RegisterDialog<EditUserPasswordDialog, EditUserPasswordDialogViewModel>("EditUserPasswordDialog");
+            this.containerRegistry.RegisterDialog<EditUserUsernameDialog, EditUserUsernameDialogViewModel>("EditUserUsernameDialog");
             this.containerRegistry.RegisterDialog<DescriptionDialog, DescriptionDialogViewModel>("DescriptionDialog");
 
             containerRegistry.RegisterDialogWindow<AddDialogWindow>("AddDialogWindow");
