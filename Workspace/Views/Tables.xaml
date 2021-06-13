@@ -1,264 +1,305 @@
-﻿<UserControl x:Class="Workspace.Views.Tables"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Workspace.Views"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:prism="http://prismlibrary.com/"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="Workspace.Views.Tables"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Workspace.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <Grid Background="White">
         <DockPanel LastChildFill="True">
-            <materialDesign:ColorZone Mode="PrimaryMid"
-                                      Padding="16"
-                                      materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                      DockPanel.Dock="Top">
+            <materialDesign:ColorZone
+                Padding="16"
+                materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                DockPanel.Dock="Top"
+                Mode="PrimaryMid">
                 <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                    <StackPanel Orientation="Horizontal" >
-                        <TextBlock Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                                               Text="Таблицы"
-                                               FontSize="34" 
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="15 0 0 5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="15,0,0,5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="34"
+                            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                            Text="Таблицы" />
                     </StackPanel>
                 </DockPanel>
             </materialDesign:ColorZone>
 
-            <materialDesign:ColorZone Mode="PrimaryMid"
-                                      Padding="16"
-                                      materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                      DockPanel.Dock="Bottom">
+            <materialDesign:ColorZone
+                Padding="16"
+                materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                DockPanel.Dock="Bottom"
+                Mode="PrimaryMid">
                 <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                    <StackPanel Orientation="Horizontal" >
-                        <Button Command="{Binding NavigateCommand}"
-                                CommandParameter="Main"
-                                Content="В главное меню"
-                                FontSize="20" 
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Margin="15 0 0 5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            Margin="15,0,0,5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="White"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="Main"
+                            Content="В главное меню"
+                            FontSize="20"
+                            Foreground="Black" />
                     </StackPanel>
                 </DockPanel>
             </materialDesign:ColorZone>
-            <Grid Margin="20" DockPanel.Dock="Top" Background="White" Height="Auto">
+            <Grid
+                Height="Auto"
+                Margin="20"
+                Background="White"
+                DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Button Height="Auto" 
-                        Background="White" 
-                        Grid.Column="0" 
-                        Grid.Row="0"
-                        BorderThickness="3"
-                        Margin="10"
-                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        Command="{Binding NavigateCommand}"
-                        CommandParameter="Students">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Students">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
-                        <Image Stretch="Uniform"
-                               Source="StudentsIcon.png"
-                               Grid.Row="0"
-                               DockPanel.Dock="Top"
-                               Margin="30"/>
-                        <materialDesign:ColorZone DockPanel.Dock="Bottom"
-                                                  HorizontalAlignment="Center"
-                                                  Grid.Row="1">
-                            <TextBlock Height="Auto"
-                                       Text="Студенты" 
-                                       FontSize="30"/>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="student.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock
+                                Height="Auto"
+                                FontSize="30"
+                                Text="Студенты" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
 
-                <Button Height="Auto" 
-                        Background="White" 
-                        Grid.Row="0"
-                        Grid.Column="1" 
-                        BorderThickness="3"
-                        Margin="10"
-                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        Command="{Binding NavigateCommand}"
-                        CommandParameter="Teachers">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Teachers">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
-                        <Image Stretch="Uniform"
-                               Source="TeachersIcon.png"
-                               Grid.Row="0"
-                               DockPanel.Dock="Top"
-                               Margin="30"/>
-                        <materialDesign:ColorZone DockPanel.Dock="Bottom"
-                                                  HorizontalAlignment="Center"
-                                                  Grid.Row="1">
-                            <TextBlock Height="Auto"
-                                       Text="Преподаватели" 
-                                       FontSize="30"/>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="teacher.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock
+                                Height="Auto"
+                                FontSize="30"
+                                Text="Преподаватели" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
 
-                <Button Height="Auto" 
-                        Background="White" 
-                        Grid.Row="0"
-                        Grid.Column="2" 
-                        BorderThickness="3"
-                        Margin="10"
-                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        Command="{Binding NavigateCommand}"
-                        CommandParameter="Subjects">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Subjects">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
-                        <Image Stretch="Uniform"
-                               Source="SubjectsIcon.png"
-                               Grid.Row="0"
-                               DockPanel.Dock="Top"
-                               Margin="30"/>
-                        <materialDesign:ColorZone DockPanel.Dock="Bottom"
-                                                  HorizontalAlignment="Center"
-                                                  Grid.Row="1">
-                            <TextBlock Height="Auto"
-                                       Text="Предметы" 
-                                       FontSize="30"/>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="subject.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock
+                                Height="Auto"
+                                FontSize="30"
+                                Text="Предметы" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
 
-                <Button Height="Auto" 
-                        Background="White" 
-                        Grid.Row="1"
-                        Grid.Column="0" 
-                        BorderThickness="3"
-                        Margin="10"
-                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        Command="{Binding NavigateCommand}"
-                        CommandParameter="Exams">
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Exams">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
-                        <Image Stretch="Uniform"
-                               Source="ExamsIcon.png"
-                               Grid.Row="0"
-                               DockPanel.Dock="Top"
-                               Margin="30"/>
-                        <materialDesign:ColorZone DockPanel.Dock="Bottom"
-                                                  HorizontalAlignment="Center"
-                                                  Grid.Row="1">
-                            <TextBlock Height="Auto"
-                                       Text="Экзамены" 
-                                       FontSize="30"/>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="exam.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock
+                                Height="Auto"
+                                FontSize="30"
+                                Text="Экзамены" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
 
-                <Button Height="Auto" 
-                        Background="White" 
-                        Grid.Row="1"
-                        Grid.Column="1" 
-                        BorderThickness="3"
-                        Margin="10"
-                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        Command="{Binding NavigateCommand}"
-                        CommandParameter="Groups">
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Groups">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
-                        <Image Stretch="Uniform"
-                               Source="GroupsIcon.png"
-                               Grid.Row="0"
-                               DockPanel.Dock="Top"
-                               Margin="30"/>
-                        <materialDesign:ColorZone DockPanel.Dock="Bottom"
-                                                  HorizontalAlignment="Center"
-                                                  Grid.Row="1">
-                            <TextBlock Height="Auto"
-                                       Text="Группы" 
-                                       FontSize="30"/>
-                        </materialDesign:ColorZone>
-                    </Grid>
-                </Button>
-            
-                <Button Height="Auto" 
-                        Background="White" 
-                        Grid.Row="1"
-                        Grid.Column="2" 
-                        BorderThickness="3"
-                        Margin="10"
-                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        Command="{Binding NavigateCommand}"
-                        CommandParameter="Tickets">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <Image Stretch="Uniform"
-                               Source="TicketsIcon.png"
-                               Grid.Row="0"
-                               DockPanel.Dock="Top"
-                               Margin="30"/>
-                        <materialDesign:ColorZone DockPanel.Dock="Bottom"
-                                                  HorizontalAlignment="Center"
-                                                  Grid.Row="1">
-                            <TextBlock Height="Auto"
-                                       Text="Билеты" 
-                                       FontSize="30"/>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="group.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock
+                                Height="Auto"
+                                FontSize="30"
+                                Text="Группы" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
 
-                <Button Height="Auto" 
-                        Background="White" 
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        BorderThickness="3"
-                        Margin="10"
-                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                        Command="{Binding NavigateCommand}"
-                        CommandParameter="Journals">
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Tickets">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
                         </Grid.RowDefinitions>
-                        <Image Stretch="Uniform"
-                               Source="JournalsIcon.png"
-                               Grid.Row="0"
-                               DockPanel.Dock="Top"
-                               Margin="30"/>
-                        <materialDesign:ColorZone DockPanel.Dock="Bottom"
-                                                  HorizontalAlignment="Center"                                                             Grid.Row="1">
-                            <TextBlock Height="Auto"
-                                       Text="Журналы" 
-                                       FontSize="25"/>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="ticket.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock
+                                Height="Auto"
+                                FontSize="30"
+                                Text="Билеты" />
+                        </materialDesign:ColorZone>
+                    </Grid>
+                </Button>
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Height="Auto"
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    BorderThickness="3"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Journals">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Margin="30"
+                            DockPanel.Dock="Top"
+                            Source="JournalsIcon.png"
+                            Stretch="Uniform" />
+                        <materialDesign:ColorZone
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
+                            <TextBlock
+                                Height="Auto"
+                                FontSize="25"
+                                Text="Журналы" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
 
             </Grid>
         </DockPanel>
-            <ContentControl prism:RegionManager.RegionName="TablesRegion"/>
+        <ContentControl prism:RegionManager.RegionName="TablesRegion" />
     </Grid>
 </UserControl>

@@ -13,7 +13,7 @@ namespace InspectionBoard.Views
     /// </summary>
     public partial class Main : Window
     {
-        public static Snackbar Snackbar = new Snackbar();
+        //public static Snackbar Snackbar = new Snackbar();
 
         public Main()
         {

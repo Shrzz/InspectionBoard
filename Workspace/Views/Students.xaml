@@ -1,134 +1,150 @@
-﻿<UserControl x:Class="Workspace.Views.Students"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Workspace.Views"        
-             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:converters="clr-namespace:InspectionBoardLibrary.Models.Converters;assembly=InspectionBoardLibrary" 
-             xmlns:prism="http://prismlibrary.com/"
-             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="Workspace.Views.Students"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:converters="clr-namespace:InspectionBoardLibrary.Models.Converters;assembly=InspectionBoardLibrary"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Workspace.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <Grid Background="White">
 
-        <!-- Рабочая область-->
+        <!--  Рабочая область  -->
         <DockPanel LastChildFill="True">
 
-            <!-- Верхняя полоса -->
-            <materialDesign:ColorZone Mode="PrimaryMid"
-                                              Padding="16"
-                                              materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                              DockPanel.Dock="Top">
+            <!--  Верхняя полоса  -->
+            <materialDesign:ColorZone
+                Padding="16"
+                materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                DockPanel.Dock="Top"
+                Mode="PrimaryMid">
                 <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                    <StackPanel Orientation="Horizontal" >
-                        <TextBlock Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                                           Text="Студенты"
-                                           FontSize="34" 
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Margin="15 0 0 5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="15,0,0,5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="34"
+                            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                            Text="Студенты" />
                     </StackPanel>
                 </DockPanel>
             </materialDesign:ColorZone>
 
-            <materialDesign:ColorZone Mode="PrimaryMid"
-                                      Padding="16"
-                                      materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                                      DockPanel.Dock="Bottom">
+            <materialDesign:ColorZone
+                Padding="16"
+                materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                DockPanel.Dock="Bottom"
+                Mode="PrimaryMid">
                 <DockPanel materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                    <StackPanel Orientation="Horizontal" >
-                        <Button Command="{Binding NavigateCommand}"
-                                CommandParameter="Tables"
-                                Content="К списку таблиц"
-                                FontSize="20" 
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Margin="15 0 0 5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            Margin="15,0,0,5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="White"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="Tables"
+                            Content="К списку таблиц"
+                            FontSize="20"
+                            Foreground="Black" />
                     </StackPanel>
                 </DockPanel>
             </materialDesign:ColorZone>
 
-            <Grid >
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Column="0" Grid.ColumnSpan="2"
-                     x:Name="GridItemsSearchBox"
-                     Focusable="True"
-                     Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}"
-                     DockPanel.Dock="Top"
-                     Margin="20 10 20 10"
-                     materialDesign:HintAssist.Hint="Поиск по таблице"
-                     materialDesign:HintAssist.IsFloating="True"
-                     materialDesign:TextFieldAssist.HasClearButton="True"
-                     materialDesign:TextFieldAssist.HasOutlinedTextField="True"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
-                     materialDesign:TextFieldAssist.TextFieldCornerRadius="4"/>
+                <TextBox
+                    x:Name="GridItemsSearchBox"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20,10,20,10"
+                    materialDesign:HintAssist.Hint="Поиск по таблице"
+                    materialDesign:HintAssist.IsFloating="True"
+                    materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    materialDesign:TextFieldAssist.HasOutlinedTextField="True"
+                    materialDesign:TextFieldAssist.TextFieldCornerRadius="4"
+                    DockPanel.Dock="Top"
+                    Focusable="True"
+                    Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" />
 
-                <Button Grid.Row="0"
+                <Button
+                    Grid.Row="0"
                     Grid.Column="7"
                     Margin="10"
-                    Content="Добавить"
-                    Command="{Binding ShowAddDialogCommand}"/>
+                    Command="{Binding ShowAddDialogCommand}"
+                    Content="Добавить" />
 
-                <Button Grid.Row="0" 
+                <Button
+                    Grid.Row="0"
                     Grid.Column="8"
                     Margin="10"
-                    Content="Изменить"
-                    Command="{Binding ShowEditDialogCommand}"/>
+                    Command="{Binding ShowEditDialogCommand}"
+                    Content="Изменить" />
 
-                <Button Grid.Row="0" 
+                <Button
+                    Grid.Row="0"
                     Grid.Column="9"
                     Margin="10"
-                    Content="Удалить"
-                    Command="{Binding ShowRemoveDialogCommand}"/>
+                    Command="{Binding ShowRemoveDialogCommand}"
+                    Content="Удалить" />
 
-                <StackPanel Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="10"
-                        Height="Auto"
-                        CanVerticallyScroll="True"
-                        Orientation="Vertical">
-                    <ScrollViewer VerticalScrollBarVisibility="Visible"
-                              HorizontalScrollBarVisibility="Disabled"
-                              CanContentScroll="True">
-                        <DataGrid Name="dg" 
-                              Grid.Row="1"
-                              Grid.Column="0"
-                              Grid.ColumnSpan="10"
-                              ItemsSource="{Binding Entities}" 
-                              SelectedItem="{Binding SelectedEntity}"
-                              TabIndex="1" 
-                              IsReadOnly="True"
-                              CanUserSortColumns="True"
-                              AutoGenerateColumns="False"
-                              CanUserAddRows="False"
-                              CanUserDeleteRows="False"
-                              SelectionUnit="FullRow"
-                              SelectionChanged="OnSelectionChanged"
-                              Sorting="dg_Sorting">
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="10"
+                    Height="Auto"
+                    CanVerticallyScroll="True"
+                    Orientation="Vertical">
+                    <ScrollViewer
+                        CanContentScroll="True"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Visible">
+                        <DataGrid
+                            Name="dg"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="10"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            CanUserSortColumns="True"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding Entities}"
+                            SelectedItem="{Binding SelectedEntity}"
+                            SelectionChanged="OnSelectionChanged"
+                            SelectionUnit="FullRow"
+                            Sorting="dg_Sorting"
+                            TabIndex="1">
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Сведения" Command="{Binding ShowDescriptionCommand}"/>
-                                    <MenuItem Header="Добавить" Command="{Binding ShowAddDialogCommand}"/>
-                                    <MenuItem Header="Изменить" Command="{Binding ShowEditDialogCommand}"/>
-                                    <MenuItem Header="Удалить" Command="{Binding RemoveEntityCommand}"/>
+                                    <MenuItem Command="{Binding ShowDescriptionCommand}" Header="Сведения" />
+                                    <MenuItem Command="{Binding ShowAddDialogCommand}" Header="Добавить" />
+                                    <MenuItem Command="{Binding ShowEditDialogCommand}" Header="Изменить" />
+                                    <MenuItem Command="{Binding RemoveEntityCommand}" Header="Удалить" />
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                             <b:Interaction.Triggers>
@@ -138,9 +154,9 @@
                             </b:Interaction.Triggers>
 
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="Идентификатор" >
+                                <DataGridTemplateColumn Header="Идентификатор">
                                     <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate DataType="models:Student" >
+                                        <DataTemplate DataType="models:Student">
                                             <TextBlock Text="{Binding Id}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -148,35 +164,35 @@
                                 <DataGridTemplateColumn Header="Фамилия">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="models:Student">
-                                            <TextBlock Text="{Binding Surname}"/>
+                                            <TextBlock Text="{Binding Surname}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Имя">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="models:Student">
-                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Name}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Отчество">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="models:Student">
-                                            <TextBlock Text="{Binding Patronymic}"/>
+                                            <TextBlock Text="{Binding Patronymic}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Группа">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="models:Student">
-                                            <TextBlock Text="{Binding Group.Name}"/>
+                                            <TextBlock Text="{Binding Group.Name}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Форма обучения">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="models:Student">
-                                            <TextBlock Text="{Binding EducationForm}"/>
+                                            <TextBlock Text="{Binding EducationForm}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

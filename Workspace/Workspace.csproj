@@ -241,5 +241,23 @@
   <ItemGroup>
     <Resource Include="Views\JournalsIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\student.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\teacher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\subject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\exam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\ticket.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
