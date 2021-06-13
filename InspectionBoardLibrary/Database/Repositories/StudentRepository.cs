@@ -13,10 +13,10 @@ namespace InspectionBoardLibrary.Database.Repositories
     {
         public StudentRepository(ExamContext context) : base(context)
         {
-
+            
         }
 
-        public override async Task<ObservableCollection<Student>> Select()
+        public override async Task<ObservableCollection<Student>> SelectAsync()
         {
             var list = await context.Set<Student>().Include(e => e.Group).OrderBy(e => e.Id).ToListAsync();
             return new ObservableCollection<Student>(list);

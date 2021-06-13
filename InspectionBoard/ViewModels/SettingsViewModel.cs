@@ -27,7 +27,16 @@ namespace InspectionBoard.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            if (String.IsNullOrEmpty(Username))
+            {
+                Username = "Test";
+            }
+            else
+            {
             Username = ApplicationSettings.CurrentUser.Username;
+
+            }
+
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) => true;

@@ -108,7 +108,7 @@ namespace InspectionBoardLibrary.Dialogs
         public async virtual void OnDialogOpened(IDialogParameters parameters)
         {
             this.dialogParameters = parameters;
-            var list = await repository.Select();
+            var list = await repository.SelectAsync();
             if (list.Count > 0) 
             {
                 Entities = list;

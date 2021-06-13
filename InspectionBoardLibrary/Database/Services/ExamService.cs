@@ -23,7 +23,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task<bool> HasStudentEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Student.Id == id)
                 {
@@ -36,7 +36,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task RemoveAllStudentEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Student.Id == id)
                 {
@@ -47,7 +47,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task<bool> HasTeacherEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Teacher.Id == id)
                 {
@@ -60,7 +60,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task RemoveAllTeacherEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Teacher.Id == id)
                 {
@@ -71,7 +71,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task<bool> HasSubjectEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Subject.Id == id)
                 {
@@ -84,7 +84,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task RemoveAllSubjectEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Subject.Id == id)
                 {
@@ -95,7 +95,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task<bool> HasTicketEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Ticket.Id == id)
                 {
@@ -108,7 +108,7 @@ namespace InspectionBoardLibrary.Database.Services
 
         public async Task RemoveAllTicketEntries(int id)
         {
-            foreach (var item in await repository.Select())
+            foreach (var item in await repository.SelectAsync())
             {
                 if (item.Ticket.Id == id)
                 {

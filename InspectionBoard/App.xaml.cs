@@ -2,9 +2,12 @@
 using Documentation;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
+using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Dialogs.CommonDialogs;
 using InspectionBoardLibrary.Dialogs.SettingsDialogs;
 using InspectionBoardLibrary.Dialogs.TicketsDialogs;
+using InspectionBoardLibrary.Models.Database;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using InspectionBoardLibrary.Windows;
 using InspectionBoardLibrary.Windows.ExamsDialogs;
 using InspectionBoardLibrary.Windows.GroupsDialogs;
@@ -18,6 +21,8 @@ using Prism.Unity;
 using System.Windows;
 using Unity;
 using Workspace;
+using Workspace.ViewModels;
+using Workspace.Views;
 using Workspace.Windows;
 
 namespace InspectionBoardLibrary
@@ -28,8 +33,7 @@ namespace InspectionBoardLibrary
 
         protected override Window CreateShell()
         {
-            return Container.Resolve<Views.Main>();
-            
+            return Container.Resolve<InspectionBoard.Views.Main>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -47,6 +51,30 @@ namespace InspectionBoardLibrary
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
             this.containerRegistry.RegisterDialog<DescriptionDialog, DescriptionDialogViewModel>("DescriptionDialog");
+
+            containerRegistry.RegisterDialogWindow<AddDialogWindow>("AddDialogWindow");
+            containerRegistry.RegisterDialogWindow<EditDialogWindow>("EditDialogWindow");
+            containerRegistry.RegisterDialogWindow<RemoveDialogWindow>("RemoveDialogWindow");
+            containerRegistry.RegisterDialogWindow<DescriptionDialogWindow>("DescriptionDialogWindow");
+
+            containerRegistry.Register<IRepository<Teacher>, TeacherRepository>();
+            containerRegistry.Register<IRepository<Student>, StudentRepository>();
+            containerRegistry.Register<IRepository<Exam>, ExamRepository>();
+            containerRegistry.Register<IRepository<Subject>, SubjectRepository>();
+            containerRegistry.Register<IRepository<Group>, GroupRepository>();
+            containerRegistry.Register<IRepository<Journal>, JournalRepository>();
+            containerRegistry.Register<IRepository<Ticket>, TicketRepository>();
+
+            //containerRegistry.RegisterForNavigation<Analysis, AnalysisViewModel>("Analyze");
+            //containerRegistry.RegisterForNavigation<DocsEnrollment, DocsEnrollmentViewModel>("DocsEnrollment");
+
+            containerRegistry.RegisterForNavigation<Students, StudentsViewModel>("Students");
+            containerRegistry.RegisterForNavigation<Teachers, TeachersViewModel>("Teachers");
+            containerRegistry.RegisterForNavigation<Exams, ExamsViewModel>("Exams");
+            containerRegistry.RegisterForNavigation<Subjects, SubjectsViewModel>("Subjects");
+            containerRegistry.RegisterForNavigation<Groups, GroupsViewModel>("Groups");
+            containerRegistry.RegisterForNavigation<Journals, JournalsViewModel>("Journals");
+            containerRegistry.RegisterForNavigation<Tickets, TicketsViewModel>("Tickets");
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

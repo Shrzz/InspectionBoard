@@ -1,15 +1,17 @@
-﻿using InspectionBoardLibrary.Models;
+﻿using InspectionBoardLibrary.DataSeeder;
+using InspectionBoardLibrary.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
 using Workspace.Views;
 
-namespace InspectionBoardLibrary.ViewModels
+namespace InspectionBoard.ViewModels
 {
     public class MainViewModel : BindableBase
     {
@@ -77,8 +79,12 @@ namespace InspectionBoardLibrary.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
 
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.Students));
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Workspace.Views.Students));
+            //regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            //regionManager.RegisterViewWithRegion("MainRegion", typeof(Main));
+            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Students));
+
+
 
             MenuItems = new ObservableCollection<MenuItem>();
             foreach (var item in GenerateMenuItems())
@@ -89,15 +95,14 @@ namespace InspectionBoardLibrary.ViewModels
             SelectedMenuIndex = 0;
             menuItemsView = CollectionViewSource.GetDefaultView(MenuItems);
             menuItemsView.Filter = MenuItemsFilter;
-            CurrentMenuItem = new MenuItem("Студенты", "ContentRegion");
+            CurrentMenuItem = new MenuItem("Главная страница", "ContentRegion");
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);
 
-            DataSeeder.DataSeeder seeder = new DataSeeder.DataSeeder();
+            DataSeeder seeder = new DataSeeder();
             seeder.AddAdminUser();
             seeder.AddGroups();
             seeder.AddStudent();
-            regionManager.RequestNavigate("Authorization", "MainRegion");
         }
 
         private static IEnumerable<MenuItem> GenerateMenuItems()

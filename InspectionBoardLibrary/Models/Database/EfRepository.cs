@@ -46,7 +46,7 @@ namespace InspectionBoardLibrary.Models.Database
             return entity;
         }
 
-        public virtual async Task<ObservableCollection<TEntity>> Select()
+        public virtual async Task<ObservableCollection<TEntity>> SelectAsync()
         {
             var list = await context.Set<TEntity>().ToListAsync();
             return new ObservableCollection<TEntity>(list);
@@ -73,6 +73,11 @@ namespace InspectionBoardLibrary.Models.Database
             context.Entry(entity).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return entity;
+        }
+
+        public ObservableCollection<TEntity> Select()
+        {
+            return new ObservableCollection<TEntity>(context.Set<TEntity>().ToList());
         }
     }
 }

@@ -14,7 +14,7 @@ namespace InspectionBoardLibrary.Database.Repositories
 
         }
 
-        public override async Task<ObservableCollection<Exam>> Select()
+        public override async Task<ObservableCollection<Exam>> SelectAsync()
         {
             var list = await context.Set<Exam>().Include(e => e.Student).Include(e => e.Subject).Include(e => e.Teacher).ToListAsync();
             return new ObservableCollection<Exam>(list);

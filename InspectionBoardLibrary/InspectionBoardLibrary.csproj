@@ -365,6 +365,16 @@
       <DependentUpon>202105231030015_Optimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\DocumentsIcon.png" />
+    <Content Include="Icons\LoginIconWhite.png" />
+    <Content Include="Icons\MainIconBlack.png" />
+    <Content Include="Icons\MainIconWhite.png" />
+    <Resource Include="Icons\SettingsIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Icons\TablesIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

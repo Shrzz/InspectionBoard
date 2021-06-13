@@ -1,10 +1,12 @@
 ﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
-namespace InspectionBoardLibrary.Views
+namespace InspectionBoard.Views
 {
     /// <summary>
     /// Логика взаимодействия для Main.xaml
@@ -16,15 +18,7 @@ namespace InspectionBoardLibrary.Views
         public Main()
         {
             InitializeComponent();
-            Task.Factory.StartNew(() => Thread.Sleep(1000)).ContinueWith(t =>
-                {
-                    MainSnackbar.MessageQueue?.Enqueue("Добро пожаловать");
-                }, TaskScheduler.FromCurrentSynchronizationContext());
-
-            var paletteHelper = new PaletteHelper();
-            var theme = paletteHelper.GetTheme();
-
-            Snackbar = MainSnackbar;
+            InitializeSnackbar();
         }
 
 
@@ -35,8 +29,18 @@ namespace InspectionBoardLibrary.Views
             dataGrid.Focus();
         }
 
-        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e) => MenuItemsSearchBox.Focus();
+        private void InitializeSnackbar()
+        {
+            /*Task.Factory.StartNew(() => Thread.Sleep(1000)).ContinueWith(t =>
+            {
+                MainSnackbar.MessageQueue?.Enqueue("Добро пожаловать");
+            }, TaskScheduler.FromCurrentSynchronizationContext());
 
+            var paletteHelper = new PaletteHelper();
+            var theme = paletteHelper.GetTheme();
+
+            Snackbar = MainSnackbar;*/
+        }
         //private void OnSelectedItemChanged(object sender, DependencyPropertyChangedEventArgs e) => MainScrollViewer.ScrollToHome();
 
     }

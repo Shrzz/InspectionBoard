@@ -39,7 +39,7 @@ namespace Workspace.ViewModels
 
         public async override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            var entities = await repository.Select();
+            var entities = await repository.SelectAsync();
             Entities = new ObservableCollection<Ticket>(entities);
             Subjects = await (repository as TicketRepository).SelectSubjects();
         }

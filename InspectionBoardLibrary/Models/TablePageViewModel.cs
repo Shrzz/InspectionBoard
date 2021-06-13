@@ -84,7 +84,7 @@ namespace InspectionBoardLibrary.Models
                 {
                     case ButtonResult.OK:
                         {
-                            Entities = await repository.Select();
+                            Entities = await repository.SelectAsync();
                             break;
                         }
                     default:
@@ -121,7 +121,7 @@ namespace InspectionBoardLibrary.Models
         public async virtual void RemoveEntity()
         {
             await repository.Remove(SelectedEntity.Id);
-            Entities = await repository.Select();
+            Entities = await repository.SelectAsync();
         }
 
         public void ShowDescriptionDialog()
@@ -134,7 +134,7 @@ namespace InspectionBoardLibrary.Models
 
         public virtual async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            var entities = await repository.Select();
+            var entities = await repository.SelectAsync();
             Entities = new ObservableCollection<TEntity>(entities);
             Entities.CollectionChanged += Entities_CollectionChanged;
         }
@@ -143,7 +143,7 @@ namespace InspectionBoardLibrary.Models
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
             {
-                Entities = await repository.Select();
+                Entities = await repository.SelectAsync();
             }
         }
 

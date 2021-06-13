@@ -53,7 +53,7 @@ namespace Workspace.ViewModels
 
         public override async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            var entities = await repository.Select();
+            var entities = await repository.SelectAsync();
             Groups = await (repository as JournalRepository).SelectGroups();
             Subjects = await (repository as JournalRepository).SelectSubjects();
             SelectedGroup = Groups[0];
