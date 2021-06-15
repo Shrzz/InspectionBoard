@@ -14,7 +14,7 @@ namespace Documentation
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<Main, MainViewModel>("Documents");
+
         }
     }
 }

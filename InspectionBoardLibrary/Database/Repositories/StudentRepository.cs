@@ -18,8 +18,7 @@ namespace InspectionBoardLibrary.Database.Repositories
 
         public override async Task<ObservableCollection<Student>> SelectAsync()
         {
-            var list = await context.Set<Student>().Include(e => e.Group).OrderBy(e => e.Id).ToListAsync();
-            return new ObservableCollection<Student>(list);
+            return new ObservableCollection<Student>(await context.Set<Student>().Include(e => e.Group).OrderBy(e => e.Id).ToListAsync());
         }
 
         internal bool TableIsEmpty()
@@ -27,10 +26,11 @@ namespace InspectionBoardLibrary.Database.Repositories
             return !context.Students.Any();
         }
 
-        public async Task<ObservableCollection<Group>> SelectGroups()
+        public async Task<ObservableCollection<Group>> SelectGroupsAsync()
         {
-            var collection = await context.Groups.ToListAsync();
-            return new ObservableCollection<Group>(collection);
+            return new ObservableCollection<Group>(await context.Groups.ToListAsync());
         }
+
+
     }
 }

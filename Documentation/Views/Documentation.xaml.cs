@@ -18,9 +18,9 @@ namespace Documentation.Views
     /// <summary>
     /// Логика взаимодействия для Main.xaml
     /// </summary>
-    public partial class Main : UserControl
+    public partial class Documentation : UserControl
     {
-        public Main()
+        public Documentation()
         {
             InitializeComponent();
         }

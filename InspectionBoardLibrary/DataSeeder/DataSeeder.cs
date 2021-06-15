@@ -61,7 +61,7 @@ namespace InspectionBoardLibrary.DataSeeder
                 s.Surname = "Качалов";
                 s.Name = "Дмитрий";
                 s.Patronymic = "Геннадьевич";
-                var groups = await repository.SelectGroups();
+                var groups = await repository.SelectGroupsAsync();
                 s.Group = groups.FirstOrDefault();
                 await repository.Add(s);
             }

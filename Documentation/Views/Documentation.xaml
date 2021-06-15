@@ -1,9 +1,9 @@
 ﻿<UserControl
-    x:Class="Workspace.Views.Tables"
+    x:Class="Documentation.Views.Documentation"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Workspace.Views"
+    xmlns:local="clr-namespace:Documentation.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
@@ -43,7 +43,7 @@
                             VerticalAlignment="Center"
                             Background="White"
                             Command="{Binding NavigateCommand}"
-                            CommandParameter="MainMenuRegion"
+                            CommandParameter="Main"
                             Content="В главное меню"
                             FontSize="20"
                             Foreground="Black" />
@@ -75,7 +75,7 @@
                     Background="White"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                     BorderThickness="3"
-                    Command="{Binding NavigateCommand}"
+                    Command="{Binding ShowDocDialogCommand}"
                     CommandParameter="Students">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -95,7 +95,7 @@
                             <TextBlock
                                 Height="Auto"
                                 FontSize="30"
-                                Text="Студенты" />
+                                Text="Сведения о студентах" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
@@ -108,7 +108,7 @@
                     Background="White"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                     BorderThickness="3"
-                    Command="{Binding NavigateCommand}"
+                    Command="{Binding ShowDocDialogCommand}"
                     CommandParameter="Teachers">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -128,7 +128,7 @@
                             <TextBlock
                                 Height="Auto"
                                 FontSize="30"
-                                Text="Преподаватели" />
+                                Text="Сведения о преподавателях" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
@@ -141,7 +141,7 @@
                     Background="White"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                     BorderThickness="3"
-                    Command="{Binding NavigateCommand}"
+                    Command="{Binding ShowDocDialogCommand}"
                     CommandParameter="Subjects">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -161,7 +161,7 @@
                             <TextBlock
                                 Height="Auto"
                                 FontSize="30"
-                                Text="Предметы" />
+                                Text="Сведения о предметах" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
@@ -174,7 +174,7 @@
                     Background="White"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                     BorderThickness="3"
-                    Command="{Binding NavigateCommand}"
+                    Command="{Binding ShowDocDialogCommand}"
                     CommandParameter="Exams">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -194,7 +194,7 @@
                             <TextBlock
                                 Height="Auto"
                                 FontSize="30"
-                                Text="Экзамены" />
+                                Text="Сведения об экзаменах" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
@@ -207,7 +207,7 @@
                     Background="White"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                     BorderThickness="3"
-                    Command="{Binding NavigateCommand}"
+                    Command="{Binding ShowDocDialogCommand}"
                     CommandParameter="Groups">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -227,7 +227,7 @@
                             <TextBlock
                                 Height="Auto"
                                 FontSize="30"
-                                Text="Группы" />
+                                Text="Сведения о группах" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
@@ -240,7 +240,7 @@
                     Background="White"
                     BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                     BorderThickness="3"
-                    Command="{Binding NavigateCommand}"
+                    Command="{Binding ShowDocDialogCommand}"
                     CommandParameter="Tickets">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -260,46 +260,12 @@
                             <TextBlock
                                 Height="Auto"
                                 FontSize="30"
-                                Text="Билеты" />
+                                Text="Сведения о билетах" />
                         </materialDesign:ColorZone>
                     </Grid>
                 </Button>
-
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Height="Auto"
-                    Margin="10"
-                    Background="White"
-                    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-                    BorderThickness="3"
-                    Command="{Binding NavigateCommand}"
-                    CommandParameter="Journals">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="7*" />
-                            <RowDefinition Height="3*" />
-                        </Grid.RowDefinitions>
-                        <Image
-                            Grid.Row="0"
-                            Margin="30"
-                            DockPanel.Dock="Top"
-                            Source="JournalsIcon.png"
-                            Stretch="Uniform" />
-                        <materialDesign:ColorZone
-                            Grid.Row="1"
-                            HorizontalAlignment="Center"
-                            DockPanel.Dock="Bottom">
-                            <TextBlock
-                                Height="Auto"
-                                FontSize="25"
-                                Text="Журналы" />
-                        </materialDesign:ColorZone>
-                    </Grid>
-                </Button>
-
             </Grid>
         </DockPanel>
-        <!--  ContentControl prism:RegionManager.RegionName="Documentation" /  -->
+        <ContentControl prism:RegionManager.RegionName="TablesRegion" />
     </Grid>
 </UserControl>

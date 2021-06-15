@@ -1,5 +1,7 @@
 ﻿using Authorization;
 using Documentation;
+using Documentation.ViewModels;
+using Documentation.Views;
 using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
 using InspectionBoardLibrary.Database.Repositories;
@@ -54,6 +56,7 @@ namespace InspectionBoardLibrary
             this.containerRegistry.RegisterDialog<EditUserPasswordDialog, EditUserPasswordDialogViewModel>("EditUserPasswordDialog");
             this.containerRegistry.RegisterDialog<EditUserUsernameDialog, EditUserUsernameDialogViewModel>("EditUserUsernameDialog");
             this.containerRegistry.RegisterDialog<DescriptionDialog, DescriptionDialogViewModel>("DescriptionDialog");
+            this.containerRegistry.RegisterDialog<CreateDocumentDialog, CreateDocumentDialogViewModel>("CreateDocumentDialog");
 
             containerRegistry.RegisterDialogWindow<AddDialogWindow>("AddDialogWindow");
             containerRegistry.RegisterDialogWindow<EditDialogWindow>("EditDialogWindow");
@@ -80,6 +83,7 @@ namespace InspectionBoardLibrary
             containerRegistry.RegisterForNavigation<Journals, JournalsViewModel>("Journals");
             containerRegistry.RegisterForNavigation<Tickets, TicketsViewModel>("Tickets");
             containerRegistry.RegisterForNavigation<Tables, TablesViewModel>("Tables");
+            containerRegistry.RegisterForNavigation<Documentation.Views.Documentation, DocumentationViewModel>("Documentation");
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

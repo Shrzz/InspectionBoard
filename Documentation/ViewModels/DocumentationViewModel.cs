@@ -1,34 +1,34 @@
-﻿using InspectionBoardLibrary.Models;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InspectionBoard.ViewModels
+namespace Documentation.ViewModels
 {
-    public class SettingsViewModel : BindableBase, INavigationAware, IDialogAware
+    public class DocumentationViewModel : BindableBase, IDialogAware
     {
+        private string TemplatesDefaultPath = $"{Directory.GetCurrentDirectory()}/Templates/";
         private readonly IRegionManager regionManager;
         private readonly IDialogService dialogService;
-        public SettingsViewModel(IRegionManager regionManager, IDialogService dialogService)
+
+        public DocumentationViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
             this.regionManager = regionManager;
             this.dialogService = dialogService;
-            ShowAddUserDialogCommand = new DelegateCommand(ShowAddUserDialog);
-            ShowEditUserDialogCommand = new DelegateCommand<string>(ShowEditUserDialog);
+            ShowDocDialogCommand = new DelegateCommand<string>(ShowDocDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
         private string username;
 
         public event Action<IDialogResult> RequestClose;
-        public DelegateCommand ShowAddUserDialogCommand { get; private set; }
-        public DelegateCommand<string> ShowEditUserDialogCommand { get; private set; }
+        public DelegateCommand<string> ShowDocDialogCommand { get; private set; }
         public DelegateCommand<string> NavigateCommand { get; private set; }
 
         public string Username
@@ -37,18 +37,17 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref username, value); }
         }
 
-        public string Title => throw new NotImplementedException();
+        public string Title => "Документация";
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) => true;
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+
         }
 
         public bool CanCloseDialog() => true;
@@ -79,28 +78,17 @@ namespace InspectionBoard.ViewModels
             }/*, dialogWindowName*/);
         }
 
-        private void ShowAddUserDialog()
-        {
-            DialogParameters parameters = new DialogParameters();
-            ShowDialog("AddUserDialog", parameters);
-        }
-
-        private void ShowEditUserDialog(string parameter)
-        {
-            DialogParameters parameters = new DialogParameters();
-            if (parameter == "username")
-            {
-                ShowDialog("EditUserUsernameDialog", parameters);
-            }
-            else if (parameter == "password")
-            {
-                ShowDialog("EditUserPasswordDialog", parameters);
-            }
-        }
-
         private void Navigate(string path)
         {
             regionManager.RequestNavigate("MainMenuRegion", path);
+        }
+
+        private void ShowDocDialog(string templateType)
+        {
+            DialogParameters parameters = new DialogParameters();
+            parameters.Add("templateType", templateType);
+            parameters.Add("templatePath", TemplatesDefaultPath);
+            ShowDialog("CreateDocumentDialog", parameters);
         }
     }
 }

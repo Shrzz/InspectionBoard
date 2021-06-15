@@ -33,6 +33,9 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
             StringBuilder sb = new StringBuilder();
 
             sb.Append(GetShortDescription());
+            if (Group is null)
+                return sb.ToString();
+
             sb.Append(Group.GetShortDescription());
 
             return sb.ToString();

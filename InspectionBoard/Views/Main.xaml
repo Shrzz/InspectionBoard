@@ -103,7 +103,7 @@
                             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
                             BorderThickness="3"
                             Command="{Binding NavigateCommand}"
-                            CommandParameter="Documents">
+                            CommandParameter="Documentation">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="7*" />

@@ -69,7 +69,7 @@ namespace InspectionBoardLibrary.Dialogs
 
         public event Action<IDialogResult> RequestClose;
 
-        public async Task EditEntity()
+        public virtual async Task EditEntity()
         {
             if (Entity != null)
             {

@@ -31,14 +31,27 @@ namespace InspectionBoardLibrary.Windows.StudentsDialogs
 
         public EditStudentDialogViewModel(IRepository<Student> repository) : base(repository)
         {
-
+            Groups = new ObservableCollection<Group>();
         }
 
-        public override async void OnDialogOpened(IDialogParameters parameters)
+        public override async Task EditEntity()
+        {
+            if (Entity != null)
+            {
+                await repository.Update(Entity);
+            }
+        }
+
+        public override void OnDialogOpened(IDialogParameters parameters)
         {
             base.OnDialogOpened(parameters);
+            DialogOpened();
+        }
+
+        public async Task DialogOpened()
+        {
             EducationForms = Enum.GetValues(typeof(EducationForm)).Cast<EducationForm>().ToList();
-            Groups = await (repository as StudentRepository).SelectGroups();
+            Groups = await (repository as StudentRepository).SelectGroupsAsync();
         }
     }
 }

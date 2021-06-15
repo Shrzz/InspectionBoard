@@ -19,14 +19,14 @@
                           SelectedItem="{Binding SelectedEntityId}"/>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom">
-                    <Button Margin="20 10 20 0" 
-                            Content="Отмена"
-                            Command="{Binding CloseDialogCommand}"
-                            CommandParameter="false"/>
                     <Button Margin="20 10 20 0"
                             Content="Удалить"
                             Command="{Binding CloseDialogCommand}"
                             CommandParameter="true"/>
+                    <Button Margin="20 10 20 0" 
+                            Content="Отмена"
+                            Command="{Binding CloseDialogCommand}"
+                            CommandParameter="false"/>
                 </StackPanel>
             </DockPanel>
         </materialDesign:Card>
