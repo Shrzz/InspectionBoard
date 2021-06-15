@@ -80,7 +80,7 @@ namespace Documentation.ViewModels
 
         private void Navigate(string path)
         {
-            regionManager.RequestNavigate("MainMenuRegion", path);
+            regionManager.RequestNavigate("MainRegion", path);
         }
 
         private void ShowDocDialog(string templateType)

@@ -133,7 +133,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\TestMainWindowViewModel.cs" />
+    <Compile Include="Views\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -148,6 +153,9 @@
     </Compile>
     <Compile Include="Windows\RemoveDialogWindow.xaml.cs">
       <DependentUpon>RemoveDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TestMainWindow.xaml.cs">
+      <DependentUpon>TestMainWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
@@ -165,6 +173,10 @@
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +196,10 @@
     <Page Include="Windows\RemoveDialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\TestMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

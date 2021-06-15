@@ -16,6 +16,7 @@
     mc:Ignorable="d">
 
     <Grid Background="White">
+
         <!--  Рабочая область  -->
         <DockPanel LastChildFill="True">
 

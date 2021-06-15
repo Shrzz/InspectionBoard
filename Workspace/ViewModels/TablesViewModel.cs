@@ -19,10 +19,8 @@ namespace Workspace.ViewModels
             NavigateCommand = new DelegateCommand<string>(Navigate);
         }
 
-
         private void Navigate(string region)
         {
-            var a = regionManager.Regions;
             regionManager.RequestNavigate("MainRegion", region);
         }
     }

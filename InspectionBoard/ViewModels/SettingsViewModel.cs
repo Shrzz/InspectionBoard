@@ -37,7 +37,7 @@ namespace InspectionBoard.ViewModels
             set { SetProperty(ref username, value); }
         }
 
-        public string Title => throw new NotImplementedException();
+        public string Title => "Настройки";
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -98,9 +98,9 @@ namespace InspectionBoard.ViewModels
             }
         }
 
-        private void Navigate(string path)
+        private void Navigate(string region)
         {
-            regionManager.RequestNavigate("MainMenuRegion", path);
+            regionManager.RequestNavigate("MainRegion", region);
         }
     }
 }

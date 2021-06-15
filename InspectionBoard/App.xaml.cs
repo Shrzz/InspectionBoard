@@ -34,9 +34,10 @@ namespace InspectionBoardLibrary
         private IContainerRegistry containerRegistry;
 
         protected override Window CreateShell()
-        { 
+        {
             return Container.Resolve<InspectionBoard.Views.Main>();
             //return Container.Resolve<Authorization.Views.LoginWindow>();
+            //return Container.Resolve<InspectionBoard.Windows.TestMainWindow>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -51,6 +52,7 @@ namespace InspectionBoardLibrary
             RegisterExamDialogs();
             RegisterGroupDialogs();
             RegisterTicketDialogs();
+
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
             this.containerRegistry.RegisterDialog<EditUserPasswordDialog, EditUserPasswordDialogViewModel>("EditUserPasswordDialog");
@@ -71,10 +73,8 @@ namespace InspectionBoardLibrary
             containerRegistry.Register<IRepository<Journal>, JournalRepository>();
             containerRegistry.Register<IRepository<Ticket>, TicketRepository>();
 
-            //containerRegistry.RegisterForNavigation<Analysis, AnalysisViewModel>("Analyze");
-            //containerRegistry.RegisterForNavigation<DocsEnrollment, DocsEnrollmentViewModel>("DocsEnrollment");
-
-            containerRegistry.RegisterForNavigation<InspectionBoard.Views.Main, InspectionBoard.ViewModels.MainViewModel>("MainMenu");
+            containerRegistry.RegisterForNavigation<InspectionBoard.Windows.TestMainWindow, InspectionBoard.ViewModels.MainViewModel>("TestMain");
+            containerRegistry.RegisterForNavigation<MainMenu, MainMenuViewModel>("MainMenu");
             containerRegistry.RegisterForNavigation<Students, StudentsViewModel>("Students");
             containerRegistry.RegisterForNavigation<Teachers, TeachersViewModel>("Teachers");
             containerRegistry.RegisterForNavigation<Exams, ExamsViewModel>("Exams");

@@ -16,7 +16,7 @@
                 TextWrapping="Wrap" />
             <Button
                 Width="100"
-                Command="{Binding CloseDialog}"
+                Command="{Binding CloseDialogCommand}"
                 CommandParameter="true"
                 Content="Ок"
                 DockPanel.Dock="Bottom" />

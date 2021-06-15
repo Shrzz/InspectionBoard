@@ -1,11 +1,15 @@
 ﻿using InspectionBoardLibrary.Database.Contexts;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Models.Database;
+using InspectionBoardLibrary.Models.DatabaseModels;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.IO;
 
 namespace Documentation.ViewModels
@@ -13,7 +17,6 @@ namespace Documentation.ViewModels
     public class CreateDocumentDialogViewModel : BindableBase, INavigationAware, IDialogAware
     {
         private readonly IDialogService dialogService;
-        private IRepository<IEntity> repository;
 
         private string fileName;
         public string FileName
@@ -29,13 +32,38 @@ namespace Documentation.ViewModels
             set { SetProperty(ref message, value); }
         }
 
+        public DelegateCommand<string> CloseDialogCommand { get; private set; }
+
         public CreateDocumentDialogViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
+            CloseDialogCommand = new DelegateCommand<string>(CloseDialog);
         }
+
         public string Title => "Создание документа";
 
         public event Action<IDialogResult> RequestClose;
+
+        public virtual async void CloseDialog(string parameter)
+        {
+            ButtonResult result = ButtonResult.None;
+            if (parameter?.ToLower() == "true")
+            {
+                result = ButtonResult.OK;
+            }
+            else if (parameter?.ToLower() == "false")
+            {
+                result = ButtonResult.Cancel;
+            }
+
+            RaiseRequestClose(new DialogResult(result));
+        }
+
+        public virtual void RaiseRequestClose(IDialogResult dialogResult)
+        {
+            RequestClose?.Invoke(dialogResult);
+        }
+
 
         public bool CanCloseDialog() => true;
 
@@ -56,57 +84,136 @@ namespace Documentation.ViewModels
             Microsoft.Office.Interop.Word.Paragraph p = document.Paragraphs.Add(ref missing);
 
             var context = new ExamContext();
+
             switch (type)
             {
                 case "Students":
                     {
-                        repository = (IRepository<IEntity>)new StudentRepository(context);
+                        StudentRepository repository = new StudentRepository(context);
                         FileName = "Сведения о студентах.docx";
+                        var list = await repository.SelectAsync();
+
+                        if (list is null || list.Count < 1)
+                        {
+                            return;
+                        }
+                        foreach (var item in list)
+                        {
+                            p.Range.Text = item.GetFullDescription();
+                            p.Range.InsertParagraphAfter();
+                        }
+
                         break;
                     }
                 case "Teachers":
                     {
-                        repository = (IRepository<IEntity>)new TeacherRepository(context);
+                        TeacherRepository repository = new TeacherRepository(context);
                         FileName = "Сведения о преподавателях.docx";
+                        var list = await repository.SelectAsync();
+
+                        if (list is null || list.Count < 1)
+                        {
+                            return;
+                        }
+                        foreach (var item in list)
+                        {
+                            p.Range.Text = item.GetFullDescription();
+                            p.Range.InsertParagraphAfter();
+                        }
                         break;
                     }
                 case "Subjects":
                     {
-                        repository = (IRepository<IEntity>)new SubjectRepository(context);
+                        SubjectRepository repository = new SubjectRepository(context);
                         FileName = "Сведения о предметах.docx";
+                        var list  = await repository.SelectAsync();
+
+                        if (list is null || list.Count < 1)
+                        {
+                            return;
+                        }
+                        foreach (var item in list)
+                        {
+                            p.Range.Text = item.GetFullDescription();
+                            p.Range.InsertParagraphAfter();
+                        }
+
                         break;
                     }
                 case "Exams":
                     {
-                        repository = (IRepository<IEntity>)new ExamRepository(context);
+                        ExamRepository repository = new ExamRepository(context);
                         FileName = "Сведения об экзаменах.docx";
+                        var list  = await repository.SelectAsync();
+
+                        if (list is null || list.Count < 1)
+                        {
+                            return;
+                        }
+                        foreach (var item in list)
+                        {
+                            p.Range.Text = item.GetFullDescription();
+                            p.Range.InsertParagraphAfter();
+                        }
 
                         break;
                     }
                 case "Groups":
                     {
-                        repository = (IRepository<IEntity>)new GroupRepository(context);
+                        GroupRepository repository = new GroupRepository(context);
                         FileName = "Сведения о группах.docx";
+                        var list = await repository.SelectAsync();
+
+                        if (list is null || list.Count < 1)
+                        {
+                            return;
+                        }
+                        foreach (var item in list)
+                        {
+                            p.Range.Text = item.GetFullDescription();
+                            p.Range.InsertParagraphAfter();
+                        }
+
                         break;
                     }
                 case "Tickets":
                     {
-                        repository = (IRepository<IEntity>)new TicketRepository(context);
+                        TicketRepository repository = new TicketRepository(context);
                         FileName = "Сведения о билетах.docx";
+                        var list = await repository.SelectAsync();
+
+                        if (list is null || list.Count < 1)
+                        {
+                            return;
+                        }
+                        foreach (var item in list)
+                        {
+                            p.Range.Text = item.GetFullDescription();
+                            p.Range.InsertParagraphAfter();
+                        }
+
                         break;
                     }
                 default:
                     {
+                        StudentRepository repository = new StudentRepository(context);
+                        var list = await repository.SelectAsync();
+
+                        if (list is null || list.Count < 1)
+                        {
+                            return;
+                        }
+                        foreach (var item in list)
+                        {
+                            p.Range.Text = item.GetFullDescription();
+                            p.Range.InsertParagraphAfter();
+                        }
+
                         return;
                     }
             }
 
-            var list = await repository.SelectAsync();
-            foreach (var item in list)
-            {
-                p.Range.Text = item.GetFullDescription();
-                p.Range.InsertParagraphAfter();
-            }
+            
 
             object filename = Directory.GetCurrentDirectory() + $"\\{FileName}";
             document.SaveAs2(ref filename, ref missing, ref missing, ref missing, ref missing);
@@ -124,6 +231,11 @@ namespace Documentation.ViewModels
         {
 
 
+
+        }
+
+        public void SwitchType(string type)
+        {
 
         }
     }

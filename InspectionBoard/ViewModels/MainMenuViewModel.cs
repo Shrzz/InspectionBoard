@@ -1,20 +1,17 @@
 ﻿using InspectionBoardLibrary.DataSeeder;
-using InspectionBoardLibrary.Models;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Data;
-using Workspace.Views;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace InspectionBoard.ViewModels
 {
-    public class MainViewModel : BindableBase
-    { 
+    public class MainMenuViewModel 
+    {
         private readonly IRegionManager regionManager;
         private readonly IDialogService dialogService;
 
@@ -26,11 +23,11 @@ namespace InspectionBoard.ViewModels
 
         #endregion
         // лишняя прогрузка данных
-        public MainViewModel(IRegionManager regionManager, IDialogService dialogService)
+        public MainMenuViewModel(IRegionManager regionManager, IDialogService dialogService)
         {
             this.regionManager = regionManager;
             this.dialogService = dialogService;
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            regionManager.RegisterViewWithRegion("MainMenuRegion", typeof(Authorization.Views.Login));
 
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);
@@ -45,7 +42,7 @@ namespace InspectionBoard.ViewModels
 
         private void Navigate(string region)
         {
-            regionManager.RequestNavigate("MainRegion", region);
+            regionManager.RequestNavigate("MainMenuRegion", region);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) => true;
@@ -81,5 +78,6 @@ namespace InspectionBoard.ViewModels
             });
         }
         #endregion
+
     }
 }
