@@ -36,8 +36,6 @@ namespace InspectionBoardLibrary
         protected override Window CreateShell()
         {
             return Container.Resolve<InspectionBoard.Views.Main>();
-            //return Container.Resolve<Authorization.Views.LoginWindow>();
-            //return Container.Resolve<InspectionBoard.Windows.TestMainWindow>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -52,7 +50,6 @@ namespace InspectionBoardLibrary
             RegisterExamDialogs();
             RegisterGroupDialogs();
             RegisterTicketDialogs();
-
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
             this.containerRegistry.RegisterDialog<EditUserPasswordDialog, EditUserPasswordDialogViewModel>("EditUserPasswordDialog");

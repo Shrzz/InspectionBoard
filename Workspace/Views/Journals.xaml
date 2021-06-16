@@ -16,7 +16,7 @@
         <!--  Рабочая область  -->
         <DockPanel LastChildFill="True">
 
-            <!--  Верхняя полоса  -->
+
             <materialDesign:ColorZone
                 Padding="16"
                 materialDesign:ShadowAssist.ShadowDepth="Depth2"
@@ -93,6 +93,14 @@
                     ItemsSource="{Binding Subjects}"
                     SelectedItem="{Binding SelectedSubject}" />
 
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="6"
+                    Margin="10"
+                    Command="{Binding GetRowsCommand}"
+                    Content="Выбрать" />
+
                 <Button
                     Grid.Row="0"
                     Grid.Column="7"
@@ -114,48 +122,90 @@
                     Command="{Binding ShowRemoveDialogCommand}"
                     Content="Удалить" />
 
-                <DataGrid
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="10"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    ItemsSource="{Binding Entities}"
-                    SelectedItem="{Binding SelectedEntity}"
-                    TabIndex="1">
-                    <DataGrid.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Command="{Binding ShowDescriptionCommand}" Header="Сведения" />
-                            <MenuItem Command="{Binding ShowAddDialogCommand}" Header="Добавить" />
-                            <MenuItem Command="{Binding ShowEditDialogCommand}" Header="Изменить" />
-                            <MenuItem Command="{Binding RemoveEntityCommand}" Header="Удалить" />
-                        </ContextMenu>
-                    </DataGrid.ContextMenu>
-                    <b:Interaction.Triggers>
-                        <b:EventTrigger EventName="MouseLeftButtonUp">
-                            <b:InvokeCommandAction Command="{Binding ShowDescriptionCommand}" />
-                        </b:EventTrigger>
-                    </b:Interaction.Triggers>
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Идентификатор">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="models:Journal">
-                                    <TextBlock Text="{Binding Date}" />
+                <StackPanel Grid.Row="1">
+                    <!--  фамилии  -->
+                        <ItemsControl ItemsSource="{Binding GridItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel
+                                        Margin="10,0,0,0"
+                                        Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Width="80">
+                                        <Run Text="{Binding Path=StudentSurname}" />
+
+                                    </TextBlock>
                                 </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Название группы">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate DataType="models:Journal">
-                                    <TextBlock Text="{Binding Name}" />
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+
+                        <!--  даты  -->
+                        <ItemsControl ItemsSource="{Binding GridItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel
+                                        Margin="15,20,0,0"
+                                        Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Path=Marks, Mode=OneWay}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Width="80">
+                                                    <Run Text="{Binding Path=Key, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}" />
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
                                 </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <ItemsControl ItemsSource="{Binding GridItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel
+                                        Margin="5,-32,0,0"
+                                        Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Path=Marks, Mode=OneWay}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Width="80">
+                                                    <Run Text="{Binding Path=Value, Mode=OneWay}" />
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+
+
+                </StackPanel>
+
             </Grid>
+
         </DockPanel>
+
+
+
+
+
+
+
+
+
     </Grid>
 </UserControl>
 

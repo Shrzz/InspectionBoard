@@ -46,8 +46,7 @@ namespace InspectionBoardLibrary.Dialogs
             {
                 SetProperty(ref selectedEntityId, value);
                 
-                   Entity = repository.SelectSingle(SelectedEntityId).Result;
-                     
+                   Entity = repository.SelectSingle(SelectedEntityId).Result;  
             }
         }
 
@@ -114,7 +113,15 @@ namespace InspectionBoardLibrary.Dialogs
                 Entities = list;
                 Entity = Entities.FirstOrDefault();
                 Ids = await repository.SelectIds();
-                SelectedEntityId = Ids.First();
+                var id = parameters.GetValue<int>("id");
+                if (id > 0)
+                {
+                    SelectedEntityId = id;
+                }
+                else
+                {
+                    SelectedEntityId = Ids.First();
+                }
             }
         }
     }

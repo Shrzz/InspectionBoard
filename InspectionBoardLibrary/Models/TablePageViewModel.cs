@@ -105,6 +105,10 @@ namespace InspectionBoardLibrary.Models
         public virtual void ShowEditDialog()
         {
             DialogParameters parameters = new DialogParameters();
+            if (SelectedEntity != null)
+            {
+                parameters.Add("id", SelectedEntity.Id);
+            }
             ShowDialog(EditDialogName, "EditDialogWindow", parameters);
         }
 

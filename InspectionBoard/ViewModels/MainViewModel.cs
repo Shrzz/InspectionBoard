@@ -30,7 +30,7 @@ namespace InspectionBoard.ViewModels
         {
             this.regionManager = regionManager;
             this.dialogService = dialogService;
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
+            //regionManager.RegisterViewWithRegion("MainRegion", typeof(Authorization.Views.Login));
 
             ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
             NavigateCommand = new DelegateCommand<string>(Navigate);

@@ -32,7 +32,7 @@ namespace InspectionBoardLibrary.Database.Repositories
 
         public async Task<ObservableCollection<Journal>> SelectCertainJournals(int groupId, int subjectId)
         {
-            var collection = await context.Journals.Where(e => e.Student.Group.Id == groupId && e.Subject.Id == subjectId).OrderBy(e => e.Date).ToListAsync();
+            var collection = await context.Journals.Where(e => e.Student.Group.Id == groupId && e.Subject.Id == subjectId).Include(j => j.Student).Include(j => j.Subject).OrderBy(e => e.Date).ToListAsync();
             return new ObservableCollection<Journal>(collection);
         }
     }
