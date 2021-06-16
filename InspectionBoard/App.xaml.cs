@@ -6,6 +6,7 @@ using InspectionBoard.ViewModels;
 using InspectionBoard.Views;
 using InspectionBoardLibrary.Database.Repositories;
 using InspectionBoardLibrary.Dialogs.CommonDialogs;
+using InspectionBoardLibrary.Dialogs.JournalDialogs;
 using InspectionBoardLibrary.Dialogs.SettingsDialogs;
 using InspectionBoardLibrary.Dialogs.TicketsDialogs;
 using InspectionBoardLibrary.Models.Database;
@@ -50,6 +51,7 @@ namespace InspectionBoardLibrary
             RegisterExamDialogs();
             RegisterGroupDialogs();
             RegisterTicketDialogs();
+            RegisterJournalDialogs();
 
             this.containerRegistry.RegisterDialog<AddUserDialog, AddUserDialogViewModel>("AddUserDialog");
             this.containerRegistry.RegisterDialog<EditUserPasswordDialog, EditUserPasswordDialogViewModel>("EditUserPasswordDialog");
@@ -97,10 +99,11 @@ namespace InspectionBoardLibrary
             containerRegistry.RegisterDialogWindow<RemoveDialogWindow>("RemoveDialogWindow");
         }
 
-        private void RegisterLegacyDialogs()
+        private void RegisterJournalDialogs()
         {
-            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
-            containerRegistry.RegisterDialog<DocsSettingsDialog, DocsSettingsDialogViewModel>();
+            containerRegistry.RegisterDialog<AddJournalDialog, AddJournalDialogViewModel>("AddJournalDialog");
+            containerRegistry.RegisterDialog<EditJournalDialog, EditJournalDialogViewModel>("EditJournalDialog");
+            containerRegistry.RegisterDialog<RemoveJournalDialog, RemoveJournalDialogViewModel>("RemoveJournalDialog");
         }
 
         private void RegisterSubjectDialogs()

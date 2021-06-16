@@ -45,8 +45,7 @@ namespace InspectionBoardLibrary.Dialogs
             set 
             {
                 SetProperty(ref selectedEntityId, value);
-                
-                   Entity = repository.SelectSingle(SelectedEntityId).Result;  
+                Entity = repository.SelectSingle(SelectedEntityId).Result;  
             }
         }
 

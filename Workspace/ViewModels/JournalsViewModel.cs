@@ -118,13 +118,13 @@ namespace Workspace.ViewModels
         public override async void OnNavigatedTo(NavigationContext navigationContext)
         {
             var entities = await repository.SelectAsync();
-            Groups = await (repository as JournalRepository).SelectGroups();
-            Subjects = await (repository as JournalRepository).SelectSubjects();
+            Groups = await (repository as JournalRepository).SelectGroupsAsync();
+            Subjects = await (repository as JournalRepository).SelectSubjectsAsync();
             SelectedGroup = Groups.FirstOrDefault();
             SelectedSubject = Subjects.FirstOrDefault();
             if (SelectedGroup != null && SelectedSubject != null)
             {
-                Entities = await (repository as JournalRepository).SelectCertainJournals(SelectedGroup.Id, SelectedSubject.Id);
+                Entities = await (repository as JournalRepository).SelectCertainJournalsAsync(SelectedGroup.Id, SelectedSubject.Id);
             }
             else
             {
@@ -134,7 +134,8 @@ namespace Workspace.ViewModels
 
         private async void GetRows()
         {
-            Journals = await (repository as JournalRepository).SelectCertainJournals(SelectedGroup.Id, SelectedSubject.Id);
+            Journals = null;
+            Journals = await (repository as JournalRepository).SelectCertainJournalsAsync(SelectedGroup.Id, SelectedSubject.Id);
             Dates = new ObservableCollection<DateTime>(Journals.Select(j => j.Date).Distinct().ToList());
             Students = new ObservableCollection<Student>(Journals.Select(j => j.Student).Distinct().ToList());
             Marks = new ObservableCollection<byte>(Journals.Select(j => j.Mark).Distinct().ToList());
@@ -151,16 +152,8 @@ namespace Workspace.ViewModels
                     }
                 }
 
-                
-                
-
                 GridItems.Add(item);
             }
-
-
-
-            
-
         }
     }
 

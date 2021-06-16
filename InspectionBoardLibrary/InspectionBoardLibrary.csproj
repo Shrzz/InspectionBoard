@@ -91,6 +91,18 @@
       <DependentUpon>DescriptionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\CommonDialogs\DescriptionDialogViewModel.cs" />
+    <Compile Include="Dialogs\JournalDialogs\AddJournalDialogViewModel.cs" />
+    <Compile Include="Dialogs\JournalDialogs\AddJournalDialog.xaml.cs">
+      <DependentUpon>AddJournalDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\JournalDialogs\EditJournalDialogViewModel.cs" />
+    <Compile Include="Dialogs\JournalDialogs\EditJournalDialog.xaml.cs">
+      <DependentUpon>EditJournalDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\JournalDialogs\RemoveJournalDialogViewModel.cs" />
+    <Compile Include="Dialogs\JournalDialogs\RemoveJournalDialog.xaml.cs">
+      <DependentUpon>RemoveJournalDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SettingsDialogs\AddUserDialog.xaml.cs">
       <DependentUpon>AddUserDialog.xaml</DependentUpon>
     </Compile>
@@ -300,6 +312,18 @@
     <Page Include="Dialogs\GroupsDialogs\RemoveGroupDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\JournalDialogs\AddJournalDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\JournalDialogs\EditJournalDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\JournalDialogs\RemoveJournalDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\Legacy\DocsSettingsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>

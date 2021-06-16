@@ -18,19 +18,25 @@ namespace InspectionBoardLibrary.Database.Repositories
 
         }
 
-        public async Task<ObservableCollection<Group>> SelectGroups()
+        public async Task<ObservableCollection<Group>> SelectGroupsAsync()
         {
             var collection = await context.Groups.ToListAsync();
             return new ObservableCollection<Group>(collection);
         }
 
-        public async Task<ObservableCollection<Subject>> SelectSubjects()
+        public async Task<ObservableCollection<Student>> SelectStudentsAsync()
+        {
+            var collection = await context.Students.ToListAsync();
+            return new ObservableCollection<Student>(collection);
+        }
+
+        public async Task<ObservableCollection<Subject>> SelectSubjectsAsync()
         {
             var collection = await context.Subjects.ToListAsync();
             return new ObservableCollection<Subject>(collection);
         }
 
-        public async Task<ObservableCollection<Journal>> SelectCertainJournals(int groupId, int subjectId)
+        public async Task<ObservableCollection<Journal>> SelectCertainJournalsAsync(int groupId, int subjectId)
         {
             var collection = await context.Journals.Where(e => e.Student.Group.Id == groupId && e.Subject.Id == subjectId).Include(j => j.Student).Include(j => j.Subject).OrderBy(e => e.Date).ToListAsync();
             return new ObservableCollection<Journal>(collection);
