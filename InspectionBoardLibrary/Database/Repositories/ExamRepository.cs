@@ -11,12 +11,12 @@ namespace InspectionBoardLibrary.Database.Repositories
     {
         public ExamRepository(ExamContext context) : base(context)
         {
-
+           
         }
 
         public override async Task<ObservableCollection<Exam>> SelectAsync()
         {
-            var list = await context.Set<Exam>().Include(e => e.Student).Include(e => e.Subject).Include(e => e.Teacher).ToListAsync();
+            var list = await context.Set<Exam>().Include(e => e.Student).Include(e => e.Student.Group).Include(e => e.Subject).Include(e => e.Teacher).ToListAsync();
             return new ObservableCollection<Exam>(list);
         }   
 
@@ -37,5 +37,21 @@ namespace InspectionBoardLibrary.Database.Repositories
             var collection = await context.Subjects.AsNoTracking().ToListAsync();
             return new ObservableCollection<Subject>(collection);
         }
+    
+        public DbSet<Student> GetStudentsSet()
+        {
+            return context.Students;
+        }
+
+        public DbSet<Teacher> GetTEachersSet()
+        {
+            return context.Teachers;
+        }
+
+        public DbSet<Subject> GetSubjectsSet()
+        {
+            return context.Subjects;
+        }
     }
+
 }

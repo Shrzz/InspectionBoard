@@ -17,7 +17,6 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Студент: \n");
-            sb.Append($"Идентификатор: {Id}\n");
             sb.Append($"Фамилия: {Surname}\n");
             sb.Append($"Имя: {Name}\n");
             sb.Append($"Отчество: {Patronymic}\n");

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace InspectionBoardLibrary.Models.Database
         where TContext : DbContext
     {
         protected readonly TContext context;
-
+        
         public ISearcher<TEntity> Searcher { get; set; }
+
+        public DbSet<TEntity> DbSet => context.Set<TEntity>();
 
         public EfRepository(TContext context)
         {

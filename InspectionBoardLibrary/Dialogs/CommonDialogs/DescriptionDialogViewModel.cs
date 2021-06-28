@@ -63,7 +63,8 @@ namespace InspectionBoardLibrary.Dialogs.CommonDialogs
         public void OnDialogOpened(IDialogParameters parameters)
         {
             Entity = parameters.GetValue<IEntity>("Entity");
-            Description = Entity.GetFullDescription();
+            if (Entity != null)
+                Description = Entity.GetFullDescription();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Threading.Tasks;
 
 namespace InspectionBoardLibrary.Models.Database

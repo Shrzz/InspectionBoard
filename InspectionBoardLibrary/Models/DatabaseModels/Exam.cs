@@ -23,7 +23,6 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Экзамен: \n");
-            sb.Append("Идентификатор: {Id}\n");
             sb.Append(GetValidString(Subject, $"Предмет: ", "Name"));
             sb.Append(GetValidString(Teacher, $"Преподаватель: ", "Surname"));
             sb.Append(GetValidString(Student, $"Студент: ", "Surname"));
@@ -44,6 +43,11 @@ namespace InspectionBoardLibrary.Models.DatabaseModels
             sb.Append(Subject.GetShortDescription());
             sb.Append(Teacher.GetShortDescription());
             sb.Append(Student.GetShortDescription());
+            if (Ticket is null)
+            {
+                return sb.ToString();
+            }
+
             sb.Append(Ticket.GetShortDescription());
 
             return sb.ToString();

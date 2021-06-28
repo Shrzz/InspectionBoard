@@ -175,6 +175,13 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Отметка">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="models:Exam">
+                                            <TextBlock Text="{Binding Mark}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Дата проведения">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="models:Exam">

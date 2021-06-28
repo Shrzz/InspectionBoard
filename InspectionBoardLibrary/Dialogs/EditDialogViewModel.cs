@@ -45,7 +45,7 @@ namespace InspectionBoardLibrary.Dialogs
             set 
             {
                 SetProperty(ref selectedEntityId, value);
-                Entity = repository.SelectSingle(SelectedEntityId).Result;  
+                SetFirstEntity();
             }
         }
 
@@ -89,6 +89,11 @@ namespace InspectionBoardLibrary.Dialogs
             }
 
             RaiseRequestClose(new DialogResult(result));
+        }
+
+        private async void SetFirstEntity()
+        {
+            Entity = await repository.SelectSingle(SelectedEntityId);
         }
 
         public virtual void RaiseRequestClose(IDialogResult dialogResult)

@@ -72,6 +72,14 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
             get => examTypes;
             set { SetProperty(ref examTypes, value); }
         }
+
+        private byte mark;
+        public byte Mark
+        {
+            get => mark;
+            set { SetProperty(ref mark, value); }
+        }
+
         public AddExamDialogViewModel(IRepository<Exam> repository) : base(repository)
         {
 
@@ -87,10 +95,14 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
             ExamForms = Enum.GetValues(typeof(ExamForm)).Cast<ExamForm>().ToList();
             ExamTypes = Enum.GetValues(typeof(ExamType)).Cast<ExamType>().ToList();
 
+            Mark = 0;
             Entity = new Exam();
             Entity.Student = Students.FirstOrDefault();
             Entity.Teacher = Teachers.FirstOrDefault();
             Entity.Subject = Subjects.FirstOrDefault();
+            (repository as ExamRepository).GetStudentsSet().Attach(Entity.Student);
+            (repository as ExamRepository).GetSubjectsSet().Attach(Entity.Subject);
+            (repository as ExamRepository).GetTEachersSet().Attach(Entity.Teacher);
             Entity.ExamForm = ExamForm.Письменный;
             Entity.ExamType = ExamType.Промежуточный;
             Date = DateTime.Today.Date;
@@ -100,6 +112,13 @@ namespace InspectionBoardLibrary.Windows.ExamsDialogs
         {
             Entity.Date = Date;
             base.CloseDialog(parameter);
+            ExamContext a = new ExamContext();
+            Journal j = new Journal();
+            j.Student = Entity.Student;
+            j.Subject = Entity.Subject;
+            j.Date = Entity.Date.Value;
+            j.Mark = Mark;
+            a.Journals.Add(new Journal());
         }
     }
 }
